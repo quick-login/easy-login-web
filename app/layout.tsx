@@ -1,16 +1,5 @@
-import { Geist, Geist_Mono } from 'next/font/google'
 import type { Metadata } from 'next'
-import './globals.css'
-
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
+import '@/src/app/globals.css'
 
 export const metadata: Metadata = {
   title: 'EASY-LOGIN',
@@ -26,8 +15,8 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>{children}</body>
+    <html lang="ko">
+      <body className="bg-[linear-gradient(112.77deg,#8A8A8A_-2.34%,#242424_96.37%)]">{children}</body>
     </html>
   )
 }
