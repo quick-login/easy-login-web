@@ -24,7 +24,7 @@ export const LoginForm = () => {
   return (
     <>
       <LoginInputs email={login.email} pw={login.pw} onChange={handleChangeLogin} />
-      <Button className="w-full" onClick={handleCreateCookie}>
+      <Button className="w-full gap-[10px] p-[15px]" onClick={handleCreateCookie}>
         로그인
       </Button>
     </>
