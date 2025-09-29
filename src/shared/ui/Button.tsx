@@ -7,7 +7,7 @@ type ButtonProps = {
 export const Button = ({ className, children, onClick }: ButtonProps) => {
   return (
     <button
-      className={`font-pretendard h-[50px] cursor-pointer rounded-xl bg-black text-[16px] text-white ${className ?? ''}`}
+      className={`font-pretendard cursor-pointer rounded-[10px] bg-black text-[16px] text-white ${className ?? ''}`}
       onClick={onClick}
     >
       {children}
