@@ -1,5 +1,7 @@
+'use client'
+// 이거 지우고, input 태그값들 공통 컴포넌트로 수정해야함
 import Image from 'next/image'
-import { Text } from '../shared/ui'
+import { Button, Text } from '../shared/ui'
 
 export const MainPage = () => {
   return (
@@ -46,7 +48,8 @@ export const MainPage = () => {
           </div>
         </div>
       </aside>
-      <section
+      {/* 메인페이지 */}
+      {/* <section
         data-id="본문"
         className="scrollbar-hidden flex h-full flex-1 flex-col overflow-auto rounded-[20px] bg-white"
       >
@@ -54,7 +57,7 @@ export const MainPage = () => {
           <Text className="text-[20px] leading-[120%] font-semibold">제품 소개</Text>
         </div>
         <hr className="border-gray2" />
-        <div data-title="본문 소셜" className="gap-10px] p-[20px]">
+        <div data-title="본문 소셜" className="gap-[10px] p-[20px]">
           <div className="flex gap-[10px]">
             <div className="border-gray3 flex flex-1 cursor-pointer justify-center gap-[10px] rounded-[15px] border p-[20px]">
               <div className="flex items-center gap-[10px]">
@@ -77,7 +80,7 @@ export const MainPage = () => {
           </div>
         </div>
         <hr className="border-gray2" />
-        <div data-title="본몬 헤더" className="gap-10px] p-[20px]">
+        <div data-title="본몬 헤더" className="gap-[10px] p-[20px]">
           <Text className="text-[20px] font-semibold">이런 점이 좋아요</Text>
         </div>
         <hr className="border-gray2" />
@@ -122,7 +125,113 @@ export const MainPage = () => {
           <Text className="text-gray4 cursor-pointer text-[14px] font-normal">문의하기</Text>
           <Text className="text-gray4 text-[14px] font-normal">copyright @ 2025 팀이름 All rights reserved.</Text>
         </div>
+      </section> */}
+
+      {/* 신규 앱 등록 페이지*/}
+      {/* <section
+        data-id="본문"
+        className="scrollbar-hidden flex h-full flex-1 flex-col overflow-auto rounded-[20px] bg-white"
+      >
+        <div data-title="본몬 헤더" className="gap-[10px] p-[20px]">
+          <Text className="text-[20px] leading-[120%] font-semibold">신규 앱 등록</Text>
+        </div>
+        <hr className="border-gray2" />
+        <div className="flex flex-1 flex-col gap-[10px] p-[20px]">
+          <Text className="text-gray4 text-[16px] leading-[150%] font-normal">
+            카카오 디벨로퍼스에서 해당 앱이 미리 등록되어있어야 합니다
+          </Text>
+          <input
+            className="placeholder-gray4 border-gray3 w-full gap-[10px] rounded-[10px] border p-[15px] leading-[150%] font-normal text-black outline-0"
+            placeholder="app ID 입력"
+          />
+          <input
+            className="placeholder-gray4 border-gray3 w-full gap-[10px] rounded-[10px] border p-[15px] leading-[150%] font-normal text-black outline-0"
+            placeholder="app name 입력"
+          />
+          <input
+            className="placeholder-gray4 border-gray3 w-full gap-[10px] rounded-[10px] border p-[15px] leading-[150%] font-normal text-black outline-0"
+            placeholder="rest key 입력"
+          />
+          <input
+            className="placeholder-gray4 border-gray3 w-full gap-[10px] rounded-[10px] border p-[15px] leading-[150%] font-normal text-black outline-0"
+            placeholder="redirect URL 입력 (선택)"
+          />
+        </div>
+        <hr className="border-gray2" />
+        <div className="flex justify-end px-[20px] pt-[10px] pb-[20px]">
+          <Button className="gap-[10px] px-[15px] py-[10px]" onClick={() => {}}>
+            앱 등록
+          </Button>
+        </div> 
+      </section> */}
+
+      {/* 앱 수정 페이지 */}
+      <section
+        data-id="본문"
+        className="scrollbar-hidden flex h-full flex-1 flex-col overflow-auto rounded-[20px] bg-white"
+      >
+        <div data-title="본몬 헤더" className="gap-[10px] p-[20px]">
+          <Text className="text-[20px] leading-[120%] font-semibold">신규 앱 등록</Text>
+        </div>
+        <hr className="border-gray2" />
+        <div className="flex flex-1 flex-col gap-[10px] p-[20px]">
+          <Text className="text-gray4 text-[16px] leading-[100%] font-medium">app ID : 123456</Text>
+          <input
+            className="placeholder-gray4 border-gray3 w-full gap-[10px] rounded-[10px] border p-[15px] leading-[150%] font-normal text-black outline-0"
+            placeholder="app name 입력"
+          />
+          <input
+            className="placeholder-gray4 border-gray3 w-full gap-[10px] rounded-[10px] border p-[15px] leading-[150%] font-normal text-black outline-0"
+            placeholder="rest key 입력"
+          />
+          <input
+            className="placeholder-gray4 border-gray3 w-full gap-[10px] rounded-[10px] border p-[15px] leading-[150%] font-normal text-black outline-0"
+            placeholder="redirect URL 입력 (선택)"
+          />
+        </div>
+        <hr className="border-gray2" />
+        <div className="flex justify-end px-[20px] pt-[10px] pb-[20px]">
+          <Button className="gap-[10px] px-[15px] py-[10px]" onClick={() => {}}>
+            앱 등록
+          </Button>
+        </div>
       </section>
+
+      {/* 내 앱 관리 페이지*/}
+      {/* <section
+        data-id="본문"
+        className="scrollbar-hidden flex h-full flex-1 flex-col overflow-auto rounded-[20px] bg-white"
+      >
+        <div data-title="본몬 헤더" className="gap-[10px] p-[20px]">
+          <div className="flex gap-[10px]">
+            <Text className="text-[20px] leading-[100%] font-semibold">내 앱 관리</Text>
+            <Text className="text-gray4 text-right text-[16px] leading-[150%] font-normal">총 5개</Text>
+          </div>
+        </div>
+        <hr className="border-gray2" />
+        <div className="flex flex-1 flex-col gap-[10px] p-[20px]">
+          <div className="border-gray3 flex flex-col gap-[10px] rounded-[10px] border p-[15px]">
+            <Text className="text-gray4 text-[16px] leading-[150%] font-normal">app ID : 123456</Text>
+            <Text className="text-[20px] leading-[150%] font-semibold">앱 이름이 들어가는 자리</Text>
+          </div>
+          <div className="border-gray3 flex flex-col gap-[10px] rounded-[10px] border p-[15px]">
+            <Text className="text-gray4 text-[16px] leading-[150%] font-normal">app ID : 123456</Text>
+            <Text className="text-[20px] leading-[150%] font-semibold">앱 이름이 들어가는 자리</Text>
+          </div>
+          <div className="border-gray3 flex flex-col gap-[10px] rounded-[10px] border p-[15px]">
+            <Text className="text-gray4 text-[16px] leading-[150%] font-normal">app ID : 123456</Text>
+            <Text className="text-[20px] leading-[150%] font-semibold">앱 이름이 들어가는 자리</Text>
+          </div>
+          <div className="border-gray3 flex flex-col gap-[10px] rounded-[10px] border p-[15px]">
+            <Text className="text-gray4 text-[16px] leading-[150%] font-normal">app ID : 123456</Text>
+            <Text className="text-[20px] leading-[150%] font-semibold">앱 이름이 들어가는 자리</Text>
+          </div>
+          <div className="border-gray3 flex flex-col gap-[10px] rounded-[10px] border p-[15px]">
+            <Text className="text-gray4 text-[16px] leading-[150%] font-normal">app ID : 123456</Text>
+            <Text className="text-[20px] leading-[150%] font-semibold">앱 이름이 들어가는 자리</Text>
+          </div>
+        </div>
+      </section> */}
     </div>
   )
 }
