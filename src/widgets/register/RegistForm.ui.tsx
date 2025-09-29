@@ -23,7 +23,7 @@ export const RegistForm = () => {
       <RegistNamePw name={regist.name} pw={regist.pw} pwCheck={regist.pwCheck} onChange={handleChangeRegister}>
         <RegistEmail email={regist.email} onChange={handleChangeRegister} />
       </RegistNamePw>
-      <Button className="w-full" onClick={() => {}}>
+      <Button className="w-full gap-[10px] p-[15px]" onClick={() => {}}>
         회원가입
       </Button>
     </>
