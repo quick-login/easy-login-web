@@ -1,51 +1,211 @@
 'use client'
 // 이거 지우고, input 태그값들 공통 컴포넌트로 수정해야함
+import clsx from 'clsx'
 import Image from 'next/image'
+import { useState } from 'react'
 import { Button, Text } from '../shared/ui'
 
 export const MainPage = () => {
+  const [sideOn, setSideOn] = useState<boolean>(true)
+  const [menuOn, setMenuOn] = useState<boolean>(false)
+
+  const handleToggleSide = () => {
+    if (menuOn) setMenuOn(false)
+    setSideOn(prev => !prev)
+  }
+
+  const handleToggleMenu = () => {
+    setMenuOn(prev => !prev)
+  }
   return (
     <div className="flex h-full gap-[20px]">
-      <aside data-id="사이드 메뉴" className="flex h-full w-[280px] flex-col rounded-[20px] bg-white">
+      <aside
+        data-id="사이드 메뉴"
+        className={clsx(
+          'flex h-full flex-col rounded-[20px] bg-white transition-[width] duration-300 ease-in-out',
+          sideOn ? 'w-[280px]' : 'w-[64px]',
+        )}
+      >
         <div data-title="사이드 로고" className="flex w-full justify-between p-[20px]">
-          <div className="flex items-center gap-[4px]">
+          <div
+            className={clsx(
+              'flex items-center gap-[4px] overflow-hidden whitespace-nowrap transition-all duration-300',
+              sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+            )}
+          >
             <Image src="/easyLogin.svg" alt="easyLogin" width={24} height={24} />
             <Text className="text-[16px] font-semibold">이지로그인</Text>
           </div>
-          <Image className="cursor-pointer" src="/menu.svg" alt="menu" width={24} height={24} />
+          <Image
+            className="cursor-pointer"
+            src="/menu.svg"
+            alt="menu"
+            width={24}
+            height={24}
+            onClick={handleToggleSide}
+          />
+        </div>
+        <hr className="border-gray2" />
+        <div className="flex flex-col gap-[10px] p-[20px]">
+          <div className="flex flex-col gap-[12px]">
+            <div className="flex justify-between">
+              <div className="flex gap-[4px]">
+                <Image src="/cash.svg" alt="cash" width={24} height={24} />
+                <Text
+                  className={clsx(
+                    'text-gray4 overflow-hidden leading-[150%] font-medium whitespace-nowrap transition-all duration-300',
+                    sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+                  )}
+                >
+                  보유 캐시
+                </Text>
+              </div>
+              <Text
+                className={clsx(
+                  'overflow-hidden leading-[150%] font-medium whitespace-nowrap transition-all duration-300',
+                  sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+                )}
+              >
+                10,000
+              </Text>
+            </div>
+            <div
+              className={clsx(
+                'flex gap-[10px] overflow-hidden whitespace-nowrap transition-all duration-300',
+                sideOn ? 'max-h-[100%]' : 'max-h-[0px]',
+              )}
+            >
+              <Button className="flex-1 gap-[10px] px-[15px] py-[10px]" variant="cancle" onClick={() => {}}>
+                캐시 충전
+              </Button>
+              <Button className="flex-1 gap-[10px] px-[15px] py-[10px]" variant="cancle" onClick={() => {}}>
+                내역 조회
+              </Button>
+            </div>
+          </div>
         </div>
         <hr className="border-gray2" />
         <div data-title="사이드 본문" className="flex flex-1 flex-col gap-[30px] p-[20px]">
           <div data-title="사본 판매상품" className="flex flex-col gap-[10px]">
             <div className="flex items-center gap-[4px]">
               <Image src="/shop.svg" alt="shop" width={24} height={24} />
-              <Text className="text-[16px] font-semibold">판매상품</Text>
+              <Text
+                className={clsx(
+                  'overflow-hidden text-[16px] font-semibold whitespace-nowrap transition-all duration-300',
+                  sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+                )}
+              >
+                판매상품
+              </Text>
             </div>
-            <div className="flex cursor-pointer items-center gap-[6px]">
+            <div
+              className={clsx(
+                'flex cursor-pointer items-center gap-[6px] overflow-hidden whitespace-nowrap transition-all duration-300',
+                sideOn ? 'max-h-[100%]' : 'max-h-[0px]',
+              )}
+            >
               <Text className="text-[16px] font-normal">제품소개</Text>
               <div className="h-[6px] w-[6px] rounded-2xl bg-black"></div>
             </div>
           </div>
           <div data-title="사본 이지로그인" className="flex flex-col gap-[10px]">
-            <div className="flex w-full cursor-pointer justify-between">
+            <div className="flex w-full cursor-pointer justify-between" onClick={handleToggleMenu}>
               <div className="flex items-center gap-[4px]">
                 <Image src="/info.svg" alt="info" width={24} height={24} />
-                <Text className="text-[16px] font-semibold">이지로그인</Text>
+                <Text
+                  className={clsx(
+                    'overflow-hidden text-[16px] font-semibold whitespace-nowrap transition-all duration-300',
+                    sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+                  )}
+                >
+                  이지로그인
+                </Text>
               </div>
-              <Image src="/top.svg" alt="top" width={24} height={24} />
+              <Image
+                src="/down.svg"
+                alt="down"
+                width={24}
+                height={24}
+                className={clsx(
+                  'transition-all duration-300',
+                  menuOn ? 'rotate-180' : 'rotate-0',
+                  sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+                )}
+              />
             </div>
-            <Text className="text-gray4 cursor-pointer text-[16px] font-normal">이용 가이드</Text>
-            <Text className="text-gray4 cursor-pointer text-[16px] font-normal">개발자 가이드</Text>
-            <Text className="text-gray4 cursor-pointer text-[16px] font-normal">공지사항</Text>
+            <div
+              className={clsx(
+                'flex flex-col gap-[10px] overflow-hidden transition-all duration-300',
+                menuOn ? 'max-h-[100%]' : 'max-h-[0]',
+              )}
+            >
+              <Text className={`text-gray4 cursor-pointer text-[16px] font-normal`}>이용 가이드</Text>
+              <Text className="text-gray4 cursor-pointer text-[16px] font-normal">개발자 가이드</Text>
+              <Text className="text-gray4 cursor-pointer text-[16px] font-normal">공지사항</Text>
+            </div>
+          </div>
+          {/* 카카오 간편로그인 */}
+          <div data-title="사본 이지로그인" className="flex flex-col gap-[10px]">
+            <div className="flex w-full cursor-pointer justify-between" onClick={handleToggleMenu}>
+              <div className="flex items-center gap-[4px]">
+                <Image src="/menu_li.svg" alt="menu_li" width={24} height={24} />
+                <Text
+                  className={clsx(
+                    'overflow-hidden text-[16px] font-semibold whitespace-nowrap transition-all duration-300',
+                    sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+                  )}
+                >
+                  카카오 간편로그인
+                </Text>
+              </div>
+              <Image
+                src="/down.svg"
+                alt="down"
+                width={24}
+                height={24}
+                className={clsx(
+                  'transition-all duration-300',
+                  menuOn ? 'rotate-180' : 'rotate-0',
+                  sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+                )}
+              />
+            </div>
+            <div
+              className={clsx(
+                'flex flex-col gap-[10px] overflow-hidden transition-all duration-300',
+                menuOn ? 'max-h-[100%]' : 'max-h-[0]',
+              )}
+            >
+              <div className="flex items-center gap-[6px]">
+                <Text className={`text-gray4 cursor-pointer text-[16px] font-normal`}>내 앱 관리</Text>
+                <div className="h-[6px] w-[6px] rounded-2xl bg-black"></div>
+              </div>
+              <Text className="text-gray4 cursor-pointer text-[16px] font-normal">신규 앱 등록</Text>
+            </div>
           </div>
         </div>
+        {/*  */}
         <hr className="border-gray2" />
         <div data-title="사이드 푸터" className="flex h-[66px] justify-between p-[20px]">
-          <div className="flex w-full items-center gap-[10px]">
-            <Text className="text-gray4 w-[110px] cursor-pointer text-center text-[16px] font-medium">로그인</Text>
-            <div className="border-gray2 h-[20px] border" />
-            <Text className="text-gray4 w-[110px] cursor-pointer text-center text-[16px] font-medium">회원가입</Text>
-          </div>
+          <>
+            <Image
+              src="/user.svg"
+              alt="user"
+              width={24}
+              height={24}
+              className={clsx('transition-all duration-300', !sideOn ? 'max-w-[100%]' : 'max-w-[0px]')}
+            />
+            <div
+              className={clsx(
+                'flex w-full items-center gap-[10px] overflow-hidden whitespace-nowrap transition-all duration-300',
+                sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+              )}
+            >
+              <Text className="text-gray4 w-[110px] cursor-pointer text-center text-[16px] font-medium">로그인</Text>
+              <div className="border-gray2 h-[20px] border" />
+              <Text className="text-gray4 w-[110px] cursor-pointer text-center text-[16px] font-medium">회원가입</Text>
+            </div>
+          </>
         </div>
       </aside>
       {/* 메인페이지 */}
@@ -171,7 +331,7 @@ export const MainPage = () => {
         className="scrollbar-hidden flex h-full flex-1 flex-col overflow-auto rounded-[20px] bg-white"
       >
         <div data-title="본몬 헤더" className="gap-[10px] p-[20px]">
-          <Text className="text-[20px] leading-[120%] font-semibold">신규 앱 등록</Text>
+          <Text className="text-[20px] leading-[120%] font-semibold">내 앱 수정</Text>
         </div>
         <hr className="border-gray2" />
         <div className="flex flex-1 flex-col gap-[10px] p-[20px]">
@@ -190,10 +350,19 @@ export const MainPage = () => {
           />
         </div>
         <hr className="border-gray2" />
-        <div className="flex justify-end px-[20px] pt-[10px] pb-[20px]">
-          <Button className="gap-[10px] px-[15px] py-[10px]" onClick={() => {}}>
-            앱 등록
-          </Button>
+        <div className="flex justify-between px-[20px] pt-[10px] pb-[20px]">
+          <div className="flex cursor-pointer items-center justify-center gap-[4px]">
+            <Image src="/trash.svg" alt="delete" width={24} height={24} />
+            <Text className="text-negative leading-[150%] font-normal">삭제</Text>
+          </div>
+          <div className="flex gap-[10px]">
+            <Button className="gap-[10px] px-[15px] py-[10px]" variant="cancle" onClick={() => {}}>
+              취소
+            </Button>
+            <Button className="gap-[10px] px-[15px] py-[10px]" onClick={() => {}}>
+              변경사항 저장
+            </Button>
+          </div>
         </div>
       </section>
 
