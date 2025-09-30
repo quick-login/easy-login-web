@@ -3,9 +3,10 @@
 import { useState } from 'react'
 import { LoginInputs } from '@/src/features/login/ui'
 import { setCookies } from '@/src/shared/lib/cookie'
-import { Button } from '@/src/shared/ui'
+import { Button, Text } from '@/src/shared/ui'
 
 export const LoginForm = () => {
+  const [isError, setIsError] = useState(false)
   const [login, setLogin] = useState({
     email: '',
     pw: '',
@@ -13,17 +14,20 @@ export const LoginForm = () => {
 
   const handleCreateCookie = async () => {
     await setCookies('token', 'test')
+    // setIsError(true)
   }
 
   const handleChangeLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
     setLogin(prev => ({
       ...prev,
-      [e.target.name]: e.target.value,
+      [name]: value,
     }))
   }
+
   return (
     <>
-      <LoginInputs email={login.email} pw={login.pw} onChange={handleChangeLogin} />
+      <LoginInputs email={login.email} pw={login.pw} isError={isError} onChange={handleChangeLogin} />
       <Button className="w-full gap-[10px] p-[15px]" onClick={handleCreateCookie}>
         로그인
       </Button>
