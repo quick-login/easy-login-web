@@ -1,15 +1,21 @@
+import clsx from 'clsx'
+
 type ButtonProps = {
   className?: string
   children: string
   onClick: () => void
+  variant?: 'primary' | 'cancle' | 'noActive'
 }
 
-export const Button = ({ className, children, onClick }: ButtonProps) => {
+export const Button = ({ className, children, onClick, variant = 'primary' }: ButtonProps) => {
+  const base = 'font-pretendard h-[50px] cursor-pointer rounded-[10px] text-[16px]'
+  const variants = {
+    primary: 'bg-black text-white',
+    cancle: 'bg-white text-gray4 border border-gray3',
+    noActive: 'bg-gray1 text-gray4 border border-gray3',
+  }
   return (
-    <button
-      className={`font-pretendard h-[50px] cursor-pointer rounded-xl bg-black text-[16px] text-white ${className ?? ''}`}
-      onClick={onClick}
-    >
+    <button className={clsx(base, variants[variant], className)} onClick={onClick}>
       {children}
     </button>
   )

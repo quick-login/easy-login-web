@@ -12,7 +12,7 @@ export const Input = ({ className, name, value, type, onChange, place }: InputPr
     <input
       type={type}
       name={name}
-      className={`border-gray3 font-pretendard h-[54px] rounded-xl border p-[15px] text-[16px] text-black outline-0 ${className ?? ''}`}
+      className={`border-gray3 placeholder:text-gray4 font-pretendard rounded-[10px] border p-[15px] text-[16px] text-black outline-0 ${className ?? ''}`}
       value={value}
       onChange={onChange}
       placeholder={place}
