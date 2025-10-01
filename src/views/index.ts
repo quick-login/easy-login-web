@@ -1,3 +1,6 @@
 export { RegistPage } from './register/RegistPage'
 export { LoginPage } from './login/LoginPage'
 export { MainPage } from './MainPage'
+export { CreateAppPage } from './create/CreateAppPage'
+export { MyAppInfoPage } from './myApp/MyAppInfoPage'
+export { MyAppPage } from './myApp/MyAppPage'
