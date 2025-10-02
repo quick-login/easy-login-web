@@ -26,6 +26,10 @@
   --font-pretendard: 'Pretendard-Regular';
 }
 
+@theme {
+  --breakpoint-900: 900px;
+}
+
 @utility scrollbar-hidden {
   &::-webkit-scrollbar {
     display: none;
