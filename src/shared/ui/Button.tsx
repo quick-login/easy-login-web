@@ -8,10 +8,10 @@ type ButtonProps = {
 }
 
 export const Button = ({ className, children, onClick, variant = 'primary' }: ButtonProps) => {
-  const base = 'font-pretendard h-[50px] cursor-pointer rounded-[10px] text-[16px]'
+  const base = 'font-pretendard h-[50px] rounded-[10px] text-[16px]'
   const variants = {
-    primary: 'bg-black text-white',
-    cancle: 'bg-white text-gray4 border border-gray3',
+    primary: 'bg-black text-white cursor-pointer',
+    cancle: 'bg-white text-gray4 border border-gray3 cursor-pointer',
     noActive: 'bg-gray1 text-gray4 border border-gray3',
   }
   return (
