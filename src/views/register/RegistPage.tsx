@@ -1,5 +1,6 @@
+import { RegistForm } from '@/src/features/register'
 import { LinkText, Text } from '@/src/shared/ui'
-import { AuthFooter, RegistForm } from '@/src/widgets'
+import { AuthFooter } from '@/src/widgets'
 
 export const RegistPage = () => {
   return (
