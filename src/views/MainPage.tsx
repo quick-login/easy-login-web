@@ -4,14 +4,14 @@ import { PageHeader } from '../widgets'
 
 export const MainPage = () => {
   return (
-    <section className="scrollbar-hidden flex h-full flex-1 flex-col overflow-auto rounded-[20px] bg-white">
+    <section className="scrollbar-hidden 1060:rounded-[20px] flex h-full flex-1 flex-col overflow-auto bg-white">
       <PageHeader title="제품 소개" />
       <hr className="border-gray2" />
       <div className="gap-[10px] p-[20px]">
-        <div className="flex gap-[10px]">
-          <SocialBtn img="/kakao.svg" title="카카오 로그인 연결하기" link="/" />
-          <SocialBtn img="/naver.svg" title="네이버 로그인 연결하기" link="/" />
-          <SocialBtn img="/google.svg" title="구글 로그인 연결하기" link="/" />
+        <div className="flex flex-col gap-[10px] md:flex-row">
+          <SocialBtn img="/kakao.svg" title="카카오 로그인 연결" link="/" />
+          <SocialBtn img="/naver.svg" title="네이버 로그인 연결" link="/" />
+          <SocialBtn img="/google.svg" title="구글 로그인 연결" link="/" />
         </div>
       </div>
       <hr className="border-gray2" />
@@ -20,7 +20,7 @@ export const MainPage = () => {
       </div>
       <hr className="border-gray2" />
       <div className="flex-1 gap-[10px] p-[20px]">
-        <div className="flex gap-[10px]">
+        <div className="900:flex-row flex flex-col gap-[10px]">
           <MainBanner img="/home1.svg" title="소셜로그인 간편 구현">
             이지로그인에서 제공하는 <br />
             API를 사용하여 간편하게 <br />

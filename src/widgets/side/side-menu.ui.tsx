@@ -14,7 +14,7 @@ export const SideMenu = () => {
   return (
     <aside
       className={clsx(
-        'flex h-full flex-col rounded-[20px] bg-white transition-[width] duration-300 ease-in-out',
+        'max-1060:hidden flex h-full flex-col rounded-[20px] bg-white transition-[width] duration-300',
         sideOn ? 'w-[280px]' : 'w-[64px]',
       )}
     >
