@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { LoginInputs } from '@/src/features/login/ui'
-import { setCookies } from '@/src/shared/lib/cookie'
+// import { setCookies } from '@/src/shared/lib/cookie'
 import { Button, Text } from '@/src/shared/ui'
 
 export const LoginForm = () => {
@@ -13,7 +13,7 @@ export const LoginForm = () => {
   })
 
   const handleCreateCookie = async () => {
-    await setCookies('token', 'test')
+    // await setCookies('token', 'test')
     // setIsError(true)
   }
 

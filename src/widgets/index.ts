@@ -1,3 +1,7 @@
 export { RegistForm } from './register/RegistForm.ui'
-export { AuthFooter } from './AuthFooter'
+export { PageHeader } from './header/page-header.ui'
+export { SideMenu } from './side/side-menu.ui'
+export { AuthFooter } from './footer/auth-footer.ui'
 export { LoginForm } from './login/LoginForm.ui'
+export { AppList } from './appList/app-card.ui'
+export { AppHeader } from './header/app-header.ui'

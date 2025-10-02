@@ -1,7 +1,7 @@
 import { RegistPage } from '@/src/views'
 
-const RegisterPage = () => {
+const RegisterView = () => {
   return <RegistPage />
 }
 
-export default RegisterPage
+export default RegisterView
