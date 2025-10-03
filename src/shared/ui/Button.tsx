@@ -15,7 +15,7 @@ export const Button = ({ className, children, onClick, variant = 'primary' }: Bu
     noActive: 'bg-gray1 text-gray4 border border-gray3',
   }
   return (
-    <button className={clsx(base, variants[variant], className)} onClick={onClick}>
+    <button className={clsx(base, variants[variant], className)} onClick={() => variant !== 'noActive' && onClick()}>
       {children}
     </button>
   )
