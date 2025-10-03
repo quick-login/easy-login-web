@@ -1,6 +1,11 @@
 export interface EmailCheckType {
-  isEmail: boolean
-  message: '중복 확인이 필요해요' | '중복된 이메일이 있어요' | '사용 가능해요'
+  isFlag: boolean
+  message:
+    | '해당 메일로 인증코드를 보냈어요'
+    | '중복된 이메일이 존재해요'
+    | '이메일 인증 완료'
+    | '인증코드가 맞지 않아요'
+    | ''
 }
 
 export interface RegistType {
@@ -9,6 +14,18 @@ export interface RegistType {
   password: string
   passwordCheck: string
   kakaoId: null
+}
+
+export type EmailCodeType = {
+  email: string
+  code: string
+}
+
+export type EmailCodeProps = {
+  code: string
+  check: EmailCheckType
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onEmailCode: () => void
 }
 
 export interface RegistEmailProps extends Partial<RegistType> {

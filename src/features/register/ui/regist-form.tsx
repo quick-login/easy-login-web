@@ -1,12 +1,15 @@
 'use client'
 
+import { RegistEmailCode } from './email-code'
 import { RegistEmail } from './RegistEmail'
+import { useEmailCode } from '../model/useEmailCode'
 import { useRegist } from '../model/useRegist'
 import { useRegistValidate } from '../model/useValidate'
 import { Button, Input, InputPassword, Text } from '@/src/shared/ui'
 
 export const RegistForm = () => {
   const { regist, handleChangeRegister, handleEmailCheck, check, handleRegist } = useRegist()
+  const { code, handleChangeCode, handleEmailCode, Invalid } = useEmailCode(regist.email)
   const { pwSame, pwValidate } = useRegistValidate(regist)
   return (
     <>
@@ -17,6 +20,7 @@ export const RegistForm = () => {
           onEmailCheck={handleEmailCheck}
           check={check}
         />
+        <RegistEmailCode code={code} onChange={handleChangeCode} onEmailCode={handleEmailCode} check={Invalid} />
         <Input
           className="w-full"
           type="text"
@@ -34,7 +38,7 @@ export const RegistForm = () => {
           />
           {pwValidate && (
             <Text className="text-negative text-[16px] leading-[150%] font-normal">
-              비밀번호가 형식이 올바르지 않아요
+              숫자, 영문자 특수문자를 조합해 6~30자로 입력해주세요.
             </Text>
           )}
         </div>
@@ -50,7 +54,13 @@ export const RegistForm = () => {
           )}
         </div>
       </div>
-      <Button className="w-full gap-[10px] p-[15px]" onClick={handleRegist}>
+      <Button
+        className="w-full gap-[10px] p-[15px]"
+        variant={
+          !pwValidate && pwSame && Invalid.isFlag && check.isFlag && regist.name.length > 0 ? 'primary' : 'noActive'
+        }
+        onClick={handleRegist}
+      >
         회원가입
       </Button>
     </>

@@ -1,12 +1,12 @@
 import { useState } from 'react'
-import { postEmailCheck } from '../api/email-api'
+import { postCreateEmailCode } from '../api/email-api'
 import { postRegist } from '../api/regist-api'
 import type { EmailCheckType, RegistType } from '../type'
 
 export const useRegist = () => {
   const [check, setCheck] = useState<EmailCheckType>({
-    isEmail: false,
-    message: '중복 확인이 필요해요',
+    isFlag: false,
+    message: '',
   })
   const [regist, setRegist] = useState<RegistType>({
     email: '',
@@ -18,7 +18,7 @@ export const useRegist = () => {
 
   const handleChangeRegister = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    if (name === 'email') setCheck({ isEmail: false, message: '중복 확인이 필요해요' })
+    if (name === 'email') setCheck({ isFlag: false, message: '' })
     setRegist(prev => ({
       ...prev,
       [name]: value,
@@ -26,10 +26,9 @@ export const useRegist = () => {
   }
 
   const handleEmailCheck = async () => {
-    if (check.isEmail || regist.email.length === 0) return
-    const res = await postEmailCheck(regist.email)
-    if (res.data) setCheck({ isEmail: true, message: '사용 가능해요' })
-    else setCheck({ isEmail: false, message: '중복된 이메일이 있어요' })
+    const res = await postCreateEmailCode(regist.email)
+    if (res.code === 'E200') setCheck({ isFlag: true, message: '해당 메일로 인증코드를 보냈어요' })
+    else setCheck({ isFlag: false, message: '중복된 이메일이 존재해요' })
   }
 
   const handleRegist = async () => {
