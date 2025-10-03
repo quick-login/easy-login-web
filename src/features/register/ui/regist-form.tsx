@@ -1,26 +1,20 @@
 'use client'
 
-import { RegistEmailCode } from './email-code'
 import { RegistEmail } from './RegistEmail'
-import { useEmailCode } from '../model/useEmailCode'
+import { useEmail } from '../model/useEmail'
 import { useRegist } from '../model/useRegist'
 import { useRegistValidate } from '../model/useValidate'
 import { Button, Input, InputPassword, Text } from '@/src/shared/ui'
 
 export const RegistForm = () => {
-  const { regist, handleChangeRegister, handleEmailCheck, check, handleRegist } = useRegist()
-  const { code, handleChangeCode, handleEmailCode, Invalid } = useEmailCode(regist.email)
+  const { regist, handleChangeRegister, handleRegist } = useRegist()
   const { pwSame, pwValidate } = useRegistValidate(regist)
+  const { Invalid } = useEmail(regist.email)
+
   return (
     <>
       <div className="flex w-full flex-col gap-[10px]">
-        <RegistEmail
-          email={regist.email}
-          onChange={handleChangeRegister}
-          onEmailCheck={handleEmailCheck}
-          check={check}
-        />
-        <RegistEmailCode code={code} onChange={handleChangeCode} onEmailCode={handleEmailCode} check={Invalid} />
+        <RegistEmail email={regist.email} onChange={handleChangeRegister} />
         <Input
           className="w-full"
           type="text"
@@ -38,7 +32,7 @@ export const RegistForm = () => {
           />
           {pwValidate && (
             <Text className="text-negative text-[16px] leading-[150%] font-normal">
-              숫자, 영문자 특수문자를 조합해 6~30자로 입력해주세요.
+              숫자,영문자,특수문자 조합으로 6~30자
             </Text>
           )}
         </div>
@@ -57,7 +51,9 @@ export const RegistForm = () => {
       <Button
         className="w-full gap-[10px] p-[15px]"
         variant={
-          !pwValidate && pwSame && Invalid.isFlag && check.isFlag && regist.name.length > 0 ? 'primary' : 'noActive'
+          !pwValidate && pwSame && Invalid.message === '이메일 인증 완료' && regist.name.length > 0
+            ? 'primary'
+            : 'noActive'
         }
         onClick={handleRegist}
       >

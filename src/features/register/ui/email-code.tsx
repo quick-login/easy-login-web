@@ -1,10 +1,16 @@
 import clsx from 'clsx'
+import Image from 'next/image'
 import { Button, Input, Text } from '@/src/shared/ui'
 import type { EmailCodeProps } from '../type'
 
-export const RegistEmailCode = ({ code, onChange, onEmailCode, check }: EmailCodeProps) => {
+export const RegistEmailCode = ({ code, onChange, onEmailCode, check, onModalOpen }: EmailCodeProps) => {
   return (
     <div className="flex flex-col gap-[6px]">
+      <div className="flex items-center justify-between">
+        <Text className={clsx('text-[20px] leading-[150%] font-bold')}>이메일 인증</Text>
+        <Image src="./close.svg" alt="close" width={20} height={20} className="cursor-pointer" onClick={onModalOpen} />
+      </div>
+      <Text className={clsx('text-[12px] leading-[150%] font-normal')}>해당 메일로 인증코드를 발송했습니다</Text>
       <div className="flex items-center gap-[10px]">
         <Input
           className="min-w-0 flex-1"
@@ -23,7 +29,7 @@ export const RegistEmailCode = ({ code, onChange, onEmailCode, check }: EmailCod
         </Button>
       </div>
       <Text
-        className={clsx('text-[16px] leading-[150%] font-normal', check.isFlag ? 'text-positive' : 'text-negative')}
+        className={clsx('text-[12px] leading-[150%] font-normal', check.isFlag ? 'text-positive' : 'text-negative')}
       >
         {check.message}
       </Text>
