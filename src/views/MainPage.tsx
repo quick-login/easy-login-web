@@ -1,4 +1,4 @@
-import { MainBanner, MainFooter, SocialBtn } from '../entities/main'
+import { MainBanner, MainFooter, MainSocial } from '../entities/main'
 import { Text } from '../shared/ui'
 import { PageHeader } from '../widgets'
 
@@ -7,13 +7,7 @@ export const MainPage = () => {
     <section className="scrollbar-hidden 1060:rounded-[20px] flex h-full flex-1 flex-col overflow-auto bg-white">
       <PageHeader title="제품 소개" />
       <hr className="border-gray2" />
-      <div className="gap-[10px] p-[20px]">
-        <div className="flex flex-col gap-[10px] md:flex-row">
-          <SocialBtn img="/kakao.svg" title="카카오 로그인 연결" link="/" />
-          <SocialBtn img="/naver.svg" title="네이버 로그인 연결" link="/" />
-          <SocialBtn img="/google.svg" title="구글 로그인 연결" link="/" />
-        </div>
-      </div>
+      <MainSocial />
       <hr className="border-gray2" />
       <div className="gap-[10px] p-[20px]">
         <Text className="text-[20px] leading-[100%] font-semibold">이런 점이 좋아요</Text>
