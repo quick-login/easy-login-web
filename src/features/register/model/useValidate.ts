@@ -6,6 +6,7 @@ export const useRegistValidate = (registData: RegistType) => {
   const [pwSame, setPwSame] = useState<boolean>(true)
 
   const RegExp = /^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[!@#$%^&*~])[a-zA-Z0-9!@#$%^&*~]{6,30}$/
+
   useEffect(() => {
     setPwValidate(!RegExp.test(registData.password))
     if (!registData.passwordCheck) {

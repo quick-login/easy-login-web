@@ -21,7 +21,11 @@ export const useRegist = () => {
 
   const handleRegist = async () => {
     const res = await postRegist(regist)
-    if (res.data) return
+    if (res.code === 'E200') {
+      console.log(res)
+    } else {
+      alert('에러')
+    }
   }
 
   return { regist, handleChangeRegister, handleRegist }
