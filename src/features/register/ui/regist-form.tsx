@@ -1,103 +1,156 @@
 'use client'
 import clsx from 'clsx'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { RegistEmailCode } from './email-code'
-import { useEmail } from '../model/useEmail'
+import { handleCreateCode, handleValidateCode } from '../model/email-action'
+import { handleRegist } from '../model/regist-action'
 import { useRegist } from '../model/useRegist'
 import { useRegistValidate } from '../model/useValidate'
 import { Button, Input, InputPassword, Modal, Text } from '@/src/shared/ui'
+import type { CreateActionType, ValidateActionType } from '../type'
 
 export const RegistForm = () => {
-  const { regist, handleChangeRegister, handleRegist } = useRegist()
-  const { code, handleChangeCode, handleEmailCode, handleEmailCheck, Invalid, isOpen, handleModalClose } = useEmail(
-    regist.email,
-  )
+  const { regist, handleChangeRegister } = useRegist()
   const { pwSame, pwValidate } = useRegistValidate(regist)
+  const router = useRouter()
+
+  const [isModal, setModal] = useState<boolean>(false)
+  const [isRegistModal, setRegistModal] = useState<boolean>(false)
+  const [emailRes, setEmailRes] = useState<CreateActionType>({
+    success: false,
+    message: '',
+  })
+  const [codeRes, setCodeRes] = useState<ValidateActionType>({
+    success: false,
+    message: '',
+  })
+  const [RegistRes, setRegistRes] = useState({
+    success: false,
+    message: '',
+  })
+
+  const handleRegistSuccess = () => {
+    if (RegistRes.success) {
+      router.push('/login')
+    } else {
+      setRegistModal(false)
+    }
+  }
+
+  const registAction = async (formData: FormData) => {
+    const res = await handleRegist(formData)
+    setRegistModal(true)
+    setRegistRes({ success: res.success, message: res.message })
+  }
+
+  const createCodeAction = async (formData: FormData) => {
+    const res = await handleCreateCode(formData)
+    if (res.success) {
+      setModal(true)
+      setEmailRes(res)
+    } else {
+      setEmailRes(res)
+    }
+  }
+
+  const validateCodeAction = async (formData: FormData) => {
+    const res = await handleValidateCode(formData)
+    if (res.success) {
+      setModal(false)
+      setCodeRes(res)
+    } else {
+      setCodeRes(res)
+    }
+  }
+
   return (
     <>
-      <div className="flex w-full flex-col gap-[10px]">
-        {/* <RegistEmail email={regist.email} onChange={handleChangeRegister} /> */}
-        <div className="flex flex-col gap-[6px]">
-          <div className="flex items-center gap-[10px]">
-            <Input
-              className="min-w-0 flex-1"
-              type="text"
-              name="email"
-              value={regist.email}
-              place="이메일 입력"
-              onChange={handleChangeRegister}
-              read={Invalid.message === '이메일 인증 완료'}
-            />
-            <Button
-              className="gap-[10px] p-[15px]"
-              onClick={handleEmailCheck}
-              variant={Invalid.isFlag || regist.email.length === 0 ? 'noActive' : 'primary'}
-            >
-              인증하기
-            </Button>
+      <form action={registAction} className="flex w-full flex-col gap-[30px]">
+        <div className="flex w-full flex-col gap-[10px]">
+          <div className="flex flex-col gap-[6px]">
+            <div className="flex items-center gap-[10px]">
+              <Input
+                className="min-w-0 flex-1"
+                type="text"
+                name="email"
+                value={regist.email}
+                place="이메일 입력"
+                onChange={handleChangeRegister}
+                read={codeRes.success}
+              />
+              <Button
+                type={codeRes.success || regist.email.length === 0 ? 'button' : 'submit'}
+                className="gap-[10px] p-[15px]"
+                variant={codeRes.success || regist.email.length === 0 ? 'noActive' : 'primary'}
+                formAction={createCodeAction}
+              >
+                인증하기
+              </Button>
+            </div>
+            <Text className={clsx('text-negative text-[16px] leading-[150%] font-normal')}>{emailRes.message}</Text>
+            {codeRes.success && (
+              <Text className={clsx('text-[16px] leading-[150%] font-normal', 'text-positive')}>{codeRes.message}</Text>
+            )}
           </div>
-          {Invalid.message !== '인증코드가 맞지 않아요' && (
-            <Text
-              className={clsx(
-                'text-[16px] leading-[150%] font-normal',
-                Invalid.isFlag ? 'text-positive' : 'text-negative',
-              )}
-            >
-              {Invalid.message}
-            </Text>
-          )}
-        </div>
-        <Input
-          className="w-full"
-          type="text"
-          name="name"
-          value={regist.name!}
-          place="이름 입력"
-          onChange={handleChangeRegister}
-        />
-        <div className="flex flex-col gap-[6px]">
-          <InputPassword
-            name="password"
-            value={regist.password!}
-            place="비밀번호 입력"
+          <Input
+            className="w-full"
+            type="text"
+            name="name"
+            value={regist.name!}
+            place="이름 입력"
             onChange={handleChangeRegister}
           />
-          {pwValidate && (
-            <Text className="text-negative text-[16px] leading-[150%] font-normal">
-              숫자,영문자,특수문자 조합으로 6~30자
-            </Text>
-          )}
+          <div className="flex flex-col gap-[6px]">
+            <InputPassword
+              name="password"
+              value={regist.password!}
+              place="비밀번호 입력"
+              onChange={handleChangeRegister}
+            />
+            {pwValidate && (
+              <Text className="text-negative text-[16px] leading-[150%] font-normal">
+                숫자,영문자,특수문자 조합으로 6~30자
+              </Text>
+            )}
+          </div>
+          <div className="flex flex-col gap-[6px]">
+            <InputPassword
+              name="passwordCheck"
+              value={regist.passwordCheck!}
+              place="비밀번호 다시 입력"
+              onChange={handleChangeRegister}
+            />
+            {!pwSame && (
+              <Text className="text-negative text-[16px] leading-[150%] font-normal">비밀번호가 일치하지 않아요</Text>
+            )}
+          </div>
         </div>
-        <div className="flex flex-col gap-[6px]">
-          <InputPassword
-            name="passwordCheck"
-            value={regist.passwordCheck!}
-            place="비밀번호 다시 입력"
-            onChange={handleChangeRegister}
-          />
-          {!pwSame && (
-            <Text className="text-negative text-[16px] leading-[150%] font-normal">비밀번호가 일치하지 않아요</Text>
-          )}
-        </div>
-      </div>
-      <Button
-        className="w-full gap-[10px] p-[15px]"
-        variant={
-          !pwValidate && pwSame && Invalid.message === '이메일 인증 완료' && regist.name.length > 0
-            ? 'primary'
-            : 'noActive'
-        }
-        onClick={handleRegist}
-      >
-        회원가입
-      </Button>
-      <Modal isOpen={isOpen} className="rounded-[20px] bg-white p-[25px]">
+        <Button
+          type={!pwValidate && pwSame && codeRes.success && regist.name.length > 0 ? 'submit' : 'button'}
+          className="w-full gap-[10px] p-[15px]"
+          variant={!pwValidate && pwSame && codeRes.success && regist.name.length > 0 ? 'primary' : 'noActive'}
+        >
+          회원가입
+        </Button>
+      </form>
+      <Modal isOpen={isModal} className="rounded-[20px] bg-white p-[25px]">
         <RegistEmailCode
-          code={code}
-          onChange={handleChangeCode}
-          onEmailCode={handleEmailCode}
-          check={Invalid}
-          onModalOpen={handleModalClose}
+          email={regist.email}
+          stateCode={codeRes}
+          onValidate={validateCodeAction}
+          onModal={() => setModal(false)}
         />
+      </Modal>
+      <Modal isOpen={isRegistModal} className="rounded-[20px] bg-white p-[25px]">
+        <div className="flex flex-col gap-[20px]">
+          <Text className="text-dark text-[16px] font-bold">
+            {RegistRes.success ? '가입되었습니다! 로그인 후 이용가능합니다.' : RegistRes.message}
+          </Text>
+          <Button className="w-full gap-[10px] p-[15px]" variant="primary" onClick={handleRegistSuccess}>
+            확인
+          </Button>
+        </div>
       </Modal>
     </>
   )

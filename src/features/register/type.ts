@@ -1,6 +1,11 @@
+export type CreateActionType = { success: boolean; message: string | null }
+export type ValidateActionType = {
+  success: boolean
+  message: string
+}
 export interface EmailCheckType {
   isFlag: boolean
-  message: '중복된 이메일이 존재해요' | '이메일 인증 완료' | '인증코드가 맞지 않아요' | ''
+  message: string
 }
 
 export interface RegistType {
@@ -17,11 +22,10 @@ export type EmailCodeType = {
 }
 
 export type EmailCodeProps = {
-  code: string
-  check: EmailCheckType
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
-  onEmailCode: () => void
-  onModalOpen: () => void
+  email: string
+  stateCode: ValidateActionType
+  onValidate: (payload: FormData) => void
+  onModal: () => void
 }
 
 export interface RegistEmailProps extends Partial<RegistType> {
