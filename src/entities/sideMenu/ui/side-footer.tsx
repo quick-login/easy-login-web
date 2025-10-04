@@ -8,7 +8,7 @@ type SideFooterProps = {
 
 export const SideFooter = ({ sideOn }: SideFooterProps) => {
   return (
-    <div className="flex h-[66px] justify-between p-[20px]">
+    <div className="flex h-[66px] p-[20px]">
       <Image
         src="/user.svg"
         alt="user"
@@ -18,7 +18,7 @@ export const SideFooter = ({ sideOn }: SideFooterProps) => {
       />
       <div
         className={clsx(
-          'flex w-full items-center gap-[10px] overflow-hidden whitespace-nowrap transition-all duration-300',
+          'flex w-full items-center justify-center gap-[10px] overflow-hidden whitespace-nowrap transition-all duration-300',
           sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
         )}
       >
