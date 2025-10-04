@@ -3,9 +3,9 @@ import clsx from 'clsx'
 type InputProps = {
   name: string
   className?: string
-  value: string
+  value?: string
   type: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   place: string
   read?: boolean
 }
