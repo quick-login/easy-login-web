@@ -3,8 +3,8 @@ import { TogglePassword } from '../lib/toggle-password'
 
 type InputPasswordProps = {
   name: string
-  value: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  value?: string
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   place: string
 }
 

@@ -10,12 +10,10 @@ export const useRegistValidate = (registData: RegistType) => {
   useEffect(() => {
     setPwValidate(!RegExp.test(registData.password))
     if (!registData.passwordCheck) {
-      setPwSame(true)
+      setPwSame(false)
     } else {
       setPwSame(registData.password === registData.passwordCheck)
     }
-    console.log(registData)
-    console.log(registData.password === registData.passwordCheck)
   }, [registData.password, registData.passwordCheck])
 
   return { pwValidate, pwSame }
