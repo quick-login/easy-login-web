@@ -6,8 +6,8 @@ export default function RegistLayout({
   children: React.ReactNode
 }>) {
   return (
-    <main className="h-full w-full p-[20px]">
-      <div className="flex h-full gap-[20px]">
+    <main className="1060:p-[20px] h-full w-full">
+      <div className="1060:flex-row flex h-full flex-col gap-[20px]">
         <SideMenu />
         {children}
       </div>
