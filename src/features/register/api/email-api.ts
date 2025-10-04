@@ -19,6 +19,6 @@ export const postCreateEmailCode = async (email: string) => {
 }
 
 export const postCheckEmailCode = async (emailCodeData: EmailCodeType) => {
-  const res = await kyRequest('post', 'api/v1/member/email-validation', { emailCodeData })
+  const res = await kyRequest('post', 'api/v1/member/email-validation', emailCodeData)
   return res
 }
