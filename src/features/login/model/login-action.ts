@@ -1,5 +1,6 @@
 'use server'
 
+import { redirect } from 'next/navigation'
 import z from 'zod'
 import { postLogin } from '../api/login-api'
 
@@ -32,10 +33,7 @@ export const handleLoginAction = async (prevState: State, formData: FormData) =>
   const res = await postLogin({ email, password })
 
   if (res.code === 'E200') {
-    return {
-      success: true,
-      message: '',
-    }
+    redirect('/')
   } else {
     return {
       success: false,

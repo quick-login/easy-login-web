@@ -1,53 +1,60 @@
 import ky from 'ky'
-import { getCookies } from '../lib/cookie'
+import { redirect } from 'next/navigation'
+import { deleteCookies, getCookies, setCookies } from '../lib/cookie'
 import type { Options } from 'ky'
 
-let apiInstance = ky.create({
+const apiInstance = ky.create({
   prefixUrl: process.env.NEXT_PUBLIC_BASE_URL,
   timeout: 10000,
+  retry: 1,
   throwHttpErrors: false,
   headers: {
     'Content-Type': 'application/json',
   },
   hooks: {
-    // beforeRequest: [
-    //   request => {
-    //     const token = getCookies('ac')
-    //     if (token) {
-    //       request.headers.set('Authorization', `Bearer ${token}`)
-    //     }
-    //   },
-    // ],
+    beforeRequest: [
+      async request => {
+        const token = await getCookies('ac')
+        if (token?.value) {
+          request.headers.set('Authorization', `Bearer ${token?.value}`)
+        }
+      },
+    ],
     afterResponse: [
       async (request, options, response) => {
-        const data = await response.clone().json()
-        console.log('afterResponse', data)
-        if (response.status === 401) {
-          window.location.href = '/login'
+        let data = null
+        try {
+          data = await response.clone().json()
+        } catch (err) {
+          return response
         }
+
+        console.log('afterResponse', data)
+        if (data.code === 'T6001') {
+          console.log('토큰 만료')
+          const refresh = await ky.post(`${process.env.NEXT_PUBLIC_SITE_URL}/api/refresh`)
+          if (!refresh.ok) {
+            console.log('안된 결과', await refresh.json())
+            redirect('/login')
+          }
+          console.log(refresh)
+        }
+
         return response
       },
     ],
   },
 })
 
-export const setHeader = (ac: string) => {
-  apiInstance = apiInstance.extend({ headers: { Authorization: `Bearer ${ac}` } })
-}
-
-export const removeHeader = () => {
-  apiInstance = apiInstance.extend({ headers: {} })
-}
-
 type HttpMethod = 'post' | 'patch' | 'delete'
-type ResponseType = {
+export type ResponseType = {
   code: string
   message: string
   data: object | string | null
 }
 
 export const kyGet = async (url: string, config: Options = {}) => {
-  const data = await apiInstance.get(url, config).json()
+  const data: ResponseType = await apiInstance.get(url, config).json()
   return data
 }
 
@@ -57,6 +64,14 @@ export const kyRequest = async (
   params: object | string = {},
   config: Options = {},
 ) => {
-  const data: ResponseType = await apiInstance[method](url, { ...config, json: params }).json()
+  const response = await apiInstance[method](url, { ...config, json: params })
+  const data: ResponseType = await response.json()
+
+  const ac = response.headers.get('Authorization')?.replace('Bearer ', '')
+  const rc = response.headers.get('Refresh-Token')?.replace('Bearer ', '')
+
+  if (ac !== undefined) await setCookies('ac', ac)
+  if (rc !== undefined) await setCookies('rc', rc)
+
   return data
 }
