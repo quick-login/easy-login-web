@@ -1,6 +1,5 @@
 import axios, { type AxiosRequestConfig } from 'axios'
-import { getCookie } from 'cookies-next'
-import { getCookies, setCookies } from '../lib/cookie'
+import { deleteCookies, getCookies, setCookies } from '../lib/cookie'
 
 export const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -27,38 +26,57 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   async response => {
-    console.log('정상?')
+    console.log('정상요청')
     return response
   },
   async error => {
     const origin = error.config
     console.log('에러', error.response?.data)
+    console.log('에러코드', error.response?.status)
+    // console.log('에러코드', error.response)
+    if (error.response?.data === '' || error.response?.data === null) {
+      console.log('지우기', await getCookies('ac'))
+      await deleteCookies('ac')
+      await deleteCookies('rc')
+      console.log('지우기2', await getCookies('ac'))
+      return Promise.resolve(error.response)
+    }
     if ((error.response?.data.code === 'T6000' || error.response?.data.code === 'T6001') && !origin._retry) {
       origin._retry = true
 
       const refreshToken = await getCookies('rc')
       console.log('기존 리프레시', refreshToken?.value)
 
-      const refreshRes = await axiosInstance.post(
-        '/api/v1/member/refresh',
-        {},
-        {
-          headers: { 'Refresh-Token': refreshToken?.value },
-        },
-      )
+      try {
+        const refreshRes = await axios.post(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/member/refresh`,
+          {},
+          {
+            headers: { 'Content-Type': 'application/json', 'Refresh-Token': `Bearer ${refreshToken?.value}` },
+            withCredentials: true,
+          },
+        )
+        console.log('리프레시 결과', refreshRes, refreshRes.status)
+        console.log('리프레시 결과 서버', await refreshRes.data)
 
-      const newAccessToken = refreshRes.headers['authorization']?.replace('Bearer ', '')
-      const newRefreshToken = refreshRes.headers['refresh-token']?.replace('Bearer ', '')
+        const result = await refreshRes.data
 
-      console.log('새 액세스', newAccessToken)
-      console.log('새 리프레시', newRefreshToken)
+        const newAccessToken = refreshRes.headers['authorization']?.replace('Bearer ', '')
+        const newRefreshToken = refreshRes.headers['refresh-token']?.replace('Bearer ', '')
 
-      await setCookies('ac', newAccessToken)
-      await setCookies('rc', newRefreshToken)
-      origin.headers['Authorization'] = `Bearer ${newAccessToken}`
-      return axiosInstance(origin)
+        console.log('새 액세스', newAccessToken)
+        console.log('새 리프레시', newRefreshToken)
+
+        await setCookies('ac', newAccessToken)
+        await setCookies('rc', newRefreshToken)
+        origin.headers['Authorization'] = `Bearer ${newAccessToken}`
+        return axiosInstance(origin)
+      } catch (err) {
+        await deleteCookies('ac')
+        await deleteCookies('rc')
+      }
     }
-    return Promise.reject(error)
+    return Promise.resolve(error.response)
   },
 )
 
@@ -86,6 +104,8 @@ export const axiosPost = async <Tdata>(
 
   if (ac !== undefined) await setCookies('ac', ac)
   if (rc !== undefined) await setCookies('rc', rc)
+
+  console.log('post', data)
 
   return data
 }
