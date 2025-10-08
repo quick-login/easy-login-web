@@ -1,9 +1,20 @@
-import { redirect } from 'next/navigation'
-import { axiosGet } from '@/src/shared/api/axios-client'
-import { fetchFunc } from '@/src/shared/api/fetch-Instance'
-import { kyGet } from '@/src/shared/api/ky-client'
-import { fetchRetry, refreshPost } from '@/src/shared/api/refresh-Instance'
-import { deleteCookies, setCookies } from '@/src/shared/lib/cookie'
+import { axiosGet, axiosPost } from '@/src/shared/api/axios-client'
+import { deleteCookies } from '@/src/shared/lib/cookie'
+import type { UserType } from '../type'
+
+export const getUserInfo = async () => {
+  const res = await axiosGet<UserType>('api/v1/member/info')
+  return res
+}
+
+export const postLogout = async () => {
+  const res = await axiosPost<null>('/api/v1/member/logout')
+  if (res.code === 'E200') {
+    await deleteCookies('ac')
+    await deleteCookies('rc')
+  }
+  return res
+}
 
 // export const getUserInfo = async () => {
 //   const res = await fetchFunc<string>('/api/v1/member/info', {
@@ -31,29 +42,4 @@ import { deleteCookies, setCookies } from '@/src/shared/lib/cookie'
 //     }
 //   }
 //   return res
-// }
-
-export const getUserInfo = async () => {
-  const res = await axiosGet('api/v1/member/info')
-  return res
-}
-
-// import { kyGet } from '@/src/shared/api/ky-client'
-// import { getCookies } from '@/src/shared/lib/cookie'
-
-// export const getUserInfo = async () => {
-//   const token = await getCookies('ac')
-//   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/member/info`, {
-//     headers: {
-//       'Content-Type': 'application/json',
-//       Authorization: `Bearer ${token?.value}`,
-//     },
-
-//     next: { revalidate: 60, tags: ['user'] },
-//   })
-
-//   console.log('status:', res.status)
-//   console.log('cache-control:', res.headers.get('cache-control'))
-
-//   return res.json()
 // }
