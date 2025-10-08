@@ -3,16 +3,16 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 import { useState } from 'react'
-import { SideBasic, SideFooter } from '@/src/entities/sideMenu'
-import { CashMenu, UserMenu } from '@/src/features/activeSide/ui'
+import { SideContent } from './side-content.ui'
 import { Text } from '@/src/shared/ui'
 
 type MobileSideProps = {
+  isLogin: boolean
   isOpen: boolean
   onOpen: () => void
 }
 
-export const MobileSideMenu = ({ isOpen, onOpen }: MobileSideProps) => {
+export const MobileSideMenu = ({ isLogin, isOpen, onOpen }: MobileSideProps) => {
   const [sideOn, setSideOn] = useState<boolean>(true)
   return (
     <section className={clsx('fixed inset-0 flex h-full w-full flex-col', 'pointer-events-none')} aria-hidden={!isOpen}>
@@ -56,16 +56,7 @@ export const MobileSideMenu = ({ isOpen, onOpen }: MobileSideProps) => {
           <Image src="/close.svg" alt="close" width={20} height={20} className="cursor-pointer" onClick={onOpen} />
         </div>
         {/* 메뉴 본문 */}
-        <div className="flex flex-1 flex-col overflow-auto">
-          <CashMenu sideOn={sideOn} />
-          <hr className="border-gray2" />
-          <div className="flex flex-1 flex-col gap-[30px] p-[20px]">
-            <SideBasic sideOn={sideOn} />
-            <UserMenu sideOn={sideOn} />
-          </div>
-          <hr className="border-gray2" />
-          <SideFooter sideOn={sideOn} />
-        </div>
+        <SideContent isLogin={isLogin} sideOn={sideOn} />
       </div>
     </section>
   )

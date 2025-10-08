@@ -2,26 +2,18 @@
 
 import clsx from 'clsx'
 import { useEffect, useState } from 'react'
+import { SideContent } from './side-content.ui'
 import { SideBasic, SideFooter, SideHeader } from '../../entities/sideMenu'
 import { CashMenu, UserMenu } from '../../features/activeSide/ui'
-import { getUserInfo } from '@/src/entities/user/api/user-api'
+import { userAction } from '@/src/entities/user/model/user-action'
 import type { UserType } from '@/src/entities/user/type'
 
-export const SideMenu = ({ isLogin, user = null }: { isLogin: boolean; user?: UserType | null }) => {
+export const SideMenu = ({ isLogin }: { isLogin: boolean }) => {
   const [sideOn, setSideOn] = useState<boolean>(true)
 
   const handleToggleSide = () => {
     setSideOn(prev => !prev)
   }
-
-  useEffect(() => {
-    const test = async () => await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/user`, { method: 'GET' })
-    // test()
-    // const test = async () => {
-    //   await getUserInfo()
-    // }
-    test()
-  }, [])
 
   return (
     <aside
@@ -32,7 +24,8 @@ export const SideMenu = ({ isLogin, user = null }: { isLogin: boolean; user?: Us
     >
       <SideHeader sideOn={sideOn} onToggleSide={handleToggleSide} />
       <hr className="border-gray2" />
-      {isLogin && (
+      <SideContent isLogin={isLogin} sideOn={sideOn} />
+      {/* {isLogin && (
         <>
           <CashMenu sideOn={sideOn} cash={user?.cash ?? 0} />
           <hr className="border-gray2" />
@@ -44,7 +37,7 @@ export const SideMenu = ({ isLogin, user = null }: { isLogin: boolean; user?: Us
         {isLogin && <UserMenu sideOn={sideOn} />}
       </div>
       <hr className="border-gray2" />
-      <SideFooter sideOn={sideOn} isLogin={isLogin} name={user?.name ?? undefined} />
+      <SideFooter sideOn={sideOn} isLogin={isLogin} name={user?.name ?? undefined} /> */}
     </aside>
   )
 }

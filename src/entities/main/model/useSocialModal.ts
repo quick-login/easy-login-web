@@ -1,4 +1,3 @@
-import ky from 'ky'
 import { useState } from 'react'
 import { getCookies } from '@/src/shared/lib/cookie'
 
@@ -14,10 +13,6 @@ export const useSocialModal = () => {
       handleModalOpen()
       return
     }
-    //test
-    const res = await ky.post(`${process.env.NEXT_PUBLIC_SITE_URL}/api/logout`)
-    console.log('결과', res)
-    //
     console.log('이동', link)
   }
 
