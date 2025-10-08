@@ -1,10 +1,12 @@
 'use server'
 
+import { setCookie } from 'cookies-next'
 import { cookies } from 'next/headers'
 
 export const setCookies = async (key: string, value: string) => {
   const cookieStore = await cookies()
-  cookieStore.set({ name: key, value })
+  cookieStore.set({ name: key, value, httpOnly: true, secure: process.env.NODE_ENV === 'production' })
+  // await setCookie(key, value, { httpOnly: true, secure: process.env.NODE_ENV === 'production' })
 }
 
 export const getCookies = async (key: string) => {

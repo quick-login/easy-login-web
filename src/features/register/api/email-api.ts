@@ -10,15 +10,29 @@
 //   return res
 // }
 
+// import { kyRequest } from '@/src/shared/api/ky-client'
+// import type { EmailCodeType } from '../type'
+
+// export const postCreateEmailCode = async (email: string) => {
+//   const res = await kyRequest('post', 'api/v1/member/email-verification', { email })
+//   return res
+// }
+
+// export const postCheckEmailCode = async (emailCodeData: EmailCodeType) => {
+//   const res = await kyRequest('post', 'api/v1/member/email-validation', emailCodeData)
+//   return res
+// }
+
+import { axiosPost } from '@/src/shared/api/axios-client'
 import { kyRequest } from '@/src/shared/api/ky-client'
 import type { EmailCodeType } from '../type'
 
 export const postCreateEmailCode = async (email: string) => {
-  const res = await kyRequest('post', 'api/v1/member/email-verification', { email })
+  const res = await axiosPost('/api/v1/member/email-verification', { email })
   return res
 }
 
 export const postCheckEmailCode = async (emailCodeData: EmailCodeType) => {
-  const res = await kyRequest('post', 'api/v1/member/email-validation', emailCodeData)
+  const res = await axiosPost('/api/v1/member/email-validation', emailCodeData)
   return res
 }

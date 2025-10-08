@@ -1,6 +1,6 @@
 import ky from 'ky'
 import { redirect } from 'next/navigation'
-import { deleteCookies, getCookies, setCookies } from '../lib/cookie'
+import { getCookies, setCookies } from '../lib/cookie'
 import type { Options } from 'ky'
 
 const apiInstance = ky.create({
@@ -8,6 +8,7 @@ const apiInstance = ky.create({
   timeout: 10000,
   retry: 1,
   throwHttpErrors: false,
+  credentials: 'include',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -20,29 +21,30 @@ const apiInstance = ky.create({
         }
       },
     ],
-    afterResponse: [
-      async (request, options, response) => {
-        let data = null
-        try {
-          data = await response.clone().json()
-        } catch (err) {
-          return response
-        }
+    // afterResponse: [
+    //   async (request, options, response) => {
+    //     let data = null
+    //     try {
+    //       data = await response.clone().json()
+    //     } catch (err) {
+    //       console.log('결과', err)
+    //       return response
+    //     }
 
-        console.log('afterResponse', data)
-        if (data.code === 'T6001') {
-          console.log('토큰 만료')
-          const refresh = await ky.post(`${process.env.NEXT_PUBLIC_SITE_URL}/api/refresh`)
-          if (!refresh.ok) {
-            console.log('안된 결과', await refresh.json())
-            redirect('/login')
-          }
-          console.log(refresh)
-        }
+    //     console.log('afterResponse', data)
+    //     if (data.code === 'T6001') {
+    //       console.log('토큰 만료')
+    //       const refresh = await ky.post(`${process.env.NEXT_PUBLIC_SITE_URL}/api/refresh`)
+    //       if (!refresh.ok) {
+    //         console.log('안된 결과', await refresh.json())
+    //         redirect('/login')
+    //       }
+    //       console.log(refresh)
+    //     }
 
-        return response
-      },
-    ],
+    //     return response
+    //   },
+    // ],
   },
 })
 

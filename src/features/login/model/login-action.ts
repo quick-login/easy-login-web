@@ -31,6 +31,7 @@ export const handleLoginAction = async (prevState: State, formData: FormData) =>
   }
 
   const res = await postLogin({ email, password })
+  console.log('받은 값', res)
 
   if (res.code === 'E200') {
     redirect('/')
