@@ -13,6 +13,7 @@ type MobileSideProps = {
 }
 
 export const MobileSideMenu = ({ isLogin, isOpen, onOpen }: MobileSideProps) => {
+  console.log('모바일 사이드 렌더링')
   const [sideOn, setSideOn] = useState<boolean>(true)
   return (
     <section className={clsx('fixed inset-0 flex h-full w-full flex-col', 'pointer-events-none')} aria-hidden={!isOpen}>

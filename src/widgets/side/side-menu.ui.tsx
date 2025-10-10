@@ -9,6 +9,7 @@ import { userAction } from '@/src/entities/user/model/user-action'
 import type { UserType } from '@/src/entities/user/type'
 
 export const SideMenu = ({ isLogin }: { isLogin: boolean }) => {
+  console.log('일반 사이드 렌더링')
   const [sideOn, setSideOn] = useState<boolean>(true)
 
   const handleToggleSide = () => {
