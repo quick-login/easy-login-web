@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { MobileSideMenu } from '../side/mobile-side-menu.ui'
 import { Text } from '@/src/shared/ui'
 
-export const MobildHeader = () => {
+export const MobildHeader = ({ isLogin }: { isLogin: boolean }) => {
   const [sideOn, setSideOn] = useState<boolean>(false)
   return (
     <>
@@ -23,7 +23,7 @@ export const MobildHeader = () => {
           onClick={() => setSideOn(true)}
         />
       </div>
-      <MobileSideMenu isOpen={sideOn} onOpen={() => setSideOn(false)} />
+      <MobileSideMenu isLogin={isLogin} isOpen={sideOn} onOpen={() => setSideOn(false)} />
     </>
   )
 }

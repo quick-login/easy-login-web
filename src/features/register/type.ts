@@ -1,3 +1,5 @@
+import type { Ref } from 'react'
+
 export type CreateActionType = { success: boolean; message: string | null }
 export type ValidateActionType = {
   success: boolean
@@ -22,6 +24,7 @@ export type EmailCodeType = {
 }
 
 export type EmailCodeProps = {
+  codeFormRef: Ref<HTMLFormElement> | undefined
   email: string
   stateCode: ValidateActionType
   onValidate: (payload: FormData) => void

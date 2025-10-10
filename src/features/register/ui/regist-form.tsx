@@ -1,7 +1,7 @@
 'use client'
 import clsx from 'clsx'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { RegistEmailCode } from './email-code'
 import { handleCreateCode, handleValidateCode } from '../model/email-action'
 import { handleRegist } from '../model/regist-action'
@@ -13,6 +13,7 @@ import type { CreateActionType, ValidateActionType } from '../type'
 export const RegistForm = () => {
   const { regist, handleChangeRegister } = useRegist()
   const { pwSame, pwValidate } = useRegistValidate(regist)
+  const codeFormRef = useRef<HTMLFormElement>(null)
   const router = useRouter()
 
   const [isModal, setModal] = useState<boolean>(false)
@@ -36,6 +37,12 @@ export const RegistForm = () => {
     } else {
       setRegistModal(false)
     }
+  }
+
+  const handleCodeModalClose = () => {
+    setModal(false)
+    setCodeRes({ success: false, message: '' })
+    codeFormRef.current?.reset()
   }
 
   const registAction = async (formData: FormData) => {
@@ -136,10 +143,11 @@ export const RegistForm = () => {
       </form>
       <Modal isOpen={isModal} className="rounded-[20px] bg-white p-[25px]">
         <RegistEmailCode
+          codeFormRef={codeFormRef}
           email={regist.email}
           stateCode={codeRes}
           onValidate={validateCodeAction}
-          onModal={() => setModal(false)}
+          onModal={handleCodeModalClose}
         />
       </Modal>
       <Modal isOpen={isRegistModal} className="rounded-[20px] bg-white p-[25px]">

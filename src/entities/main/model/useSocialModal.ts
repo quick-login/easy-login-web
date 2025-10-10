@@ -13,7 +13,6 @@ export const useSocialModal = () => {
       handleModalOpen()
       return
     }
-
     console.log('이동', link)
   }
 

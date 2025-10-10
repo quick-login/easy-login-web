@@ -1,13 +1,9 @@
-import { MobildHeader } from './mobile-header.ui'
 import { Text } from '@/src/shared/ui'
 
 export const PageHeader = ({ title }: { title: string }) => {
   return (
-    <>
-      <MobildHeader />
-      <header className="gap-[10px] p-[20px]">
-        <Text className="text-[20px] leading-[120%] font-semibold">{title}</Text>
-      </header>
-    </>
+    <header className="gap-[10px] p-[20px]">
+      <Text className="text-[20px] leading-[120%] font-semibold">{title}</Text>
+    </header>
   )
 }

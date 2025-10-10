@@ -40,7 +40,7 @@ export const RegistEmail = ({ email, onChange }: RegistEmailProps) => {
           </Text>
         )}
       </div>
-      <Modal isOpen={isOpen} className="rounded-[20px] bg-white p-[25px]">
+      {/* <Modal isOpen={isOpen} className="rounded-[20px] bg-white p-[25px]">
         <RegistEmailCode
           code={code}
           onChange={handleChangeCode}
@@ -48,7 +48,7 @@ export const RegistEmail = ({ email, onChange }: RegistEmailProps) => {
           check={Invalid}
           onModalOpen={handleModalClose}
         />
-      </Modal>
+      </Modal> */}
     </>
   )
 }

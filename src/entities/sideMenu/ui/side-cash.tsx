@@ -4,9 +4,10 @@ import { Button, Text } from '@/src/shared/ui'
 
 type SideCashProps = {
   sideOn: boolean
+  cash: number
 }
 
-export const SideCash = ({ sideOn }: SideCashProps) => {
+export const SideCash = ({ sideOn, cash }: SideCashProps) => {
   return (
     <div className="flex flex-col gap-[10px] p-[20px]">
       <div className="flex flex-col gap-[12px]">
@@ -28,7 +29,7 @@ export const SideCash = ({ sideOn }: SideCashProps) => {
               sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
             )}
           >
-            10,000
+            {cash}
           </Text>
         </div>
         <div
