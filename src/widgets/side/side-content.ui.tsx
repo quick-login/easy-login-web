@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { SideBasic, SideFooter } from '@/src/entities/sideMenu'
 import { userAction } from '@/src/entities/user/model/user-action'
 import type { UserType } from '@/src/entities/user/type'
@@ -19,10 +19,10 @@ export const SideContent = ({ isLogin, sideOn }: SideContentProps) => {
     maxKakaoAppCount: 0,
     remainCount: 0,
   })
-  const handleGetUserInfo = async () => {
+  const handleGetUserInfo = useCallback(async () => {
     const response = await userAction()
     setUser(response.data)
-  }
+  }, [isLogin])
 
   useEffect(() => {
     if (isLogin) {
