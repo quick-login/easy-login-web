@@ -1,6 +1,8 @@
 import clsx from 'clsx'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { SideListMenu } from './side-list-Item'
 import { Text } from '@/src/shared/ui'
 
 type SideBasicProps = {
@@ -9,12 +11,13 @@ type SideBasicProps = {
 
 export const SideBasic = ({ sideOn }: SideBasicProps) => {
   const [menuOn, setMenuOn] = useState<boolean>(false)
+  const path = usePathname()
+
+  console.log('사이드 param', path)
 
   useEffect(() => {
-    const onToggleMenu = () => {
-      if (!sideOn) setMenuOn(false)
-    }
-    onToggleMenu()
+    if (!sideOn) setMenuOn(false)
+    console.log('useEffect')
   }, [sideOn])
 
   return (
@@ -37,8 +40,7 @@ export const SideBasic = ({ sideOn }: SideBasicProps) => {
             sideOn ? 'max-h-[100%]' : 'max-h-[0px]',
           )}
         >
-          <Text className="text-[16px] font-normal">제품소개</Text>
-          <div className="h-[6px] w-[6px] rounded-2xl bg-black"></div>
+          <SideListMenu itemName="제품소개" link="/" />
         </div>
       </div>
       <div className="flex flex-col gap-[10px]">
@@ -72,9 +74,9 @@ export const SideBasic = ({ sideOn }: SideBasicProps) => {
             menuOn ? 'max-h-[100%]' : 'max-h-[0px]',
           )}
         >
-          <Text className={`text-gray4 cursor-pointer text-[16px] font-normal`}>이용 가이드</Text>
-          <Text className="text-gray4 cursor-pointer text-[16px] font-normal">개발자 가이드</Text>
-          <Text className="text-gray4 cursor-pointer text-[16px] font-normal">공지사항</Text>
+          <SideListMenu itemName="이용 가이드" link="/guide" />
+          <SideListMenu itemName="개발자 가이드" link="/develop" />
+          <SideListMenu itemName="공지사항" link="/board" />
         </div>
       </div>
     </>

@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
+import { SideListMenu } from './side-list-Item'
 import { Text } from '@/src/shared/ui'
 
 type SideItemProps = {
@@ -49,11 +50,8 @@ export const SideItem = ({ sideOn }: SideItemProps) => {
           menuOn ? 'max-h-[100%]' : 'max-h-[0px]',
         )}
       >
-        <div className="flex items-center gap-[6px]">
-          <Text className={`text-gray4 cursor-pointer text-[16px] font-normal`}>내 앱 관리</Text>
-          <div className="h-[6px] w-[6px] rounded-2xl bg-black"></div>
-        </div>
-        <Text className="text-gray4 cursor-pointer text-[16px] font-normal">신규 앱 등록</Text>
+        <SideListMenu itemName="내 앱 관리" link="/kakao/app" />
+        <SideListMenu itemName="신규 앱 등록" link="/kakao/create" />
       </div>
     </div>
   )
