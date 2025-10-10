@@ -1,12 +1,9 @@
 'use client'
 
 import clsx from 'clsx'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { SideContent } from './side-content.ui'
-import { SideBasic, SideFooter, SideHeader } from '../../entities/sideMenu'
-import { CashMenu, UserMenu } from '../../features/activeSide/ui'
-import { userAction } from '@/src/entities/user/model/user-action'
-import type { UserType } from '@/src/entities/user/type'
+import { SideHeader } from '../../entities/sideMenu'
 
 export const SideMenu = ({ isLogin }: { isLogin: boolean }) => {
   console.log('일반 사이드 렌더링')
@@ -26,19 +23,6 @@ export const SideMenu = ({ isLogin }: { isLogin: boolean }) => {
       <SideHeader sideOn={sideOn} onToggleSide={handleToggleSide} />
       <hr className="border-gray2" />
       <SideContent isLogin={isLogin} sideOn={sideOn} />
-      {/* {isLogin && (
-        <>
-          <CashMenu sideOn={sideOn} cash={user?.cash ?? 0} />
-          <hr className="border-gray2" />
-        </>
-      )}
-
-      <div className="flex flex-1 flex-col gap-[30px] p-[20px]">
-        <SideBasic sideOn={sideOn} />
-        {isLogin && <UserMenu sideOn={sideOn} />}
-      </div>
-      <hr className="border-gray2" />
-      <SideFooter sideOn={sideOn} isLogin={isLogin} name={user?.name ?? undefined} /> */}
     </aside>
   )
 }
