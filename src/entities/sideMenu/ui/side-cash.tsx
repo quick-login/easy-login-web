@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Button, Text } from '@/src/shared/ui'
+import { Text } from '@/src/shared/ui'
 
 type SideCashProps = {
   sideOn: boolean
@@ -10,7 +10,7 @@ type SideCashProps = {
 
 export const SideCash = ({ sideOn, cash }: SideCashProps) => {
   return (
-    <div className="flex flex-col gap-[10px] p-[20px]">
+    <div className="flex flex-col gap-[10px] px-[20px] py-[10px]">
       <div className="flex flex-col gap-[12px]">
         <div className="flex justify-between">
           <div className="flex gap-[4px]">

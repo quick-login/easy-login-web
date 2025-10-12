@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import Image from 'next/image'
-import { userLogoutAction } from '../../user/model/user-action'
 import { LinkText, Text } from '@/src/shared/ui'
 
 type SideFooterProps = {
@@ -11,7 +10,7 @@ type SideFooterProps = {
 
 export const SideFooter = ({ sideOn, isLogin, name = '' }: SideFooterProps) => {
   return (
-    <div className="flex h-[66px] justify-between p-[20px]">
+    <div className="z-25 flex h-[66px] justify-between p-[20px]">
       {isLogin ? (
         <>
           <div
@@ -25,14 +24,9 @@ export const SideFooter = ({ sideOn, isLogin, name = '' }: SideFooterProps) => {
               <b className="font-semibold text-black">{name}</b> 님 환영해요
             </Text>
           </div>
-          <Image
-            src="/settings.svg"
-            alt="settings"
-            width={24}
-            height={24}
-            className="cursor-pointer"
-            onClick={userLogoutAction}
-          />
+          <LinkText link="/profile">
+            <Image src="/settings.svg" alt="settings" width={24} height={24} />
+          </LinkText>
         </>
       ) : (
         <>

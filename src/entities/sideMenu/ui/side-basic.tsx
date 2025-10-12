@@ -13,11 +13,11 @@ export const SideBasic = ({ sideOn }: SideBasicProps) => {
   const [menuOn, setMenuOn] = useState<boolean>(false)
   const path = usePathname()
 
-  console.log('사이드 param', path)
+  // console.log('사이드 param', path)
 
   useEffect(() => {
     if (!sideOn) setMenuOn(false)
-    console.log('useEffect')
+    // console.log('useEffect')
   }, [sideOn])
 
   return (
@@ -40,7 +40,7 @@ export const SideBasic = ({ sideOn }: SideBasicProps) => {
             sideOn ? 'max-h-[100%]' : 'max-h-[0px]',
           )}
         >
-          <SideListMenu itemName="제품소개" link="/" />
+          <SideListMenu itemName="상품 둘러보기" link="/item" />
         </div>
       </div>
       <div className="flex flex-col gap-[10px]">
@@ -74,9 +74,10 @@ export const SideBasic = ({ sideOn }: SideBasicProps) => {
             menuOn ? 'max-h-[100%]' : 'max-h-[0px]',
           )}
         >
+          <SideListMenu itemName="제품 소개" link="/" />
           <SideListMenu itemName="이용 가이드" link="/guide" />
           <SideListMenu itemName="개발자 가이드" link="/develop" />
-          <SideListMenu itemName="공지사항" link="/board" />
+          <SideListMenu itemName="공지사항" link="/notice" />
         </div>
       </div>
     </>
