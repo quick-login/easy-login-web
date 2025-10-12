@@ -3,10 +3,16 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import { useState } from 'react'
 import { MobileSideMenu } from '../side/mobile-side-menu.ui'
+import { useModalStore } from '@/src/app/modalStore'
 import { Text } from '@/src/shared/ui'
 
 export const MobildHeader = ({ isLogin }: { isLogin: boolean }) => {
-  const [sideOn, setSideOn] = useState<boolean>(false)
+  // const [sideOn, setSideOn] = useState<boolean>(false)
+
+  // const toggleSide = () => {
+  //   setSideOn(prev => !prev)
+  // }
+  const { toggleSide } = useModalStore()
   return (
     <>
       <div className="bg-gray2 1060:hidden flex w-full justify-between px-[20px] py-[15px]">
@@ -14,16 +20,9 @@ export const MobildHeader = ({ isLogin }: { isLogin: boolean }) => {
           <Image src="/easyLogin.svg" alt="easyLogin" width={24} height={24} />
           <Text className="text-[20px] font-bold">이지로그인</Text>
         </div>
-        <Image
-          className="cursor-pointer"
-          src="/menu.svg"
-          alt="menu"
-          width={24}
-          height={24}
-          onClick={() => setSideOn(true)}
-        />
+        <Image className="cursor-pointer" src="/menu.svg" alt="menu" width={24} height={24} onClick={toggleSide} />
       </div>
-      <MobileSideMenu isLogin={isLogin} isOpen={sideOn} onOpen={() => setSideOn(false)} />
+      {/* <MobileSideMenu isLogin={isLogin} isOpen={sideOn} onOpen={() => setSideOn(false)} /> */}
     </>
   )
 }
