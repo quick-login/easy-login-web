@@ -1,4 +1,4 @@
-import { notFound, redirect } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import { CreateAppPage } from '@/src/views'
 
 type Props = {
