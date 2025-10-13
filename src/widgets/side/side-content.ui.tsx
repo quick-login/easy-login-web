@@ -1,5 +1,6 @@
 'use client'
 
+import { redirect } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 import { SideBasic, SideFooter } from '@/src/entities/sideMenu'
 import { userAction } from '@/src/entities/user/model/user-action'
@@ -21,7 +22,12 @@ export const SideContent = ({ isLogin, sideOn }: SideContentProps) => {
   })
   const handleGetUserInfo = useCallback(async () => {
     const response = await userAction()
-    setUser(response.data)
+
+    if (response.success) {
+      setUser(response.data)
+    } else {
+      redirect('/login')
+    }
   }, [isLogin])
 
   useEffect(() => {
