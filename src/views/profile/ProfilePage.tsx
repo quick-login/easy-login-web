@@ -34,7 +34,7 @@ export const ProfilePage = () => {
           <div className="border-gray3 flex-1 rounded-[10px] border">
             <header className="flex items-center justify-between gap-[10px] p-[20px]">
               <Text className="text-[20px] leading-[120%] font-semibold">나의 문의 내역</Text>
-              <LinkText link="/question">
+              <LinkText link="/question?page=1">
                 <Image src="/menu.svg" alt="QnAMenu" width={24} height={24} />
               </LinkText>
             </header>

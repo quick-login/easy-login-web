@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import Image from 'next/image'
-import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { SideListMenu } from './side-list-Item'
 import { Text } from '@/src/shared/ui'
@@ -11,7 +10,6 @@ type SideBasicProps = {
 
 export const SideBasic = ({ sideOn }: SideBasicProps) => {
   const [menuOn, setMenuOn] = useState<boolean>(false)
-  const path = usePathname()
 
   // console.log('사이드 param', path)
 
@@ -77,7 +75,7 @@ export const SideBasic = ({ sideOn }: SideBasicProps) => {
           <SideListMenu itemName="제품 소개" link="/" />
           <SideListMenu itemName="이용 가이드" link="/guide" />
           <SideListMenu itemName="개발자 가이드" link="/develop" />
-          <SideListMenu itemName="공지사항" link="/notice" />
+          <SideListMenu itemName="공지사항" link="/notice?page=1" />
         </div>
       </div>
     </>
