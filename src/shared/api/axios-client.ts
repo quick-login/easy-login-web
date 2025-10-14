@@ -74,10 +74,18 @@ axiosInstance.interceptors.response.use(
   },
 )
 
+export interface Page {
+  currentPage: number
+  pageSize: number
+  totalElements: number
+  totalPages: number
+}
+
 export interface ResponseType<Tdata = unknown> {
   code: string
   message: string
   data: Tdata
+  pagination?: Page
 }
 
 export const axiosGet = async <Tdata>(url: string, config: AxiosRequestConfig = {}): Promise<ResponseType<Tdata>> => {

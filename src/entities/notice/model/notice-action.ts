@@ -4,9 +4,9 @@ export const NoticeListAction = async (page: number, pageSize: number = 10) => {
   const res = await getNoticeList(page, pageSize)
 
   if (res.code === 'E200') {
-    return { success: true, code: res.code, message: res.message, data: res.data }
+    return { success: true, code: res.code, message: res.message, data: res.data, pagination: res.pagination! }
   } else {
-    return { success: false, code: res.code, message: res.message, data: res.data }
+    return { success: false, code: res.code, message: res.message, data: res.data, pagination: res.pagination! }
   }
 }
 

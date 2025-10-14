@@ -6,9 +6,10 @@ export const questListAction = async (page: number, pageSize: number) => {
   const res = await getQuestList(page, pageSize)
 
   if (res.code === 'E200') {
-    return { success: true, code: res.code, message: res.message, data: res.data }
+    console.log('받은 데이터', res)
+    return { success: true, code: res.code, message: res.message, data: res.data, pagination: res.pagination! }
   } else {
-    return { success: false, code: res.code, message: res.message, data: res.data }
+    return { success: false, code: res.code, message: res.message, data: res.data, pagination: res.pagination! }
   }
 }
 
