@@ -11,14 +11,14 @@ export const Pagination = ({ currentPage, pageSize = 10, totalElements, totalPag
   console.log('최대 페이지', pageNum)
   return (
     <section className="flex items-center justify-center">
-      <div className="flex justify-center gap-[4px]">
+      <div className="flex justify-center gap-[10px]">
         <PageButton
           onClick={() => {
             setPage(currentPage - 1)
           }}
           isDisable={currentPage === 1}
         >
-          &lt;
+          ←
         </PageButton>
         {Array(10)
           .fill(0)
@@ -39,7 +39,7 @@ export const Pagination = ({ currentPage, pageSize = 10, totalElements, totalPag
           }}
           isDisable={currentPage === pageNum}
         >
-          &gt;
+          →
         </PageButton>
       </div>
     </section>
