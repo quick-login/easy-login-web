@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-export const TogglePassword = () => {
+export const useTogglePassword = () => {
   const [hide, setHide] = useState<boolean>(true)
   const onToggleHide = () => {
     setHide(prev => !prev)

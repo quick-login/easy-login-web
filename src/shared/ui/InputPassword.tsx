@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { TogglePassword } from '../lib/toggle-password'
+import { useTogglePassword } from '../lib/useTogglePassword'
 
 type InputPasswordProps = {
   name: string
@@ -9,7 +9,7 @@ type InputPasswordProps = {
 }
 
 export const InputPassword = ({ name, value, onChange, place }: InputPasswordProps) => {
-  const { hide, onToggleHide } = TogglePassword()
+  const { hide, onToggleHide } = useTogglePassword()
   return (
     <div className="border-gray3 flex gap-[10px] rounded-[10px] border p-[15px]">
       <input

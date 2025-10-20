@@ -44,7 +44,7 @@ export const SideContent = ({ isLogin, sideOn }: SideContentProps) => {
         </>
       )}
 
-      <div className="flex flex-1 flex-col gap-[30px] p-[20px]">
+      <div className="scrollbar-hidden flex flex-1 flex-col gap-[15px] overflow-auto p-[20px]">
         <SideBasic sideOn={sideOn} />
         {isLogin && <UserMenu sideOn={sideOn} />}
       </div>
