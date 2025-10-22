@@ -25,7 +25,7 @@ export const UpdateAppForm = () => {
         type="text"
         name="name"
         value={app.name}
-        place="app name 입력"
+        placeholder="app name 입력"
         onChange={handleChangeApp}
       />
       <Input
@@ -33,7 +33,7 @@ export const UpdateAppForm = () => {
         type="text"
         name="rest"
         value={app.rest}
-        place="rest key 입력"
+        placeholder="rest key 입력"
         onChange={handleChangeApp}
       />
       <Input
@@ -41,7 +41,7 @@ export const UpdateAppForm = () => {
         type="text"
         name="redirect"
         value={app.redirect}
-        place="redirect URL 입력 (선택)"
+        placeholder="redirect URL 입력 (선택)"
         onChange={handleChangeApp}
       />
     </div>

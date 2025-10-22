@@ -14,10 +14,10 @@ export const ProfilePage = () => {
         <div className="flex flex-col gap-[10px]">
           <Text className="text-gray4">회원님의 정보를 확인하고 수정할 수 있습니다</Text>
           <form action="" className="flex flex-col gap-[10px]">
-            <Input name="email" place="이메일 입력" type="text" className="w-full" read />
-            <Input name="name" place="이름 입력" type="text" className="w-full" />
-            <InputPassword name="password" place="새 비밀번호 입력" />
-            <InputPassword name="passwordCheck" place="새 비밀번호 다시 입력" />
+            <Input name="email" placeholder="이메일 입력" type="text" className="w-full" read />
+            <Input name="name" placeholder="이름 입력" type="text" className="w-full" />
+            <InputPassword name="password" placeholder="새 비밀번호 입력" />
+            <InputPassword name="passwordCheck" placeholder="새 비밀번호 다시 입력" />
           </form>
         </div>
         <div className="flex flex-1 gap-[10px]">
@@ -34,7 +34,7 @@ export const ProfilePage = () => {
           <div className="border-gray3 flex-1 rounded-[10px] border">
             <header className="flex items-center justify-between gap-[10px] p-[20px]">
               <Text className="text-[20px] leading-[120%] font-semibold">나의 문의 내역</Text>
-              <LinkText link="/question?page=1">
+              <LinkText href="/question?page=1">
                 <Image src="/menu.svg" alt="QnAMenu" width={24} height={24} />
               </LinkText>
             </header>

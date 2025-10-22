@@ -13,7 +13,7 @@ export default async function Notfound() {
             <b className="text-dark">네이버 및 구글 로그인</b> 은 추후 지원 예정입니다.
           </Text>
         </div>
-        <LinkText link="/" className="bg-dark rounded-[10px] p-[15px] text-white">
+        <LinkText href="/" className="bg-dark rounded-[10px] p-[15px] text-white">
           Go to Home
         </LinkText>
       </div>

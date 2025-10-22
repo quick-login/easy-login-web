@@ -1,4 +1,4 @@
-import { LinkText, Text } from '@/src/shared/ui'
+import { Text } from '@/src/shared/ui'
 import type { QuestAnswer } from '../model/types'
 
 export const QuestionAnswer = ({ answer, answeredDate }: QuestAnswer) => {

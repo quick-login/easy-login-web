@@ -35,7 +35,7 @@ export const CreateAppForm = ({ type }: { type: string }) => {
           name="id"
           value={app.id}
           type="text"
-          place="app ID 입력"
+          placeholder="app ID 입력"
           onChange={handleChangeApp}
         />
         <Input
@@ -43,7 +43,7 @@ export const CreateAppForm = ({ type }: { type: string }) => {
           name="name"
           value={app.name}
           type="text"
-          place="app name 입력"
+          placeholder="app name 입력"
           onChange={handleChangeApp}
         />
         <Input
@@ -51,7 +51,7 @@ export const CreateAppForm = ({ type }: { type: string }) => {
           name="rest"
           value={app.rest}
           type="text"
-          place="rest key 입력"
+          placeholder="rest key 입력"
           onChange={handleChangeApp}
         />
         <Input
@@ -59,7 +59,7 @@ export const CreateAppForm = ({ type }: { type: string }) => {
           name="redirect"
           value={app.redirect}
           type="text"
-          place="redirect URL 입력 (선택)"
+          placeholder="redirect URL 입력 (선택)"
           onChange={handleChangeApp}
         />
       </div>

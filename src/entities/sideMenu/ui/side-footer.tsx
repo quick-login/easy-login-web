@@ -24,7 +24,7 @@ export const SideFooter = ({ sideOn, isLogin, name = '' }: SideFooterProps) => {
               <b className="font-semibold text-black">{name}</b> 님 환영해요
             </Text>
           </div>
-          <LinkText link="/profile">
+          <LinkText href="/profile">
             <Image src="/settings.svg" alt="settings" width={24} height={24} />
           </LinkText>
         </>
@@ -43,13 +43,13 @@ export const SideFooter = ({ sideOn, isLogin, name = '' }: SideFooterProps) => {
               sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
             )}
           >
-            <LinkText className="text-gray4 w-[110px] cursor-pointer text-center text-[16px] font-medium" link="/login">
+            <LinkText className="text-gray4 w-[110px] cursor-pointer text-center text-[16px] font-medium" href="/login">
               로그인
             </LinkText>
             <div className="border-gray2 h-[20px] border" />
             <LinkText
               className="text-gray4 w-[110px] cursor-pointer text-center text-[16px] font-medium"
-              link="/register"
+              href="/register"
             >
               회원가입
             </LinkText>

@@ -12,7 +12,7 @@ export const CashListPage = () => {
       <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
         <div className="flex flex-col gap-[10px]">
           <LinkText
-            link="/notice/123"
+            href="/notice/123"
             className="border-gray3 flex items-center justify-between rounded-[10px] border px-[15px] py-[10px]"
           >
             <div className="flex items-center gap-[10px]">

@@ -1,15 +1,15 @@
 import clsx from 'clsx'
-import Link from 'next/link'
+import Link, { type LinkProps } from 'next/link'
+import type { ReactNode } from 'react'
 
-type LinkTextProps = {
+type Props = {
   className?: string
-  children: React.ReactNode
-  link: string
-}
+  children: ReactNode
+} & LinkProps
 
-export const LinkText = ({ className, children, link }: LinkTextProps) => {
+export const LinkText = ({ className, children, ...props }: Props) => {
   return (
-    <Link href={link} className={clsx('font-pretendard text-black', className)}>
+    <Link className={clsx('font-pretendard text-black', className)} {...props}>
       {children}
     </Link>
   )

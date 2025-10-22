@@ -1,23 +1,16 @@
 import clsx from 'clsx'
-import type { ReactNode } from 'react'
+import type { ComponentProps } from 'react'
 
-type PageButtonProps = {
-  children: ReactNode
-  onClick: () => void
-  isDisable: boolean
-}
-
-export const PageButton = ({ children, onClick, isDisable }: PageButtonProps) => {
+export const PageButton = ({ ...props }: ComponentProps<'button'>) => {
   return (
     <button
       className={clsx(
         'font-pretendard hover:bg-gray2 border-gray3 cursor-pointer rounded-[10px] border px-[10px] py-[5px] text-[16px] font-semibold',
-        isDisable && 'hidden',
+        props.disabled && 'hidden',
       )}
-      onClick={onClick}
-      disabled={isDisable}
+      {...props}
     >
-      {children}
+      {props.children}
     </button>
   )
 }

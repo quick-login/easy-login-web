@@ -1,20 +1,19 @@
 import clsx from 'clsx'
-import Link from 'next/link'
+import Link, { type LinkProps } from 'next/link'
 
-type ButtonProps = {
-  link: string
+type Props = {
   className?: string
   children: string
-}
+} & LinkProps
 
-export const LinkButton = ({ className, children, link }: ButtonProps) => {
+export const LinkButton = ({ className, children, ...props }: Props) => {
   return (
     <Link
-      href={link}
       className={clsx(
         'font-pretendard h-[50px] cursor-pointer rounded-[10px] bg-black text-[16px] text-white',
         className,
       )}
+      {...props}
     >
       {children}
     </Link>

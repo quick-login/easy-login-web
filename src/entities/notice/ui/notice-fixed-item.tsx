@@ -4,7 +4,7 @@ import type { Notice } from '../model/types'
 export const NoticeFixedItem = ({ createdAt, fixed, name, noticeId, title }: Notice) => {
   return (
     <LinkText
-      link={`/notice/${noticeId}`}
+      href={`/notice/${noticeId}`}
       className="border-gray3 bg-gray1 flex items-center rounded-[10px] border px-[15px] py-[10px]"
     >
       <tr className="flex flex-1 items-center gap-[10px]">
