@@ -1,5 +1,3 @@
-'use client'
-
 import { NoticeForm } from '@/src/features/write/notice'
 import { PageHeader } from '@/src/widgets'
 
