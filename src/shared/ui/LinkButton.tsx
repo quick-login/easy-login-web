@@ -9,11 +9,11 @@ type Props = {
 export const LinkButton = ({ className, children, ...props }: Props) => {
   return (
     <Link
+      {...props}
       className={clsx(
         'font-pretendard h-[50px] cursor-pointer rounded-[10px] bg-black text-[16px] text-white',
         className,
       )}
-      {...props}
     >
       {children}
     </Link>

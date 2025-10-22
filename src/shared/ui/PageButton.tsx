@@ -1,16 +1,16 @@
 import clsx from 'clsx'
 import type { ComponentProps } from 'react'
 
-export const PageButton = ({ ...props }: ComponentProps<'button'>) => {
+export const PageButton = ({ className, ...props }: ComponentProps<'li'>) => {
   return (
-    <button
+    <li
       className={clsx(
         'font-pretendard hover:bg-gray2 border-gray3 cursor-pointer rounded-[10px] border px-[10px] py-[5px] text-[16px] font-semibold',
-        props.disabled && 'hidden',
+        className,
       )}
       {...props}
     >
       {props.children}
-    </button>
+    </li>
   )
 }
