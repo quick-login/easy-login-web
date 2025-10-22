@@ -35,7 +35,7 @@ import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { SideContent } from './side-content.ui'
 import { SideHeader } from '../../entities/sideMenu'
-import { useModalStore } from '@/src/app/modalStore'
+import { useModalStore } from '@/src/shared/store/modalStore'
 
 export const SideMenu = ({ isLogin }: { isLogin: boolean }) => {
   // console.log('일반 사이드 렌더링')

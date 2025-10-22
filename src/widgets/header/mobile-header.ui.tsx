@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import { useState } from 'react'
 import { MobileSideMenu } from '../side/mobile-side-menu.ui'
-import { useModalStore } from '@/src/app/modalStore'
+import { useModalStore } from '@/src/shared/store/modalStore'
 import { Text } from '@/src/shared/ui'
 
 export const MobildHeader = ({ isLogin }: { isLogin: boolean }) => {
