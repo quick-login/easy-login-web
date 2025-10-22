@@ -17,7 +17,7 @@ export const RegistEmail = ({ email, onChange }: RegistEmailProps) => {
             type="text"
             name="email"
             value={email!}
-            place="이메일 입력"
+            placeholder="이메일 입력"
             onChange={onChange}
             read={Invalid.message === '이메일 인증 완료'}
           />

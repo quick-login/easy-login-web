@@ -32,13 +32,9 @@ axiosInstance.interceptors.response.use(
   async error => {
     const origin = error.config
     console.log('에러', error.response?.data)
-    console.log('에러코드', error.response?.status)
-    // console.log('에러코드', error.response)
     if (error.response?.data === '' || error.response?.data === null) {
-      console.log('지우기', await getCookies('ac'))
       await deleteCookies('ac')
       await deleteCookies('rc')
-      console.log('지우기2', await getCookies('ac'))
       return Promise.resolve(error.response)
     }
     if ((error.response?.data.code === 'T6000' || error.response?.data.code === 'T6001') && !origin._retry) {
@@ -56,8 +52,6 @@ axiosInstance.interceptors.response.use(
             withCredentials: true,
           },
         )
-        console.log('리프레시 결과', refreshRes, refreshRes.status)
-        console.log('리프레시 결과 서버', await refreshRes.data)
 
         const result = await refreshRes.data
 
@@ -80,10 +74,18 @@ axiosInstance.interceptors.response.use(
   },
 )
 
+export interface Page {
+  currentPage: number
+  pageSize: number
+  totalElements: number
+  totalPages: number
+}
+
 export interface ResponseType<Tdata = unknown> {
   code: string
   message: string
   data: Tdata
+  pagination?: Page
 }
 
 export const axiosGet = async <Tdata>(url: string, config: AxiosRequestConfig = {}): Promise<ResponseType<Tdata>> => {

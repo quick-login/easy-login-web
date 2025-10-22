@@ -48,7 +48,6 @@ export const MobileSideMenu = ({ isLogin, isOpen, onOpen }: MobileSideProps) => 
           isOpen ? 'pointer-events-auto opacity-100 delay-400' : 'pointer-events-none opacity-0',
         )}
       >
-        {/* 메뉴 헤더 */}
         <div className={clsx('z-25 flex items-center justify-between')}>
           <div className="flex items-center gap-2">
             <Image src="/easyLogin.svg" alt="easyLogin" width={24} height={24} />
@@ -56,7 +55,6 @@ export const MobileSideMenu = ({ isLogin, isOpen, onOpen }: MobileSideProps) => 
           </div>
           <Image src="/close.svg" alt="close" width={20} height={20} className="cursor-pointer" onClick={onOpen} />
         </div>
-        {/* 메뉴 본문 */}
         <SideContent isLogin={isLogin} sideOn={sideOn} />
       </div>
     </section>

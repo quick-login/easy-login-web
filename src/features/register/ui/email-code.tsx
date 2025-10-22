@@ -12,8 +12,8 @@ export const RegistEmailCode = ({ codeFormRef, email, stateCode, onValidate, onM
       </div>
       <Text className={clsx('text-[12px] leading-[150%] font-normal')}>해당 메일로 인증코드를 발송했습니다</Text>
       <form ref={codeFormRef} action={onValidate} className="flex items-center gap-[10px]">
-        <Input className="min-w-0 flex-1" type="hidden" name="email" place="" value={email} />
-        <Input className="min-w-0 flex-1" type="text" name="code" place="인증번호 입력" />
+        <Input className="min-w-0 flex-1" type="hidden" name="email" placeholder="" value={email} />
+        <Input className="min-w-0 flex-1" type="text" name="code" placeholder="인증번호 입력" />
         <Button type="submit" className="gap-[10px] p-[15px]">
           확인
         </Button>

@@ -1,6 +1,7 @@
 import clsx from 'clsx'
 import Image from 'next/image'
-import { Button, Text } from '@/src/shared/ui'
+import Link from 'next/link'
+import { Text } from '@/src/shared/ui'
 
 type SideCashProps = {
   sideOn: boolean
@@ -9,7 +10,7 @@ type SideCashProps = {
 
 export const SideCash = ({ sideOn, cash }: SideCashProps) => {
   return (
-    <div className="flex flex-col gap-[10px] p-[20px]">
+    <div className="flex flex-col gap-[10px] px-[20px] py-[10px]">
       <div className="flex flex-col gap-[12px]">
         <div className="flex justify-between">
           <div className="flex gap-[4px]">
@@ -38,12 +39,18 @@ export const SideCash = ({ sideOn, cash }: SideCashProps) => {
             sideOn ? 'max-h-[100%]' : 'max-h-[0px]',
           )}
         >
-          <Button className="flex-1 gap-[10px] px-[15px] py-[10px]" variant="cancle" onClick={() => {}}>
+          <Link
+            className="font-pretendard text-gray4 border-gray3 flex h-[50px] flex-1 items-center justify-center rounded-[10px] border bg-white px-[15px] py-[10px] text-[16px]"
+            href={'/cash/request'}
+          >
             캐시 충전
-          </Button>
-          <Button className="flex-1 gap-[10px] px-[15px] py-[10px]" variant="cancle" onClick={() => {}}>
+          </Link>
+          <Link
+            className="font-pretendard text-gray4 border-gray3 flex h-[50px] flex-1 items-center justify-center rounded-[10px] border bg-white px-[15px] py-[10px] text-[16px]"
+            href={'/cash/list'}
+          >
             내역 조회
-          </Button>
+          </Link>
         </div>
       </div>
     </div>

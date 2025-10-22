@@ -1,10 +1,10 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { SideBasic, SideFooter } from '@/src/entities/sideMenu'
+import { redirect } from 'next/navigation'
+import { useCallback, useEffect, useState } from 'react'
+import { SideBasic, SideCash, SideFooter, SideItem } from '@/src/entities/sideMenu'
 import { userAction } from '@/src/entities/user/model/user-action'
 import type { UserType } from '@/src/entities/user/type'
-import { CashMenu, UserMenu } from '@/src/features/activeSide/ui'
 
 type SideContentProps = {
   isLogin: boolean
@@ -19,10 +19,15 @@ export const SideContent = ({ isLogin, sideOn }: SideContentProps) => {
     maxKakaoAppCount: 0,
     remainCount: 0,
   })
-  const handleGetUserInfo = async () => {
+  const handleGetUserInfo = useCallback(async () => {
     const response = await userAction()
-    setUser(response.data)
-  }
+
+    if (response.success) {
+      setUser(response.data)
+    } else {
+      redirect('/login')
+    }
+  }, [isLogin])
 
   useEffect(() => {
     if (isLogin) {
@@ -33,14 +38,14 @@ export const SideContent = ({ isLogin, sideOn }: SideContentProps) => {
     <>
       {isLogin && (
         <>
-          <CashMenu sideOn={sideOn} cash={user?.cash ?? -1} />
+          <SideCash cash={user?.cash ?? 0} sideOn={sideOn} />
           <hr className="border-gray2" />
         </>
       )}
 
-      <div className="flex flex-1 flex-col gap-[30px] p-[20px]">
+      <div className="scrollbar-hidden flex flex-1 flex-col gap-[15px] overflow-auto p-[20px]">
         <SideBasic sideOn={sideOn} />
-        {isLogin && <UserMenu sideOn={sideOn} />}
+        {isLogin && <SideItem sideOn={sideOn} />}
       </div>
       <hr className="border-gray2" />
       <SideFooter sideOn={sideOn} isLogin={isLogin} name={user?.name ?? undefined} />

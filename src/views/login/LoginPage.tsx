@@ -9,7 +9,7 @@ export const LoginPage = () => {
       <LoginForm />
       <AuthFooter>
         <Text className="text-gray4 text-[16px] leading-[150%] font-normal">아직 회원이 아니신가요?</Text>
-        <LinkText className="cursor-pointer text-[16px] leading-[150%] font-normal text-black" link="/register">
+        <LinkText className="cursor-pointer text-[16px] leading-[150%] font-normal text-black" href="/register">
           회원가입
         </LinkText>
       </AuthFooter>

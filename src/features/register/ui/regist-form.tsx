@@ -82,7 +82,7 @@ export const RegistForm = () => {
                 type="text"
                 name="email"
                 value={regist.email}
-                place="이메일 입력"
+                placeholder="이메일 입력"
                 onChange={handleChangeRegister}
                 read={codeRes.success}
               />
@@ -105,14 +105,14 @@ export const RegistForm = () => {
             type="text"
             name="name"
             value={regist.name!}
-            place="이름 입력"
+            placeholder="이름 입력"
             onChange={handleChangeRegister}
           />
           <div className="flex flex-col gap-[6px]">
             <InputPassword
               name="password"
               value={regist.password!}
-              place="비밀번호 입력"
+              placeholder="비밀번호 입력"
               onChange={handleChangeRegister}
             />
             {pwValidate && (
@@ -125,7 +125,7 @@ export const RegistForm = () => {
             <InputPassword
               name="passwordCheck"
               value={regist.passwordCheck!}
-              place="비밀번호 다시 입력"
+              placeholder="비밀번호 다시 입력"
               onChange={handleChangeRegister}
             />
             {!pwSame && (
