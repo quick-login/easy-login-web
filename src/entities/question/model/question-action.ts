@@ -2,7 +2,7 @@
 
 import { getQuestInfo, getQuestList } from '../api/question-api'
 
-export const questListAction = async (page: number, pageSize: number) => {
+export const questListAction = async (page: number, pageSize: number = 10) => {
   const res = await getQuestList(page, pageSize)
 
   if (res.code === 'E200') {
