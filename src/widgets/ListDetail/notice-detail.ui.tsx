@@ -14,6 +14,7 @@ export const NoticeDetail = ({ noticeId }: { noticeId: number }) => {
   return (
     <>
       <NoticeInfo
+        fixed={notice.fixed}
         content={notice.content}
         createdAt={notice.createdAt}
         name={notice.name}
@@ -30,7 +31,9 @@ export const NoticeDetail = ({ noticeId }: { noticeId: number }) => {
           <Button className="p-[15px]" variant="cancle" onClick={() => router.back()}>
             이전으로
           </Button>
-          <Button className="p-[15px]">수정하기</Button>
+          <Button className="p-[15px]" onClick={() => router.push(`/notice/modify?id=${noticeId}`)}>
+            수정하기
+          </Button>
         </div>
       </Footer>
     </>
