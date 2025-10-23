@@ -84,7 +84,7 @@ export const RegistForm = () => {
                 value={regist.email}
                 placeholder="이메일 입력"
                 onChange={handleChangeRegister}
-                read={codeRes.success}
+                readOnly={codeRes.success}
               />
               <Button
                 type={codeRes.success || regist.email.length === 0 ? 'button' : 'submit'}
