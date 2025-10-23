@@ -25,7 +25,9 @@ export const Pagination = ({ currentPage, pageSize = 10, totalElements, totalPag
           <>
             {start + i <= totalPages && (
               <PageButton key={i} className={clsx(currentPage === start + i && 'bg-gray3')}>
-                <LinkText href={`?page=${start + i}`}>{start + i}</LinkText>
+                <LinkText className="px-[10px] py-[5px]" href={`?page=${start + i}`}>
+                  {start + i}
+                </LinkText>
               </PageButton>
             )}
           </>
