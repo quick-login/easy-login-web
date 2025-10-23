@@ -1,47 +1,41 @@
+'use client'
+
+import clsx from 'clsx'
+import { useEffect, useState } from 'react'
 import type { Page } from '@/src/shared/api/axios-client'
-import { PageButton } from '@/src/shared/ui'
-import type { Dispatch } from 'react'
+import { LinkText, PageButton } from '@/src/shared/ui'
 
-interface PaginationProps extends Page {
-  setPage: Dispatch<React.SetStateAction<number>>
-}
+export const Pagination = ({ currentPage, pageSize = 10, totalElements, totalPages }: Page) => {
+  const [start, setStart] = useState(1)
+  const noPrev = start === 1
+  const noNext = start + pageSize - 1 >= totalPages
 
-export const Pagination = ({ currentPage, pageSize = 10, totalElements, totalPages, setPage }: PaginationProps) => {
-  const pageNum = Math.ceil(totalElements / pageSize)
-  console.log('최대 페이지', pageNum)
+  useEffect(() => {
+    if (currentPage === start + pageSize) setStart(prev => prev + pageSize)
+    if (currentPage < start) setStart(prev => prev - pageSize)
+  }, [currentPage, start])
+
   return (
     <section className="flex items-center justify-center">
-      <div className="flex justify-center gap-[10px]">
-        <PageButton
-          onClick={() => {
-            setPage(currentPage - 1)
-          }}
-          isDisable={currentPage === 1}
-        >
-          ←
+      <ul className="flex justify-center gap-[10px]">
+        <PageButton className={clsx(noPrev && 'hidden')}>
+          <LinkText href={`?page=${start - 1}`}>←</LinkText>
         </PageButton>
-        {Array(10)
-          .fill(0)
-          .map((_, i) => (
-            <PageButton
-              key={i + 1}
-              onClick={() => {
-                setPage(i + 1)
-              }}
-              isDisable={false}
-            >
-              {i + 1}
-            </PageButton>
-          ))}
-        <PageButton
-          onClick={() => {
-            setPage(currentPage + 1)
-          }}
-          isDisable={currentPage === pageNum}
-        >
-          →
+        {[...Array(pageSize)].map((_, i) => (
+          <>
+            {start + i <= totalPages && (
+              <PageButton key={i} className={clsx(currentPage === start + i && 'bg-gray3')}>
+                <LinkText className="px-[10px] py-[5px]" href={`?page=${start + i}`}>
+                  {start + i}
+                </LinkText>
+              </PageButton>
+            )}
+          </>
+        ))}
+        <PageButton className={clsx(noNext && 'hidden')}>
+          <LinkText href={`?page=${start + pageSize}`}>→</LinkText>
         </PageButton>
-      </div>
+      </ul>
     </section>
   )
 }

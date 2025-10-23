@@ -4,4 +4,5 @@ export type UserType = {
   cash: number
   remainCount: number
   maxKakaoAppCount: number
+  role: 'USER' | 'ADMIN'
 }

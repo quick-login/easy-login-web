@@ -7,6 +7,7 @@ export type Notice = {
 }
 
 export type NoticeItem = {
+  fixed: boolean
   noticeId: number
   title: string
   name: string

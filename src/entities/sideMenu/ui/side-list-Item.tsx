@@ -14,7 +14,7 @@ export const SideListMenu = ({ link, itemName }: EffectProps) => {
     <div className="flex items-center gap-[6px]">
       <LinkText
         className={clsx('cursor-pointer text-[16px] font-normal', link === path ? 'text-dark' : 'text-gray4')}
-        href={link}
+        href={link === '/notice' ? '/notice?page=1' : link}
       >
         {itemName}
       </LinkText>

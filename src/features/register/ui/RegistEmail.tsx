@@ -19,7 +19,7 @@ export const RegistEmail = ({ email, onChange }: RegistEmailProps) => {
             value={email!}
             placeholder="이메일 입력"
             onChange={onChange}
-            read={Invalid.message === '이메일 인증 완료'}
+            readOnly={Invalid.message === '이메일 인증 완료'}
           />
           <Button
             className="gap-[10px] p-[15px]"

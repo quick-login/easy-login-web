@@ -75,7 +75,7 @@ export const SideBasic = ({ sideOn }: SideBasicProps) => {
           <SideListMenu itemName="제품 소개" link="/" />
           <SideListMenu itemName="이용 가이드" link="/guide" />
           <SideListMenu itemName="개발자 가이드" link="/develop" />
-          <SideListMenu itemName="공지사항" link="/notice?page=1" />
+          <SideListMenu itemName="공지사항" link="/notice" />
         </div>
       </div>
     </>

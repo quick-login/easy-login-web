@@ -1,6 +1,4 @@
 'use server'
-
-import { setCookie } from 'cookies-next'
 import { cookies } from 'next/headers'
 
 export const setCookies = async (key: string, value: string) => {

@@ -1,7 +1,7 @@
 'use server'
 
 import z from 'zod'
-import { deleteQuest, postQuest, postQuestAnswer } from '../api/quest-api'
+import { postQuest, postQuestAnswer } from '../api/quest-api'
 
 const questSchema = z.object({
   title: z.string().min(1, '제목은 최소 1글자 입니다.').max(50, '제목은 최대 50글자 입니다.'),
@@ -25,7 +25,7 @@ export const questWriteAction = async (formData: FormData) => {
   if (res.code === 'E200') {
     return { success: true, message: res.message }
   } else {
-    return { success: true, message: res.message }
+    return { success: false, message: res.message }
   }
 }
 
@@ -35,16 +35,6 @@ export const questAnswerAction = async (questionId: number, answer: string) => {
   if (!result.success) return { success: false, message: '답변은 1~1000자 입니다.' }
 
   const res = await postQuestAnswer(questionId, answer)
-
-  if (res.code === 'E200') {
-    return { success: true, message: res.message }
-  } else {
-    return { success: true, message: res.message }
-  }
-}
-
-export const questDeleteAction = async (questionId: number) => {
-  const res = await deleteQuest(questionId)
 
   if (res.code === 'E200') {
     return { success: true, message: res.message }

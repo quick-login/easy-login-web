@@ -14,7 +14,7 @@ export const ProfilePage = () => {
         <div className="flex flex-col gap-[10px]">
           <Text className="text-gray4">회원님의 정보를 확인하고 수정할 수 있습니다</Text>
           <form action="" className="flex flex-col gap-[10px]">
-            <Input name="email" placeholder="이메일 입력" type="text" className="w-full" read />
+            <Input name="email" placeholder="이메일 입력" type="text" className="w-full" readOnly />
             <Input name="name" placeholder="이름 입력" type="text" className="w-full" />
             <InputPassword name="password" placeholder="새 비밀번호 입력" />
             <InputPassword name="passwordCheck" placeholder="새 비밀번호 다시 입력" />

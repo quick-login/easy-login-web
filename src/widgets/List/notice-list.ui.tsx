@@ -1,0 +1,44 @@
+'use client'
+
+import { Pagination } from './pagination.ui'
+import { NoticeFixedItem, NoticeItem } from '@/src/entities/notice'
+import { useNoticeList } from '@/src/entities/notice/model/useNoticeList'
+
+export const NoticeList = () => {
+  const { pagination, basic, fixed } = useNoticeList()
+
+  return (
+    <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
+      <table className="flex flex-col gap-[10px]">
+        {fixed.map(d => (
+          <NoticeFixedItem
+            key={d.noticeId}
+            createdAt={d.createdAt}
+            fixed={d.fixed}
+            name={d.name}
+            noticeId={d.noticeId}
+            title={d.title}
+          />
+        ))}
+      </table>
+      <table className="flex flex-1 flex-col gap-[10px]">
+        {basic.map(d => (
+          <NoticeItem
+            key={d.noticeId}
+            createdAt={d.createdAt}
+            fixed={d.fixed}
+            name={d.name}
+            noticeId={d.noticeId}
+            title={d.title}
+          />
+        ))}
+      </table>
+      <Pagination
+        currentPage={pagination.currentPage}
+        totalElements={pagination.totalElements}
+        pageSize={pagination.pageSize}
+        totalPages={pagination.totalPages}
+      />
+    </div>
+  )
+}
