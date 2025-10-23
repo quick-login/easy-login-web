@@ -1,7 +1,7 @@
 import { Text } from '@/src/shared/ui'
 import type { NoticeItem } from '../model/types'
 
-export const NoticeInfo = ({ content, createdAt, name, noticeId, title }: NoticeItem) => {
+export const NoticeInfo = ({ content, createdAt, name, noticeId, fixed, title }: NoticeItem) => {
   return (
     <div className="flex flex-1 flex-col gap-[10px] p-[20px]">
       <div className="flex flex-col gap-[10px] px-[15px]">

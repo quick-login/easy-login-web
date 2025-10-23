@@ -18,6 +18,7 @@ export const SideContent = ({ isLogin, sideOn }: SideContentProps) => {
     email: '',
     maxKakaoAppCount: 0,
     remainCount: 0,
+    role: 'USER',
   })
   const handleGetUserInfo = useCallback(async () => {
     const response = await userAction()

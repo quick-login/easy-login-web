@@ -5,6 +5,7 @@ import type { NoticeItem } from './types'
 export const useNotice = (noticeId: number) => {
   const [notice, setNotice] = useState<NoticeItem>({
     content: '',
+    fixed: false,
     createdAt: '',
     name: '',
     noticeId: noticeId,
