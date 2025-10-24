@@ -27,9 +27,11 @@ export const {
   },
   callbacks: {
     signIn: async () => {
+      console.log('로그인')
       return true
     },
     jwt: async ({ token, user }) => {
+      console.log('토큰')
       return token
     },
     session: async ({ session, token }) => {
