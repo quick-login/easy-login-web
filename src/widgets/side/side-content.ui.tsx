@@ -1,7 +1,9 @@
 'use client'
 
 import { redirect } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 import { useCallback, useEffect, useState } from 'react'
+import { update } from '@/auth'
 import { SideBasic, SideCash, SideFooter, SideItem } from '@/src/entities/sideMenu'
 import { userAction } from '@/src/entities/user/model/user-action'
 import type { UserType } from '@/src/entities/user/type'
@@ -12,44 +14,51 @@ type SideContentProps = {
 }
 
 export const SideContent = ({ isLogin, sideOn }: SideContentProps) => {
-  const [user, setUser] = useState<UserType>({
-    name: '',
-    cash: 0,
-    email: '',
-    maxKakaoAppCount: 0,
-    remainCount: 0,
-    role: 'USER',
-  })
-  const handleGetUserInfo = useCallback(async () => {
-    const response = await userAction()
-
-    if (response.success) {
-      setUser(response.data)
-    } else {
-      redirect('/login')
-    }
-  }, [isLogin])
+  const { data: session, status, update } = useSession()
 
   useEffect(() => {
-    if (isLogin) {
-      handleGetUserInfo()
-    }
-  }, [isLogin])
+    update()
+  }, [])
+  // const [user, setUser] = useState<UserType>({
+  //   name: '',
+  //   cash: 0,
+  //   email: '',
+  //   maxKakaoAppCount: 0,
+  //   remainCount: 0,
+  //   role: 'USER',
+  // })
+  // const handleGetUserInfo = useCallback(async () => {
+  //   const response = await userAction()
+  //   console.log('사용자 정보 요청할거야')
+  //   if (response.success) {
+  //     setUser(response.data)
+  //     console.log('사용자 정보 불러옴')
+  //   } else {
+  //     redirect('/login')
+  //   }
+  // }, [isLogin])
+
+  // useEffect(() => {
+  //   if (isLogin) {
+  //     handleGetUserInfo()
+  //   }
+  // }, [isLogin])
+
   return (
     <>
-      {isLogin && (
+      {session && (
         <>
-          <SideCash cash={user?.cash ?? 0} sideOn={sideOn} />
+          <SideCash cash={session?.user?.cash ?? 0} sideOn={sideOn} />
           <hr className="border-gray2" />
         </>
       )}
 
       <div className="scrollbar-hidden flex flex-1 flex-col gap-[15px] overflow-auto p-[20px]">
         <SideBasic sideOn={sideOn} />
-        {isLogin && <SideItem sideOn={sideOn} />}
+        {session && <SideItem sideOn={sideOn} />}
       </div>
       <hr className="border-gray2" />
-      <SideFooter sideOn={sideOn} isLogin={isLogin} name={user?.name ?? undefined} />
+      <SideFooter sideOn={sideOn} isLogin={Boolean(session)} name={session?.user?.name ?? undefined} />
     </>
   )
 }

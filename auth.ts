@@ -1,5 +1,17 @@
 import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
+import type { ResponseType } from './src/shared/api/axios-client'
+
+type CredentialsType = {
+  name: string
+  email: string
+  cash: number
+  remainCount: number
+  maxKakaoAppCount: number
+  role: string
+  accessToken: string
+  refreshToken: string
+}
 
 export const {
   handlers,
@@ -11,9 +23,19 @@ export const {
   providers: [
     Credentials({
       authorize: async credentials => {
-        const { email, password } = credentials
-        const user = { id: '', name: '', email: '', iamge: '' }
-        console.log('ee')
+        const { name, email, cash, remainCount, maxKakaoAppCount, role, accessToken, refreshToken } =
+          credentials as CredentialsType
+        const user = {
+          name: name,
+          email: email,
+          cash: cash,
+          remainCount: remainCount,
+          maxKakaoAppCount: maxKakaoAppCount,
+          role: role,
+          accessToken: accessToken,
+          refreshToken: refreshToken,
+        }
+
         return user
       },
     }),
@@ -27,14 +49,32 @@ export const {
   },
   callbacks: {
     signIn: async () => {
-      console.log('로그인')
       return true
     },
-    jwt: async ({ token, user }) => {
-      console.log('토큰')
+    jwt: async ({ token, user, trigger, session }) => {
+      if (user) {
+        token.accessToken = user.accessToken
+        token.refreshToken = user.refreshToken
+        token.cash = user.cash
+        token.remainCount = user.remainCount
+        token.maxKakaoAppCount = user.maxKakaoAppCount
+        token.role = user.role
+      }
+      if (trigger === 'update' && session) {
+        Object.assign(token, session.user)
+      }
       return token
     },
     session: async ({ session, token }) => {
+      session.accessToken = token.accessToken as string
+      session.refreshToken = token.refreshToken as string
+      session.user = {
+        ...session.user,
+        cash: token.cash as number,
+        remainCount: token.remainCount as number,
+        maxKakaoAppCount: token.maxKakaoAppCount as number,
+        role: token.role as string,
+      }
       return session
     },
   },

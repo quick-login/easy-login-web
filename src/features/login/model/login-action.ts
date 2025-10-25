@@ -3,6 +3,7 @@
 import { redirect } from 'next/navigation'
 import z from 'zod'
 import { postLogin } from '../api/login-api'
+import { signIn } from '@/auth'
 
 export type State = {
   success?: boolean
@@ -31,14 +32,30 @@ export const handleLoginAction = async (prevState: State, formData: FormData) =>
   }
 
   const res = await postLogin({ email, password })
-  console.log('받은 값', res)
 
   if (res.code === 'E200') {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/member/info`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${res.data.accessToken}`,
+      },
+    })
+    const userInfo = await response.json()
+
+    await signIn('credentials', {
+      name: userInfo.data.name,
+      email: userInfo.data.email,
+      cash: userInfo.data.cash,
+      remainCount: userInfo.data.remainCount,
+      maxKakaoAppCount: userInfo.data.maxKakaoAppCount,
+      role: userInfo.data.role,
+      accessToken: res.data.accessToken,
+      refreshToken: res.data.refreshToken,
+      redirect: false,
+    })
+
     redirect('/')
   } else {
-    return {
-      success: false,
-      message: res.message,
-    }
+    return { success: false, message: res.message }
   }
 }
