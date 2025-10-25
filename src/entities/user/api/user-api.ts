@@ -8,8 +8,10 @@ export const getUserInfo = async () => {
 }
 
 export const postLogout = async () => {
+  console.log('로그아웃 요청')
   const res = await axiosPost<null>('/api/v1/member/logout')
   if (res.code === 'E200') {
+    console.log('로그아웃 결과', res)
     await deleteCookies('ac')
     await deleteCookies('rc')
   }
