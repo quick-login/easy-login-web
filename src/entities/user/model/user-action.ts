@@ -14,9 +14,11 @@ export const userAction = async () => {
 }
 
 export const userLogoutAction = async () => {
+  console.log('로그아웃 요청 액션')
   const res = await postLogout()
 
   if (res.code === 'E200') {
+    console.log('로그아웃 요청 액셔 ㄴ결과')
     redirect('/login')
   }
 

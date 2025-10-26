@@ -1,5 +1,6 @@
 import axios, { type AxiosRequestConfig } from 'axios'
 import { deleteCookies, getCookies, setCookies } from '../lib/cookie'
+import { getSession, signOutWidthForm, updateSession } from '@/src/entities/user/model/user-auth'
 
 export const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -12,9 +13,10 @@ export const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   async config => {
-    const token = await getCookies('ac')
-    if (token?.value) {
-      config.headers['Authorization'] = `Bearer ${token.value}`
+    const session = await getSession()
+    console.log('axios 내 세션', session)
+    if (session?.accessToken) {
+      config.headers['Authorization'] = `Bearer ${session?.accessToken}`
     }
 
     return config
@@ -33,22 +35,25 @@ axiosInstance.interceptors.response.use(
     const origin = error.config
     console.log('에러', error.response?.data)
     if (error.response?.data === '' || error.response?.data === null) {
-      await deleteCookies('ac')
-      await deleteCookies('rc')
+      // await deleteCookies('ac')
+      // await deleteCookies('rc')
+      await signOutWidthForm()
       return Promise.resolve(error.response)
     }
     if ((error.response?.data.code === 'T6000' || error.response?.data.code === 'T6001') && !origin._retry) {
       origin._retry = true
 
-      const refreshToken = await getCookies('rc')
-      console.log('기존 리프레시', refreshToken?.value)
+      // const refreshToken = await getCookies('rc')
+      const session = await getSession()
+      // const refreshToken = await getCookies('rc')
+      console.log('기존 리프레시', session?.refreshToken)
 
       try {
         const refreshRes = await axios.post(
           `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/member/refresh`,
           {},
           {
-            headers: { 'Content-Type': 'application/json', 'Refresh-Token': `Bearer ${refreshToken?.value}` },
+            headers: { 'Content-Type': 'application/json', 'Refresh-Token': `Bearer ${session?.refreshToken}` },
             withCredentials: true,
           },
         )
@@ -61,13 +66,16 @@ axiosInstance.interceptors.response.use(
         console.log('새 액세스', newAccessToken)
         console.log('새 리프레시', newRefreshToken)
 
-        await setCookies('ac', newAccessToken)
-        await setCookies('rc', newRefreshToken)
+        await updateSession({ user: { accessToken: newAccessToken, refreshToken: newRefreshToken } })
+
+        // await setCookies('ac', newAccessToken)
+        // await setCookies('rc', newRefreshToken)
         origin.headers['Authorization'] = `Bearer ${newAccessToken}`
         return axiosInstance(origin)
       } catch (err) {
-        await deleteCookies('ac')
-        await deleteCookies('rc')
+        // await deleteCookies('ac')
+        // await deleteCookies('rc')
+        await signOutWidthForm()
       }
     }
     return Promise.resolve(error.response)
@@ -93,6 +101,22 @@ export const axiosGet = async <Tdata>(url: string, config: AxiosRequestConfig = 
   return response.data
 }
 
+export const axiosPostLogin = async <Tdata>(
+  url: string,
+  params: object | string = {},
+  config: AxiosRequestConfig = {},
+): Promise<ResponseType<Tdata>> => {
+  const response = await axiosInstance.post(url, params, { ...config })
+  const result: ResponseType<Tdata> = await response.data
+
+  const ac = response.headers['authorization']?.replace('Bearer ', '')
+  const rc = response.headers['refresh-token']?.replace('Bearer ', '')
+
+  const data = { ...result.data, accessToken: ac, refreshToken: rc }
+
+  return { ...result, data }
+}
+
 export const axiosPost = async <Tdata>(
   url: string,
   params: object | string = {},
@@ -100,14 +124,6 @@ export const axiosPost = async <Tdata>(
 ): Promise<ResponseType<Tdata>> => {
   const response = await axiosInstance.post(url, params, { ...config })
   const data: ResponseType<Tdata> = await response.data
-
-  const ac = response.headers['authorization']?.replace('Bearer ', '')
-  const rc = response.headers['refresh-token']?.replace('Bearer ', '')
-
-  if (ac !== undefined) await setCookies('ac', ac)
-  if (rc !== undefined) await setCookies('rc', rc)
-
-  console.log('post', data)
 
   return data
 }

@@ -27,7 +27,6 @@ export const useNoticeList = () => {
 
   const handleGetNotices = useCallback(async () => {
     const response = await NoticeListAction(noticePage)
-    console.log(response.pagination)
 
     if (response.success) {
       setBasic(response.data)

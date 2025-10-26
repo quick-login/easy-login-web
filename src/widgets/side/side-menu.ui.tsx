@@ -32,21 +32,12 @@
 
 import clsx from 'clsx'
 import Image from 'next/image'
-import { useEffect, useState } from 'react'
 import { SideContent } from './side-content.ui'
 import { SideHeader } from '../../entities/sideMenu'
 import { useModalStore } from '@/src/shared/store/modalStore'
 
 export const SideMenu = ({ isLogin }: { isLogin: boolean }) => {
-  // console.log('일반 사이드 렌더링')
-  // const [side, setSideOn] = useState<boolean>(true)
   const { side, toggleSide } = useModalStore()
-
-  // const toggleSide = () => {
-  //   setSideOn(prev => !prev)
-  // }
-
-  console.log('사이드', side)
 
   return (
     <aside
@@ -91,9 +82,6 @@ export const SideMenu = ({ isLogin }: { isLogin: boolean }) => {
         <hr className="border-gray2" />
         <SideContent isLogin={isLogin} sideOn={side} />
       </div>
-      {/* <SideHeader sideOn={side} onToggleSide={toggleSide} />
-      <hr className="border-gray2" />
-      <SideContent isLogin={isLogin} sideOn={side} /> */}
     </aside>
   )
 }

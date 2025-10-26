@@ -1,12 +1,12 @@
 'use client'
 
-import { useFormState } from 'react-dom'
+import { useActionState } from 'react'
 import { handleLoginAction } from '../model/login-action'
 import { Button, Input, InputPassword, Text } from '@/src/shared/ui'
 
 export const LoginForm = () => {
   const initialState = { success: false, message: '' }
-  const [state, dispatch] = useFormState(handleLoginAction, initialState)
+  const [state, dispatch] = useActionState(handleLoginAction, initialState)
 
   return (
     <form action={dispatch} className="flex w-full flex-col gap-[10px]">
