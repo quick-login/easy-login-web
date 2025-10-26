@@ -41,8 +41,9 @@ export const useWirteList = () => {
   const handleWriteNotice = async (formData: FormData) => {
     const res = await noticeWriteAction(formData)
     if (res.success) {
-      onOpenAlert('공지가 등록되었습니다!')
-      router.push('/notice?page=1')
+      onOpenAlert('공지가 등록되었습니다!', () => {
+        router.push('/notice?page=1')
+      })
     } else {
       onOpenAlert(res.message)
     }
@@ -51,8 +52,9 @@ export const useWirteList = () => {
   const handlePatchNotice = async (formData: FormData) => {
     const res = await noticePatchAction(Number(noticeId), formData)
     if (res.success) {
-      onOpenAlert('공지가 수정되었습니다!')
-      router.push(`/notice/${noticeId}`)
+      onOpenAlert('공지가 수정되었습니다!', () => {
+        router.push(`/notice/${noticeId}`)
+      })
     } else {
       onOpenAlert(res.message)
     }
