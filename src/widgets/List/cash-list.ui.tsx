@@ -1,3 +1,5 @@
+'use client'
+
 import { Pagination } from './pagination.ui'
 import { CashItem } from '@/src/entities/cash'
 import { useCashList } from '@/src/entities/cash/model/useCashList'
@@ -17,7 +19,6 @@ export const CashList = () => {
           />
         ))}
       </div>
-
       <Pagination
         currentPage={pagination.currentPage}
         totalElements={pagination.totalElements}
