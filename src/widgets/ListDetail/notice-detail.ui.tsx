@@ -1,6 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 import { NoticeInfo } from '@/src/entities/notice'
 import { useNotice } from '@/src/entities/notice/model/useNotice'
 import { DeleteNoticeInfoBtn } from '@/src/features/deleteDetail'
@@ -9,6 +10,7 @@ import { Footer } from '@/src/shared/ui/Footer'
 
 export const NoticeDetail = ({ noticeId }: { noticeId: number }) => {
   const { notice } = useNotice(noticeId)
+  const { data: session } = useSession()
   const router = useRouter()
 
   return (
@@ -25,15 +27,17 @@ export const NoticeDetail = ({ noticeId }: { noticeId: number }) => {
       <hr className="border-gray2" />
       <Footer>
         <div className="text-negative flex cursor-pointer items-center justify-center gap-[4px] text-[16px]">
-          <DeleteNoticeInfoBtn noticeId={noticeId} />
+          {session?.user?.role === 'ADMIN' && <DeleteNoticeInfoBtn noticeId={noticeId} />}
         </div>
         <div className="flex gap-[10px]">
           <Button className="p-[15px]" variant="cancle" onClick={() => router.back()}>
             이전으로
           </Button>
-          <Button className="p-[15px]" onClick={() => router.push(`/notice/modify?id=${noticeId}`)}>
-            수정하기
-          </Button>
+          {session?.user?.role === 'ADMIN' && (
+            <Button className="p-[15px]" onClick={() => router.push(`/notice/modify?id=${noticeId}`)}>
+              수정하기
+            </Button>
+          )}
         </div>
       </Footer>
     </>
