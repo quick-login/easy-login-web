@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import type { ComponentProps } from 'react'
 
 type ButtonProps = {
   type?: 'button' | 'submit' | 'reset'
@@ -7,7 +8,7 @@ type ButtonProps = {
   onClick?: () => void
   variant?: 'primary' | 'cancle' | 'noActive'
   formAction?: (formData: FormData) => Promise<void>
-}
+} & ComponentProps<'button'>
 
 export const Button = ({
   type = 'button',
@@ -16,6 +17,7 @@ export const Button = ({
   onClick = () => {},
   variant = 'primary',
   formAction,
+  ...props
 }: ButtonProps) => {
   const base = 'font-pretendard h-[50px] rounded-[10px] text-[16px]'
   const variants = {
@@ -25,6 +27,7 @@ export const Button = ({
   }
   return (
     <button
+      {...props}
       type={type}
       className={clsx(base, variants[variant], className)}
       onClick={() => variant !== 'noActive' && onClick()}
