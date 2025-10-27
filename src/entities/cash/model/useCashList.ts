@@ -6,19 +6,20 @@ import type { Page } from '@/src/shared/api/axios-client'
 import type { Cash } from './type'
 
 export const useCashList = () => {
-  const questPage = Number(useSearchParams().get('page'))
+  const cashPage = Number(useSearchParams().get('page'))
   const [cashList, setCashList] = useState<Cash[]>([])
   const [pagination, setPagination] = useState<Page>({
-    currentPage: questPage,
+    currentPage: cashPage,
     pageSize: 0,
     totalElements: 0,
     totalPages: 0,
   })
 
   const handleGetCashList = async () => {
-    const response = await cashListAction(questPage)
+    const response = await cashListAction(cashPage)
 
     if (response.success) {
+      console.log('부러오기')
       setCashList(response.data)
       setPagination(response.pagination)
     } else {
@@ -29,7 +30,7 @@ export const useCashList = () => {
   useEffect(() => {
     handleGetCashList()
     window.scrollTo(0, 0)
-  }, [cashList])
+  }, [cashPage])
 
   return { cashList, pagination }
 }

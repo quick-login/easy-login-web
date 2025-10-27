@@ -1,3 +1,5 @@
+'use server'
+
 import { getCashList } from '../api/cash-api'
 
 export const cashListAction = async (page: number, pageSize: number = 10) => {

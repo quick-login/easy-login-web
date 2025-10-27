@@ -4,6 +4,7 @@ import { noticePatchAction, noticeWriteAction } from './notice-action'
 import { NoticeInfoAction } from '@/src/entities/notice/model/notice-action'
 import type { NoticeItem } from '@/src/entities/notice/model/types'
 import { useAlertStore } from '@/src/shared/store/useAlertStore'
+import { useConfirmStore } from '@/src/shared/store/useConfirmStore'
 
 export const useWirteList = () => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)
@@ -20,6 +21,7 @@ export const useWirteList = () => {
   const noticeId = useSearchParams().get('id')
   const pathname = usePathname()
   const isEditMode = pathname.includes('modify')
+  const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
 
   useEffect(() => {
     if (isEditMode && noticeId) {
@@ -41,8 +43,9 @@ export const useWirteList = () => {
   const handleWriteNotice = async (formData: FormData) => {
     const res = await noticeWriteAction(formData)
     if (res.success) {
-      onOpenAlert('공지가 등록되었습니다!')
-      router.push('/notice?page=1')
+      onOpenAlert('공지가 등록되었습니다!', () => {
+        router.push('/notice?page=1')
+      })
     } else {
       onOpenAlert(res.message)
     }
@@ -51,18 +54,20 @@ export const useWirteList = () => {
   const handlePatchNotice = async (formData: FormData) => {
     const res = await noticePatchAction(Number(noticeId), formData)
     if (res.success) {
-      onOpenAlert('공지가 수정되었습니다!')
-      router.push(`/notice/${noticeId}`)
+      onOpenAlert('공지가 수정되었습니다!', () => {
+        router.push(`/notice/${noticeId}`)
+      })
     } else {
       onOpenAlert(res.message)
     }
   }
 
-  const handleSubmit = (formdata: FormData) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>, formdata: FormData) => {
+    e.preventDefault()
     if (isEditMode && noticeId) {
-      handlePatchNotice(formdata)
+      onOpenConfirm('수정하시겠습니까?', () => handlePatchNotice(formdata))
     } else {
-      handleWriteNotice(formdata)
+      onOpenConfirm('등록하시겠습니까?', () => handleWriteNotice(formdata))
     }
   }
 

@@ -9,8 +9,9 @@ export const useDetailDelete = () => {
     const response = await questDeleteAction(questionId)
 
     if (response.success) {
-      onOpenAlert('문의가 삭제되었습니다.')
-      router.push('/question?page=1')
+      onOpenAlert('문의가 삭제되었습니다.', () => {
+        router.push('/question?page=1')
+      })
     } else {
       onOpenAlert('삭제 도중 문제가 발생했습니다.')
     }
@@ -20,8 +21,9 @@ export const useDetailDelete = () => {
     const response = await noticeDeleteAction(noticeId)
 
     if (response.success) {
-      onOpenAlert('공지가 삭제되었습니다.')
-      router.push('/notice?page=1')
+      onOpenAlert('공지가 삭제되었습니다.', () => {
+        router.push('/notice?page=1')
+      })
     } else {
       onOpenAlert('삭제 도중 문제가 발생했습니다.')
     }

@@ -1,1 +1,1 @@
-export { NoticeForm } from './ui/notice-from'
+export { NoticeForm } from './ui/notice-form'

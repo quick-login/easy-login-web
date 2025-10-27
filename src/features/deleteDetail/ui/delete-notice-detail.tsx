@@ -1,9 +1,17 @@
 'use client'
 
 import { useDetailDelete } from '../model/useDetailDelete'
+import { useConfirmStore } from '@/src/shared/store/useConfirmStore'
 import { IconButton } from '@/src/shared/ui'
 
 export const DeleteNoticeInfoBtn = ({ noticeId }: { noticeId: number }) => {
   const { handleDeleteNotice } = useDetailDelete()
-  return <IconButton alt="delete" title="삭제" onClick={() => handleDeleteNotice(noticeId)} />
+  const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
+  return (
+    <IconButton
+      alt="delete"
+      title="삭제"
+      onClick={() => onOpenConfirm('공지를 삭제하시겠습니까?', () => handleDeleteNotice(noticeId))}
+    />
+  )
 }
