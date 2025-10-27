@@ -1,4 +1,4 @@
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { type ChangeEvent, useState } from 'react'
 import { cancleCashAction, requestCashAction } from './cash-action'
 import { useAlertStore } from '@/src/shared/store/useAlertStore'
@@ -44,7 +44,9 @@ export const useReqCash = () => {
   const handleCancleCash = async (cashChargeLogId: number) => {
     const response = await cancleCashAction(cashChargeLogId)
     if (response.success) {
-      onOpenAlert('신청이 취소되었습니다.')
+      onOpenAlert('신청이 취소되었습니다.', () => {
+        window.location.reload()
+      })
     } else {
       onOpenAlert(response.message)
     }
