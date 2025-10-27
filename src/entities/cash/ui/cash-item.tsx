@@ -6,7 +6,6 @@ type Props = {
 } & Cash
 
 export const CashItem = ({ cashChargeLogId, chargeCash, requestDate, status, onCancle }: Props) => {
-  console.log(status)
   return (
     <div className="group border-gray3 relative flex items-center justify-between rounded-[10px] border px-[15px] py-[10px]">
       <div className="flex items-center gap-[10px]">
