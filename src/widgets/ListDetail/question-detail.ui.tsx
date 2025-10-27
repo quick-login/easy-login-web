@@ -19,13 +19,11 @@ export const QuestionDetail = ({ questionId }: { questionId: number }) => {
         questionDate={quest.questionDate}
         content={quest.content}
       />
-      {quest.answer !== null && quest.answeredDate !== null && (
-        <QuestionAnswer answer={quest.answer} answeredDate={quest.answeredDate} />
-      )}
+      {quest.status === 'COMPLETED' && <QuestionAnswer answer={quest.answer} answeredDate={quest.answeredDate} />}
 
       <hr className="border-gray2" />
       <Footer>
-        <DeleteQuestInfoBtn questionId={questionId} />
+        {quest.status === 'WAITING' ? <DeleteQuestInfoBtn questionId={questionId} /> : <div />}
         <Button className="p-[15px]" variant="cancle" onClick={() => router.back()}>
           이전으로
         </Button>
