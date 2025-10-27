@@ -1,9 +1,11 @@
 import { useRouter } from 'next/navigation'
 import { questWriteAction } from './quest-action'
 import { useAlertStore } from '@/src/shared/store/useAlertStore'
+import { useConfirmStore } from '@/src/shared/store/useConfirmStore'
 
 export const useWriteList = () => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)
+  const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
   const router = useRouter()
 
   const handleWriteQuest = async (formData: FormData) => {
@@ -17,5 +19,10 @@ export const useWriteList = () => {
     }
   }
 
-  return { handleWriteQuest }
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>, formdata: FormData) => {
+    e.preventDefault()
+    onOpenConfirm('등록하시겠습니까?', () => handleWriteQuest(formdata))
+  }
+
+  return { handleSubmit }
 }

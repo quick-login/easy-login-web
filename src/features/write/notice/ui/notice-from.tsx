@@ -10,7 +10,10 @@ export const NoticeForm = () => {
   const router = useRouter()
   return (
     <div className="flex flex-1 flex-col">
-      <form action={handleSubmit} className="flex flex-1 flex-col gap-[10px] px-[20px] pt-[20px]">
+      <form
+        onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e, new FormData(e.currentTarget))}
+        className="flex flex-1 flex-col gap-[10px] px-[20px] pt-[20px]"
+      >
         <div className="flex items-center justify-between gap-[10px] px-[10px]">
           <CheckBox name="fixed" title="상단고정" checked={fixed} onChange={() => setFixed(prev => !prev)} />
         </div>

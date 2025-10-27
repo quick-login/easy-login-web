@@ -6,12 +6,15 @@ import { Button, Input, TextArea } from '@/src/shared/ui'
 import { Footer } from '@/src/shared/ui/Footer'
 
 export const QuestionForm = () => {
-  const { handleWriteQuest } = useWriteList()
+  const { handleSubmit } = useWriteList()
   const router = useRouter()
 
   return (
     <div className="flex flex-1 flex-col">
-      <form action={handleWriteQuest} className="flex flex-1 flex-col gap-[10px] px-[20px] pt-[20px]">
+      <form
+        onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e, new FormData(e.currentTarget))}
+        className="flex flex-1 flex-col gap-[10px] px-[20px] pt-[20px]"
+      >
         <Input name="title" placeholder="제목 입력" type="text" />
         <TextArea name="content" placeholder="본문 입력" className="flex flex-1" />
         <hr className="border-gray2" />

@@ -4,6 +4,7 @@ import { noticePatchAction, noticeWriteAction } from './notice-action'
 import { NoticeInfoAction } from '@/src/entities/notice/model/notice-action'
 import type { NoticeItem } from '@/src/entities/notice/model/types'
 import { useAlertStore } from '@/src/shared/store/useAlertStore'
+import { useConfirmStore } from '@/src/shared/store/useConfirmStore'
 
 export const useWirteList = () => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)
@@ -20,6 +21,7 @@ export const useWirteList = () => {
   const noticeId = useSearchParams().get('id')
   const pathname = usePathname()
   const isEditMode = pathname.includes('modify')
+  const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
 
   useEffect(() => {
     if (isEditMode && noticeId) {
@@ -60,11 +62,12 @@ export const useWirteList = () => {
     }
   }
 
-  const handleSubmit = (formdata: FormData) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>, formdata: FormData) => {
+    e.preventDefault()
     if (isEditMode && noticeId) {
-      handlePatchNotice(formdata)
+      onOpenConfirm('수정하시겠습니까?', () => handlePatchNotice(formdata))
     } else {
-      handleWriteNotice(formdata)
+      onOpenConfirm('등록하시겠습니까?', () => handleWriteNotice(formdata))
     }
   }
 
