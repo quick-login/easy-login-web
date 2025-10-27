@@ -1,49 +1,46 @@
 'use client'
 
-import { useState } from 'react'
-import { Input, Text } from '@/src/shared/ui'
+import Image from 'next/image'
+import { useParams, useRouter } from 'next/navigation'
+import { useSocialApp } from '../../createApp/model/useSocialApp'
+import { useAppInfo } from '@/src/entities/social/model/useAppInfo'
+import { Button, Footer, Input, Text } from '@/src/shared/ui'
 
 export const UpdateAppForm = () => {
-  const [app, setApp] = useState({
-    name: '',
-    rest: '',
-    redirect: '',
-  })
+  const params = useParams().id
+  const { app } = useAppInfo(Number(params))
+  const { handlePatch } = useSocialApp()
 
-  const handleChangeApp = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setApp(prev => ({
-      ...prev,
-      [name]: value,
-    }))
-  }
+  const router = useRouter()
+
   return (
-    <div className="flex flex-1 flex-col gap-[10px] p-[20px]">
-      <Text className="text-gray4 text-[16px] leading-[100%] font-medium">app ID : 123456</Text>
-      <Input
-        className="placeholder-gray4 border-gray3 w-full gap-[10px] rounded-[10px] border p-[15px] leading-[150%] font-normal text-black outline-0"
-        type="text"
-        name="name"
-        value={app.name}
-        placeholder="app name 입력"
-        onChange={handleChangeApp}
-      />
-      <Input
-        className="placeholder-gray4 border-gray3 w-full gap-[10px] rounded-[10px] border p-[15px] leading-[150%] font-normal text-black outline-0"
-        type="text"
-        name="rest"
-        value={app.rest}
-        placeholder="rest key 입력"
-        onChange={handleChangeApp}
-      />
-      <Input
-        className="placeholder-gray4 border-gray3 w-full gap-[10px] rounded-[10px] border p-[15px] leading-[150%] font-normal text-black outline-0"
-        type="text"
-        name="redirect"
-        value={app.redirect}
-        placeholder="redirect URL 입력 (선택)"
-        onChange={handleChangeApp}
-      />
-    </div>
+    <>
+      <form
+        id="social-info-form"
+        onSubmit={(e: React.FormEvent<HTMLFormElement>) => handlePatch(e, new FormData(e.currentTarget))}
+        className="flex flex-1 flex-col gap-[10px] p-[20px]"
+      >
+        <Text className="text-gray4 text-[16px] leading-[100%] font-medium">app ID : {app.appId}</Text>
+        <Input type="text" name="appId" defaultValue={app.appId} hidden />
+        <Input type="text" name="appName" placeholder="app name 입력" defaultValue={app.appName} />
+        <Input type="text" name="restKey" placeholder="rest key 입력" defaultValue={app.restKey} />
+        <Input type="text" name="redirectUrl" placeholder="redirect URL 입력 (선택)" defaultValue={app.redirectUrl} />
+      </form>
+      <hr className="border-gray2" />
+      <Footer>
+        <div className="flex cursor-pointer items-center justify-center gap-[4px]">
+          <Image src="/trash.svg" alt="delete" width={24} height={24} />
+          <Text className="text-negative">삭제</Text>
+        </div>
+        <div className="flex gap-[10px]">
+          <Button className="px-[15px] py-[10px]" variant="cancle" onClick={() => router.back()}>
+            이전으로
+          </Button>
+          <Button form="social-info-form" type="submit" className="px-[15px] py-[10px]">
+            변경사항 저장
+          </Button>
+        </div>
+      </Footer>
+    </>
   )
 }
