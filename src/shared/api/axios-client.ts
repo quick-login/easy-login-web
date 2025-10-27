@@ -1,5 +1,5 @@
 import axios, { type AxiosRequestConfig } from 'axios'
-import { deleteCookies, getCookies, setCookies } from '../lib/cookie'
+import { signOut } from '@/auth'
 import { getSession, signOutWidthForm, updateSession } from '@/src/entities/user/model/user-auth'
 
 export const axiosInstance = axios.create({
@@ -15,8 +15,8 @@ axiosInstance.interceptors.request.use(
   async config => {
     const session = await getSession()
     console.log('axios 내 세션', session)
-    if (session?.accessToken) {
-      config.headers['Authorization'] = `Bearer ${session?.accessToken}`
+    if (session?.user?.accessToken) {
+      config.headers['Authorization'] = `Bearer ${session.user.accessToken}`
     }
 
     return config
@@ -34,31 +34,24 @@ axiosInstance.interceptors.response.use(
   async error => {
     const origin = error.config
     console.log('에러', error.response?.data)
-    if (error.response?.data === '' || error.response?.data === null) {
-      // await deleteCookies('ac')
-      // await deleteCookies('rc')
-      await signOutWidthForm()
+    if (error.response?.data === '' || error.response?.data === null || error.response?.data.code === 'T6002') {
+      console.log('리프레시 만료')
+      await signOut({ redirect: false })
       return Promise.resolve(error.response)
     }
     if ((error.response?.data.code === 'T6000' || error.response?.data.code === 'T6001') && !origin._retry) {
       origin._retry = true
-
-      // const refreshToken = await getCookies('rc')
       const session = await getSession()
-      // const refreshToken = await getCookies('rc')
-      console.log('기존 리프레시', session?.refreshToken)
-
+      console.log('기존 리프레시', session?.user?.refreshToken)
       try {
         const refreshRes = await axios.post(
           `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/member/refresh`,
           {},
           {
-            headers: { 'Content-Type': 'application/json', 'Refresh-Token': `Bearer ${session?.refreshToken}` },
+            headers: { 'Content-Type': 'application/json', 'Refresh-Token': `Bearer ${session?.user?.refreshToken}` },
             withCredentials: true,
           },
         )
-
-        const result = await refreshRes.data
 
         const newAccessToken = refreshRes.headers['authorization']?.replace('Bearer ', '')
         const newRefreshToken = refreshRes.headers['refresh-token']?.replace('Bearer ', '')
@@ -68,14 +61,13 @@ axiosInstance.interceptors.response.use(
 
         await updateSession({ user: { accessToken: newAccessToken, refreshToken: newRefreshToken } })
 
-        // await setCookies('ac', newAccessToken)
-        // await setCookies('rc', newRefreshToken)
-        origin.headers['Authorization'] = `Bearer ${newAccessToken}`
+        // origin.headers['Authorization'] = `Bearer ${newAccessToken}`
+        axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`
         return axiosInstance(origin)
       } catch (err) {
-        // await deleteCookies('ac')
-        // await deleteCookies('rc')
-        await signOutWidthForm()
+        console.log('리프레시 발급 실패')
+        await signOut({ redirect: false })
+        return Promise.resolve(err)
       }
     }
     return Promise.resolve(error.response)

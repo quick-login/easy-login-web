@@ -66,10 +66,10 @@ export const {
       return token
     },
     session: async ({ session, token }) => {
-      session.accessToken = token.accessToken as string
-      session.refreshToken = token.refreshToken as string
       session.user = {
         ...session.user,
+        accessToken: token.accessToken as string,
+        refreshToken: token.refreshToken as string,
         cash: token.cash as number,
         remainCount: token.remainCount as number,
         maxKakaoAppCount: token.maxKakaoAppCount as number,
