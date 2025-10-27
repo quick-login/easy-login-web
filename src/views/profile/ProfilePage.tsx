@@ -1,14 +1,13 @@
 'use client'
 
 import Image from 'next/image'
-import { useSession } from 'next-auth/react'
 import { signOutWidthForm } from '@/src/entities/user/model/user-auth'
-import { Button, Input, InputPassword, LinkText, Text } from '@/src/shared/ui'
+import { ProfileForm } from '@/src/features/update-profile'
+import { Button, LinkText, Text } from '@/src/shared/ui'
 import { Footer } from '@/src/shared/ui/Footer'
 import { PageHeader } from '@/src/widgets'
 
 export const ProfilePage = () => {
-  const { data: session } = useSession()
   return (
     <section className="scrollbar-hidden 1060:rounded-[20px] flex h-full flex-1 flex-col overflow-auto bg-white">
       <PageHeader title="마이페이지" />
@@ -16,25 +15,7 @@ export const ProfilePage = () => {
       <div className="flex flex-1 flex-col gap-[10px] p-[20px]">
         <div className="flex flex-col gap-[10px]">
           <Text className="text-gray4">회원님의 정보를 확인하고 수정할 수 있습니다</Text>
-          <form action="" className="flex flex-col gap-[10px]">
-            <Input
-              name="email"
-              placeholder="이메일 입력"
-              type="text"
-              className="w-full"
-              readOnly
-              defaultValue={session?.user?.email}
-            />
-            <Input
-              name="name"
-              placeholder="이름 입력"
-              type="text"
-              className="w-full"
-              defaultValue={session?.user?.name}
-            />
-            <InputPassword name="password" placeholder="새 비밀번호 입력" />
-            <InputPassword name="passwordCheck" placeholder="새 비밀번호 다시 입력" />
-          </form>
+          <ProfileForm />
         </div>
         <div className="flex flex-1 gap-[10px]">
           <div className="border-gray3 flex-1 rounded-[10px] border">
@@ -71,12 +52,12 @@ export const ProfilePage = () => {
             <Image src="/trash.svg" alt="logout" width={20} height={20} />
             <Text className="text-negative">로그아웃</Text>
           </div>
-          <div className="text-negative flex cursor-pointer items-center justify-center gap-[4px] text-[14px]">
+          {/* <div className="text-negative flex cursor-pointer items-center justify-center gap-[4px] text-[14px]">
             <Image src="/trash.svg" alt="logout" width={20} height={20} />
             <Text className="text-negative">회원탈퇴</Text>
-          </div>
+          </div> */}
         </div>
-        <Button type="button" variant="primary" className="p-[15px]">
+        <Button form="profile-form" type="submit" variant="primary" className="p-[15px]">
           수정 하기
         </Button>
       </Footer>
