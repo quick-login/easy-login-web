@@ -9,11 +9,12 @@ import { userAction } from '@/src/entities/user/model/user-action'
 import type { UserType } from '@/src/entities/user/type'
 
 type SideContentProps = {
+  mobile: boolean
   isLogin: boolean
   sideOn: boolean
 }
 
-export const SideContent = ({ isLogin, sideOn }: SideContentProps) => {
+export const SideContent = ({ isLogin, mobile, sideOn }: SideContentProps) => {
   const { data: session, status, update } = useSession()
 
   useEffect(() => {
@@ -48,17 +49,17 @@ export const SideContent = ({ isLogin, sideOn }: SideContentProps) => {
     <>
       {session && (
         <>
-          <SideCash cash={session?.user?.cash ?? 0} sideOn={sideOn} />
+          <SideCash mobile={mobile} cash={session?.user?.cash ?? 0} sideOn={sideOn} />
           <hr className="border-gray2" />
         </>
       )}
 
       <div className="scrollbar-hidden flex flex-1 flex-col gap-[15px] overflow-auto p-[20px]">
-        <SideBasic sideOn={sideOn} />
-        {session && <SideItem sideOn={sideOn} />}
+        <SideBasic mobile={mobile} sideOn={sideOn} />
+        {session && <SideItem mobile={mobile} sideOn={sideOn} />}
       </div>
       <hr className="border-gray2" />
-      <SideFooter sideOn={sideOn} isLogin={Boolean(session)} name={session?.user?.name ?? undefined} />
+      <SideFooter mobile={mobile} sideOn={sideOn} isLogin={Boolean(session)} name={session?.user?.name ?? undefined} />
     </>
   )
 }

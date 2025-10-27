@@ -5,10 +5,11 @@ import { SideListMenu } from './side-list-Item'
 import { Text } from '@/src/shared/ui'
 
 type SideItemProps = {
+  mobile: boolean
   sideOn: boolean
 }
 
-export const SideItem = ({ sideOn }: SideItemProps) => {
+export const SideItem = ({ mobile, sideOn }: SideItemProps) => {
   const [menuOn, setMenuOn] = useState<boolean>(false)
 
   useEffect(() => {
@@ -26,7 +27,8 @@ export const SideItem = ({ sideOn }: SideItemProps) => {
           <Text
             className={clsx(
               'overflow-hidden text-[16px] font-semibold whitespace-nowrap transition-all duration-300',
-              sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+              sideOn ? '1060:max-w-[100%]' : '1060:max-w-[0px]',
+              mobile ? 'max-w-[100%]' : '1060:max-w-[0px]',
             )}
           >
             카카오 간편로그인
@@ -40,7 +42,8 @@ export const SideItem = ({ sideOn }: SideItemProps) => {
           className={clsx(
             'transition-all duration-300',
             menuOn ? 'rotate-180' : 'rotate-0',
-            sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+            sideOn ? '1060:max-w-[100%]' : '1060:max-w-[0px]',
+            mobile ? 'max-w-[100%]' : '1060:max-w-[0px]',
           )}
         />
       </div>

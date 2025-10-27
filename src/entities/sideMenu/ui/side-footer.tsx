@@ -3,12 +3,13 @@ import Image from 'next/image'
 import { LinkText, Text } from '@/src/shared/ui'
 
 type SideFooterProps = {
+  mobile: boolean
   isLogin: boolean
   sideOn: boolean
   name?: string
 }
 
-export const SideFooter = ({ sideOn, isLogin, name = '' }: SideFooterProps) => {
+export const SideFooter = ({ mobile, sideOn, isLogin, name = '' }: SideFooterProps) => {
   return (
     <div className="z-25 flex h-[66px] justify-between p-[20px]">
       {isLogin ? (
@@ -16,7 +17,8 @@ export const SideFooter = ({ sideOn, isLogin, name = '' }: SideFooterProps) => {
           <div
             className={clsx(
               'flex gap-[4px] overflow-hidden whitespace-nowrap transition-all duration-300',
-              sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+              sideOn ? '1060:max-w-[100%]' : '1060:max-w-[0px]',
+              mobile ? 'max-w-[100%]' : '1060:max-w-[0px]',
             )}
           >
             <Image src="/user.svg" alt="user" width={24} height={24} />
@@ -35,12 +37,17 @@ export const SideFooter = ({ sideOn, isLogin, name = '' }: SideFooterProps) => {
             alt="user"
             width={24}
             height={24}
-            className={clsx('transition-all duration-300', !sideOn ? 'max-w-[100%]' : 'max-w-[0px]')}
+            className={clsx(
+              'transition-all duration-300',
+              !sideOn ? '1060:max-w-[100%]' : '1060:max-w-[0px]',
+              !mobile ? 'max-w-[100%]' : '1060:max-w-[0px]',
+            )}
           />
           <div
             className={clsx(
               'flex w-full items-center justify-center gap-[10px] overflow-hidden whitespace-nowrap transition-all duration-300',
-              sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+              sideOn ? '1060:max-w-[100%]' : '1060:max-w-[0px]',
+              mobile ? 'max-w-[100%]' : '1060:max-w-[0px]',
             )}
           >
             <LinkText className="text-gray4 w-[110px] cursor-pointer text-center text-[16px] font-medium" href="/login">
