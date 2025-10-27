@@ -8,7 +8,6 @@ type Props = {
 
 const MyAppView = ({ params }: Props) => {
   const { socialType } = params
-  console.log(params)
   return <MyAppPage />
 }
 

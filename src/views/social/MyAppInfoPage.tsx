@@ -1,4 +1,4 @@
-import { UpdateAppForm, UpdateBtns } from '@/src/features/updateApp'
+import { UpdateAppForm } from '@/src/features/updateApp'
 import { PageHeader } from '@/src/widgets'
 
 export const MyAppInfoPage = () => {
@@ -7,8 +7,6 @@ export const MyAppInfoPage = () => {
       <PageHeader title="내 앱 수정" />
       <hr className="border-gray2" />
       <UpdateAppForm />
-      <hr className="border-gray2" />
-      <UpdateBtns />
     </section>
   )
 }
