@@ -3,11 +3,12 @@ import Image from 'next/image'
 import { LinkText, Text } from '@/src/shared/ui'
 
 type SideCashProps = {
+  mobile: boolean
   sideOn: boolean
   cash: number
 }
 
-export const SideCash = ({ sideOn, cash }: SideCashProps) => {
+export const SideCash = ({ mobile, sideOn, cash }: SideCashProps) => {
   return (
     <div className="flex flex-col gap-[10px] px-[20px] py-[10px]">
       <div className="flex flex-col gap-[12px]">
@@ -17,7 +18,8 @@ export const SideCash = ({ sideOn, cash }: SideCashProps) => {
             <Text
               className={clsx(
                 'overflow-hidden leading-[150%] font-semibold whitespace-nowrap transition-all duration-300',
-                sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+                sideOn ? '1060:max-w-[100%]' : '1060:max-w-[0px]',
+                mobile ? 'max-w-[100%]' : '1060:max-w-[0px]',
               )}
             >
               보유 캐시
@@ -26,7 +28,8 @@ export const SideCash = ({ sideOn, cash }: SideCashProps) => {
           <Text
             className={clsx(
               'overflow-hidden leading-[150%] font-medium whitespace-nowrap transition-all duration-300',
-              sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+              sideOn ? '1060:max-w-[100%]' : '1060:max-w-[0px]',
+              mobile ? 'max-w-[100%]' : '1060:max-w-[0px]',
             )}
           >
             {cash}
@@ -35,7 +38,8 @@ export const SideCash = ({ sideOn, cash }: SideCashProps) => {
         <div
           className={clsx(
             'flex gap-[10px] overflow-hidden whitespace-nowrap transition-all duration-300',
-            sideOn ? 'max-h-[100%]' : 'max-h-[0px]',
+            sideOn ? '1060:max-h-[100%]' : '1060:max-h-[0px]',
+            mobile ? 'max-h-[100%]' : '1060:max-h-[0px]',
           )}
         >
           <LinkText

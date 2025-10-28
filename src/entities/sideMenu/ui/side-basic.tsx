@@ -5,10 +5,11 @@ import { SideListMenu } from './side-list-Item'
 import { Text } from '@/src/shared/ui'
 
 type SideBasicProps = {
+  mobile: boolean
   sideOn: boolean
 }
 
-export const SideBasic = ({ sideOn }: SideBasicProps) => {
+export const SideBasic = ({ mobile, sideOn }: SideBasicProps) => {
   const [menuOn, setMenuOn] = useState<boolean>(false)
 
   // console.log('사이드 param', path)
@@ -26,7 +27,8 @@ export const SideBasic = ({ sideOn }: SideBasicProps) => {
           <Text
             className={clsx(
               'overflow-hidden text-[16px] font-semibold whitespace-nowrap transition-all duration-300',
-              sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+              sideOn ? '1060:max-w-[100%]' : '1060:max-w-[0px]',
+              mobile ? 'max-w-[100%]' : '1060:max-w-[0px]',
             )}
           >
             판매상품
@@ -35,7 +37,8 @@ export const SideBasic = ({ sideOn }: SideBasicProps) => {
         <div
           className={clsx(
             'flex cursor-pointer items-center gap-[6px] overflow-hidden whitespace-nowrap transition-all duration-300',
-            sideOn ? 'max-h-[100%]' : 'max-h-[0px]',
+            sideOn ? '1060:max-h-[100%]' : '1060:max-h-[0px]',
+            mobile ? 'max-h-[100%]' : 'max-h-[0px]',
           )}
         >
           <SideListMenu itemName="상품 둘러보기" link="/item" />
@@ -48,7 +51,8 @@ export const SideBasic = ({ sideOn }: SideBasicProps) => {
             <Text
               className={clsx(
                 'overflow-hidden text-[16px] font-semibold whitespace-nowrap transition-all duration-300',
-                sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+                sideOn ? '1060:max-w-[100%]' : '1060:max-w-[0px]',
+                mobile ? 'max-w-[100%]' : '1060:max-w-[0px]',
               )}
             >
               이지로그인
@@ -62,7 +66,8 @@ export const SideBasic = ({ sideOn }: SideBasicProps) => {
             className={clsx(
               'transition-all duration-300',
               menuOn ? 'rotate-180' : 'rotate-0',
-              sideOn ? 'max-w-[100%]' : 'max-w-[0px]',
+              sideOn ? '1060:max-w-[100%]' : '1060:max-w-[0px]',
+              mobile ? 'max-w-[100%]' : '1060:max-w-[0px]',
             )}
           />
         </div>
