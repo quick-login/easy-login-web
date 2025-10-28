@@ -102,7 +102,7 @@ export const SideMenu = ({ isLogin }: { isLogin: boolean }) => {
   return (
     <aside
       className={clsx(
-        '1060:static 1060:rounded-[20px] 1060:transition-[width] 1060:duration-300 1060:bg-white fixed flex h-full w-full flex-col rounded-none',
+        '1060:static 1060:rounded-[20px] 1060:transition-[width] 1060:duration-300 1060:bg-white fixed z-[1000] flex h-full w-full flex-col rounded-none',
         side ? '1060:w-[280px]' : '1060:w-[64px]',
         '1060:pointer-events-auto pointer-events-none',
       )}
