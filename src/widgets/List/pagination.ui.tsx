@@ -19,7 +19,9 @@ export const Pagination = ({ currentPage, pageSize = 10, totalElements, totalPag
     <section className="flex items-center justify-center">
       <ul className="flex justify-center gap-[10px]">
         <PageButton className={clsx(noPrev && 'hidden')}>
-          <LinkText href={`?page=${start - 1}`}>←</LinkText>
+          <LinkText className="px-[10px] py-[5px]" href={`?page=${start - 1}`}>
+            ←
+          </LinkText>
         </PageButton>
         {[...Array(pageSize)].map((_, i) => (
           <>
@@ -33,7 +35,9 @@ export const Pagination = ({ currentPage, pageSize = 10, totalElements, totalPag
           </>
         ))}
         <PageButton className={clsx(noNext && 'hidden')}>
-          <LinkText href={`?page=${start + pageSize}`}>→</LinkText>
+          <LinkText className="px-[10px] py-[5px]" href={`?page=${start + pageSize}`}>
+            →
+          </LinkText>
         </PageButton>
       </ul>
     </section>
