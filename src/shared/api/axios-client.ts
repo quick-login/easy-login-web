@@ -90,7 +90,7 @@ export interface ResponseType<Tdata = unknown> {
 
 export const axiosGet = async <Tdata>(url: string, config: AxiosRequestConfig = {}): Promise<ResponseType<Tdata>> => {
   const response = await axiosInstance.get<ResponseType<Tdata>>(url, { ...config })
-  console.log('으응답', response)
+  console.log('으응답', response.data)
   return response.data
 }
 
