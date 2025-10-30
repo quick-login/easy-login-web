@@ -1,25 +1,22 @@
 import { useRouter } from 'next/navigation'
 import { type ChangeEvent, useState } from 'react'
-import { cancleCashAction, requestCashAction } from './cash-action'
+import { approveCashAction, cancleCashAction, rejectCashAction, requestCashAction } from './cash-action'
 import { useAlertStore } from '@/src/shared/store/useAlertStore'
 
 export const useReqCash = () => {
-  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
   const router = useRouter()
+  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
   const [cash, setCash] = useState<string>('')
 
   const handleChangeCash = (e: ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target
     let num = Number(value.replaceAll(',', ''))
-
     if (value === '0') return
     if (value === '') {
       setCash('')
       return
     }
-
     if (Number(value) < 1) num = 1
-
     setCash(num.toLocaleString())
   }
 
@@ -52,5 +49,35 @@ export const useReqCash = () => {
     }
   }
 
-  return { cash, handleCashBtn, handleChangeCash, handleReqCash, handleCancleCash }
+  const handleAdminRejectCash = async (cashChargeLogId: number) => {
+    const response = await rejectCashAction(cashChargeLogId)
+    if (response.success) {
+      onOpenAlert('거절 완료되었습니다.', () => {
+        window.location.reload()
+      })
+    } else {
+      onOpenAlert(response.message)
+    }
+  }
+
+  const handleAdminApproveCash = async (cashChargeLogId: number) => {
+    const response = await approveCashAction(cashChargeLogId)
+    if (response.success) {
+      onOpenAlert('승인 완료되었습니다.', () => {
+        window.location.reload()
+      })
+    } else {
+      onOpenAlert(response.message)
+    }
+  }
+
+  return {
+    cash,
+    handleCashBtn,
+    handleChangeCash,
+    handleReqCash,
+    handleCancleCash,
+    handleAdminRejectCash,
+    handleAdminApproveCash,
+  }
 }
