@@ -2,7 +2,7 @@
 
 import { getAdminSellItems, getUserOrderInfo, getUserOrderList, getUserSellItems } from '../api/sell-api'
 
-export const userSellItemsAction = async (page: number, pageSize: number = 10) => {
+export const userSellItemsAction = async (page: number, pageSize: number = 8) => {
   const res = await getUserSellItems(page, pageSize)
 
   if (res.code === 'E200') {
@@ -12,7 +12,7 @@ export const userSellItemsAction = async (page: number, pageSize: number = 10) =
   }
 }
 
-export const adminSellItemsAction = async (page: number, pageSize: number = 10) => {
+export const adminSellItemsAction = async (page: number, pageSize: number = 8) => {
   const res = await getAdminSellItems(page, pageSize)
 
   if (res.code === 'E200') {
