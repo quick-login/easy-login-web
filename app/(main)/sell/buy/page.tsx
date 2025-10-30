@@ -1,4 +1,4 @@
-import { SellPopup } from '@/src/entities/sell'
+import { SellPopup } from '@/src/features/order-sell'
 
 export default async function Buy() {
   return <SellPopup />
