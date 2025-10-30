@@ -1,25 +1,67 @@
 'use server'
 
-import { getQuestInfo, getQuestList } from '../api/question-api'
+import { getAdminQuestInfo, getAdminQuestList, getQuestInfo, getQuestList } from '../api/question-api'
 
 export const questListAction = async (page: number, pageSize: number = 10) => {
-  const res = await getQuestList(page, pageSize)
+  const response = await getQuestList(page, pageSize)
 
-  console.log('응답', res)
-
-  if (res.code === 'E200') {
-    return { success: true, code: res.code, message: res.message, data: res.data, pagination: res.pagination! }
+  if (response.code === 'E200') {
+    return {
+      success: true,
+      code: response.code,
+      message: response.message,
+      data: response.data,
+      pagination: response.pagination!,
+    }
   } else {
-    return { success: false, code: res.code, message: res.message, data: res.data, pagination: res.pagination! }
+    return {
+      success: false,
+      code: response.code,
+      message: response.message,
+      data: response.data,
+      pagination: response.pagination!,
+    }
   }
 }
 
 export const questInfoAction = async (questionId: number) => {
-  const res = await getQuestInfo(questionId)
+  const response = await getQuestInfo(questionId)
 
-  if (res.code === 'E200') {
-    return { success: true, code: res.code, message: res.message, data: res.data }
+  if (response.code === 'E200') {
+    return { success: true, code: response.code, message: response.message, data: response.data }
   } else {
-    return { success: false, code: res.code, message: res.message, data: res.data }
+    return { success: false, code: response.code, message: response.message, data: response.data }
+  }
+}
+
+export const adminQuestListAction = async (page: number, pageSize: number = 10, STATUS: string) => {
+  const response = await getAdminQuestList(page, pageSize, STATUS)
+
+  if (response.code === 'E200') {
+    return {
+      success: true,
+      code: response.code,
+      message: response.message,
+      data: response.data,
+      pagination: response.pagination!,
+    }
+  } else {
+    return {
+      success: false,
+      code: response.code,
+      message: response.message,
+      data: response.data,
+      pagination: response.pagination!,
+    }
+  }
+}
+
+export const adminQuestInfoAction = async (questionId: number) => {
+  const response = await getAdminQuestInfo(questionId)
+
+  if (response.code === 'E200') {
+    return { success: true, code: response.code, message: response.message, data: response.data }
+  } else {
+    return { success: false, code: response.code, message: response.message, data: response.data }
   }
 }
