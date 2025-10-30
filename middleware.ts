@@ -1,7 +1,7 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import { getToken } from 'next-auth/jwt'
 
-const matchersForAuthAdmin = ['/notice/write', '/notice/modify']
+const matchersForAuthAdmin = ['/notice/write', '/notice/modify', '/admin/*']
 const matchersForAuthUser = ['/cash/*', '/item/*', '/question/*', '/kakao/*', '/naver/*', '/google/*', '/create/*']
 const matchersForSignIn = ['/login/*', '/register/*']
 
