@@ -1,10 +1,10 @@
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { cashListAction } from './cash-action'
+import { adminCashListAction } from './cash-action'
 import type { Page } from '@/src/shared/api/axios-client'
 import type { Cash } from './type'
 
-export const useCashList = () => {
+export const useAdminCashList = () => {
   const cashPage = Number(useSearchParams().get('page'))
   const [cashList, setCashList] = useState<Cash[]>([])
   const [pagination, setPagination] = useState<Page>({
@@ -14,7 +14,7 @@ export const useCashList = () => {
     totalPages: 0,
   })
   const handleGetCashList = async () => {
-    const response = await cashListAction(cashPage)
+    const response = await adminCashListAction(cashPage)
 
     if (response.success) {
       setCashList(response.data)
