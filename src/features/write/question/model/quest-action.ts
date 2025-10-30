@@ -29,9 +29,10 @@ export const questWriteAction = async (formData: FormData) => {
   }
 }
 
-export const questAnswerAction = async (questionId: number, answer: string) => {
-  const result = answerSchema.safeParse(answer)
+export const adminAnswerAction = async (questionId: number, formData: FormData) => {
+  const answer = String(formData.get('answer') ?? '')
 
+  const result = answerSchema.safeParse({ answer })
   if (!result.success) return { success: false, message: '답변은 1~1000자 입니다.' }
 
   const res = await postQuestAnswer(questionId, answer)
@@ -39,6 +40,6 @@ export const questAnswerAction = async (questionId: number, answer: string) => {
   if (res.code === 'E200') {
     return { success: true, message: res.message }
   } else {
-    return { success: true, message: res.message }
+    return { success: false, message: res.message }
   }
 }
