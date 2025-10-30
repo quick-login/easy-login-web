@@ -1,6 +1,6 @@
 import axios, { type AxiosRequestConfig } from 'axios'
 import { signOut } from '@/auth'
-import { getSession, signOutWidthForm, updateSession } from '@/src/entities/user/model/user-auth'
+import { clearSession, getSession, signOutWidthForm, updateSession } from '@/src/entities/user/model/user-auth'
 
 export const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
@@ -36,7 +36,7 @@ axiosInstance.interceptors.response.use(
     console.log('에러', error.response?.data)
     if (error.response?.data === '' || error.response?.data === null || error.response?.data.code === 'T6002') {
       console.log('리프레시 만료')
-      await signOut({ redirect: false })
+      await clearSession()
       return Promise.resolve(error.response)
     }
     if ((error.response?.data.code === 'T6000' || error.response?.data.code === 'T6001') && !origin._retry) {
@@ -61,12 +61,12 @@ axiosInstance.interceptors.response.use(
 
         await updateSession({ user: { accessToken: newAccessToken, refreshToken: newRefreshToken } })
 
-        // origin.headers['Authorization'] = `Bearer ${newAccessToken}`
-        axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`
+        origin.headers['Authorization'] = `Bearer ${newAccessToken}`
+        // axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${newAccessToken}`
         return axiosInstance(origin)
       } catch (err) {
         console.log('리프레시 발급 실패')
-        await signOut({ redirect: false })
+        await clearSession()
         return Promise.resolve(err)
       }
     }
@@ -90,6 +90,7 @@ export interface ResponseType<Tdata = unknown> {
 
 export const axiosGet = async <Tdata>(url: string, config: AxiosRequestConfig = {}): Promise<ResponseType<Tdata>> => {
   const response = await axiosInstance.get<ResponseType<Tdata>>(url, { ...config })
+  console.log('으응답', response.data)
   return response.data
 }
 

@@ -19,15 +19,17 @@ export const Confirm = () => {
   }, [])
 
   return (
-    <section className={clsx('fixed inset-0 z-50 flex h-[100vh] w-full items-center justify-center bg-black/50')}>
-      <div className="flex min-w-[250px] flex-col items-center justify-center gap-[30px] rounded-[20px] bg-white px-[20px] py-[50px]">
-        <Text className="font-semibold text-black">{msg}</Text>
-        <div className="flex w-full gap-[10px]">
-          <Button className="w-full" onClick={onTrue}>
-            확인
+    <section className={clsx('fixed inset-0 z-[2000] flex h-[100vh] w-full items-center justify-center bg-black/50')}>
+      <div className="flex min-w-[250px] flex-col items-center justify-center rounded-[20px] bg-white">
+        <div className="flex w-full flex-1 items-center justify-center p-[50px]">
+          <Text className="font-semibold text-black">{msg}</Text>
+        </div>
+        <div className="flex w-full">
+          <Button className="w-full rounded-none rounded-bl-[20px]" onClick={onTrue}>
+            확 인
           </Button>
-          <Button className="w-full" onClick={onFalse}>
-            닫기
+          <Button className="w-full rounded-none rounded-br-[20px]" variant="cancle" onClick={onFalse}>
+            닫 기
           </Button>
         </div>
       </div>

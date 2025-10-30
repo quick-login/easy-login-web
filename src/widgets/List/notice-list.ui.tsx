@@ -3,11 +3,16 @@
 import { Pagination } from './pagination.ui'
 import { NoticeFixedItem, NoticeItem } from '@/src/entities/notice'
 import { useNoticeList } from '@/src/entities/notice/model/useNoticeList'
+import { Text } from '@/src/shared/ui'
 
 export const NoticeList = () => {
   const { pagination, basic, fixed } = useNoticeList()
 
-  return (
+  return basic.length === 0 ? (
+    <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
+      <Text className="text-gray5 font-semibold">공지사항이 존재하지 않습니다.</Text>
+    </div>
+  ) : (
     <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
       <table className="flex flex-col gap-[10px]">
         {fixed.map(d => (

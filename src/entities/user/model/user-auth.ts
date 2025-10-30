@@ -15,4 +15,8 @@ export const signOutWidthForm = async () => {
   await userLogoutAction()
 }
 
+export const clearSession = async () => {
+  await signOut({ redirect: false })
+}
+
 export { auth as getSession, update as updateSession }

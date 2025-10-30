@@ -41,7 +41,7 @@ export const SideBasic = ({ mobile, sideOn }: SideBasicProps) => {
             mobile ? 'max-h-[100%]' : 'max-h-[0px]',
           )}
         >
-          <SideListMenu itemName="상품 둘러보기" link="/item" />
+          <SideListMenu itemName="상품 둘러보기" link="/sell?page=1" />
         </div>
       </div>
       <div className="flex flex-col gap-[10px]">

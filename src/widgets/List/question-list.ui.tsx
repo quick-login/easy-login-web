@@ -2,11 +2,16 @@
 import { Pagination } from './pagination.ui'
 import { QuestionItem } from '@/src/entities/question'
 import { useQuestList } from '@/src/entities/question/model/useQuestList'
+import { Text } from '@/src/shared/ui'
 
 export const QuestionList = () => {
   const { pagination, questList } = useQuestList()
 
-  return (
+  return questList.length === 0 ? (
+    <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
+      <Text className="text-gray5 font-semibold">문의 내역이 존재하지 않습니다.</Text>
+    </div>
+  ) : (
     <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
       <div className="flex flex-1 flex-col gap-[10px]">
         {questList.map(data => (
@@ -20,7 +25,6 @@ export const QuestionList = () => {
           />
         ))}
       </div>
-
       <Pagination
         currentPage={pagination.currentPage}
         totalElements={pagination.totalElements}
