@@ -20,122 +20,25 @@ export const SellList = () => {
       <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
         <div className="grid grid-cols-2 gap-[10px] md:grid-cols-4">
           {sellList.map(sell => (
-            <>
-              <SellItemCard
-                discountRate={sell.discountRate}
-                finalPrice={sell.finalPrice}
-                name={sell.name}
-                price={sell.price}
-                product_id={sell.product_id}
-                key={sell.product_id}
-                isStore={list.has(sell.product_id)}
-                onAdd={() =>
-                  addList(sell.product_id, {
-                    discountRate: sell.discountRate,
-                    finalPrice: sell.finalPrice,
-                    name: sell.name,
-                    orderQuantity: 1,
-                    price: sell.price,
-                  })
-                }
-                onRemove={() => removeList(sell.product_id)}
-              />
-              <SellItemCard
-                discountRate={sell.discountRate}
-                finalPrice={sell.finalPrice}
-                name={sell.name}
-                price={sell.price}
-                product_id={sell.product_id}
-                key={sell.product_id}
-                isStore={list.has(sell.product_id)}
-                onAdd={() =>
-                  addList(sell.product_id, {
-                    discountRate: sell.discountRate,
-                    finalPrice: sell.finalPrice,
-                    name: sell.name,
-                    orderQuantity: 1,
-                    price: sell.price,
-                  })
-                }
-                onRemove={() => removeList(sell.product_id)}
-              />
-              <SellItemCard
-                discountRate={sell.discountRate}
-                finalPrice={sell.finalPrice}
-                name={sell.name}
-                price={sell.price}
-                product_id={sell.product_id}
-                key={sell.product_id}
-                isStore={list.has(sell.product_id)}
-                onAdd={() =>
-                  addList(sell.product_id, {
-                    discountRate: sell.discountRate,
-                    finalPrice: sell.finalPrice,
-                    name: sell.name,
-                    orderQuantity: 1,
-                    price: sell.price,
-                  })
-                }
-                onRemove={() => removeList(sell.product_id)}
-              />
-              <SellItemCard
-                discountRate={sell.discountRate}
-                finalPrice={sell.finalPrice}
-                name={sell.name}
-                price={sell.price}
-                product_id={sell.product_id}
-                key={sell.product_id}
-                isStore={list.has(sell.product_id)}
-                onAdd={() =>
-                  addList(sell.product_id, {
-                    discountRate: sell.discountRate,
-                    finalPrice: sell.finalPrice,
-                    name: sell.name,
-                    orderQuantity: 1,
-                    price: sell.price,
-                  })
-                }
-                onRemove={() => removeList(sell.product_id)}
-              />
-              <SellItemCard
-                discountRate={sell.discountRate}
-                finalPrice={sell.finalPrice}
-                name={sell.name}
-                price={sell.price}
-                product_id={sell.product_id}
-                key={sell.product_id}
-                isStore={list.has(sell.product_id)}
-                onAdd={() =>
-                  addList(sell.product_id, {
-                    discountRate: sell.discountRate,
-                    finalPrice: sell.finalPrice,
-                    name: sell.name,
-                    orderQuantity: 1,
-                    price: sell.price,
-                  })
-                }
-                onRemove={() => removeList(sell.product_id)}
-              />
-              <SellItemCard
-                discountRate={sell.discountRate}
-                finalPrice={sell.finalPrice}
-                name={sell.name}
-                price={sell.price}
-                product_id={sell.product_id}
-                key={sell.product_id}
-                isStore={list.has(sell.product_id)}
-                onAdd={() =>
-                  addList(sell.product_id, {
-                    discountRate: sell.discountRate,
-                    finalPrice: sell.finalPrice,
-                    name: sell.name,
-                    orderQuantity: 1,
-                    price: sell.price,
-                  })
-                }
-                onRemove={() => removeList(sell.product_id)}
-              />
-            </>
+            <SellItemCard
+              discountRate={sell.discountRate}
+              finalPrice={sell.finalPrice}
+              name={sell.name}
+              price={sell.price}
+              product_id={sell.product_id}
+              key={sell.product_id}
+              isStore={list.has(sell.product_id)}
+              onAdd={() =>
+                addList(sell.product_id, {
+                  discountRate: sell.discountRate,
+                  finalPrice: sell.finalPrice,
+                  name: sell.name,
+                  orderQuantity: 1,
+                  price: sell.price,
+                })
+              }
+              onRemove={() => removeList(sell.product_id)}
+            />
           ))}
         </div>
       </div>
