@@ -1,6 +1,7 @@
 'use client'
 
 import { Pagination } from './pagination.ui'
+import { AdminSellPopup } from '../popup/admin-sell-popup'
 import { AdminSellItemCard } from '@/src/entities/sell'
 import { useAdminSellList } from '@/src/entities/sell/model/useAdmin-SellList'
 import { AdminSellForm } from '@/src/features/order-sell'
@@ -49,7 +50,7 @@ export const AdminSellList = () => {
           totalPages={pagination.totalPages}
         />
       </div>
-      {isAdminSell && <AdminSellForm />}
+      {isAdminSell && <AdminSellPopup />}
     </>
   )
 }

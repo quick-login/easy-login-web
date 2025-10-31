@@ -1,8 +1,10 @@
 'use client'
 
 import { Pagination } from './pagination.ui'
+import { SellPopup } from '../popup/sell-order-popup'
 import { SellItemCard } from '@/src/entities/sell'
 import { useSellList } from '@/src/entities/sell/model/useSellList'
+import { useModalStore } from '@/src/shared/store/useModalStore'
 import { useSellStore } from '@/src/shared/store/useSellStore'
 import { Text } from '@/src/shared/ui'
 
@@ -11,6 +13,9 @@ export const SellList = () => {
   const list = useSellStore(state => state.list)
   const addList = useSellStore(state => state.addList)
   const removeList = useSellStore(state => state.removeList)
+  const isUserSell = useModalStore(state => state.isUserSell)
+  const setModal = useModalStore(state => state.setModal)
+
   return sellList.length === 0 ? (
     <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
       <Text className="text-gray5 font-semibold">상품이 존재하지 않습니다.</Text>
@@ -51,6 +56,7 @@ export const SellList = () => {
           totalPages={pagination.totalPages}
         />
       </div>
+      {isUserSell && <SellPopup onClose={() => setModal('isUserSell', false)} />}
     </>
   )
 }

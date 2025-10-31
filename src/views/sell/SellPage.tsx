@@ -1,4 +1,5 @@
-import { Footer, LinkButton } from '@/src/shared/ui'
+import { SellModalBtn } from '@/src/entities/sell'
+import { Button, Footer } from '@/src/shared/ui'
 import { PageHeader, SellList } from '@/src/widgets'
 
 export const SellPage = () => {
@@ -10,9 +11,7 @@ export const SellPage = () => {
       <hr className="border-gray2" />
       <Footer>
         <div className="flex flex-1 justify-end">
-          <LinkButton href="/sell/buy" className="p-[15px] font-normal">
-            상품 주문
-          </LinkButton>
+          <SellModalBtn />
         </div>
       </Footer>
     </section>

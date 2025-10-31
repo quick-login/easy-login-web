@@ -1,15 +1,18 @@
 import { adminAddSellAction, adminChangeStatusAction, adminDeleteSellAction } from './order-sell-action'
 import { useAlertStore } from '@/src/shared/store/useAlertStore'
 import { useConfirmStore } from '@/src/shared/store/useConfirmStore'
+import { useModalStore } from '@/src/shared/store/useModalStore'
 
 export const useAdminSell = () => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)
   const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
+  const setModal = useModalStore(state => state.setModal)
 
   const handleAddSell = async (formData: FormData) => {
     const response = await adminAddSellAction(formData)
     if (response.success) {
       onOpenAlert('상품이 등록되었습니다.', () => {
+        setModal('isAdminSell', false)
         window.location.reload()
       })
     } else {
