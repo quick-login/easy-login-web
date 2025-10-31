@@ -18,9 +18,11 @@ export const SellListItem = ({ discountRate, finalPrice, name, price, product_id
       </div>
       <div className="flex gap-[10px]">
         <div className="flex items-center justify-between gap-[20px]">
-          <Text className="text-negative text-[13px] font-semibold">{`${discountRate} %`}</Text>
+          {discountRate !== 0 && <Text className="text-negative text-[13px] font-semibold">{`${discountRate} %`}</Text>}
           <div className="flex items-center gap-[10px]">
-            <Text className="text-gray5 text-[10px] font-semibold line-through">{`${(price * (orderQuantity ? orderQuantity : 1)).toLocaleString()}원`}</Text>
+            {discountRate !== 0 && (
+              <Text className="text-gray5 text-[10px] font-semibold line-through">{`${(price * (orderQuantity ? orderQuantity : 1)).toLocaleString()}원`}</Text>
+            )}
             <Text className="text-[13px] font-semibold text-black">{`${(finalPrice * (orderQuantity ? orderQuantity : 1)).toLocaleString()}원`}</Text>
           </div>
         </div>
