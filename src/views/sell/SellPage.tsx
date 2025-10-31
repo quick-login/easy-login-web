@@ -13,9 +13,6 @@ export const SellPage = () => {
           <LinkButton href="/sell/buy" className="p-[15px] font-normal">
             상품 주문
           </LinkButton>
-          <LinkButton href="/profile/order?page=1" className="p-[15px] font-normal">
-            임시 주문 내역
-          </LinkButton>
         </div>
       </Footer>
     </section>

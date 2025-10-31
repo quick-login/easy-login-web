@@ -11,7 +11,7 @@ export const CashList = () => {
   const { cashList, pagination } = useCashList()
   const { handleCancleCash } = useReqCash()
   const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
-  return cashList.length !== 0 ? (
+  return cashList.length === 0 ? (
     <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
       <Text className="text-gray5 font-semibold">캐시 충전 내역이 존재하지 않습니다.</Text>
     </div>

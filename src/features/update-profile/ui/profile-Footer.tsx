@@ -15,7 +15,7 @@ export const ProfileFooter = () => {
             <Text className="text-negative">회원탈퇴</Text>
           </div> */}
       </div>
-      <Button form="profile-form" type="submit" variant="primary" className="p-[15px]">
+      <Button form="profile-form" type="submit" className="p-[15px]">
         수정 하기
       </Button>
     </Footer>

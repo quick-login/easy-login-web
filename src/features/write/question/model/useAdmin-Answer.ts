@@ -1,0 +1,26 @@
+import { adminAnswerAction } from './quest-action'
+import { useAlertStore } from '@/src/shared/store/useAlertStore'
+import { useConfirmStore } from '@/src/shared/store/useConfirmStore'
+
+export const useAdminAnswer = (questionId: number) => {
+  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
+  const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
+
+  const handleWriteQuest = async (formData: FormData) => {
+    const response = await adminAnswerAction(questionId, formData)
+    if (response.success) {
+      onOpenAlert('답변이 등록되었습니다!', () => {
+        window.location.reload()
+      })
+    } else {
+      onOpenAlert(response.message)
+    }
+  }
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>, formdata: FormData) => {
+    e.preventDefault()
+    onOpenConfirm('답변하시겠습니까?', () => handleWriteQuest(formdata))
+  }
+
+  return { handleSubmit }
+}

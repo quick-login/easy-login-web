@@ -1,10 +1,10 @@
 import type { ComponentProps } from 'react'
 
-type TextAreaProps = {
+type CheckBoxProps = {
   title: string
 } & ComponentProps<'input'>
 
-export const CheckBox = ({ title, ...props }: TextAreaProps) => {
+export const CheckBox = ({ title, ...props }: CheckBoxProps) => {
   return (
     <label
       htmlFor={props.name}

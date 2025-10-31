@@ -9,7 +9,9 @@ export type SellItem = {
 export type AdminSellItem = {
   productId: number
   price: number
+  name: string
   discountRate: number
+  finalPrice: number
   type: 'API_REMAIN_COUNT_INCREMENT' | 'KAKAO_APP_REGISTER_INCREMENT'
   value: number
   typeDescription: string

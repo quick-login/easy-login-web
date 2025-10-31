@@ -4,6 +4,7 @@ export type Question = {
   content: string
   status: 'WAITING' | 'COMPLETED'
   questionDate: string
+  name?: string
 }
 
 export type QuestAnswer = {

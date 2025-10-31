@@ -1,6 +1,5 @@
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-
 import { cashListAction } from './cash-action'
 import type { Page } from '@/src/shared/api/axios-client'
 import type { Cash } from './type'
@@ -14,12 +13,10 @@ export const useCashList = () => {
     totalElements: 0,
     totalPages: 0,
   })
-
   const handleGetCashList = async () => {
     const response = await cashListAction(cashPage)
 
     if (response.success) {
-      console.log('부러오기')
       setCashList(response.data)
       setPagination(response.pagination)
     } else {

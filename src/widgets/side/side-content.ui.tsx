@@ -55,7 +55,7 @@ export const SideContent = ({ isLogin, mobile, sideOn }: SideContentProps) => {
       )}
 
       <div className="scrollbar-hidden flex flex-1 flex-col gap-[15px] overflow-auto p-[20px]">
-        <SideBasic mobile={mobile} sideOn={sideOn} />
+        <SideBasic role={session?.user?.role} mobile={mobile} sideOn={sideOn} />
         {session && <SideItem mobile={mobile} sideOn={sideOn} />}
       </div>
       <hr className="border-gray2" />
