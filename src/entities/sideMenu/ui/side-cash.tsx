@@ -32,7 +32,7 @@ export const SideCash = ({ mobile, sideOn, cash }: SideCashProps) => {
               mobile ? 'max-w-[100%]' : '1060:max-w-[0px]',
             )}
           >
-            {cash}
+            {Number(cash).toLocaleString()}
           </Text>
         </div>
         <div
