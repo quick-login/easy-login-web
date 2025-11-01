@@ -2,6 +2,7 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { questListAction } from './question-action'
 import type { Page } from '@/src/shared/api/axios-client'
+import { useAlertStore } from '@/src/shared/store/useAlertStore'
 import type { Question } from './types'
 
 export const useQuestList = () => {
@@ -13,6 +14,7 @@ export const useQuestList = () => {
     totalElements: 0,
     totalPages: 0,
   })
+  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleGetQuestList = async () => {
     const response = await questListAction(questPage)
@@ -21,7 +23,7 @@ export const useQuestList = () => {
       setQuestList(response.data)
       setPagination(response.pagination)
     } else {
-      alert('문의 내역을 받아오는데 오류가 발생했습니다.')
+      onOpenAlert(response.message)
     }
   }
 

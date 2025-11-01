@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import { questInfoAction } from './question-action'
+import { useAlertStore } from '@/src/shared/store/useAlertStore'
 import type { QuestInfo } from './types'
 
 export const useQuest = (questionId: number) => {
@@ -13,13 +14,14 @@ export const useQuest = (questionId: number) => {
     status: 'COMPLETED',
     title: '',
   })
+  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleGetQuest = async (questionId: number) => {
     const response = await questInfoAction(questionId)
     if (response.success) {
       setQuest(response.data)
     } else {
-      console.log('데이터 오류')
+      onOpenAlert(response.message)
     }
   }
 

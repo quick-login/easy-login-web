@@ -2,6 +2,7 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { cashListAction } from './cash-action'
 import type { Page } from '@/src/shared/api/axios-client'
+import { useAlertStore } from '@/src/shared/store/useAlertStore'
 import type { Cash } from './type'
 
 export const useCashList = () => {
@@ -13,6 +14,8 @@ export const useCashList = () => {
     totalElements: 0,
     totalPages: 0,
   })
+  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
+
   const handleGetCashList = async () => {
     const response = await cashListAction(cashPage)
 
@@ -20,7 +23,7 @@ export const useCashList = () => {
       setCashList(response.data)
       setPagination(response.pagination)
     } else {
-      alert('캐시 내역을 받아오는데 오류가 발생했습니다.')
+      onOpenAlert(response.message)
     }
   }
 

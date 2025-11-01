@@ -43,7 +43,6 @@ export const SellListItem = ({ discountRate, finalPrice, name, price, product_id
             onChange={e => {
               const value = e.target.value
               const num = Number(value)
-              console.log(num)
               if (isNaN(num)) return
               if (num > 100) {
                 changeList(product_id, 100)

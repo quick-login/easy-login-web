@@ -2,6 +2,7 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { orderListAction } from './order-action'
 import type { Page } from '@/src/shared/api/axios-client'
+import { useAlertStore } from '@/src/shared/store/useAlertStore'
 import type { Order } from './type'
 
 export const useOrderList = () => {
@@ -13,6 +14,7 @@ export const useOrderList = () => {
     totalElements: 0,
     totalPages: 0,
   })
+  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleGetOrderList = async () => {
     const response = await orderListAction(questPage)
@@ -21,7 +23,7 @@ export const useOrderList = () => {
       setOrderList(response.data)
       setPagination(response.pagination)
     } else {
-      alert('주문 내역을 받아오는데 오류가 발생했습니다.')
+      onOpenAlert(response.message)
     }
   }
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { appInfoAction } from './social-action'
+import { useAlertStore } from '@/src/shared/store/useAlertStore'
 import type { SocialAppInfo } from './type'
 
 export const useAppInfo = (appId: number) => {
@@ -9,13 +10,14 @@ export const useAppInfo = (appId: number) => {
     redirectUrl: '',
     restKey: '',
   })
+  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleGetApp = async (appId: number) => {
     const response = await appInfoAction(appId)
     if (response.success) {
       setApp(response.data)
     } else {
-      console.log('데이터 오류')
+      onOpenAlert('데이터 오류')
     }
   }
 

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NoticeInfoAction } from './notice-action'
+import { useAlertStore } from '@/src/shared/store/useAlertStore'
 import type { NoticeItem } from './types'
 
 export const useNotice = (noticeId: number) => {
@@ -11,6 +12,7 @@ export const useNotice = (noticeId: number) => {
     noticeId: noticeId,
     title: '',
   })
+  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleGetNotice = async (noticeId: number) => {
     const response = await NoticeInfoAction(noticeId)
@@ -18,7 +20,7 @@ export const useNotice = (noticeId: number) => {
     if (response.success) {
       setNotice(response.data)
     } else {
-      alert('데이터를 불러오는 데 오류가 발생했습니다.')
+      onOpenAlert(response.message)
     }
   }
 

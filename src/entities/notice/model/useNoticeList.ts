@@ -2,6 +2,7 @@ import { useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 import { NoticeFixedListAction, NoticeListAction } from './notice-action'
 import type { Page } from '@/src/shared/api/axios-client'
+import { useAlertStore } from '@/src/shared/store/useAlertStore'
 import type { Notice } from './types'
 
 export const useNoticeList = () => {
@@ -14,6 +15,7 @@ export const useNoticeList = () => {
     totalElements: 0,
     totalPages: 0,
   })
+  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleGetFixedNotices = useCallback(async () => {
     const response = await NoticeFixedListAction()
@@ -21,7 +23,7 @@ export const useNoticeList = () => {
     if (response.success) {
       setFixed(response.data)
     } else {
-      alert('고정 공지를 불러오는 데 오류가 발생했습니다.')
+      onOpenAlert(response.message)
     }
   }, [])
 
@@ -32,12 +34,15 @@ export const useNoticeList = () => {
       setBasic(response.data)
       setPagination(response.pagination)
     } else {
-      alert('공지를 불러오는 데 오류가 발생했습니다.')
+      onOpenAlert(response.message)
     }
   }, [noticePage])
 
   useEffect(() => {
     handleGetFixedNotices()
+  }, [])
+
+  useEffect(() => {
     handleGetNotices()
     window.scrollTo(0, 0)
   }, [noticePage])
