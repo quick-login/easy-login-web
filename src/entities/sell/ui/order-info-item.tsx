@@ -33,7 +33,7 @@ export const OrderInfoItem = ({
       </div>
       <div className="flex gap-[10px] text-[10px] font-semibold">
         <Text className="text-gray5 before:pr-[5px] before:content-['└']">{productTypeDescription}</Text>
-        <Text className="text-gray5">{`총 ${value.toLocaleString()}개`}</Text>
+        <Text className="text-gray5">{`총 ${(value * orderQuantity).toLocaleString()}개`}</Text>
       </div>
     </li>
   )
