@@ -22,6 +22,7 @@ export type Order = {
   orderCode: string
   totalPrice: number
   orderDate: string
+  totalFinalPrice?: number
 }
 
 export type OrderInfo = {
@@ -35,5 +36,6 @@ export type OrderProducts = {
   value: number
   orderQuantity: number
   price: number
+  finalPrice: number
   discountRate: number
 }

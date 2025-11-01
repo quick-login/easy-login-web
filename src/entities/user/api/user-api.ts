@@ -1,21 +1,9 @@
-import { axiosGet, axiosPost } from '@/src/shared/api/axios-client'
-import { deleteCookies } from '@/src/shared/lib/cookie'
+import { axiosGet } from '@/src/shared/api/axios-client'
 import type { UserType } from '../type'
 
 export const getUserInfo = async () => {
-  const res = await axiosGet<UserType>('api/v1/member/info')
-  return res
-}
-
-export const postLogout = async () => {
-  console.log('로그아웃 요청')
-  const res = await axiosPost<null>('/api/v1/member/logout')
-  if (res.code === 'E200') {
-    console.log('로그아웃 결과', res)
-    await deleteCookies('ac')
-    await deleteCookies('rc')
-  }
-  return res
+  const response = await axiosGet<UserType>('api/v1/member/info')
+  return response
 }
 
 // export const getUserInfo = async () => {

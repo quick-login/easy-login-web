@@ -7,6 +7,7 @@ export const useOrder = (orderCode: string) => {
     orderCode: '',
     orderDate: '',
     totalPrice: 0,
+    totalFinalPrice: 0,
     orderProducts: [],
   })
 
