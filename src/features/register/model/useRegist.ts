@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { postRegist } from '../api/regist-api'
 import type { RegistType } from '../type'
 
 export const useRegist = () => {
@@ -18,15 +17,6 @@ export const useRegist = () => {
       [name]: value,
     }))
   }
-
-  // const handleRegist = async () => {
-  //   const res = await postRegist(regist)
-  //   if (res.code === 'E200') {
-  //     console.log(res)
-  //   } else {
-  //     alert('에러')
-  //   }
-  // }
 
   return { regist, handleChangeRegister }
 }

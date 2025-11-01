@@ -5,6 +5,7 @@ import { useSideStore } from '@/src/shared/store/useSideStore'
 export const useSide = () => {
   const { side, mobile, toggleSide, setMobile } = useSideStore()
   const pathname = usePathname()
+
   useEffect(() => {
     setMobile(false)
   }, [pathname])

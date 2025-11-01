@@ -1,18 +1,12 @@
 'use client'
 import clsx from 'clsx'
 import Image from 'next/image'
-import { useState } from 'react'
-import { MobileSideMenu } from '../side/mobile-side-menu.ui'
 import { useSideStore } from '@/src/shared/store/useSideStore'
 import { Text } from '@/src/shared/ui'
 
-export const MobildHeader = ({ isLogin }: { isLogin: boolean }) => {
-  // const [sideOn, setSideOn] = useState<boolean>(false)
-
-  // const toggleSide = () => {
-  //   setSideOn(prev => !prev)
-  // }
+export const MobildHeader = () => {
   const setMobile = useSideStore(state => state.setMobile)
+
   return (
     <>
       <div className="bg-gray2 1060:hidden flex w-full justify-between px-[20px] py-[15px]">

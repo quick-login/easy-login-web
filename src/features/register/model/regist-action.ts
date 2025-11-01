@@ -35,7 +35,6 @@ export const handleRegist = async (formData: FormData) => {
 
   const res = await postRegist({ email, name, password, passwordCheck, kakaoId: null })
 
-  console.log(res)
   if (res.code === 'E200') {
     return {
       success: true,

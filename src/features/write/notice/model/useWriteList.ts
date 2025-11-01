@@ -32,7 +32,6 @@ export const useWirteList = () => {
   const handleGetNoticeItem = async () => {
     const res = await NoticeInfoAction(Number(noticeId))
     if (res.success) {
-      console.log('수정', res.data)
       setData(res.data)
       setFixed(res.data.fixed)
     } else {
