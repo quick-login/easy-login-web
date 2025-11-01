@@ -26,20 +26,17 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   async response => {
-    console.log('정상요청')
     return response
   },
   async error => {
     const origin = error.config
     if (error.response?.data === '' || error.response?.data === null || error.response?.data.code === 'T6002') {
-      console.log('리프레시 만료')
       await clearSession()
       return Promise.resolve(error.response)
     }
     if ((error.response?.data.code === 'T6000' || error.response?.data.code === 'T6001') && !origin._retry) {
       origin._retry = true
       const session = await getSession()
-      console.log('기존 리프레시', session?.user?.refreshToken)
       try {
         const refreshRes = await axios.post(
           `${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/member/refresh`,
@@ -53,16 +50,12 @@ axiosInstance.interceptors.response.use(
         const newAccessToken = refreshRes.headers['authorization']?.replace('Bearer ', '')
         const newRefreshToken = refreshRes.headers['refresh-token']?.replace('Bearer ', '')
 
-        console.log('새 액세스', newAccessToken)
-        console.log('새 리프레시', newRefreshToken)
-
         await updateSession({ user: { accessToken: newAccessToken, refreshToken: newRefreshToken } })
 
         origin.headers.Authorization = `Bearer ${newAccessToken}`
 
         return axios(origin)
       } catch (err) {
-        console.log('리프레시 발급 실패')
         await clearSession()
         return Promise.resolve(err)
       }
