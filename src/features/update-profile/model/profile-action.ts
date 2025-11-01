@@ -1,7 +1,7 @@
 'use server'
 
 import z from 'zod'
-import { patchProfile } from '../api/profile-api'
+import { patchProfile, postLogout } from '../api/profile-api'
 import { updateSession } from '@/src/entities/user/model/user-auth'
 
 const registSchema = z
@@ -37,6 +37,16 @@ export const profilePatchAction = async (formData: FormData) => {
   if (response.code === 'E200') {
     await updateSession({ user: { name: name } })
     return { success: true, message: '' }
+  } else {
+    return { success: false, message: response.message }
+  }
+}
+
+export const userLogoutAction = async () => {
+  const response = await postLogout()
+
+  if (response.code === 'E200') {
+    return { success: true, message: response.message }
   } else {
     return { success: false, message: response.message }
   }
