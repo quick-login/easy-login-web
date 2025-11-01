@@ -2,7 +2,19 @@ import { type NextRequest, NextResponse } from 'next/server'
 import { getToken } from 'next-auth/jwt'
 
 const matchersForAuthAdmin = ['/notice/write', '/notice/modify', '/admin/*']
-const matchersForAuthUser = ['/cash/*', '/item/*', '/question/*', '/kakao/*', '/naver/*', '/google/*', '/create/*']
+const matchersForAuthUser = [
+  '/cash/*',
+  '/sell/*',
+  '/question/*',
+  '/kakao/*',
+  '/naver/*',
+  '/google/*',
+  '/notice/*',
+  '/guide/*',
+  '/develop/*',
+  '/profile/*',
+  '/order/*',
+]
 const matchersForSignIn = ['/login/*', '/register/*']
 
 function isMatch(pathname: string, urls: string[]) {
