@@ -9,6 +9,7 @@ export const OrderInfoItem = ({
   productType,
   productTypeDescription,
   value,
+  finalPrice,
 }: OrderProducts) => {
   return (
     <li className="border-gray3 flex flex-col gap-[10px] rounded-[10px] border px-[15px] py-[10px]">
@@ -25,7 +26,7 @@ export const OrderInfoItem = ({
               {discountRate !== 0 && (
                 <Text className="text-gray5 text-[10px] font-semibold line-through">{`${price.toLocaleString()}원`}</Text>
               )}
-              <Text className="text-[13px] font-semibold text-black">{`${price.toLocaleString()}원`}</Text>
+              <Text className="text-[13px] font-semibold text-black">{`${finalPrice.toLocaleString()}원`}</Text>
               <Text className="text-[13px] font-semibold text-black">{`${orderQuantity.toLocaleString()} 개`}</Text>
             </div>
           </div>
