@@ -42,8 +42,14 @@ export const SideBasic = ({ role = 'USER', mobile, sideOn }: SideBasicProps) => 
             mobile ? 'max-h-[100%]' : 'max-h-[0px]',
           )}
         >
-          <SideListMenu itemName="상품 둘러보기" link="/sell?page=1" />
-          {role === 'ADMIN' && <SideListMenu itemName="상품 관리" link="/admin/sell?page=1" />}
+          <SideListMenu itemName="/sell" link="/sell?page=1">
+            상품 둘러보기
+          </SideListMenu>
+          {role === 'ADMIN' && (
+            <SideListMenu itemName="/admin/item" link="/admin/item?page=1">
+              상품 관리
+            </SideListMenu>
+          )}
         </div>
       </div>
       <div className="flex flex-col gap-[10px]">
@@ -79,12 +85,28 @@ export const SideBasic = ({ role = 'USER', mobile, sideOn }: SideBasicProps) => 
             menuOn ? 'max-h-[100%]' : 'max-h-[0px]',
           )}
         >
-          <SideListMenu itemName="제품 소개" link="/" />
-          <SideListMenu itemName="이용 가이드" link="/guide" />
-          <SideListMenu itemName="개발자 가이드" link="/develop" />
-          <SideListMenu itemName="공지사항" link="/notice" />
-          {role === 'ADMIN' && <SideListMenu itemName="문의내역 관리" link="/admin/question?page=1&STATUS=WAITING" />}
-          {role === 'ADMIN' && <SideListMenu itemName="캐시신청 관리" link="/admin/cash?page=1" />}
+          <SideListMenu itemName="/" link="/">
+            제품 소개
+          </SideListMenu>
+          <SideListMenu itemName="/guide" link="/guide">
+            이용 가이드
+          </SideListMenu>
+          <SideListMenu itemName="/develop" link="/develop">
+            개발자 가이드
+          </SideListMenu>
+          <SideListMenu itemName="/notice" link="/notice?page=1">
+            공지사항
+          </SideListMenu>
+          {role === 'ADMIN' && (
+            <SideListMenu itemName="/admin/question" link="/admin/question?page=1&STATUS=WAITING">
+              문의내역 관리
+            </SideListMenu>
+          )}
+          {role === 'ADMIN' && (
+            <SideListMenu itemName="/admin/cash" link="/admin/cash?page=1">
+              캐시신청 관리
+            </SideListMenu>
+          )}
         </div>
       </div>
     </>
