@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { orderInfoAction } from './order-action'
 import { useAlertStore } from '@/src/shared/store'
