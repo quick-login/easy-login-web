@@ -1,5 +1,10 @@
+import { Suspense } from 'react'
 import { SellPage } from '@/src/views'
 
 export default async function Sell() {
-  return <SellPage />
+  return (
+    <Suspense>
+      <SellPage />
+    </Suspense>
+  )
 }
