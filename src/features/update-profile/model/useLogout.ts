@@ -1,5 +1,5 @@
 import { userLogoutAction } from './profile-action'
-import { clearSession } from '@/src/entities/user/model/user-auth'
+import { clearSession } from '@/src/shared/lib'
 import { useAlertStore } from '@/src/shared/store'
 
 export const useLogout = () => {

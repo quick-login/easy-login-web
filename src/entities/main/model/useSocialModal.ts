@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation'
-import { getSession } from '../../user/model/user-auth'
+import { getSession } from '@/src/shared/lib'
 import { useAlertStore } from '@/src/shared/store/useAlertStore'
 
 export const useSocialModal = () => {

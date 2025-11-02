@@ -1,4 +1,4 @@
-import { getSession } from '@/src/entities/user/model/user-auth'
+import { getSession } from '@/src/shared/lib'
 import { Footer, LinkButton } from '@/src/shared/ui'
 import { NoticeList, PageHeader } from '@/src/widgets'
 
