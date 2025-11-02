@@ -51,6 +51,7 @@ export const handleLoginAction = async (prevState: State, formData: FormData) =>
       role: userInfo.data.role,
       accessToken: res.data.accessToken,
       refreshToken: res.data.refreshToken,
+      updateAt: new Date().toISOString(),
       redirect: false,
     })
 

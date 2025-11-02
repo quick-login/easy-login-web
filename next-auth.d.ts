@@ -11,6 +11,7 @@ declare module 'next-auth' {
     role: string
     accessToken: string
     refreshToken: string
+    updateAt: string
   }
   interface Session {
     name: string
@@ -21,6 +22,7 @@ declare module 'next-auth' {
     role: string
     accessToken: string
     refreshToken: string
+    updateAt: string
   }
 }
 
@@ -34,5 +36,6 @@ declare module '@auth/core/jwt' {
     role: string
     accessToken: string
     refreshToken: string
+    updateAt: string
   }
 }
