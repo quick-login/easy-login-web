@@ -4,8 +4,6 @@ import z from 'zod'
 import { patchProfile, postLogout } from '../api/profile-api'
 import { updateSession } from '@/src/shared/lib'
 
-// 위 로직 분리하자
-
 const registSchema = z
   .object({
     name: z.string().max(10, '이름은 최대 10글자입니다.'),
