@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { postLogin } from '../api/login-api'
-import type { LoginType } from '../type'
+import type { LoginType } from './type'
 
 export const useLogin = () => {
   const [login, setLogin] = useState<LoginType>({

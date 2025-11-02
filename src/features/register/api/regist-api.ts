@@ -1,4 +1,4 @@
-import { axiosPost } from '@/src/shared/api/axios-client'
+import { axiosPost } from '@/src/shared/api'
 import type { RegistType } from '../type'
 
 export const postRegist = async (registData: RegistType) => {

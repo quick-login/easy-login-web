@@ -1,4 +1,4 @@
-import { axiosPost } from '@/src/shared/api/axios-client'
+import { axiosPost } from '@/src/shared/api'
 import type { EmailCodeType } from '../type'
 
 export const postCreateEmailCode = async (email: string) => {

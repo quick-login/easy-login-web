@@ -1,4 +1,4 @@
-import { axiosDelete, axiosPatch, axiosPost } from '@/src/shared/api/axios-client'
+import { axiosDelete, axiosPatch, axiosPost } from '@/src/shared/api'
 import type { AddSell, OrderSell } from '../model/type'
 
 export const postOrderSell = async (orderSell: OrderSell[]) => {

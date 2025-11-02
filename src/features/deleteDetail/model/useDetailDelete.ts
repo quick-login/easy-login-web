@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation'
 import { noticeDeleteAction, questDeleteAction } from './delete-action'
-import { useAlertStore } from '@/src/shared/store/useAlertStore'
+import { useAlertStore } from '@/src/shared/store'
 
 export const useDetailDelete = () => {
   const router = useRouter()

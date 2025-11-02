@@ -1,6 +1,6 @@
 import { userLogoutAction } from './profile-action'
 import { clearSession } from '@/src/entities/user/model/user-auth'
-import { useAlertStore } from '@/src/shared/store/useAlertStore'
+import { useAlertStore } from '@/src/shared/store'
 
 export const useLogout = () => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)

@@ -1,4 +1,4 @@
-import { axiosDelete } from '@/src/shared/api/axios-client'
+import { axiosDelete } from '@/src/shared/api'
 
 export const deleteQuest = async (questionId: number) => {
   const res = await axiosDelete(`/api/v1/question/cancel/${questionId}`)

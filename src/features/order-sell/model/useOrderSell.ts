@@ -1,7 +1,6 @@
 import { useRouter } from 'next/navigation'
 import { orderSellAction } from './order-sell-action'
-import { useAlertStore } from '@/src/shared/store/useAlertStore'
-import { useSellStore } from '@/src/shared/store/useSellStore'
+import { useAlertStore, useSellStore } from '@/src/shared/store'
 import type { OrderSell } from './type'
 
 export const useOrderSell = () => {

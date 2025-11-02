@@ -1,5 +1,5 @@
-import type { SocialAppInfo } from '@/src/entities/social/model/type'
-import { axiosPatch, axiosPost } from '@/src/shared/api/axios-client'
+import type { SocialAppInfo } from '@/src/entities/social'
+import { axiosPatch, axiosPost } from '@/src/shared/api'
 
 export const postCrateApp = async (appInfo: SocialAppInfo) => {
   const response = await axiosPost<null>(`/api/v1/kakao/app`, appInfo)
