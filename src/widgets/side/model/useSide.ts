@@ -1,26 +1,28 @@
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
+import { useRefreshInfo } from '@/src/entities/user'
 import { useSideStore } from '@/src/shared/store'
 
 export const useSide = () => {
   const { side, mobile, toggleSide, setMobile } = useSideStore()
+  const { handleRefreshUser } = useRefreshInfo()
   const pathname = usePathname()
 
+  const handleResize = () => {
+    if (window.innerWidth >= 1060) {
+      setMobile(false)
+      return
+    }
+  }
+
   useEffect(() => {
-    setMobile(false)
+    if (mobile) {
+      setMobile(false)
+    }
+    handleRefreshUser()
   }, [pathname])
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 1060) {
-        useSideStore.setState(state => ({
-          ...state,
-          mobile: false,
-        }))
-        return
-      }
-    }
-
     handleResize()
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
