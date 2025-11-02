@@ -1,8 +1,7 @@
 'use client'
 
 import { Pagination } from './pagination.ui'
-import { NoticeFixedItem, NoticeItem } from '@/src/entities/notice'
-import { useNoticeList } from '@/src/entities/notice/model/useNoticeList'
+import { NoticeFixedItem, NoticeItem, useNoticeList } from '@/src/entities/notice'
 import { Text } from '@/src/shared/ui'
 
 export const NoticeList = () => {

@@ -1,6 +1,6 @@
 import { usePathname } from 'next/navigation'
 import { useEffect } from 'react'
-import { useSideStore } from '@/src/shared/store/useSideStore'
+import { useSideStore } from '@/src/shared/store'
 
 export const useSide = () => {
   const { side, mobile, toggleSide, setMobile } = useSideStore()

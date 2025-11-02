@@ -1,8 +1,7 @@
 'use client'
 
 import { AppHeader } from '../header/app-header.ui'
-import { SocialAppItem } from '@/src/entities/social'
-import { useAppList } from '@/src/entities/social/model/useAppList'
+import { SocialAppItem, useAppList } from '@/src/entities/social'
 import { Text } from '@/src/shared/ui'
 
 export const AppList = () => {

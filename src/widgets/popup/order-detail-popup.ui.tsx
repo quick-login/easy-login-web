@@ -2,8 +2,7 @@
 
 import Image from 'next/image'
 import { useEffect } from 'react'
-import { OrderInfoItem } from '@/src/entities/sell'
-import { useOrder } from '@/src/entities/sell/model/useOrder'
+import { OrderInfoItem, useOrder } from '@/src/entities/sell'
 import { Text } from '@/src/shared/ui'
 
 type Props = {

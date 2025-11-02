@@ -4,7 +4,7 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import { useSide } from './model/useSide'
 import { SideContent } from './side-content.ui'
-import { SideHeader } from '../../entities/sideMenu'
+import { SideHeader } from '@/src/entities/sideMenu'
 
 export const SideMenu = () => {
   const { mobile, setMobile, side, toggleSide } = useSide()
