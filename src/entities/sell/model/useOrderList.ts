@@ -1,8 +1,8 @@
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { orderListAction } from './order-action'
-import type { Page } from '@/src/shared/api/axios-client'
-import { useAlertStore } from '@/src/shared/store/useAlertStore'
+import type { Page } from '@/src/shared/api'
+import { useAlertStore } from '@/src/shared/store'
 import type { Order } from './type'
 
 export const useOrderList = () => {

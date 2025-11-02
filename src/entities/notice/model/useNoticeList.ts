@@ -1,8 +1,8 @@
 import { useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 import { NoticeFixedListAction, NoticeListAction } from './notice-action'
-import type { Page } from '@/src/shared/api/axios-client'
-import { useAlertStore } from '@/src/shared/store/useAlertStore'
+import type { Page } from '@/src/shared/api'
+import { useAlertStore } from '@/src/shared/store'
 import type { Notice } from './types'
 
 export const useNoticeList = () => {

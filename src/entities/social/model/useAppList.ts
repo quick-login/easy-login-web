@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { appListAction } from './social-action'
-import { useAlertStore } from '@/src/shared/store/useAlertStore'
+import { useAlertStore } from '@/src/shared/store'
 import type { SocialApp } from './type'
 
 export const useAppList = () => {

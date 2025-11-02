@@ -1,6 +1,6 @@
 'use client'
 
-import { useModalStore } from '@/src/shared/store/useModalStore'
+import { useModalStore } from '@/src/shared/store'
 import { Button } from '@/src/shared/ui'
 
 export const AdminSellModalBtn = () => {

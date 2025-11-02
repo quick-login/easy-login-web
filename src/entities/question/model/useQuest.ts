@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
-
 import { questInfoAction } from './question-action'
-import { useAlertStore } from '@/src/shared/store/useAlertStore'
+import { useAlertStore } from '@/src/shared/store'
 import type { QuestInfo } from './types'
 
 export const useQuest = (questionId: number) => {

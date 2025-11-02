@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { appInfoAction } from './social-action'
-import { useAlertStore } from '@/src/shared/store/useAlertStore'
+import { useAlertStore } from '@/src/shared/store'
 import type { SocialAppInfo } from './type'
 
 export const useAppInfo = (appId: number) => {

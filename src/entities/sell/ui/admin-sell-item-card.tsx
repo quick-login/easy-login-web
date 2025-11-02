@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 import { Button, Text } from '@/src/shared/ui'
-import type { AdminSellItem, SellItem } from '../model/type'
+import type { AdminSellItem } from '../model/type'
 
 type AdminSellItemProps = {
   onStatus: () => void

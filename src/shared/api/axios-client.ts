@@ -1,7 +1,21 @@
 import axios, { type AxiosRequestConfig } from 'axios'
 import { clearSession, getSession, updateSession } from '@/src/entities/user/model/user-auth'
 
-export const axiosInstance = axios.create({
+export interface Page {
+  currentPage: number
+  pageSize: number
+  totalElements: number
+  totalPages: number
+}
+
+export interface ResponseType<Tdata = unknown> {
+  code: string
+  message: string
+  data: Tdata
+  pagination?: Page
+}
+
+const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   timeout: 10000,
   headers: {
@@ -63,20 +77,6 @@ axiosInstance.interceptors.response.use(
     return Promise.resolve(error.response)
   },
 )
-
-export interface Page {
-  currentPage: number
-  pageSize: number
-  totalElements: number
-  totalPages: number
-}
-
-export interface ResponseType<Tdata = unknown> {
-  code: string
-  message: string
-  data: Tdata
-  pagination?: Page
-}
 
 export const axiosGet = async <Tdata>(url: string, config: AxiosRequestConfig = {}): Promise<ResponseType<Tdata>> => {
   const response = await axiosInstance.get<ResponseType<Tdata>>(url, { ...config })

@@ -1,4 +1,4 @@
-import { axiosGet } from '@/src/shared/api/axios-client'
+import { axiosGet } from '@/src/shared/api'
 import type { UserType } from '../type'
 
 export const getUserInfo = async () => {
