@@ -1,9 +1,11 @@
 import { usePathname } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 import { useEffect } from 'react'
 import { useRefreshInfo } from '@/src/entities/user'
 import { useSideStore } from '@/src/shared/store'
 
 export const useSide = () => {
+  const { data: session, status } = useSession()
   const { side, mobile, toggleSide, setMobile } = useSideStore()
   const { handleRefreshUser } = useRefreshInfo()
   const pathname = usePathname()
@@ -19,8 +21,10 @@ export const useSide = () => {
     if (mobile) {
       setMobile(false)
     }
-    handleRefreshUser()
-  }, [pathname])
+    if (status === 'authenticated') {
+      handleRefreshUser(session)
+    }
+  }, [pathname, status])
 
   useEffect(() => {
     handleResize()
