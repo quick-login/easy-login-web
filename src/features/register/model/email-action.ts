@@ -11,7 +11,7 @@ const codeSchema = z.object({
   code: z.string().regex(/^\d{6}$/, '숫자 6자리입니다.'),
 })
 
-export const handleCreateCode = async (formData: FormData) => {
+export const createEmailCodeAction = async (formData: FormData) => {
   const email = String(formData.get('email') ?? '')
 
   const result = emailSchema.safeParse({ email })
@@ -19,9 +19,9 @@ export const handleCreateCode = async (formData: FormData) => {
     return { success: false, message: '이메일 형식이 올바르지 않습니다.' }
   }
 
-  const res = await postCreateEmailCode(email)
+  const response = await postCreateEmailCode(email)
 
-  if (res.code === 'E200') {
+  if (response.code === 'E200') {
     return {
       success: true,
       message: '',
@@ -29,12 +29,12 @@ export const handleCreateCode = async (formData: FormData) => {
   } else {
     return {
       success: false,
-      message: res.message,
+      message: response.message,
     }
   }
 }
 
-export const handleValidateCode = async (formData: FormData) => {
+export const validateEmailAction = async (formData: FormData) => {
   const email = String(formData.get('email') ?? '')
   const code = String(formData.get('code') ?? '')
 
@@ -43,9 +43,9 @@ export const handleValidateCode = async (formData: FormData) => {
     return { success: false, message: '인증코드 형식이 올바르지 않습니다.' }
   }
 
-  const res = await postCheckEmailCode({ email, code })
+  const response = await postCheckEmailCode({ email, code })
 
-  if (res.code === 'E200') {
+  if (response.code === 'E200') {
     return {
       success: true,
       message: '이메일 인증 성공',
@@ -53,7 +53,7 @@ export const handleValidateCode = async (formData: FormData) => {
   } else {
     return {
       success: false,
-      message: res.message,
+      message: response.message,
     }
   }
 }
