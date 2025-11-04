@@ -1,5 +1,5 @@
-import { NoticeForm } from '@/src/features/write/notice'
-import { PageHeader } from '@/src/widgets'
+import { NoticeForm } from '@/features/write/notice'
+import { PageHeader } from '@/widgets'
 
 export const NoticeWritePage = () => {
   return (

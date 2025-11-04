@@ -1,6 +1,6 @@
-import { SellModalBtn } from '@/src/entities/sell'
-import { Footer } from '@/src/shared/ui'
-import { PageHeader, SellList } from '@/src/widgets'
+import { SellModalBtn } from '@/entities/sell'
+import { Footer } from '@/shared/ui'
+import { PageHeader, SellList } from '@/widgets'
 
 export const SellPage = () => {
   return (

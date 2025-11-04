@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import { MainFooter } from '../entities/main'
-import { Text } from '../shared/ui'
+import { MainFooter } from '@/entities/main'
+import { Text } from '@/shared/ui'
 
 export const ExceptPage = () => {
   return (

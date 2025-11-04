@@ -1,5 +1,5 @@
-import { UpdateAppForm } from '@/src/features/updateApp'
-import { PageHeader } from '@/src/widgets'
+import { UpdateAppForm } from '@/features/updateApp'
+import { PageHeader } from '@/widgets'
 
 export const MyAppInfoPage = () => {
   return (

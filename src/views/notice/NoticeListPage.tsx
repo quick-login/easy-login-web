@@ -1,6 +1,6 @@
-import { getSession } from '@/src/shared/lib'
-import { Footer, LinkButton } from '@/src/shared/ui'
-import { NoticeList, PageHeader } from '@/src/widgets'
+import { getSession } from '@/shared/lib'
+import { Footer, LinkButton } from '@/shared/ui'
+import { NoticeList, PageHeader } from '@/widgets'
 
 export const NoticeListPage = async () => {
   const session = await getSession()

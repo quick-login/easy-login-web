@@ -1,7 +1,7 @@
-import { UserCount } from '@/src/entities/user'
-import { ProfileForm } from '@/src/features/update-profile'
-import { LinkButton, Text } from '@/src/shared/ui'
-import { PageHeader } from '@/src/widgets'
+import { UserCount } from '@/entities/user'
+import { ProfileForm } from '@/features/update-profile'
+import { LinkButton, Text } from '@/shared/ui'
+import { PageHeader } from '@/widgets'
 
 export const ProfilePage = () => {
   return (

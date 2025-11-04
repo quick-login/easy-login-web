@@ -1,5 +1,5 @@
-import { Footer, LinkButton } from '@/src/shared/ui'
-import { PageHeader, QuestionList } from '@/src/widgets'
+import { Footer, LinkButton } from '@/shared/ui'
+import { PageHeader, QuestionList } from '@/widgets'
 
 export const QuestionListPage = () => {
   return (

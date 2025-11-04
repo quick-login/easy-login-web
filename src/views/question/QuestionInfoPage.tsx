@@ -1,4 +1,4 @@
-import { PageHeader, QuestionDetail } from '@/src/widgets'
+import { PageHeader, QuestionDetail } from '@/widgets'
 
 export const QuestionInfoPage = ({ questionId }: { questionId: number }) => {
   return (
