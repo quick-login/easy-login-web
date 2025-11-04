@@ -2,9 +2,9 @@
 
 import Image from 'next/image'
 import { useEffect } from 'react'
-import { AdminSellForm } from '@/src/features/order-sell'
-import { useModalStore } from '@/src/shared/store'
-import { Text } from '@/src/shared/ui'
+import { AdminSellForm } from '@/features/order-sell'
+import { useModalStore } from '@/shared/store'
+import { Text } from '@/shared/ui'
 
 export const AdminSellPopup = () => {
   const setModal = useModalStore(state => state.setModal)

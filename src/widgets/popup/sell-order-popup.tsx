@@ -3,10 +3,10 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 import { useEffect } from 'react'
-import { SellListItem } from '@/src/entities/sell'
-import { useOrderSell } from '@/src/features/order-sell'
-import { useConfirmStore, useSellStore } from '@/src/shared/store'
-import { Button, Text } from '@/src/shared/ui'
+import { SellListItem } from '@/entities/sell'
+import { useOrderSell } from '@/features/order-sell'
+import { useConfirmStore, useSellStore } from '@/shared/store'
+import { Button, Text } from '@/shared/ui'
 
 type Props = {
   onClose: () => void

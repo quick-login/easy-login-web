@@ -2,9 +2,9 @@
 
 import { Pagination } from './pagination.ui'
 import { SellPopup } from '../popup/sell-order-popup'
-import { SellItemCard, useSellList } from '@/src/entities/sell'
-import { useModalStore, useSellStore } from '@/src/shared/store'
-import { Text } from '@/src/shared/ui'
+import { SellItemCard, useSellList } from '@/entities/sell'
+import { useModalStore, useSellStore } from '@/shared/store'
+import { Text } from '@/shared/ui'
 
 export const SellList = () => {
   const { sellList, pagination } = useSellList()

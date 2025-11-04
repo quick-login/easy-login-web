@@ -1,7 +1,7 @@
 'use client'
 import { Pagination } from './pagination.ui'
-import { QuestionItem, useQuestList } from '@/src/entities/question'
-import { Text } from '@/src/shared/ui'
+import { QuestionItem, useQuestList } from '@/entities/question'
+import { Text } from '@/shared/ui'
 
 export const QuestionList = () => {
   const { pagination, questList } = useQuestList()

@@ -2,10 +2,10 @@
 
 import { Pagination } from './pagination.ui'
 import { AdminSellPopup } from '../popup/admin-sell-popup'
-import { AdminSellItemCard, useAdminSellList } from '@/src/entities/sell'
-import { useAdminSell } from '@/src/features/order-sell'
-import { useConfirmStore, useModalStore } from '@/src/shared/store'
-import { Text } from '@/src/shared/ui'
+import { AdminSellItemCard, useAdminSellList } from '@/entities/sell'
+import { useAdminSell } from '@/features/order-sell'
+import { useConfirmStore, useModalStore } from '@/shared/store'
+import { Text } from '@/shared/ui'
 
 export const AdminSellList = () => {
   const { sellList, pagination } = useAdminSellList()

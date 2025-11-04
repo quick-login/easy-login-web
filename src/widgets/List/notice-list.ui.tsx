@@ -2,8 +2,8 @@
 
 import { Pagination } from './pagination.ui'
 import { LoadingSkeleton } from './skeleton-list.ui'
-import { NoticeFixedItem, NoticeItem, useNoticeList } from '@/src/entities/notice'
-import { Text } from '@/src/shared/ui'
+import { NoticeFixedItem, NoticeItem, useNoticeList } from '@/entities/notice'
+import { Text } from '@/shared/ui'
 
 export const NoticeList = () => {
   const { pagination, basic, fixed, isLoading } = useNoticeList()

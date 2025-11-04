@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react'
 import { useEffect } from 'react'
-import { SideBasic, SideCash, SideFooter, SideItem } from '@/src/entities/sideMenu'
+import { SideBasic, SideCash, SideFooter, SideItem } from '@/entities/sideMenu'
 
 type SideContentProps = {
   mobile: boolean

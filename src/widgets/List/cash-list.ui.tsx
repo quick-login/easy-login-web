@@ -1,10 +1,10 @@
 'use client'
 
 import { Pagination } from './pagination.ui'
-import { CashItem, useCashList } from '@/src/entities/cash'
-import { useReqCash } from '@/src/features/request-cash'
-import { useConfirmStore } from '@/src/shared/store'
-import { Text } from '@/src/shared/ui'
+import { CashItem, useCashList } from '@/entities/cash'
+import { useReqCash } from '@/features/request-cash'
+import { useConfirmStore } from '@/shared/store'
+import { Text } from '@/shared/ui'
 
 export const CashList = () => {
   const { cashList, pagination } = useCashList()

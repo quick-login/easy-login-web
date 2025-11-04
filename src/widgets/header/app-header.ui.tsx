@@ -1,4 +1,4 @@
-import { Text } from '@/src/shared/ui'
+import { Text } from '@/shared/ui'
 
 export const AppHeader = ({ title, count }: { title: string; count: number }) => {
   return (

@@ -1,8 +1,8 @@
 import { usePathname } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 import { useEffect } from 'react'
-import { useRefreshInfo } from '@/src/entities/user'
-import { useSideStore } from '@/src/shared/store'
+import { useRefreshInfo } from '@/entities/user'
+import { useSideStore } from '@/shared/store'
 
 export const useSide = () => {
   const { data: session, status } = useSession()

@@ -3,9 +3,9 @@
 import { useState } from 'react'
 import { Pagination } from './pagination.ui'
 import { OrderPopup } from '../popup/order-detail-popup.ui'
-import { OrderItem, useOrderList } from '@/src/entities/sell'
-import { useModalStore } from '@/src/shared/store'
-import { Text } from '@/src/shared/ui'
+import { OrderItem, useOrderList } from '@/entities/sell'
+import { useModalStore } from '@/shared/store'
+import { Text } from '@/shared/ui'
 
 export const OrderList = () => {
   const { orderList, pagination } = useOrderList()

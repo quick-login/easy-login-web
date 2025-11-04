@@ -1,9 +1,9 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { QuestionAnswer, QuestionInfo, useQuest } from '@/src/entities/question'
-import { DeleteQuestInfoBtn } from '@/src/features/deleteDetail'
-import { Button, Footer } from '@/src/shared/ui'
+import { QuestionAnswer, QuestionInfo, useQuest } from '@/entities/question'
+import { DeleteQuestInfoBtn } from '@/features/deleteDetail'
+import { Button, Footer } from '@/shared/ui'
 
 export const QuestionDetail = ({ questionId }: { questionId: number }) => {
   const router = useRouter()
