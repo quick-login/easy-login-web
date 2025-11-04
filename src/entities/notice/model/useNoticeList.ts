@@ -9,6 +9,7 @@ export const useNoticeList = () => {
   const noticePage = Number(useSearchParams().get('page'))
   const [fixed, setFixed] = useState<Notice[]>([])
   const [basic, setBasic] = useState<Notice[]>([])
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [pagination, setPagination] = useState<Page>({
     currentPage: noticePage,
     pageSize: 0,
@@ -28,6 +29,7 @@ export const useNoticeList = () => {
   }, [])
 
   const handleGetNotices = useCallback(async () => {
+    setIsLoading(true)
     const response = await NoticeListAction(noticePage)
 
     if (response.success) {
@@ -36,6 +38,7 @@ export const useNoticeList = () => {
     } else {
       onOpenAlert(response.message)
     }
+    setIsLoading(false)
   }, [noticePage])
 
   useEffect(() => {
@@ -47,5 +50,5 @@ export const useNoticeList = () => {
     window.scrollTo(0, 0)
   }, [noticePage])
 
-  return { fixed, basic, pagination }
+  return { fixed, basic, pagination, isLoading }
 }
