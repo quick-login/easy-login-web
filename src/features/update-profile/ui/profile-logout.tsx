@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { useLogout } from '../model/useLogout'
-import { useConfirmStore } from '@/src/shared/store/useConfirmStore'
+import { useConfirmStore } from '@/src/shared/store'
 import { A, Text } from '@/src/shared/ui'
 
 export const ProfileLogout = () => {

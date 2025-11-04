@@ -1,7 +1,21 @@
 import axios, { type AxiosRequestConfig } from 'axios'
-import { clearSession, getSession, updateSession } from '@/src/entities/user/model/user-auth'
+import { clearSession, getSession, updateSession } from '../lib'
 
-export const axiosInstance = axios.create({
+export interface Page {
+  currentPage: number
+  pageSize: number
+  totalElements: number
+  totalPages: number
+}
+
+export interface ResponseType<Tdata = unknown> {
+  code: string
+  message: string
+  data: Tdata
+  pagination?: Page
+}
+
+const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
   timeout: 10000,
   headers: {
@@ -13,6 +27,7 @@ export const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   async config => {
     const session = await getSession()
+    console.log('axios 내 세션', session?.user)
     if (session?.user?.accessToken) {
       config.headers['Authorization'] = `Bearer ${session.user.accessToken}`
     }
@@ -26,15 +41,19 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   async response => {
+    console.log('정상요청')
     return response
   },
   async error => {
     const origin = error.config
+    console.log('에러', error.response?.data)
     if (error.response?.data === '' || error.response?.data === null || error.response?.data.code === 'T6002') {
+      console.log('리프레시 만료')
       await clearSession()
       return Promise.resolve(error.response)
     }
     if ((error.response?.data.code === 'T6000' || error.response?.data.code === 'T6001') && !origin._retry) {
+      console.log('리프레시 재발급')
       origin._retry = true
       const session = await getSession()
       try {
@@ -50,12 +69,16 @@ axiosInstance.interceptors.response.use(
         const newAccessToken = refreshRes.headers['authorization']?.replace('Bearer ', '')
         const newRefreshToken = refreshRes.headers['refresh-token']?.replace('Bearer ', '')
 
+        console.log('새 액세스', newAccessToken)
+        console.log('새 리프레시', newRefreshToken)
+
         await updateSession({ user: { accessToken: newAccessToken, refreshToken: newRefreshToken } })
 
         origin.headers.Authorization = `Bearer ${newAccessToken}`
 
         return axios(origin)
       } catch (err) {
+        console.log('리프레시 재발급 실패')
         await clearSession()
         return Promise.resolve(err)
       }
@@ -63,20 +86,6 @@ axiosInstance.interceptors.response.use(
     return Promise.resolve(error.response)
   },
 )
-
-export interface Page {
-  currentPage: number
-  pageSize: number
-  totalElements: number
-  totalPages: number
-}
-
-export interface ResponseType<Tdata = unknown> {
-  code: string
-  message: string
-  data: Tdata
-  pagination?: Page
-}
 
 export const axiosGet = async <Tdata>(url: string, config: AxiosRequestConfig = {}): Promise<ResponseType<Tdata>> => {
   const response = await axiosInstance.get<ResponseType<Tdata>>(url, { ...config })

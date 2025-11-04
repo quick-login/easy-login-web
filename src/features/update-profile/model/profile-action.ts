@@ -2,7 +2,7 @@
 
 import z from 'zod'
 import { patchProfile, postLogout } from '../api/profile-api'
-import { updateSession } from '@/src/entities/user/model/user-auth'
+import { updateSession } from '@/src/shared/lib'
 
 const registSchema = z
   .object({

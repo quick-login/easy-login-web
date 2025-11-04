@@ -13,11 +13,8 @@ type SideBasicProps = {
 export const SideBasic = ({ role = 'USER', mobile, sideOn }: SideBasicProps) => {
   const [menuOn, setMenuOn] = useState<boolean>(false)
 
-  // console.log('사이드 param', path)
-
   useEffect(() => {
     if (!sideOn) setMenuOn(false)
-    // console.log('useEffect')
   }, [sideOn])
 
   return (

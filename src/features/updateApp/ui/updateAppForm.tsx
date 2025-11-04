@@ -3,7 +3,8 @@
 import Image from 'next/image'
 import { useParams, useRouter } from 'next/navigation'
 import { useSocialApp } from '../../createApp/model/useSocialApp'
-import { useAppInfo } from '@/src/entities/social/model/useAppInfo'
+// 위 로직 분리하자
+import { useAppInfo } from '@/src/entities/social'
 import { Button, Footer, Input, Text } from '@/src/shared/ui'
 
 export const UpdateAppForm = () => {

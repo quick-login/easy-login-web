@@ -1,7 +1,9 @@
+'use client'
+
 import { useRouter } from 'next/navigation'
 import { type ChangeEvent, useState } from 'react'
 import { approveCashAction, cancleCashAction, rejectCashAction, requestCashAction } from './cash-action'
-import { useAlertStore } from '@/src/shared/store/useAlertStore'
+import { useAlertStore } from '@/src/shared/store'
 
 export const useReqCash = () => {
   const router = useRouter()

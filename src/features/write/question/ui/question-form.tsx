@@ -2,8 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { useWriteList } from '../model/useWriteList'
-import { Button, Input, TextArea } from '@/src/shared/ui'
-import { Footer } from '@/src/shared/ui/Footer'
+import { Button, Footer, Input, TextArea } from '@/src/shared/ui'
 
 export const QuestionForm = () => {
   const { handleSubmit } = useWriteList()

@@ -1,8 +1,7 @@
 'use client'
 import { useSearchParams } from 'next/navigation'
 import { Pagination } from './pagination.ui'
-import { AdminQuestionItem } from '@/src/entities/question'
-import { useAdminQuestList } from '@/src/entities/question/model/useAdmin-QuestList'
+import { AdminQuestionItem, useAdminQuestList } from '@/src/entities/question'
 import { RadioBtn, Text } from '@/src/shared/ui'
 
 export const AdminQuestionList = () => {

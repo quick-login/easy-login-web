@@ -1,5 +1,10 @@
+import { Suspense } from 'react'
 import { NoticeWritePage } from '@/src/views'
 
 export default async function NoticeModify() {
-  return <NoticeWritePage />
+  return (
+    <Suspense>
+      <NoticeWritePage />
+    </Suspense>
+  )
 }

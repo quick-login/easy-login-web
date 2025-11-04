@@ -12,7 +12,6 @@ type SellOrder = {
   list: Map<number, Sell>
   addList: (product_id: number, sell: Sell) => void
   removeList: (product_id: number) => void
-  // updateList: (product_id: number, updated: Partial<Sell>) => void
   updateList: (product_id: number, newOrderQuantity: number) => void
   changeList: (product_id: number, newOrderQuantity: number) => void
   clearList: () => void

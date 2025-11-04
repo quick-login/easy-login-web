@@ -1,7 +1,6 @@
 import { useRouter } from 'next/navigation'
 import { questWriteAction } from './quest-action'
-import { useAlertStore } from '@/src/shared/store/useAlertStore'
-import { useConfirmStore } from '@/src/shared/store/useConfirmStore'
+import { useAlertStore, useConfirmStore } from '@/src/shared/store'
 
 export const useWriteList = () => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)

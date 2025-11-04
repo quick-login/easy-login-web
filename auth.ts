@@ -1,6 +1,5 @@
 import NextAuth from 'next-auth'
 import Credentials from 'next-auth/providers/credentials'
-import type { ResponseType } from './src/shared/api/axios-client'
 
 type CredentialsType = {
   name: string
@@ -11,6 +10,7 @@ type CredentialsType = {
   role: string
   accessToken: string
   refreshToken: string
+  updateAt: string
 }
 
 export const {
@@ -23,7 +23,7 @@ export const {
   providers: [
     Credentials({
       authorize: async credentials => {
-        const { name, email, cash, remainCount, maxKakaoAppCount, role, accessToken, refreshToken } =
+        const { name, email, cash, remainCount, maxKakaoAppCount, role, accessToken, refreshToken, updateAt } =
           credentials as CredentialsType
         const user = {
           name: name,
@@ -34,6 +34,7 @@ export const {
           role: role,
           accessToken: accessToken,
           refreshToken: refreshToken,
+          updateAt: updateAt,
         }
 
         return user
@@ -41,11 +42,11 @@ export const {
     }),
   ],
   session: {
-    strategy: 'jwt', // JSON Web Token 사용
+    strategy: 'jwt',
     maxAge: 60 * 60 * 24, // 세션 만료 시간(sec)
   },
   pages: {
-    signIn: '/login', // Default: '/auth/signin'
+    signIn: '/login',
   },
   callbacks: {
     signIn: async () => {
@@ -59,6 +60,7 @@ export const {
         token.remainCount = user.remainCount
         token.maxKakaoAppCount = user.maxKakaoAppCount
         token.role = user.role
+        token.updateAt = user.updateAt
       }
       if (trigger === 'update' && session) {
         Object.assign(token, session.user)
@@ -74,6 +76,7 @@ export const {
         remainCount: token.remainCount as number,
         maxKakaoAppCount: token.maxKakaoAppCount as number,
         role: token.role as string,
+        updateAt: token.updateAt as string,
       }
       return session
     },

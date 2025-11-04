@@ -1,6 +1,5 @@
 import { adminAnswerAction } from './quest-action'
-import { useAlertStore } from '@/src/shared/store/useAlertStore'
-import { useConfirmStore } from '@/src/shared/store/useConfirmStore'
+import { useAlertStore, useConfirmStore } from '@/src/shared/store'
 
 export const useAdminAnswer = (questionId: number) => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)

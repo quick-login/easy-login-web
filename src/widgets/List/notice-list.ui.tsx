@@ -1,12 +1,14 @@
 'use client'
 
 import { Pagination } from './pagination.ui'
-import { NoticeFixedItem, NoticeItem } from '@/src/entities/notice'
-import { useNoticeList } from '@/src/entities/notice/model/useNoticeList'
+import { LoadingSkeleton } from './skeleton-list.ui'
+import { NoticeFixedItem, NoticeItem, useNoticeList } from '@/src/entities/notice'
 import { Text } from '@/src/shared/ui'
 
 export const NoticeList = () => {
-  const { pagination, basic, fixed } = useNoticeList()
+  const { pagination, basic, fixed, isLoading } = useNoticeList()
+
+  if (isLoading) return <LoadingSkeleton />
 
   return basic.length === 0 ? (
     <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">

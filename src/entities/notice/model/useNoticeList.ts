@@ -1,19 +1,22 @@
 import { useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 import { NoticeFixedListAction, NoticeListAction } from './notice-action'
-import type { Page } from '@/src/shared/api/axios-client'
+import type { Page } from '@/src/shared/api'
+import { useAlertStore } from '@/src/shared/store'
 import type { Notice } from './types'
 
 export const useNoticeList = () => {
   const noticePage = Number(useSearchParams().get('page'))
   const [fixed, setFixed] = useState<Notice[]>([])
   const [basic, setBasic] = useState<Notice[]>([])
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [pagination, setPagination] = useState<Page>({
     currentPage: noticePage,
     pageSize: 0,
     totalElements: 0,
     totalPages: 0,
   })
+  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleGetFixedNotices = useCallback(async () => {
     const response = await NoticeFixedListAction()
@@ -21,26 +24,31 @@ export const useNoticeList = () => {
     if (response.success) {
       setFixed(response.data)
     } else {
-      alert('고정 공지를 불러오는 데 오류가 발생했습니다.')
+      onOpenAlert(response.message)
     }
   }, [])
 
   const handleGetNotices = useCallback(async () => {
+    setIsLoading(true)
     const response = await NoticeListAction(noticePage)
 
     if (response.success) {
       setBasic(response.data)
       setPagination(response.pagination)
     } else {
-      alert('공지를 불러오는 데 오류가 발생했습니다.')
+      onOpenAlert(response.message)
     }
+    setIsLoading(false)
   }, [noticePage])
 
   useEffect(() => {
     handleGetFixedNotices()
+  }, [])
+
+  useEffect(() => {
     handleGetNotices()
     window.scrollTo(0, 0)
   }, [noticePage])
 
-  return { fixed, basic, pagination }
+  return { fixed, basic, pagination, isLoading }
 }

@@ -1,7 +1,10 @@
+'use client'
+
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { userSellItemsAction } from './sell-action'
-import type { Page } from '@/src/shared/api/axios-client'
+import type { Page } from '@/src/shared/api'
+import { useAlertStore } from '@/src/shared/store'
 import type { SellItem } from './type'
 
 export const useSellList = () => {
@@ -13,6 +16,7 @@ export const useSellList = () => {
     totalElements: 0,
     totalPages: 0,
   })
+  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleGetSellList = async () => {
     const response = await userSellItemsAction(sellPage)
@@ -21,7 +25,7 @@ export const useSellList = () => {
       setSellList(response.data)
       setPagination(response.pagination)
     } else {
-      alert('상품 내역을 받아오는데 오류가 발생했습니다.')
+      onOpenAlert(response.message)
     }
   }
 

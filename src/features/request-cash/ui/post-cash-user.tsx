@@ -1,8 +1,7 @@
 'use client'
 
 import { useReqCash } from '../model/useReqCash'
-import { A, Button, Input, Text } from '@/src/shared/ui'
-import { Footer } from '@/src/shared/ui/Footer'
+import { A, Button, Footer, Input, Text } from '@/src/shared/ui'
 
 export const PostCash = () => {
   const { cash, handleCashBtn, handleChangeCash, handleReqCash } = useReqCash()

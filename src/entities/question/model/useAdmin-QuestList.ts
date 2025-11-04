@@ -1,7 +1,8 @@
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { adminQuestListAction } from './question-action'
-import type { Page } from '@/src/shared/api/axios-client'
+import type { Page } from '@/src/shared/api'
+import { useAlertStore } from '@/src/shared/store'
 import type { Question } from './types'
 
 export const useAdminQuestList = () => {
@@ -16,8 +17,7 @@ export const useAdminQuestList = () => {
     totalElements: 0,
     totalPages: 0,
   })
-
-  console.log('상태', questType)
+  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleGetQuestList = async () => {
     const response = await adminQuestListAction(questPage, 10, questType)
@@ -26,7 +26,7 @@ export const useAdminQuestList = () => {
       setQuestList(response.data)
       setPagination(response.pagination)
     } else {
-      alert('문의 내역을 받아오는데 오류가 발생했습니다.')
+      onOpenAlert(response.message)
     }
   }
 

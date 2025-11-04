@@ -2,12 +2,9 @@
 
 import { Pagination } from './pagination.ui'
 import { AdminSellPopup } from '../popup/admin-sell-popup'
-import { AdminSellItemCard } from '@/src/entities/sell'
-import { useAdminSellList } from '@/src/entities/sell/model/useAdmin-SellList'
-import { AdminSellForm } from '@/src/features/order-sell'
-import { useAdminSell } from '@/src/features/order-sell/model/useAdmin-sell'
-import { useConfirmStore } from '@/src/shared/store/useConfirmStore'
-import { useModalStore } from '@/src/shared/store/useModalStore'
+import { AdminSellItemCard, useAdminSellList } from '@/src/entities/sell'
+import { useAdminSell } from '@/src/features/order-sell'
+import { useConfirmStore, useModalStore } from '@/src/shared/store'
 import { Text } from '@/src/shared/ui'
 
 export const AdminSellList = () => {

@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
 import { appListAction } from './social-action'
+import { useAlertStore } from '@/src/shared/store'
 import type { SocialApp } from './type'
 
 export const useAppList = () => {
   const [appList, setAppList] = useState<SocialApp[]>([])
+  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleGetMyAppList = async () => {
     const response = await appListAction()
@@ -11,7 +13,7 @@ export const useAppList = () => {
     if (response.success) {
       setAppList(response.data)
     } else {
-      console.log('데이터 오류')
+      onOpenAlert('데이터 오류')
     }
   }
 

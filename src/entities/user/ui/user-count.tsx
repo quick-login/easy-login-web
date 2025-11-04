@@ -1,4 +1,4 @@
-import { getSession } from '../model/user-auth'
+import { getSession } from '@/src/shared/lib'
 import { Text } from '@/src/shared/ui'
 
 export const UserCount = async () => {

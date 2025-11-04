@@ -1,7 +1,6 @@
 'use client'
 import { Pagination } from './pagination.ui'
-import { QuestionItem } from '@/src/entities/question'
-import { useQuestList } from '@/src/entities/question/model/useQuestList'
+import { QuestionItem, useQuestList } from '@/src/entities/question'
 import { Text } from '@/src/shared/ui'
 
 export const QuestionList = () => {

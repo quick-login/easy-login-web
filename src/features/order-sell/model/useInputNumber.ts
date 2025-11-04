@@ -19,7 +19,6 @@ export const useInputNumber = () => {
       return
     }
     const num = Number(value.replaceAll(',', ''))
-    console.log(num)
     if (num < 0 || isNaN(num)) return
     setInputNum(state => ({
       ...state,
@@ -37,7 +36,6 @@ export const useInputNumber = () => {
       return
     }
     const num = Number(value.replaceAll(',', ''))
-    console.log(num)
     if (num < 0 || isNaN(num)) return
     if (num > 100) {
       setInputNum(state => ({

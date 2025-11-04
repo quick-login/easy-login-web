@@ -16,7 +16,6 @@ export const useAlertStore = create<AlertProps>()(set => ({
   onCloseAlert: () =>
     set(state => {
       state._onCloseCallback?.()
-      console.log('새로고침2')
       return { isAlert: false, msg: '', _onCloseCallback: undefined }
     }),
 }))

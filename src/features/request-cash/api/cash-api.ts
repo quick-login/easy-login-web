@@ -1,5 +1,5 @@
-import type { Cash } from '@/src/entities/cash/model/type'
-import { axiosPatch, axiosPost } from '@/src/shared/api/axios-client'
+import type { Cash } from '@/src/entities/cash'
+import { axiosPatch, axiosPost } from '@/src/shared/api'
 
 export const postReqCash = async (chargeCash: number) => {
   const response = await axiosPost<null>('/api/v1/cash/request', { chargeCash })

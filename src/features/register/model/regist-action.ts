@@ -22,7 +22,7 @@ const registSchema = z
     message: '비밀번호가 일치하지 않습니다.',
   })
 
-export const handleRegist = async (formData: FormData) => {
+export const registAction = async (formData: FormData) => {
   const email = String(formData.get('email') ?? '')
   const name = String(formData.get('name') ?? '')
   const password = String(formData.get('password') ?? '')
@@ -35,7 +35,6 @@ export const handleRegist = async (formData: FormData) => {
 
   const res = await postRegist({ email, name, password, passwordCheck, kakaoId: null })
 
-  console.log(res)
   if (res.code === 'E200') {
     return {
       success: true,

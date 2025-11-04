@@ -1,5 +1,10 @@
+import { Suspense } from 'react'
 import { AdminCashListPage } from '@/src/views'
 
 export default async function AdminCash() {
-  return <AdminCashListPage />
+  return (
+    <Suspense>
+      <AdminCashListPage />
+    </Suspense>
+  )
 }

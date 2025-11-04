@@ -1,5 +1,8 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { orderInfoAction } from './order-action'
+import { useAlertStore } from '@/src/shared/store'
 import type { OrderInfo } from './type'
 
 export const useOrder = (orderCode: string) => {
@@ -10,13 +13,14 @@ export const useOrder = (orderCode: string) => {
     totalFinalPrice: 0,
     orderProducts: [],
   })
+  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleGetOrder = async (orderCode: string) => {
     const response = await orderInfoAction(orderCode)
     if (response.success) {
       setOrder(response.data)
     } else {
-      console.log('데이터 오류')
+      onOpenAlert(response.message)
     }
   }
 

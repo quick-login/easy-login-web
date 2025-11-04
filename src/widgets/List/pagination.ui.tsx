@@ -3,7 +3,7 @@
 import clsx from 'clsx'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import type { Page } from '@/src/shared/api/axios-client'
+import type { Page } from '@/src/shared/api'
 import { LinkText, PageButton } from '@/src/shared/ui'
 
 export const Pagination = ({ currentPage, pageSize = 10, totalElements, totalPages }: Page) => {

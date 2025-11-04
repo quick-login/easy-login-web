@@ -1,8 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { QuestionAnswer, QuestionInfo } from '@/src/entities/question'
-import { useAdminQuest } from '@/src/entities/question/model/useAdmin-Quest'
+import { QuestionAnswer, QuestionInfo, useAdminQuest } from '@/src/entities/question'
 import { AnswerForm } from '@/src/features/write/question'
 import { Button } from '@/src/shared/ui'
 import { Footer } from '@/src/shared/ui/Footer'

@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 import { noticePatchAction, noticeWriteAction } from './notice-action'
 import { NoticeInfoAction } from '@/src/entities/notice/model/notice-action'
 import type { NoticeItem } from '@/src/entities/notice/model/types'
-import { useAlertStore } from '@/src/shared/store/useAlertStore'
-import { useConfirmStore } from '@/src/shared/store/useConfirmStore'
+// 이건 이따가 보자
+import { useAlertStore, useConfirmStore } from '@/src/shared/store'
 
 export const useWirteList = () => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)
@@ -32,7 +32,6 @@ export const useWirteList = () => {
   const handleGetNoticeItem = async () => {
     const res = await NoticeInfoAction(Number(noticeId))
     if (res.success) {
-      console.log('수정', res.data)
       setData(res.data)
       setFixed(res.data.fixed)
     } else {
