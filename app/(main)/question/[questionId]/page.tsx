@@ -1,4 +1,4 @@
-import { QuestionInfoPage } from '@/src/views'
+import { QuestionInfoPage } from '@/views'
 
 type Props = {
   params: Promise<{ questionId: number }>

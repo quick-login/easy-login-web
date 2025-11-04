@@ -1,4 +1,4 @@
-import { LinkText, Text } from '@/src/shared/ui'
+import { LinkText, Text } from '@/shared/ui'
 
 export default async function Notfound() {
   return (

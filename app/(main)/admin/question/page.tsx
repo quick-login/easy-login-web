@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { AdminQuestionListPage } from '@/src/views'
+import { AdminQuestionListPage } from '@/views'
 
 export default async function AdminQuestList() {
   return (
