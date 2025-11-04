@@ -5,8 +5,8 @@ import { EmailAuthForm } from './email-auth-form'
 import { useEmailValidate } from '../model/useEmailValidate'
 import { useRegist } from '../model/useRegist'
 import { useRegistValidate } from '../model/useValidate'
-import { useAlertStore, useModalStore } from '@/src/shared/store'
-import { Alert, Button, Input, InputPassword, Text } from '@/src/shared/ui'
+import { useAlertStore, useModalStore } from '@/shared/store'
+import { Alert, Button, Input, InputPassword, Text } from '@/shared/ui'
 
 export const RegistForm = () => {
   const isAlert = useAlertStore(state => state.isAlert)

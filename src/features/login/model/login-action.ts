@@ -2,8 +2,8 @@
 
 import { redirect } from 'next/navigation'
 import z from 'zod'
+import { signIn } from '../../../../auth'
 import { postLogin } from '../api/login-api'
-import { signIn } from '@/auth'
 
 export type State = {
   success?: boolean

@@ -1,4 +1,4 @@
-import { axiosPatch, axiosPost } from '@/src/shared/api'
+import { axiosPatch, axiosPost } from '@/shared/api'
 import type { RegistType } from '../../register'
 
 export const patchProfile = async ({ name, password, passwordCheck }: Partial<RegistType>) => {

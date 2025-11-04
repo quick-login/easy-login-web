@@ -1,4 +1,4 @@
-import { axiosPostLogin } from '@/src/shared/api'
+import { axiosPostLogin } from '@/shared/api'
 import type { LoginRes, LoginType } from '../model/type'
 
 export const postLogin = async (loginData: LoginType) => {

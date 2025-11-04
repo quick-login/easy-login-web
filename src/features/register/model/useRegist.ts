@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { registAction } from './regist-action'
-import { useAlertStore } from '@/src/shared/store'
+import { useAlertStore } from '@/shared/store'
 import type { RegistType } from '../type'
 
 export const useRegist = () => {

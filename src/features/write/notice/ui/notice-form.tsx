@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { useWirteList } from '../model/useWriteList'
-import { Button, CheckBox, Footer, Input, TextArea } from '@/src/shared/ui'
+import { Button, CheckBox, Footer, Input, TextArea } from '@/shared/ui'
 
 export const NoticeForm = () => {
   const { data, fixed, setFixed, isEditMode, handleSubmit } = useWirteList()

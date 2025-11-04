@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useLogout } from '../model/useLogout'
-import { useConfirmStore } from '@/src/shared/store'
-import { A, Text } from '@/src/shared/ui'
+import { useConfirmStore } from '@/shared/store'
+import { A, Text } from '@/shared/ui'
 
 export const ProfileLogout = () => {
   const { handleLogout } = useLogout()

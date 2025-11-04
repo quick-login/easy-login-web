@@ -1,10 +1,10 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { noticePatchAction, noticeWriteAction } from './notice-action'
-import { NoticeInfoAction } from '@/src/entities/notice/model/notice-action'
-import type { NoticeItem } from '@/src/entities/notice/model/types'
+import { NoticeInfoAction } from '@/entities/notice/model/notice-action'
+import type { NoticeItem } from '@/entities/notice/model/types'
 // 이건 이따가 보자
-import { useAlertStore, useConfirmStore } from '@/src/shared/store'
+import { useAlertStore, useConfirmStore } from '@/shared/store'
 
 export const useWirteList = () => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)
