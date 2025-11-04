@@ -1,4 +1,4 @@
-import { LinkText, Text } from '@/src/shared/ui'
+import { LinkText, Text } from '@/shared/ui'
 import type { Notice } from '../model/types'
 
 export const NoticeFixedItem = ({ createdAt, fixed, name, noticeId, title }: Notice) => {

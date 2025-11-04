@@ -1,4 +1,4 @@
-import { axiosGet } from '@/src/shared/api'
+import { axiosGet } from '@/shared/api'
 import type { SocialApp, SocialAppInfo } from '../model/type'
 
 export const getMyAppList = async () => {

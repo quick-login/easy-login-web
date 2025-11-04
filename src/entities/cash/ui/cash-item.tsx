@@ -1,4 +1,4 @@
-import { Text } from '@/src/shared/ui'
+import { Text } from '@/shared/ui'
 import type { Cash } from '../model/type'
 
 type Props = {

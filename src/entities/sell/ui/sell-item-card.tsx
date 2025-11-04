@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import Image from 'next/image'
-import { Button, Text } from '@/src/shared/ui'
+import { Button, Text } from '@/shared/ui'
 import type { SellItem } from '../model/type'
 
 type SellItemProps = {

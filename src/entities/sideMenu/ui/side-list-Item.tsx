@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { usePathname } from 'next/navigation'
 import { onPathEffect } from '../model/onPathEffect'
-import { LinkText } from '@/src/shared/ui'
+import { LinkText } from '@/shared/ui'
 import type { ReactNode } from 'react'
 
 type Props = {

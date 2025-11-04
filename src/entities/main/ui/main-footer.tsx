@@ -1,4 +1,4 @@
-import { Footer, LinkText, Text } from '@/src/shared/ui'
+import { Footer, LinkText, Text } from '@/shared/ui'
 
 export const MainFooter = () => {
   return (

@@ -3,8 +3,8 @@
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { adminSellItemsAction } from './sell-action'
-import type { Page } from '@/src/shared/api'
-import { useAlertStore } from '@/src/shared/store'
+import type { Page } from '@/shared/api'
+import { useAlertStore } from '@/shared/store'
 import type { AdminSellItem } from './type'
 
 export const useAdminSellList = () => {

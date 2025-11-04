@@ -1,4 +1,4 @@
-import { Text } from '@/src/shared/ui'
+import { Text } from '@/shared/ui'
 import type { Question } from '../model/types'
 
 export const QuestionInfo = ({ questionId, title, status, questionDate, content }: Question) => {

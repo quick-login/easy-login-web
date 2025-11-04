@@ -2,8 +2,8 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { cashListAction } from './cash-action'
 
-import type { Page } from '@/src/shared/api'
-import { useAlertStore } from '@/src/shared/store'
+import type { Page } from '@/shared/api'
+import { useAlertStore } from '@/shared/store'
 import type { Cash } from './type'
 
 export const useCashList = () => {

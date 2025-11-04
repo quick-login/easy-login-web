@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import { Text } from '@/src/shared/ui'
+import { Text } from '@/shared/ui'
 import type { ReactNode } from 'react'
 
 type MainBannerProps = {

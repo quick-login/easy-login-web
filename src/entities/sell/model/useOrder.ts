@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { orderInfoAction } from './order-action'
-import { useAlertStore } from '@/src/shared/store'
+import { useAlertStore } from '@/shared/store'
 import type { OrderInfo } from './type'
 
 export const useOrder = (orderCode: string) => {

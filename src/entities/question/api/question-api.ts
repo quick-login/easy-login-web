@@ -1,4 +1,4 @@
-import { axiosGet } from '@/src/shared/api'
+import { axiosGet } from '@/shared/api'
 import type { QuestInfo, Question } from '../model/types'
 
 export const getQuestList = async (page: number, pageSize: number) => {

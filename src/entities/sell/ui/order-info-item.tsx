@@ -1,4 +1,4 @@
-import { Text } from '@/src/shared/ui'
+import { Text } from '@/shared/ui'
 import type { OrderProducts } from '../model/type'
 
 export const OrderInfoItem = ({

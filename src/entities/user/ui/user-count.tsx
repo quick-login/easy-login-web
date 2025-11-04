@@ -1,5 +1,5 @@
-import { getSession } from '@/src/shared/lib'
-import { Text } from '@/src/shared/ui'
+import { getSession } from '@/shared/lib'
+import { Text } from '@/shared/ui'
 
 export const UserCount = async () => {
   const session = await getSession()
