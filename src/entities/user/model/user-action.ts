@@ -8,17 +8,17 @@ export const userAction = async () => {
 
   if (response.code === 'E200') {
     const { cash, email, maxKakaoAppCount, name, remainCount, role } = response.data
-    await updateSession({
-      user: {
-        cash: cash,
-        name: name,
-        email: email,
-        maxKakaoAppCount: maxKakaoAppCount,
-        remainCount: remainCount,
-        role: role,
-        updateAt: new Date().toISOString(),
-      },
-    })
+    // await updateSession({
+    //   user: {
+    //     cash: cash,
+    //     name: name,
+    //     email: email,
+    //     maxKakaoAppCount: maxKakaoAppCount,
+    //     remainCount: remainCount,
+    //     role: role,
+    //     updateAt: new Date().toISOString(),
+    //   },
+    // })
 
     return { success: true }
   } else {

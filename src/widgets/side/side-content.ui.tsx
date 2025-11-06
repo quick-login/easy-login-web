@@ -15,6 +15,7 @@ export const SideContent = ({ mobile, sideOn }: SideContentProps) => {
   console.log('사이드 콘텐츠 영역')
 
   useEffect(() => {
+    console.log('업데이트')
     update()
   }, [])
 

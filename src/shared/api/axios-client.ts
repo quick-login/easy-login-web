@@ -8,11 +8,22 @@ export interface Page {
   totalPages: number
 }
 
+export type UserType = {
+  name: string
+  email: string
+  cash: number
+  remainCount: number
+  maxKakaoAppCount: number
+  role: 'USER' | 'ADMIN'
+}
+
 export interface ResponseType<Tdata = unknown> {
   code: string
   message: string
   data: Tdata
   pagination?: Page
+  accessToken?: string
+  refreshToken?: string
 }
 
 const axiosInstance = axios.create({
@@ -76,7 +87,17 @@ axiosInstance.interceptors.response.use(
 
         origin.headers.Authorization = `Bearer ${newAccessToken}`
 
-        return axios(origin)
+        // return axios(origin)
+        const retryResponse = await axios(origin)
+
+        // ✅ 응답 데이터에 토큰 정보 주입
+        retryResponse.data = {
+          ...retryResponse.data,
+          accessToken: newAccessToken,
+          refreshToken: newRefreshToken,
+        }
+
+        return retryResponse
       } catch (err) {
         console.log('리프레시 재발급 실패')
         await clearSession()
@@ -89,6 +110,30 @@ axiosInstance.interceptors.response.use(
 
 export const axiosGet = async <Tdata>(url: string, config: AxiosRequestConfig = {}): Promise<ResponseType<Tdata>> => {
   const response = await axiosInstance.get<ResponseType<Tdata>>(url, { ...config })
+  return response.data
+}
+
+export const axiosGetUserInfo = async (
+  url: string,
+  config: AxiosRequestConfig = {},
+): Promise<ResponseType<UserType>> => {
+  const response = await axiosInstance.get<ResponseType<UserType>>(url, { ...config })
+  const { cash, email, maxKakaoAppCount, name, remainCount, role } = response.data.data
+  const session = await getSession()
+  console.log('결과', session)
+  await updateSession({
+    user: {
+      cash: cash,
+      name: name,
+      email: email,
+      maxKakaoAppCount: maxKakaoAppCount,
+      remainCount: remainCount,
+      role: role,
+      updateAt: new Date().toISOString(),
+      accessToken: response.data.accessToken ? response.data.accessToken : session?.user?.accessToken,
+      refreshToken: response.data.refreshToken ? response.data.refreshToken : session?.user?.refreshToken,
+    },
+  })
   return response.data
 }
 
