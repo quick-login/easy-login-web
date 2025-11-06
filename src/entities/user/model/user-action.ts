@@ -1,7 +1,7 @@
 'use server'
 
 import { getUserInfo } from '../api/user-api'
-import { updateSession } from '@/src/shared/lib'
+import { updateSession } from '@/shared/lib'
 
 export const userAction = async () => {
   const response = await getUserInfo()

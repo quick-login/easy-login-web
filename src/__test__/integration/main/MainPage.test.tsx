@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import { MainPage } from '@/views'
 
+jest.mock('next-auth')
+
 describe('MainPage', () => {
   it('render Main', async () => {
     render(<MainPage />)

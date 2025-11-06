@@ -1,31 +1,30 @@
+import nextJest from 'next/jest.js'
 import type { Config } from 'jest'
 
+const createJestConfig = nextJest({
+  // next.config.js 및 .env 파일을 테스트 환경에 로드하기 위해 Next.js 앱 경로를 제공합니다.
+  dir: './src',
+})
+
+// Jest에 전달할 사용자 정의 구성을 추가합니다.
 const config: Config = {
-  collectCoverage: true,
+  preset: 'ts-jest',
   coverageProvider: 'v8',
-  // collectCoverageFrom: [
-  //   '**/*.{js,jsx,ts,tsx}',
-  //   '!**/*.d.ts',
-  //   '!**/node_modules/**',
-  //   '!<rootDir>/.next/**',
-  //   '!<rootDir>/*.config.ts',
-  //   '!<rootDir>/coverage/**',
-  // ],
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  moduleDirectories: ['node_modules', '<rootDir>/'],
-  moduleNameMapper: {
-    '^.+\\.module\\.(css|sass|scss)$': 'identity-obj-proxy',
-    '^.+\\.(css|sass|scss)$': '<rootDir>/__mocks__/styleMock.js',
-    '^.+\\.(png|jpg|jpeg|gif|webp|avif|ico|bmp|svg)$/i': '<rootDir>/__mocks__/fileMock.js',
-    '^@/(.*)$': '<rootDir>/src/$1',
-    '^@/app/(.*)$': '<rootDir>/app/$1',
-  },
-  testPathIgnorePatterns: ['<rootDir>/node_modules/', '<rootDir>/.next/'],
   testEnvironment: 'jsdom',
-  transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
+  // 각 테스트가 실행되기 전에 추가 설정 옵션을 추가합니다.
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+    '^next-auth$': '<rootDir>/__test__/__mocks__/next-auth.ts',
+    '^next-auth/providers/credentials$': '<rootDir>/__test__/__mocks__/next-auth/providers/credentials.ts',
+    '^next-auth/react$': '<rootDir>/__test__/__mocks__/next-auth/react.ts',
   },
-  transformIgnorePatterns: ['/node_modules/', '^.+\\.module\\.(css|sass|scss)$'],
+  transform: {
+    '^.+\\.(t|j)sx?$': ['ts-jest', { useESM: true }],
+  },
+  extensionsToTreatAsEsm: ['.ts', '.tsx'],
+  transformIgnorePatterns: ['/node_modules/(?!(@auth/core|next-auth)/)'],
 }
 
-export default config
+// next/jest가 Next.js 구성을 로드할 수 있도록 createJestConfig가 이 방식으로 내보내집니다.
+export default createJestConfig(config)
