@@ -12,6 +12,8 @@ type SideContentProps = {
 export const SideContent = ({ mobile, sideOn }: SideContentProps) => {
   const { data: session, update } = useSession()
 
+  console.log('사이드 콘텐츠 영역')
+
   useEffect(() => {
     update()
   }, [])

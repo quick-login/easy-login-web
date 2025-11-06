@@ -8,6 +8,7 @@ import { SideHeader } from '@/entities/sideMenu'
 
 export const SideMenu = () => {
   const { mobile, setMobile, side, toggleSide } = useSide()
+  console.log('사이드 렌더링')
 
   return (
     <aside

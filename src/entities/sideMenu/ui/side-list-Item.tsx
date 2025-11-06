@@ -12,7 +12,6 @@ type Props = {
 
 export const SideListMenu = ({ link, itemName, children }: Props) => {
   const path = usePathname()
-  console.log(path)
 
   return (
     <div className="flex items-center gap-[6px]">
