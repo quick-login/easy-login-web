@@ -1,6 +1,7 @@
 'use client'
 
 import { Pagination } from './pagination.ui'
+import { LoadingSkeletonCard } from './skeleton-card.ui'
 import { AdminSellPopup } from '../popup/admin-sell-popup'
 import { AdminSellItemCard, useAdminSellList } from '@/entities/sell'
 import { useAdminSell } from '@/features/order-sell'
@@ -8,10 +9,13 @@ import { useConfirmStore, useModalStore } from '@/shared/store'
 import { Text } from '@/shared/ui'
 
 export const AdminSellList = () => {
-  const { sellList, pagination } = useAdminSellList()
+  const { sellList, pagination, isLoading } = useAdminSellList()
   const { handleChangeStatus, handleDeleteSell } = useAdminSell()
   const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
   const isAdminSell = useModalStore(state => state.isAdminSell)
+
+  if (isLoading) return <LoadingSkeletonCard />
+
   return sellList.length === 0 ? (
     <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
       <Text className="text-gray5 font-semibold">상품이 존재하지 않습니다.</Text>

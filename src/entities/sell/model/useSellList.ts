@@ -9,6 +9,7 @@ import type { SellItem } from './type'
 
 export const useSellList = () => {
   const sellPage = Number(useSearchParams().get('page'))
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [sellList, setSellList] = useState<SellItem[]>([])
   const [pagination, setPagination] = useState<Page>({
     currentPage: sellPage,
@@ -19,6 +20,7 @@ export const useSellList = () => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleGetSellList = async () => {
+    setIsLoading(true)
     const response = await userSellItemsAction(sellPage)
 
     if (response.success) {
@@ -27,6 +29,7 @@ export const useSellList = () => {
     } else {
       onOpenAlert(response.message)
     }
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -35,5 +38,5 @@ export const useSellList = () => {
     window.scrollTo(0, 0)
   }, [sellPage])
 
-  return { sellList, pagination }
+  return { sellList, pagination, isLoading }
 }

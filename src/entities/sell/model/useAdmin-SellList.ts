@@ -9,6 +9,7 @@ import type { AdminSellItem } from './type'
 
 export const useAdminSellList = () => {
   const sellPage = Number(useSearchParams().get('page'))
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [sellList, setSellList] = useState<AdminSellItem[]>([])
   const [pagination, setPagination] = useState<Page>({
     currentPage: sellPage,
@@ -19,6 +20,7 @@ export const useAdminSellList = () => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleGetAdminSellList = async () => {
+    setIsLoading(true)
     const response = await adminSellItemsAction(sellPage)
 
     if (response.success) {
@@ -27,6 +29,7 @@ export const useAdminSellList = () => {
     } else {
       onOpenAlert(response.message)
     }
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -35,5 +38,5 @@ export const useAdminSellList = () => {
     window.scrollTo(0, 0)
   }, [sellPage])
 
-  return { sellList, pagination }
+  return { sellList, pagination, isLoading }
 }

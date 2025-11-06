@@ -7,6 +7,7 @@ import type { Cash } from './type'
 
 export const useAdminCashList = () => {
   const cashPage = Number(useSearchParams().get('page'))
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [cashList, setCashList] = useState<Cash[]>([])
   const [pagination, setPagination] = useState<Page>({
     currentPage: cashPage,
@@ -17,6 +18,7 @@ export const useAdminCashList = () => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleGetCashList = async () => {
+    setIsLoading(true)
     const response = await adminCashListAction(cashPage)
 
     if (response.success) {
@@ -25,6 +27,7 @@ export const useAdminCashList = () => {
     } else {
       onOpenAlert(response.message)
     }
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -32,5 +35,5 @@ export const useAdminCashList = () => {
     window.scrollTo(0, 0)
   }, [cashPage])
 
-  return { cashList, pagination }
+  return { cashList, pagination, isLoading }
 }

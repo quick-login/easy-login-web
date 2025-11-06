@@ -9,6 +9,7 @@ import type { Order } from './type'
 
 export const useOrderList = () => {
   const questPage = Number(useSearchParams().get('page'))
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [orderList, setOrderList] = useState<Order[]>([])
   const [pagination, setPagination] = useState<Page>({
     currentPage: questPage,
@@ -19,6 +20,7 @@ export const useOrderList = () => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleGetOrderList = async () => {
+    setIsLoading(true)
     const response = await orderListAction(questPage)
 
     if (response.success) {
@@ -27,6 +29,7 @@ export const useOrderList = () => {
     } else {
       onOpenAlert(response.message)
     }
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -34,5 +37,5 @@ export const useOrderList = () => {
     window.scrollTo(0, 0)
   }, [questPage])
 
-  return { orderList, pagination }
+  return { orderList, pagination, isLoading }
 }

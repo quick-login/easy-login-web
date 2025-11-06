@@ -1,11 +1,14 @@
 'use client'
 
+import { LoadingSkeleton } from './skeleton-list.ui'
 import { AppHeader } from '../header/app-header.ui'
 import { SocialAppItem, useAppList } from '@/entities/social'
 import { Text } from '@/shared/ui'
 
 export const AppList = () => {
-  const { appList } = useAppList()
+  const { appList, isLoading } = useAppList()
+
+  if (isLoading) return <LoadingSkeleton />
   return (
     <>
       <AppHeader title="내 앱 관리" count={appList.length} />

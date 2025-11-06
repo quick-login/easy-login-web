@@ -1,18 +1,21 @@
 'use client'
 
 import { Pagination } from './pagination.ui'
+import { LoadingSkeletonCard } from './skeleton-card.ui'
 import { SellPopup } from '../popup/sell-order-popup'
 import { SellItemCard, useSellList } from '@/entities/sell'
 import { useModalStore, useSellStore } from '@/shared/store'
 import { Text } from '@/shared/ui'
 
 export const SellList = () => {
-  const { sellList, pagination } = useSellList()
+  const { sellList, pagination, isLoading } = useSellList()
   const list = useSellStore(state => state.list)
   const addList = useSellStore(state => state.addList)
   const removeList = useSellStore(state => state.removeList)
   const isUserSell = useModalStore(state => state.isUserSell)
   const setModal = useModalStore(state => state.setModal)
+
+  if (isLoading) return <LoadingSkeletonCard />
 
   return sellList.length === 0 ? (
     <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">

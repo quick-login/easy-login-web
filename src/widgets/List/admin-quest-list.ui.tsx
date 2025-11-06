@@ -1,12 +1,15 @@
 'use client'
 import { useSearchParams } from 'next/navigation'
 import { Pagination } from './pagination.ui'
+import { LoadingSkeleton } from './skeleton-list.ui'
 import { AdminQuestionItem, useAdminQuestList } from '@/entities/question'
 import { RadioBtn, Text } from '@/shared/ui'
 
 export const AdminQuestionList = () => {
-  const { pagination, questList, handleChangeStatus } = useAdminQuestList()
+  const { pagination, questList, handleChangeStatus, isLoading } = useAdminQuestList()
   const questType = useSearchParams().get('STATUS')
+
+  if (isLoading) return <LoadingSkeleton />
 
   return questList.length === 0 ? (
     <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
