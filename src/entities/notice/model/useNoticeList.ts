@@ -20,7 +20,6 @@ export const useNoticeList = () => {
 
   const handleGetFixedNotices = useCallback(async () => {
     const response = await NoticeFixedListAction()
-
     if (response.success) {
       setFixed(response.data)
     } else {
@@ -31,10 +30,9 @@ export const useNoticeList = () => {
   const handleGetNotices = useCallback(async () => {
     setIsLoading(true)
     const response = await NoticeListAction(noticePage)
-
     if (response.success) {
       setBasic(response.data)
-      setPagination(response.pagination)
+      setPagination(response.pagination!)
     } else {
       onOpenAlert(response.message)
     }
