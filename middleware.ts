@@ -9,7 +9,6 @@ const matchersForAuthUser = [
   '/kakao/*',
   '/naver/*',
   '/google/*',
-  '/notice/*',
   '/guide/*',
   '/develop/*',
   '/profile/*',

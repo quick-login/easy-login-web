@@ -1,31 +1,18 @@
 import { getFixedNoticeList, getNoticeInfo, getNoticeList } from '../api/notice-api'
+import { onActionResponse, type ActionResponse } from '@/shared/api'
+import type { Notice, NoticeItem } from './types'
 
-export const NoticeListAction = async (page: number, pageSize: number = 10) => {
+export const NoticeListAction = async (page: number, pageSize: number = 10): Promise<ActionResponse<Notice[]>> => {
   const res = await getNoticeList(page, pageSize)
-
-  if (res.code === 'E200') {
-    return { success: true, code: res.code, message: res.message, data: res.data, pagination: res.pagination! }
-  } else {
-    return { success: false, code: res.code, message: res.message, data: res.data, pagination: res.pagination! }
-  }
+  return await onActionResponse(res)
 }
 
-export const NoticeFixedListAction = async () => {
+export const NoticeFixedListAction = async (): Promise<ActionResponse<Notice[]>> => {
   const res = await getFixedNoticeList()
-
-  if (res.code === 'E200') {
-    return { success: true, code: res.code, message: res.message, data: res.data }
-  } else {
-    return { success: false, code: res.code, message: res.message, data: res.data }
-  }
+  return await onActionResponse(res)
 }
 
-export const NoticeInfoAction = async (noticeId: number) => {
+export const NoticeInfoAction = async (noticeId: number): Promise<ActionResponse<NoticeItem>> => {
   const res = await getNoticeInfo(noticeId)
-
-  if (res.code === 'E200') {
-    return { success: true, code: res.code, message: res.message, data: res.data }
-  } else {
-    return { success: false, code: res.code, message: res.message, data: res.data }
-  }
+  return await onActionResponse(res)
 }

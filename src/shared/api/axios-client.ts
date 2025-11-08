@@ -1,29 +1,6 @@
 import axios, { type AxiosRequestConfig } from 'axios'
 import { clearSession, getSession, updateSession } from '../lib'
-export interface Page {
-  currentPage: number
-  pageSize: number
-  totalElements: number
-  totalPages: number
-}
-
-export type UserType = {
-  name: string
-  email: string
-  cash: number
-  remainCount: number
-  maxKakaoAppCount: number
-  role: 'USER' | 'ADMIN'
-}
-
-export interface ResponseType<Tdata = unknown> {
-  code: string
-  message: string
-  data: Tdata
-  pagination?: Page
-  accessToken?: string
-  refreshToken?: string
-}
+import type { ResponseType, UserType } from './types'
 
 const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,
