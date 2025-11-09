@@ -10,22 +10,26 @@ jest.mock('next-auth')
 describe('<sell-popup />', () => {
   beforeEach(() => {
     // 모달 상태 초기화
-    useSellStore.setState({ list: new Map() })
-    useModalStore.setState({
-      isAdminSell: false,
-      isUserSell: false,
-      isOrder: false,
-      isEmail: false,
+    act(() => {
+      useSellStore.setState({ list: new Map() })
+      useModalStore.setState({
+        isAdminSell: false,
+        isUserSell: false,
+        isOrder: false,
+        isEmail: false,
+      })
     })
   })
   afterEach(() => {
     server.resetHandlers()
-    useSellStore.getState().clearList()
-    useModalStore.setState({
-      isAdminSell: false,
-      isUserSell: false,
-      isOrder: false,
-      isEmail: false,
+    act(() => {
+      useSellStore.getState().clearList()
+      useModalStore.setState({
+        isAdminSell: false,
+        isUserSell: false,
+        isOrder: false,
+        isEmail: false,
+      })
     })
   })
   it('상품을 클릭해 담으면 store에 반영되고, 모달이 열리면 해당 상품이 보인다.', async () => {
@@ -74,24 +78,28 @@ describe('<sell-popup />', () => {
 describe('<SellListItem />', () => {
   beforeEach(() => {
     // 각 테스트마다 초기화
-    useSellStore.setState({
-      list: new Map([
-        [
-          1,
-          {
-            name: '테스트 상품',
-            price: 10000,
-            discountRate: 10,
-            finalPrice: 9000,
-            orderQuantity: 1,
-          },
-        ],
-      ]),
+    act(() => {
+      useSellStore.setState({
+        list: new Map([
+          [
+            1,
+            {
+              name: '테스트 상품',
+              price: 10000,
+              discountRate: 10,
+              finalPrice: 9000,
+              orderQuantity: 1,
+            },
+          ],
+        ]),
+      })
     })
   })
 
   afterEach(() => {
-    useSellStore.getState().clearList()
+    act(() => {
+      useSellStore.getState().clearList()
+    })
   })
 
   it('수량 증가 버튼 클릭 시 store에 반영된다', () => {
