@@ -1,20 +1,25 @@
-import { LinkText, Text } from '@/shared/ui'
+import { Text } from '@/shared/ui'
 import type { Notice } from '../model/types'
 
-export const NoticeFixedItem = ({ createdAt, fixed, name, noticeId, title }: Notice) => {
+type Props = {
+  onMove: () => void
+} & Notice
+
+export const NoticeFixedItem = ({ createdAt, fixed, name, noticeId, title, onMove }: Props) => {
   return (
-    <tr className="border-gray3 bg-gray1 flex items-center rounded-[10px] border">
-      <LinkText href={`/notice/${noticeId}`} className="flex flex-1 items-center gap-[10px] px-[15px] py-[10px]">
-        <td className="w-[50px]" align="center">
-          <Text className="bg-gray2 rounded-[5px] p-[5px] text-[10px] font-semibold text-black">NOTICE</Text>
-        </td>
-        <td className="flex-1">
-          <Text className="font-semibold text-black">{title}</Text>
-        </td>
-        <td className="px-[10px]">
-          <Text className="text-gray5 text-[13px] font-semibold">{createdAt}</Text>
-        </td>
-      </LinkText>
+    <tr
+      className="border-gray3 bg-gray1 flex cursor-pointer items-center gap-[10px] rounded-[10px] border px-[15px] py-[10px]"
+      onClick={onMove}
+    >
+      <td className="w-[50px]" align="center">
+        <Text className="bg-gray2 rounded-[5px] p-[5px] text-[10px] font-semibold text-black">NOTICE</Text>
+      </td>
+      <td className="flex-1">
+        <Text className="font-semibold text-black">{title}</Text>
+      </td>
+      <td className="px-[10px]">
+        <Text className="text-gray5 text-[13px] font-semibold">{createdAt}</Text>
+      </td>
     </tr>
   )
 }
