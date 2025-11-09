@@ -28,9 +28,9 @@ export const Pagination = ({ currentPage, pageSize = 10, totalElements, totalPag
             ←
           </LinkText>
         </PageButton>
-        {[...Array(pageSize)].map((_, i) => (
-          <>
-            {start + i <= totalPages && (
+        {[...Array(pageSize)].map(
+          (_, i) =>
+            start + i <= totalPages && (
               <PageButton key={i} className={clsx(currentPage === start + i && 'bg-gray3')}>
                 <LinkText
                   className="px-[10px] py-[5px]"
@@ -39,9 +39,8 @@ export const Pagination = ({ currentPage, pageSize = 10, totalElements, totalPag
                   {start + i}
                 </LinkText>
               </PageButton>
-            )}
-          </>
-        ))}
+            ),
+        )}
         <PageButton className={clsx(noNext && 'hidden')}>
           <LinkText
             className="px-[10px] py-[5px]"

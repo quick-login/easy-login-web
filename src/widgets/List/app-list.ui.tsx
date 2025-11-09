@@ -15,7 +15,7 @@ export const AppList = () => {
       <hr className="border-gray2" />
       <div className="flex flex-1 flex-col gap-[10px] p-[20px]">
         {appList.length > 0 ? (
-          appList.map(app => <SocialAppItem appId={app.appId} appName={app.appName} />)
+          appList.map(app => <SocialAppItem key={app.appId} appId={app.appId} appName={app.appName} />)
         ) : (
           <Text className="text-gray5 font-semibold">앱이 존재하지 않습니다.</Text>
         )}
