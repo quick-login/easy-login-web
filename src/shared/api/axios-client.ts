@@ -97,7 +97,7 @@ export const axiosGetUserInfo = async (
   const { cash, email, maxKakaoAppCount, name, remainCount, role } = response.data.data
   console.log('결과체크', response.data)
   const session = await getSession()
-  // console.log('결과', session)
+  console.log('세션 결과', session)
   await updateSession({
     user: {
       cash: cash,
