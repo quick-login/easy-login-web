@@ -1,3 +1,4 @@
+import dotenv from 'dotenv'
 import nextJest from 'next/jest.js'
 import type { Config } from 'jest'
 
@@ -6,6 +7,8 @@ const createJestConfig = nextJest({
   dir: './src',
 })
 
+dotenv.config({ path: './.env.test' })
+
 // Jest에 전달할 사용자 정의 구성을 추가합니다.
 const config: Config = {
   preset: 'ts-jest',
@@ -13,6 +16,7 @@ const config: Config = {
   testEnvironment: 'jsdom',
   // 각 테스트가 실행되기 전에 추가 설정 옵션을 추가합니다.
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
     '^next-auth$': '<rootDir>/__test__/__mocks__/next-auth.ts',
