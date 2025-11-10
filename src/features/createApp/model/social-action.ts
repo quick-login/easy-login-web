@@ -2,7 +2,7 @@
 
 import z from 'zod'
 import { patchSocialApp, postCrateApp } from '../api/social-api'
-import { onActionResponse } from '@/shared/api'
+import { type ActionResponse, onActionResponse } from '@/shared/api'
 
 const registSchema = z.object({
   appName: z.string().max(50, '이름은 최대 50글자입니다.'),
@@ -18,7 +18,12 @@ export const createAppAction = async (formData: FormData) => {
 
   const result = registSchema.safeParse({ appName, restKey, redirectUrl })
   if (!result.success) {
-    return { success: false, message: '입력된 정보가 형식에 맞지 않아요' }
+    return {
+      success: false,
+      code: '',
+      message: '입력된 정보가 형식에 맞지 않아요',
+      data: null,
+    } satisfies ActionResponse<null>
   }
 
   const response = await postCrateApp({ appId, appName, restKey, redirectUrl })
@@ -33,7 +38,12 @@ export const patchAppAction = async (formData: FormData) => {
 
   const result = registSchema.safeParse({ appName, restKey, redirectUrl })
   if (!result.success) {
-    return { success: false, message: '입력된 정보가 형식에 맞지 않아요' }
+    return {
+      success: false,
+      code: '',
+      message: '입력된 정보가 형식에 맞지 않아요',
+      data: null,
+    } satisfies ActionResponse<null>
   }
 
   const response = await patchSocialApp({ appId, appName, restKey, redirectUrl })
