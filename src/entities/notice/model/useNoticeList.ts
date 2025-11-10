@@ -3,7 +3,6 @@ import { useCallback, useEffect, useState } from 'react'
 import { NoticeFixedListAction, NoticeListAction } from './notice-action'
 import type { Page } from '@/shared/api'
 import { useResponse } from '@/shared/lib/useResponse'
-import { useAlertStore } from '@/shared/store'
 import type { Notice } from './types'
 
 export const useNoticeList = () => {
@@ -17,7 +16,6 @@ export const useNoticeList = () => {
     totalElements: 0,
     totalPages: 0,
   })
-  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
   const handleResponse = useResponse()
 
   const handleGetFixedNotices = useCallback(async () => {
@@ -25,11 +23,6 @@ export const useNoticeList = () => {
     handleResponse(response, () => {
       setFixed(response.data)
     })
-    // if (response.success) {
-    //   setFixed(response.data)
-    // } else {
-    //   onOpenAlert(response.message)
-    // }
   }, [])
 
   const handleGetNotices = useCallback(async () => {
@@ -39,12 +32,6 @@ export const useNoticeList = () => {
       setBasic(response.data)
       setPagination(response.pagination!)
     })
-    // if (response.success) {
-    //   setBasic(response.data)
-    //   setPagination(response.pagination!)
-    // } else {
-    //   onOpenAlert(response.message)
-    // }
     setIsLoading(false)
   }, [noticePage])
 
