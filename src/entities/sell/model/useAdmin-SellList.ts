@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { adminSellItemsAction } from './sell-action'
 import type { Page } from '@/shared/api'
-import { useAlertStore } from '@/shared/store'
+import { useResponse } from '@/shared/lib'
 import type { AdminSellItem } from './type'
 
 export const useAdminSellList = () => {
@@ -17,18 +17,16 @@ export const useAdminSellList = () => {
     totalElements: 0,
     totalPages: 0,
   })
-  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
+  const handleResponse = useResponse()
 
   const handleGetAdminSellList = async () => {
     setIsLoading(true)
     const response = await adminSellItemsAction(sellPage)
-
-    if (response.success) {
+    handleResponse(response, () => {
       setSellList(response.data)
-      setPagination(response.pagination)
-    } else {
-      onOpenAlert(response.message)
-    }
+      setPagination(response.pagination!)
+    })
+
     setIsLoading(false)
   }
 
