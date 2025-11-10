@@ -14,7 +14,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   async config => {
     const session = await getSession()
-    // console.log('axios 내 세션', session?.user)
+    console.log('axios 내 세션', session?.user)
     if (session?.user?.accessToken) {
       config.headers['Authorization'] = `Bearer ${session.user.accessToken}`
     }
@@ -97,7 +97,6 @@ export const axiosGetUserInfo = async (
   const { cash, email, maxKakaoAppCount, name, remainCount, role } = response.data.data
   console.log('결과체크', response.data)
   const session = await getSession()
-  console.log('세션 결과', session)
   await updateSession({
     user: {
       cash: cash,
