@@ -2,7 +2,7 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { questListAction } from './question-action'
 import type { Page } from '@/shared/api'
-import { useAlertStore } from '@/shared/store'
+import { useResponse } from '@/shared/lib'
 import type { Question } from './types'
 
 export const useQuestList = () => {
@@ -15,18 +15,17 @@ export const useQuestList = () => {
     totalElements: 0,
     totalPages: 0,
   })
-  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
+  const handleResponse = useResponse()
 
   const handleGetQuestList = async () => {
     setIsLoading(true)
     const response = await questListAction(questPage)
 
-    if (response.success) {
+    handleResponse(response, () => {
       setQuestList(response.data)
-      setPagination(response.pagination)
-    } else {
-      onOpenAlert(response.message)
-    }
+      setPagination(response.pagination!)
+    })
+
     setIsLoading(false)
   }
 
