@@ -1,12 +1,13 @@
 import { orderSellAction } from './order-sell-action'
 import { userAction } from '@/entities/user'
-import { useAlertStore, useSellStore } from '@/shared/store'
+import { useFeatureResponse } from '@/shared/lib'
+import { useSellStore } from '@/shared/store'
 import type { OrderSell } from './type'
 
 export const useOrderSell = () => {
+  const handleResponse = useFeatureResponse()
   const list = useSellStore(state => state.list)
   const clearList = useSellStore(state => state.clearList)
-  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleOrder = async () => {
     const order: OrderSell[] = Array.from(list.entries())
@@ -14,15 +15,11 @@ export const useOrderSell = () => {
       .flat()
 
     const response = await orderSellAction(order)
-    if (response.success) {
-      onOpenAlert('주문이 완료됐습니다!', async () => {
-        clearList()
-        await userAction()
-        window.location.reload()
-      })
-    } else {
-      onOpenAlert(response.message)
-    }
+    handleResponse(response, '주문이 완료됐습니다!', async () => {
+      clearList()
+      await userAction()
+      window.location.reload()
+    })
   }
 
   return { handleOrder }

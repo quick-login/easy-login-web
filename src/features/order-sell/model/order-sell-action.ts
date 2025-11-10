@@ -2,7 +2,7 @@
 
 import z from 'zod'
 import { deleteAdminSell, patchAdminSellStatus, postAdminAddSell, postOrderSell } from '../api/order-sell-api'
-import { onActionResponse } from '@/shared/api'
+import { type ActionResponse, onActionResponse } from '@/shared/api'
 import type { OrderSell } from './type'
 
 const addSellSchema = z.object({
@@ -27,7 +27,12 @@ export const adminAddSellAction = async (formData: FormData) => {
 
   const result = addSellSchema.safeParse({ name, price, type, value, discountRate })
   if (!result.success) {
-    return { success: false, message: '입력한 데이터를 다시 한번 확인해주세요.' }
+    return {
+      success: false,
+      message: '입력한 데이터를 다시 한번 확인해주세요.',
+      code: '',
+      data: null,
+    } satisfies ActionResponse<null>
   }
 
   const response = await postAdminAddSell({ name, price, type, value, discountRate })
