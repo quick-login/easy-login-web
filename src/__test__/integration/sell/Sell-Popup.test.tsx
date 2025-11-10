@@ -7,7 +7,7 @@ import { SellPage } from '@/views'
 
 jest.mock('next-auth')
 
-describe('<sell-popup />', () => {
+describe('SellList 에서 상품 담은 후 SellPopup 처리 로직 테스트', () => {
   beforeEach(() => {
     // 모달 상태 초기화
     act(() => {
@@ -75,7 +75,7 @@ describe('<sell-popup />', () => {
   })
 })
 
-describe('<SellListItem />', () => {
+describe('SellPopup 내에서 발생하는 사용자 인터랙션 테스트', () => {
   beforeEach(() => {
     // 각 테스트마다 초기화
     act(() => {
