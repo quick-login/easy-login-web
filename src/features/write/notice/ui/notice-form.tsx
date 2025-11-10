@@ -5,7 +5,7 @@ import { useWirteList } from '../model/useWriteList'
 import { Button, CheckBox, Footer, Input, TextArea } from '@/shared/ui'
 
 export const NoticeForm = () => {
-  const { data, fixed, setFixed, isEditMode, handleSubmit } = useWirteList()
+  const { data, setData, isEditMode, handleSubmit } = useWirteList()
   const router = useRouter()
   return (
     <div className="flex flex-1 flex-col">
@@ -14,7 +14,17 @@ export const NoticeForm = () => {
         className="flex flex-1 flex-col gap-[10px] px-[20px] pt-[20px]"
       >
         <div className="flex items-center justify-between gap-[10px] px-[10px]">
-          <CheckBox name="fixed" title="상단고정" checked={fixed} onChange={() => setFixed(prev => !prev)} />
+          <CheckBox
+            name="fixed"
+            title="상단고정"
+            checked={data.fixed}
+            onChange={() =>
+              setData(prev => ({
+                ...prev,
+                fixed: !prev.fixed,
+              }))
+            }
+          />
         </div>
         <Input name="title" placeholder="제목 입력" type="text" defaultValue={data.title} />
         <TextArea name="content" placeholder="본문 입력" className="flex flex-1" defaultValue={data.content} />
