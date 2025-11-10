@@ -1,9 +1,8 @@
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { cashListAction } from './cash-action'
-
 import type { Page } from '@/shared/api'
-import { useAlertStore } from '@/shared/store'
+import { useResponse } from '@/shared/lib'
 import type { Cash } from './type'
 
 export const useCashList = () => {
@@ -16,18 +15,16 @@ export const useCashList = () => {
     totalElements: 0,
     totalPages: 0,
   })
-  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
+  const handleResponse = useResponse()
 
   const handleGetCashList = async () => {
     setIsLoading(true)
     const response = await cashListAction(cashPage)
 
-    if (response.success) {
+    handleResponse(response, () => {
       setCashList(response.data)
-      setPagination(response.pagination)
-    } else {
-      onOpenAlert(response.message)
-    }
+      setPagination(response.pagination!)
+    })
     setIsLoading(false)
   }
 
