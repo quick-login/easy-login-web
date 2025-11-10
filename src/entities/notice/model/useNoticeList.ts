@@ -1,6 +1,6 @@
 import { useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
-import { NoticeFixedListAction, NoticeListAction } from './notice-action'
+import { noticeFixedListAction, noticeListAction } from './notice-action'
 import type { Page } from '@/shared/api'
 import { useResponse } from '@/shared/lib/useResponse'
 import type { Notice } from './types'
@@ -19,7 +19,7 @@ export const useNoticeList = () => {
   const handleResponse = useResponse()
 
   const handleGetFixedNotices = useCallback(async () => {
-    const response = await NoticeFixedListAction()
+    const response = await noticeFixedListAction()
     handleResponse(response, () => {
       setFixed(response.data)
     })
@@ -27,7 +27,7 @@ export const useNoticeList = () => {
 
   const handleGetNotices = useCallback(async () => {
     setIsLoading(true)
-    const response = await NoticeListAction(noticePage)
+    const response = await noticeListAction(noticePage)
     handleResponse(response, () => {
       setBasic(response.data)
       setPagination(response.pagination!)

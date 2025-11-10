@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { NoticeInfoAction } from './notice-action'
+import { noticeInfoAction } from './notice-action'
 import { useResponse } from '@/shared/lib'
 import type { NoticeItem } from './types'
 
@@ -15,7 +15,7 @@ export const useNotice = (noticeId: number) => {
   const handleResponse = useResponse()
 
   const handleGetNotice = async (noticeId: number) => {
-    const response = await NoticeInfoAction(noticeId)
+    const response = await noticeInfoAction(noticeId)
 
     handleResponse(response, () => {
       setNotice(response.data)
