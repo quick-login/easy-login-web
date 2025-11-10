@@ -4,8 +4,8 @@ import Image from 'next/image'
 import { useParams, useRouter } from 'next/navigation'
 import { useSocialApp } from '../../createApp/model/useSocialApp'
 // 위 로직 분리하자
-import { useAppInfo } from '@/src/entities/social'
-import { Button, Footer, Input, Text } from '@/src/shared/ui'
+import { useAppInfo } from '@/entities/social'
+import { Button, Footer, Input, Text } from '@/shared/ui'
 
 export const UpdateAppForm = () => {
   const params = useParams().id

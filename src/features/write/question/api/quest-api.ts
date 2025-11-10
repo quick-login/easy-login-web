@@ -1,4 +1,4 @@
-import { axiosPost } from '@/src/shared/api'
+import { axiosPost } from '@/shared/api'
 
 type QuestType = {
   title: string

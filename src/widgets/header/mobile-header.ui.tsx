@@ -1,8 +1,8 @@
 'use client'
 import clsx from 'clsx'
 import Image from 'next/image'
-import { useSideStore } from '@/src/shared/store'
-import { Text } from '@/src/shared/ui'
+import { useSideStore } from '@/shared/store'
+import { Text } from '@/shared/ui'
 
 export const MobildHeader = () => {
   const setMobile = useSideStore(state => state.setMobile)

@@ -1,6 +1,6 @@
-import { LoginForm } from '@/src/features/login'
-import { LinkText, Text } from '@/src/shared/ui'
-import { AuthFooter } from '@/src/widgets'
+import { LoginForm } from '@/features/login'
+import { LinkText, Text } from '@/shared/ui'
+import { AuthFooter } from '@/widgets'
 
 export const LoginPage = () => {
   return (

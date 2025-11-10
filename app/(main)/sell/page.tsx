@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { SellPage } from '@/src/views'
+import { SellPage } from '@/views'
 
 export default async function Sell() {
   return (

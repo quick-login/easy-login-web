@@ -1,15 +1,19 @@
 'use client'
 
 import { Pagination } from './pagination.ui'
-import { AdminCashItem, useAdminCashList } from '@/src/entities/cash'
-import { useReqCash } from '@/src/features/request-cash'
-import { useConfirmStore } from '@/src/shared/store'
-import { Text } from '@/src/shared/ui'
+import { LoadingSkeleton } from './skeleton-list.ui'
+import { AdminCashItem, useAdminCashList } from '@/entities/cash'
+import { useReqCash } from '@/features/request-cash'
+import { useConfirmStore } from '@/shared/store'
+import { Text } from '@/shared/ui'
 
 export const AdminCashList = () => {
-  const { cashList, pagination } = useAdminCashList()
+  const { cashList, pagination, isLoading } = useAdminCashList()
   const { handleAdminApproveCash, handleAdminRejectCash } = useReqCash()
   const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
+
+  if (isLoading) return <LoadingSkeleton />
+
   return cashList.length === 0 ? (
     <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
       <Text className="text-gray5 font-semibold">캐시 충전 내역이 존재하지 않습니다.</Text>

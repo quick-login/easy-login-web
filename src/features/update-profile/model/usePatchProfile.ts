@@ -1,5 +1,5 @@
 import { profilePatchAction } from './profile-action'
-import { useAlertStore, useConfirmStore } from '@/src/shared/store'
+import { useAlertStore, useConfirmStore } from '@/shared/store'
 
 export const usePatchProfile = () => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)

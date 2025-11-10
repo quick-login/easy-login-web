@@ -1,4 +1,4 @@
-import { axiosGet } from '@/src/shared/api'
+import { axiosGet } from '@/shared/api'
 import type { Order, OrderInfo } from '../model/type'
 
 export const getOrderList = async (page: number, pageSize: number) => {

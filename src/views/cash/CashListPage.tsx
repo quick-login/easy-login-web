@@ -1,5 +1,5 @@
-import { Footer, LinkButton } from '@/src/shared/ui'
-import { CashList, PageHeader } from '@/src/widgets'
+import { Footer, LinkButton } from '@/shared/ui'
+import { CashList, PageHeader } from '@/widgets'
 
 export const CashListPage = () => {
   return (

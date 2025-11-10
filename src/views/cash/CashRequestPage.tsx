@@ -1,5 +1,5 @@
-import { PostCash } from '@/src/features/request-cash'
-import { PageHeader } from '@/src/widgets'
+import { PostCash } from '@/features/request-cash'
+import { PageHeader } from '@/widgets'
 
 export const CashRequestPage = () => {
   return (

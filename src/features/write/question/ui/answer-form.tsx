@@ -1,7 +1,7 @@
 'use client'
 
 import { useAdminAnswer } from '../model/useAdmin-Answer'
-import { TextArea } from '@/src/shared/ui'
+import { TextArea } from '@/shared/ui'
 
 export const AnswerForm = ({ questionId }: { questionId: number }) => {
   const { handleSubmit } = useAdminAnswer(questionId)

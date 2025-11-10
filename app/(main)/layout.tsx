@@ -1,4 +1,4 @@
-import { MobildHeader, SideMenu } from '@/src/widgets'
+import { MobildHeader, SideMenu } from '@/widgets'
 
 export default async function MainLayout({
   children,

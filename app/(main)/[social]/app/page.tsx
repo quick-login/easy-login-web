@@ -1,4 +1,4 @@
-import { MyAppPage } from '@/src/views'
+import { MyAppPage } from '@/views'
 
 type Props = {
   params: {

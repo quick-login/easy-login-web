@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import { SideListMenu } from './side-list-Item'
-import { Text } from '@/src/shared/ui'
+import { Text } from '@/shared/ui'
 
 type SideBasicProps = {
   mobile: boolean

@@ -3,12 +3,13 @@
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { adminSellItemsAction } from './sell-action'
-import type { Page } from '@/src/shared/api'
-import { useAlertStore } from '@/src/shared/store'
+import type { Page } from '@/shared/api'
+import { useAlertStore } from '@/shared/store'
 import type { AdminSellItem } from './type'
 
 export const useAdminSellList = () => {
   const sellPage = Number(useSearchParams().get('page'))
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [sellList, setSellList] = useState<AdminSellItem[]>([])
   const [pagination, setPagination] = useState<Page>({
     currentPage: sellPage,
@@ -19,6 +20,7 @@ export const useAdminSellList = () => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleGetAdminSellList = async () => {
+    setIsLoading(true)
     const response = await adminSellItemsAction(sellPage)
 
     if (response.success) {
@@ -27,6 +29,7 @@ export const useAdminSellList = () => {
     } else {
       onOpenAlert(response.message)
     }
+    setIsLoading(false)
   }
 
   useEffect(() => {
@@ -35,5 +38,5 @@ export const useAdminSellList = () => {
     window.scrollTo(0, 0)
   }, [sellPage])
 
-  return { sellList, pagination }
+  return { sellList, pagination, isLoading }
 }

@@ -1,4 +1,4 @@
-import { LinkText, Text } from '@/src/shared/ui'
+import { LinkText, Text } from '@/shared/ui'
 import type { Question } from '../model/types'
 
 export const AdminQuestionItem = ({ questionId, title, name, status, questionDate }: Question) => {

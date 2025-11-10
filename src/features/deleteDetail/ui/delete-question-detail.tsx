@@ -1,8 +1,8 @@
 'use client'
 
 import { useDetailDelete } from '../model/useDetailDelete'
-import { useConfirmStore } from '@/src/shared/store'
-import { IconButton } from '@/src/shared/ui'
+import { useConfirmStore } from '@/shared/store'
+import { IconButton } from '@/shared/ui'
 
 export const DeleteQuestInfoBtn = ({ questionId }: { questionId: number }) => {
   const { handleDeleteQuest } = useDetailDelete()

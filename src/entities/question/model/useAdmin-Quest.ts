@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { adminQuestInfoAction } from './question-action'
-import { useAlertStore } from '@/src/shared/store'
+import { useAlertStore } from '@/shared/store'
 import type { QuestInfo } from './types'
 
 export const useAdminQuest = (questionId: number) => {

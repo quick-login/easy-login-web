@@ -1,4 +1,4 @@
-import { ExceptPage } from '@/src/views'
+import { ExceptPage } from '@/views'
 
 export default async function Guide() {
   return <ExceptPage />

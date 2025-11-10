@@ -1,6 +1,6 @@
-import { MainBanner, MainFooter, MainSocial } from '../entities/main'
-import { Text } from '../shared/ui'
-import { PageHeader } from '../widgets'
+import { MainBanner, MainFooter, MainSocial } from '@/entities/main'
+import { Text } from '@/shared/ui'
+import { PageHeader } from '@/widgets'
 
 export const MainPage = () => {
   return (

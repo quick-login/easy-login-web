@@ -1,18 +1,21 @@
 'use client'
 
+import { LoadingSkeleton } from './skeleton-list.ui'
 import { AppHeader } from '../header/app-header.ui'
-import { SocialAppItem, useAppList } from '@/src/entities/social'
-import { Text } from '@/src/shared/ui'
+import { SocialAppItem, useAppList } from '@/entities/social'
+import { Text } from '@/shared/ui'
 
 export const AppList = () => {
-  const { appList } = useAppList()
+  const { appList, isLoading } = useAppList()
+
+  if (isLoading) return <LoadingSkeleton />
   return (
     <>
       <AppHeader title="내 앱 관리" count={appList.length} />
       <hr className="border-gray2" />
       <div className="flex flex-1 flex-col gap-[10px] p-[20px]">
         {appList.length > 0 ? (
-          appList.map(app => <SocialAppItem appId={app.appId} appName={app.appName} />)
+          appList.map(app => <SocialAppItem key={app.appId} appId={app.appId} appName={app.appName} />)
         ) : (
           <Text className="text-gray5 font-semibold">앱이 존재하지 않습니다.</Text>
         )}

@@ -1,5 +1,5 @@
-import { MainFooter } from '@/src/entities/main'
-import { AdminQuestionList, PageHeader } from '@/src/widgets'
+import { MainFooter } from '@/entities/main'
+import { AdminQuestionList, PageHeader } from '@/widgets'
 
 export const AdminQuestionListPage = () => {
   return (

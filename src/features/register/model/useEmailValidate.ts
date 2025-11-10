@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { createEmailCodeAction, validateEmailAction } from './email-action'
-import { useModalStore } from '@/src/shared/store'
+import { useModalStore } from '@/shared/store'
 import type { CreateActionType, ValidateActionType } from '../type'
 
 export const useEmailValidate = () => {

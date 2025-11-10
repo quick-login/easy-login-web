@@ -1,10 +1,13 @@
 'use client'
 import { Pagination } from './pagination.ui'
-import { QuestionItem, useQuestList } from '@/src/entities/question'
-import { Text } from '@/src/shared/ui'
+import { LoadingSkeleton } from './skeleton-list.ui'
+import { QuestionItem, useQuestList } from '@/entities/question'
+import { Text } from '@/shared/ui'
 
 export const QuestionList = () => {
-  const { pagination, questList } = useQuestList()
+  const { pagination, questList, isLoading } = useQuestList()
+
+  if (isLoading) return <LoadingSkeleton />
 
   return questList.length === 0 ? (
     <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">

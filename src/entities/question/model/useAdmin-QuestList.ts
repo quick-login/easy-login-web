@@ -1,8 +1,8 @@
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { adminQuestListAction } from './question-action'
-import type { Page } from '@/src/shared/api'
-import { useAlertStore } from '@/src/shared/store'
+import type { Page } from '@/shared/api'
+import { useAlertStore } from '@/shared/store'
 import type { Question } from './types'
 
 export const useAdminQuestList = () => {
@@ -10,6 +10,7 @@ export const useAdminQuestList = () => {
   const searchParams = useSearchParams()
   const questPage = Number(searchParams.get('page'))
   const questType = searchParams.get('STATUS') ?? 'WAITING'
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [questList, setQuestList] = useState<Question[]>([])
   const [pagination, setPagination] = useState<Page>({
     currentPage: questPage,
@@ -20,6 +21,7 @@ export const useAdminQuestList = () => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)
 
   const handleGetQuestList = async () => {
+    setIsLoading(true)
     const response = await adminQuestListAction(questPage, 10, questType)
 
     if (response.success) {
@@ -28,6 +30,7 @@ export const useAdminQuestList = () => {
     } else {
       onOpenAlert(response.message)
     }
+    setIsLoading(false)
   }
 
   const handleChangeStatus = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,5 +48,5 @@ export const useAdminQuestList = () => {
     window.scrollTo(0, 0)
   }, [questPage, questType])
 
-  return { questList, pagination, handleChangeStatus }
+  return { questList, pagination, handleChangeStatus, isLoading }
 }

@@ -1,5 +1,5 @@
-import { QuestionForm } from '@/src/features/write/question'
-import { PageHeader } from '@/src/widgets'
+import { QuestionForm } from '@/features/write/question'
+import { PageHeader } from '@/widgets'
 
 export const QuestionWritePage = () => {
   return (

@@ -1,6 +1,6 @@
 'use server'
 
-import { axiosGet } from '@/src/shared/api'
+import { axiosGet } from '@/shared/api'
 import type { Notice, NoticeItem } from '../model/types'
 
 export const getFixedNoticeList = async () => {

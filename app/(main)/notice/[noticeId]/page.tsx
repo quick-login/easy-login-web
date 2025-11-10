@@ -1,4 +1,4 @@
-import { NoticeInfoPage } from '@/src/views'
+import { NoticeInfoPage } from '@/views'
 
 type Props = {
   params: Promise<{ noticeId: number }>

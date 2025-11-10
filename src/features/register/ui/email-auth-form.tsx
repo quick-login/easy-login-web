@@ -1,8 +1,8 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 import { useEffect } from 'react'
-import { useModalStore } from '@/src/shared/store'
-import { Button, Input, Text } from '@/src/shared/ui'
+import { useModalStore } from '@/shared/store'
+import { Button, Input, Text } from '@/shared/ui'
 import type { EmailCodeProps } from '../type'
 
 export const EmailAuthForm = ({ codeFormRef, email, stateCode, onValidate, onModal }: EmailCodeProps) => {

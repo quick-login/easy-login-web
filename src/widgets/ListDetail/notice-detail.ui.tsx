@@ -2,9 +2,9 @@
 
 import { useRouter } from 'next/navigation'
 import { useSession } from 'next-auth/react'
-import { NoticeInfo, useNotice } from '@/src/entities/notice'
-import { DeleteNoticeInfoBtn } from '@/src/features/deleteDetail'
-import { Button, Footer } from '@/src/shared/ui'
+import { NoticeInfo, useNotice } from '@/entities/notice'
+import { DeleteNoticeInfoBtn } from '@/features/deleteDetail'
+import { Button, Footer } from '@/shared/ui'
 
 export const NoticeDetail = ({ noticeId }: { noticeId: number }) => {
   const { notice } = useNotice(noticeId)

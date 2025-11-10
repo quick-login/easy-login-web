@@ -1,4 +1,4 @@
-import { NoticeListPage } from '@/src/views'
+import { NoticeListPage } from '@/views'
 
 export default async function NoticeList() {
   return <NoticeListPage />

@@ -1,4 +1,4 @@
-import { NoticeDetail, PageHeader } from '@/src/widgets'
+import { NoticeDetail, PageHeader } from '@/widgets'
 
 export const NoticeInfoPage = ({ noticeId }: { noticeId: number }) => {
   return (

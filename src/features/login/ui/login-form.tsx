@@ -2,7 +2,7 @@
 
 import { useActionState } from 'react'
 import { handleLoginAction } from '../model/login-action'
-import { Button, Input, InputPassword, Text } from '@/src/shared/ui'
+import { Button, Input, InputPassword, Text } from '@/shared/ui'
 
 export const LoginForm = () => {
   const initialState = { success: false, message: '' }

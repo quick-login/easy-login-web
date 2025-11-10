@@ -1,4 +1,4 @@
-import { Button, Text } from '@/src/shared/ui'
+import { Button, Text } from '@/shared/ui'
 import type { Cash } from '../model/type'
 
 type Props = {

@@ -2,7 +2,7 @@
 
 import { useSession } from 'next-auth/react'
 import { useEffect } from 'react'
-import { SideBasic, SideCash, SideFooter, SideItem } from '@/src/entities/sideMenu'
+import { SideBasic, SideCash, SideFooter, SideItem } from '@/entities/sideMenu'
 
 type SideContentProps = {
   mobile: boolean
@@ -12,7 +12,10 @@ type SideContentProps = {
 export const SideContent = ({ mobile, sideOn }: SideContentProps) => {
   const { data: session, update } = useSession()
 
+  console.log('사이드 콘텐츠 영역')
+
   useEffect(() => {
+    console.log('업데이트')
     update()
   }, [])
 

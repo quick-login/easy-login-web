@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NoticeInfoAction } from './notice-action'
-import { useAlertStore } from '@/src/shared/store'
+import { useAlertStore } from '@/shared/store'
 import type { NoticeItem } from './types'
 
 export const useNotice = (noticeId: number) => {

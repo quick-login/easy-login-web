@@ -1,12 +1,14 @@
 'use client'
 
+import { useRouter } from 'next/navigation'
 import { Pagination } from './pagination.ui'
 import { LoadingSkeleton } from './skeleton-list.ui'
-import { NoticeFixedItem, NoticeItem, useNoticeList } from '@/src/entities/notice'
-import { Text } from '@/src/shared/ui'
+import { NoticeFixedItem, NoticeItem, useNoticeList } from '@/entities/notice'
+import { Text } from '@/shared/ui'
 
 export const NoticeList = () => {
   const { pagination, basic, fixed, isLoading } = useNoticeList()
+  const router = useRouter()
 
   if (isLoading) return <LoadingSkeleton />
 
@@ -25,6 +27,7 @@ export const NoticeList = () => {
             name={d.name}
             noticeId={d.noticeId}
             title={d.title}
+            onMove={() => router.push(`/notice/${d.noticeId}`)}
           />
         ))}
       </table>
@@ -37,6 +40,7 @@ export const NoticeList = () => {
             name={d.name}
             noticeId={d.noticeId}
             title={d.title}
+            onMove={() => router.push(`/notice/${d.noticeId}`)}
           />
         ))}
       </table>

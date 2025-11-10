@@ -1,4 +1,4 @@
-import { axiosPatch, axiosPost } from '@/src/shared/api'
+import { axiosPatch, axiosPost } from '@/shared/api'
 
 type NoticeType = {
   title: string

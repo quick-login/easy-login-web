@@ -1,4 +1,4 @@
-import { RegistPage } from '@/src/views'
+import { RegistPage } from '@/views'
 
 const RegisterView = () => {
   return <RegistPage />

@@ -1,6 +1,6 @@
 import Image from 'next/image'
-import { useSellStore } from '@/src/shared/store'
-import { Button, Input, Text } from '@/src/shared/ui'
+import { useSellStore } from '@/shared/store'
+import { Button, Input, Text } from '@/shared/ui'
 import type { SellItem } from '../model/type'
 
 type SellOrderProps = {

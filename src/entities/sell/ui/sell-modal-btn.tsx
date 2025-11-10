@@ -1,7 +1,7 @@
 'use client'
 
-import { useModalStore } from '@/src/shared/store'
-import { Button } from '@/src/shared/ui'
+import { useModalStore } from '@/shared/store'
+import { Button } from '@/shared/ui'
 
 export const SellModalBtn = () => {
   const setModal = useModalStore(state => state.setModal)

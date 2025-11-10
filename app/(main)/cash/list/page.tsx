@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { CashListPage } from '@/src/views'
+import { CashListPage } from '@/views'
 
 export default async function CashList() {
   return (

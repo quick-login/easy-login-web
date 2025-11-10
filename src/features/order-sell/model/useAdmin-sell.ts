@@ -1,5 +1,5 @@
 import { adminAddSellAction, adminChangeStatusAction, adminDeleteSellAction } from './order-sell-action'
-import { useAlertStore, useConfirmStore, useModalStore } from '@/src/shared/store'
+import { useAlertStore, useConfirmStore, useModalStore } from '@/shared/store'
 
 export const useAdminSell = () => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)

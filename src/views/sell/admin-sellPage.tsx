@@ -1,6 +1,6 @@
-import { AdminSellModalBtn } from '@/src/entities/sell'
-import { Footer } from '@/src/shared/ui'
-import { AdminSellList, PageHeader } from '@/src/widgets'
+import { AdminSellModalBtn } from '@/entities/sell'
+import { Footer } from '@/shared/ui'
+import { AdminSellList, PageHeader } from '@/widgets'
 
 export const AdminSellPage = () => {
   return (

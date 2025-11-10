@@ -1,10 +1,10 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import { QuestionAnswer, QuestionInfo, useAdminQuest } from '@/src/entities/question'
-import { AnswerForm } from '@/src/features/write/question'
-import { Button } from '@/src/shared/ui'
-import { Footer } from '@/src/shared/ui/Footer'
+import { QuestionAnswer, QuestionInfo, useAdminQuest } from '@/entities/question'
+import { AnswerForm } from '@/features/write/question'
+import { Button } from '@/shared/ui'
+import { Footer } from '@/shared/ui/Footer'
 
 export const AdminQuestionDetail = ({ questionId }: { questionId: number }) => {
   const router = useRouter()

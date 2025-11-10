@@ -1,5 +1,5 @@
-import { CreateAppForm } from '@/src/features/createApp'
-import { PageHeader } from '@/src/widgets'
+import { CreateAppForm } from '@/features/createApp'
+import { PageHeader } from '@/widgets'
 
 export const CreateAppPage = ({ type }: { type: string }) => {
   return (

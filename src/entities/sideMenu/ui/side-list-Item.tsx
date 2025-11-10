@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import { usePathname } from 'next/navigation'
 import { onPathEffect } from '../model/onPathEffect'
-import { LinkText } from '@/src/shared/ui'
+import { LinkText } from '@/shared/ui'
 import type { ReactNode } from 'react'
 
 type Props = {
@@ -12,7 +12,6 @@ type Props = {
 
 export const SideListMenu = ({ link, itemName, children }: Props) => {
   const path = usePathname()
-  console.log(path)
 
   return (
     <div className="flex items-center gap-[6px]">

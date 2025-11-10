@@ -1,6 +1,6 @@
 import { useAdminSell } from '../model/useAdmin-sell'
 import { useInputNumber } from '../model/useInputNumber'
-import { Button, Input, RadioBtn, Text } from '@/src/shared/ui'
+import { Button, Input, RadioBtn, Text } from '@/shared/ui'
 
 export const AdminSellForm = () => {
   const { InputNum, handleChangeDiscount, handleChangeInput } = useInputNumber()

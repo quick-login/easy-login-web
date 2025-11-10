@@ -1,4 +1,4 @@
-import { AppList } from '@/src/widgets'
+import { AppList } from '@/widgets'
 
 export const MyAppPage = () => {
   return (

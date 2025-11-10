@@ -1,4 +1,4 @@
-import { axiosGet } from '@/src/shared/api'
+import { axiosGet } from '@/shared/api'
 import type { AdminSellItem, SellItem } from '../model/type'
 
 export const getUserSellItems = async (page: number, pageSize: number) => {

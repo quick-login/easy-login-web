@@ -1,5 +1,5 @@
 import { ProfileLogout } from './profile-logout'
-import { Button, Footer } from '@/src/shared/ui'
+import { Button, Footer } from '@/shared/ui'
 
 export const ProfileFooter = () => {
   return (

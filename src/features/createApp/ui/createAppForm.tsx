@@ -1,7 +1,7 @@
 'use client'
 
 import { useSocialApp } from '../model/useSocialApp'
-import { Button, Footer, Input, Text } from '@/src/shared/ui'
+import { Button, Footer, Input, Text } from '@/shared/ui'
 
 export const CreateAppForm = ({ type }: { type: string }) => {
   const { handleCreate } = useSocialApp()

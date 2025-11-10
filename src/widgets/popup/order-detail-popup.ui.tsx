@@ -2,8 +2,8 @@
 
 import Image from 'next/image'
 import { useEffect } from 'react'
-import { OrderInfoItem, useOrder } from '@/src/entities/sell'
-import { Text } from '@/src/shared/ui'
+import { OrderInfoItem, useOrder } from '@/entities/sell'
+import { Text } from '@/shared/ui'
 
 type Props = {
   orderCode: string

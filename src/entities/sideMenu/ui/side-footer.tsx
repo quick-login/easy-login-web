@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import Image from 'next/image'
-import { LinkText, Text } from '@/src/shared/ui'
+import { LinkText, Text } from '@/shared/ui'
 
 type SideFooterProps = {
   mobile: boolean

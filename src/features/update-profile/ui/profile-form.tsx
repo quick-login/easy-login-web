@@ -3,7 +3,7 @@
 import { useSession } from 'next-auth/react'
 import { ProfileFooter } from './profile-Footer'
 import { usePatchProfile } from '../model/usePatchProfile'
-import { Input, InputPassword, Text } from '@/src/shared/ui'
+import { Input, InputPassword, Text } from '@/shared/ui'
 
 export const ProfileForm = () => {
   const { data: session } = useSession()

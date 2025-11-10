@@ -1,6 +1,6 @@
 import { orderSellAction } from './order-sell-action'
-import { userAction } from '@/src/entities/user'
-import { useAlertStore, useSellStore } from '@/src/shared/store'
+import { userAction } from '@/entities/user'
+import { useAlertStore, useSellStore } from '@/shared/store'
 import type { OrderSell } from './type'
 
 export const useOrderSell = () => {

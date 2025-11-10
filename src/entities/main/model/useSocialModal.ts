@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation'
-import { getSession } from '@/src/shared/lib'
-import { useAlertStore } from '@/src/shared/store/useAlertStore'
+import { getSession } from '@/shared/lib'
+import { useAlertStore } from '@/shared/store/useAlertStore'
 
 export const useSocialModal = () => {
   const onOpenAlert = useAlertStore(state => state.onOpenAlert)

@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { CreateAppPage } from '@/src/views'
+import { CreateAppPage } from '@/views'
 
 type Props = {
   params: Promise<{ social: string }>

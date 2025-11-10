@@ -1,7 +1,7 @@
 import clsx from 'clsx'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Text } from '@/src/shared/ui'
+import { Text } from '@/shared/ui'
 
 type SideHeaderProps = {
   mobile: boolean

@@ -1,5 +1,5 @@
-import { MainFooter } from '@/src/entities/main'
-import { AdminCashList, PageHeader } from '@/src/widgets'
+import { MainFooter } from '@/entities/main'
+import { AdminCashList, PageHeader } from '@/widgets'
 
 export const AdminCashListPage = () => {
   return (

@@ -1,4 +1,4 @@
-import { AdminQuestionDetail, PageHeader } from '@/src/widgets'
+import { AdminQuestionDetail, PageHeader } from '@/widgets'
 
 export const AdminQuestionAnswerPage = ({ questionId }: { questionId: number }) => {
   return (

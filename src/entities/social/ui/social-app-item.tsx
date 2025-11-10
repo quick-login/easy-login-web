@@ -1,4 +1,4 @@
-import { LinkText, Text } from '@/src/shared/ui'
+import { LinkText, Text } from '@/shared/ui'
 import type { SocialApp } from '../model/type'
 
 export const SocialAppItem = ({ appId, appName }: SocialApp) => {
