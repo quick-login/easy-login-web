@@ -1,43 +1,24 @@
 'use server'
 
 import { patchApproveCash, patchCancleCash, patchRejectCash, postReqCash } from '../api/cash-api'
+import { onActionResponse } from '@/shared/api'
 
 export const requestCashAction = async (chargeCash: number) => {
-  const res = await postReqCash(chargeCash)
-
-  if (res.code === 'E200') {
-    return { success: true, message: res.message }
-  } else {
-    return { success: false, message: res.message }
-  }
+  const response = await postReqCash(chargeCash)
+  return await onActionResponse(response)
 }
 
 export const cancleCashAction = async (CashLogId: number) => {
-  const res = await patchCancleCash(CashLogId)
-
-  if (res.code === 'E200') {
-    return { success: true, message: res.message }
-  } else {
-    return { success: false, message: res.message }
-  }
+  const response = await patchCancleCash(CashLogId)
+  return await onActionResponse(response)
 }
 
 export const approveCashAction = async (cashChargeLogId: number) => {
-  const res = await patchApproveCash(cashChargeLogId)
-
-  if (res.code === 'E200') {
-    return { success: true, message: res.message, data: res.data }
-  } else {
-    return { success: false, message: res.message, data: res.data }
-  }
+  const response = await patchApproveCash(cashChargeLogId)
+  return await onActionResponse(response)
 }
 
 export const rejectCashAction = async (cashChargeLogId: number) => {
-  const res = await patchRejectCash(cashChargeLogId)
-
-  if (res.code === 'E200') {
-    return { success: true, message: res.message, data: res.data }
-  } else {
-    return { success: false, message: res.message, data: res.data }
-  }
+  const response = await patchRejectCash(cashChargeLogId)
+  return await onActionResponse(response)
 }

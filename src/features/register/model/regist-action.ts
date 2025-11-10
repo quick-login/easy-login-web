@@ -2,6 +2,7 @@
 
 import z from 'zod'
 import { postRegist } from '../api/regist-api'
+import { onActionResponse } from '@/shared/api'
 
 const registSchema = z
   .object({
@@ -33,17 +34,6 @@ export const registAction = async (formData: FormData) => {
     return { success: false, message: '입력된 정보가 형식에 맞지 않아요' }
   }
 
-  const res = await postRegist({ email, name, password, passwordCheck, kakaoId: null })
-
-  if (res.code === 'E200') {
-    return {
-      success: true,
-      message: '',
-    }
-  } else {
-    return {
-      success: false,
-      message: res.message,
-    }
-  }
+  const response = await postRegist({ email, name, password, passwordCheck, kakaoId: null })
+  return await onActionResponse(response)
 }

@@ -2,6 +2,7 @@
 
 import z from 'zod'
 import { postQuest, postQuestAnswer } from '../api/quest-api'
+import { onActionResponse } from '@/shared/api'
 
 const questSchema = z.object({
   title: z.string().min(1, '제목은 최소 1글자 입니다.').max(50, '제목은 최대 50글자 입니다.'),
@@ -20,13 +21,8 @@ export const questWriteAction = async (formData: FormData) => {
     return { success: false, message: '제목은 1~50, 본문은 1~1000자 입니다.' }
   }
 
-  const res = await postQuest({ title, content })
-
-  if (res.code === 'E200') {
-    return { success: true, message: res.message }
-  } else {
-    return { success: false, message: res.message }
-  }
+  const response = await postQuest({ title, content })
+  return await onActionResponse(response)
 }
 
 export const adminAnswerAction = async (questionId: number, formData: FormData) => {
@@ -35,11 +31,6 @@ export const adminAnswerAction = async (questionId: number, formData: FormData) 
   const result = answerSchema.safeParse({ answer })
   if (!result.success) return { success: false, message: '답변은 1~1000자 입니다.' }
 
-  const res = await postQuestAnswer(questionId, answer)
-
-  if (res.code === 'E200') {
-    return { success: true, message: res.message }
-  } else {
-    return { success: false, message: res.message }
-  }
+  const response = await postQuestAnswer(questionId, answer)
+  return await onActionResponse(response)
 }

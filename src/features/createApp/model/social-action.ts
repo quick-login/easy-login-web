@@ -2,6 +2,7 @@
 
 import z from 'zod'
 import { patchSocialApp, postCrateApp } from '../api/social-api'
+import { onActionResponse } from '@/shared/api'
 
 const registSchema = z.object({
   appName: z.string().max(50, '이름은 최대 50글자입니다.'),
@@ -21,11 +22,7 @@ export const createAppAction = async (formData: FormData) => {
   }
 
   const response = await postCrateApp({ appId, appName, restKey, redirectUrl })
-  if (response.code === 'E200') {
-    return { success: true, message: response.message }
-  } else {
-    return { success: false, message: response.message }
-  }
+  return await onActionResponse(response)
 }
 
 export const patchAppAction = async (formData: FormData) => {
@@ -40,9 +37,5 @@ export const patchAppAction = async (formData: FormData) => {
   }
 
   const response = await patchSocialApp({ appId, appName, restKey, redirectUrl })
-  if (response.code === 'E200') {
-    return { success: true, message: response.message }
-  } else {
-    return { success: false, message: response.message }
-  }
+  return await onActionResponse(response)
 }

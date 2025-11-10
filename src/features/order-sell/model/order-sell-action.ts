@@ -2,6 +2,7 @@
 
 import z from 'zod'
 import { deleteAdminSell, patchAdminSellStatus, postAdminAddSell, postOrderSell } from '../api/order-sell-api'
+import { onActionResponse } from '@/shared/api'
 import type { OrderSell } from './type'
 
 const addSellSchema = z.object({
@@ -14,12 +15,7 @@ const addSellSchema = z.object({
 
 export const orderSellAction = async (orderSell: OrderSell[]) => {
   const response = await postOrderSell(orderSell)
-
-  if (response.code === 'E200') {
-    return { success: true, message: response.message, data: response.data }
-  } else {
-    return { success: false, message: response.message, data: response.data }
-  }
+  return await onActionResponse(response)
 }
 
 export const adminAddSellAction = async (formData: FormData) => {
@@ -35,30 +31,15 @@ export const adminAddSellAction = async (formData: FormData) => {
   }
 
   const response = await postAdminAddSell({ name, price, type, value, discountRate })
-
-  if (response.code === 'E200') {
-    return { success: true, message: response.message }
-  } else {
-    return { success: false, message: response.message }
-  }
+  return await onActionResponse(response)
 }
 
 export const adminChangeStatusAction = async (productId: number) => {
   const response = await patchAdminSellStatus(productId)
-
-  if (response.code === 'E200') {
-    return { success: true, message: response.message }
-  } else {
-    return { success: false, message: response.message }
-  }
+  return await onActionResponse(response)
 }
 
 export const adminDeleteSellAction = async (productId: number) => {
   const response = await deleteAdminSell(productId)
-
-  if (response.code === 'E200') {
-    return { success: true, message: response.message }
-  } else {
-    return { success: false, message: response.message }
-  }
+  return await onActionResponse(response)
 }

@@ -2,6 +2,7 @@
 
 import z from 'zod'
 import { patchProfile, postLogout } from '../api/profile-api'
+import { onActionResponse } from '@/shared/api'
 import { updateSession } from '@/shared/lib'
 
 const registSchema = z
@@ -44,10 +45,5 @@ export const profilePatchAction = async (formData: FormData) => {
 
 export const userLogoutAction = async () => {
   const response = await postLogout()
-
-  if (response.code === 'E200') {
-    return { success: true, message: response.message }
-  } else {
-    return { success: false, message: response.message }
-  }
+  return await onActionResponse(response)
 }
