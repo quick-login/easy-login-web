@@ -2,7 +2,7 @@
 
 import z from 'zod'
 import { patchProfile, postLogout } from '../api/profile-api'
-import { onActionResponse } from '@/shared/api'
+import { type ActionResponse, onActionResponse } from '@/shared/api'
 import { updateSession } from '@/shared/lib'
 
 const registSchema = z
@@ -30,17 +30,16 @@ export const profilePatchAction = async (formData: FormData) => {
 
   const result = registSchema.safeParse({ name, password, passwordCheck })
   if (!result.success) {
-    return { success: false, message: '입력된 정보가 형식에 맞지 않아요' }
+    return {
+      success: false,
+      message: '입력된 정보가 형식에 맞지 않아요',
+      code: '',
+      data: null,
+    } satisfies ActionResponse<null>
   }
 
   const response = await patchProfile({ name, password, passwordCheck })
-
-  if (response.code === 'E200') {
-    await updateSession({ user: { name: name } })
-    return { success: true, message: '' }
-  } else {
-    return { success: false, message: response.message }
-  }
+  return await onActionResponse(response, async () => await updateSession({ user: { name: name } }))
 }
 
 export const userLogoutAction = async () => {
