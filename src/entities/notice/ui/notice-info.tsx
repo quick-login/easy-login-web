@@ -14,7 +14,7 @@ export const NoticeInfo = ({ content, createdAt, name, noticeId, fixed, title }:
         </div>
         <hr className="border-gray2" />
       </div>
-      <div className="font-pretendard flex-1 p-[15px] text-[16px]">{content}</div>
+      <div className="font-pretendard flex-1 p-[15px] text-[16px] whitespace-pre-line">{content}</div>
     </div>
   )
 }
