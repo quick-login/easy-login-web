@@ -14,7 +14,7 @@ export const QuestionInfo = ({ questionId, title, status, questionDate, content 
         </div>
         <hr className="border-gray2" />
       </div>
-      <div className="font-pretendard flex-1 p-[15px] text-[16px] whitespace-pre">{content}</div>
+      <div className="font-pretendard min-h-[300px] flex-1 p-[15px] text-[16px] whitespace-pre-line">{content}</div>
     </div>
   )
 }

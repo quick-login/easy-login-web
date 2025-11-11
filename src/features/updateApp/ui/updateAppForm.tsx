@@ -22,10 +22,15 @@ export const UpdateAppForm = () => {
         className="flex flex-1 flex-col gap-[10px] p-[20px]"
       >
         <Text className="text-gray4 text-[16px] leading-[100%] font-medium">app ID : {app.appId}</Text>
-        <Input type="text" name="appId" defaultValue={app.appId} hidden />
+        <Input type="text" name="appId" defaultValue={app.appId!} hidden />
         <Input type="text" name="appName" placeholder="app name 입력" defaultValue={app.appName} />
         <Input type="text" name="restKey" placeholder="rest key 입력" defaultValue={app.restKey} />
-        <Input type="text" name="redirectUrl" placeholder="redirect URL 입력 (선택)" defaultValue={app.redirectUrl} />
+        <Input
+          type="text"
+          name="redirectUrl"
+          placeholder="redirect URL 입력 (선택)"
+          defaultValue={app.redirectUrl ?? ''}
+        />
       </form>
       <hr className="border-gray2" />
       <Footer>
