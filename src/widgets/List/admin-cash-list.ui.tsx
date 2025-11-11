@@ -20,7 +20,8 @@ export const AdminCashList = () => {
     </div>
   ) : (
     <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
-      <div className="flex flex-1 flex-col gap-[10px]">
+      <Text className="text-[12px] font-semibold text-black md:text-[16px]">접수된 캐시 내역입니다.</Text>
+      <table className="flex flex-1 flex-col gap-[10px]">
         {cashList.map(data => (
           <AdminCashItem
             key={data.cashChargeLogId}
@@ -37,7 +38,7 @@ export const AdminCashList = () => {
             }
           />
         ))}
-      </div>
+      </table>
       <Pagination
         currentPage={pagination.currentPage}
         totalElements={pagination.totalElements}
