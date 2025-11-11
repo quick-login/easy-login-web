@@ -23,7 +23,7 @@ export const AdminSellForm = () => {
           value={InputNum.discountRate}
           onChange={handleChangeDiscount}
         />
-        <div className="flex gap-[20px]">
+        <div className="400:flex-row flex flex-col gap-[20px]">
           <RadioBtn
             title="API 호출 횟수 증가"
             id="API_REMAIN_COUNT_INCREMENT"
@@ -38,7 +38,7 @@ export const AdminSellForm = () => {
           />
         </div>
       </form>
-      <Button form="admin-sell-form" type="submit" className="w-full rounded-none rounded-b-[20px]">
+      <Button form="admin-sell-form" type="submit" className="1060:rounded-b-[20px] w-full rounded-none">
         상품 등록하기
       </Button>
     </>

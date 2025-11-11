@@ -17,7 +17,7 @@ export const AdminSellPopup = () => {
 
   return (
     <section className={'fixed inset-0 z-[1100] flex h-[100vh] w-full items-center justify-center bg-black/50'}>
-      <div className="flex h-[600px] w-[800px] min-w-[250px] flex-col items-center justify-center rounded-[20px] bg-white">
+      <div className="1060:h-[600px] 1060:w-[800px] 1060:rounded-[20px] flex h-full w-full flex-col items-center justify-center bg-white">
         <div className="border-b-gray3 flex w-full items-center justify-between border-b p-[20px]">
           <Text className="text-[20px] font-bold">상품 등록</Text>
           <Image
