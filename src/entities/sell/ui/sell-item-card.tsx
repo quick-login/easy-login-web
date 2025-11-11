@@ -20,12 +20,12 @@ export const SellItemCard = ({
   onRemove,
 }: SellItemProps) => {
   return (
-    <article className="border-gray3 mb-[30px] flex flex-col rounded-[10px] border">
-      <figure className="flex items-center justify-center overflow-hidden p-[20px]">
+    <article className="mb-[30px] flex flex-col rounded-[10px]">
+      <figure className="border-gray3 flex items-center justify-center overflow-hidden rounded-t-[10px] border p-[20px]">
         <Image src={'/easyLogin.svg'} alt="상품" width={200} height={200} />
       </figure>
 
-      <div className="border-t-gray3 flex flex-col justify-end gap-[10px] border-t p-[10px]">
+      <div className="border-x-gray3 flex flex-col justify-end gap-[10px] border-x p-[10px]">
         <Text className="text-[12px] font-semibold md:text-[15px]">{`${name}`}</Text>
         <div className="flex items-center justify-between">
           <Text

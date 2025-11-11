@@ -4,9 +4,9 @@ import { motion } from 'framer-motion'
 
 export const LoadingSkeleton = () => {
   return (
-    <div className="flex flex-1 flex-col gap-[10px] overflow-hidden bg-white p-[20px]">
+    <ul className="flex flex-1 flex-col gap-[10px] overflow-hidden bg-white p-[20px]">
       {[...Array(10)].map((_, index) => (
-        <motion.div
+        <motion.li
           key={index}
           className="bg-gray2 flex items-center gap-[10px] rounded-[10px] px-[20px] py-[20px] transition-colors duration-500"
           initial={{ opacity: 0, y: 20 }}
@@ -43,8 +43,8 @@ export const LoadingSkeleton = () => {
               delay: index * 0.3,
             }}
           />
-        </motion.div>
+        </motion.li>
       ))}
-    </div>
+    </ul>
   )
 }

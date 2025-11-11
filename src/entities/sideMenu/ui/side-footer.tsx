@@ -11,19 +11,19 @@ type SideFooterProps = {
 
 export const SideFooter = ({ mobile, sideOn, isLogin, name = '' }: SideFooterProps) => {
   return (
-    <div className="z-25 flex h-[66px] justify-between p-[20px]">
+    <div className="z-25 flex h-[66px] items-center justify-between p-[20px]">
       {isLogin ? (
         <>
           <div
             className={clsx(
-              'flex gap-[4px] overflow-hidden whitespace-nowrap transition-all duration-300',
+              'flex items-center gap-[4px] overflow-hidden whitespace-nowrap transition-all duration-300',
               sideOn ? '1060:max-w-[100%]' : '1060:max-w-[0px]',
               mobile ? 'max-w-[100%]' : '1060:max-w-[0px]',
             )}
           >
             <Image src="/user.svg" alt="user" width={24} height={24} />
-            <Text className="text-gray4">
-              <b className="font-semibold text-black">{name}</b> 님 환영해요
+            <Text className="text-gray4 flex items-center gap-[5px]">
+              <b className="1060:max-w-[100px] inline-block truncate font-semibold text-black">{name}</b>님 환영해요
             </Text>
           </div>
           <LinkText href="/profile">

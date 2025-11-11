@@ -12,9 +12,9 @@ export const SideCash = ({ mobile, sideOn, cash }: SideCashProps) => {
   return (
     <div className="flex flex-col gap-[10px] px-[20px] py-[10px]">
       <div className="flex flex-col gap-[12px]">
-        <div className="flex justify-between">
+        <div className="flex justify-between gap-[10px]">
+          <Image src="/cash.svg" alt="cash" width={24} height={24} />
           <div className="flex gap-[4px]">
-            <Image src="/cash.svg" alt="cash" width={24} height={24} />
             <Text
               className={clsx(
                 'overflow-hidden leading-[150%] font-semibold whitespace-nowrap transition-all duration-300',
@@ -27,7 +27,7 @@ export const SideCash = ({ mobile, sideOn, cash }: SideCashProps) => {
           </div>
           <Text
             className={clsx(
-              'overflow-hidden leading-[150%] font-medium whitespace-nowrap transition-all duration-300',
+              'flex-1 truncate overflow-hidden text-right leading-[150%] font-medium transition-all duration-300',
               sideOn ? '1060:max-w-[100%]' : '1060:max-w-[0px]',
               mobile ? 'max-w-[100%]' : '1060:max-w-[0px]',
             )}

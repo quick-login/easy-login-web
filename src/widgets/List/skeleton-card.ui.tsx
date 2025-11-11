@@ -6,9 +6,9 @@ export const LoadingSkeletonCard = () => {
   return (
     <div className="flex-1 flex-col bg-white p-[20px]">
       <div className="h-full flex-1 gap-[10px]">
-        <div className="grid h-full grid-cols-2 items-start gap-[20px] md:grid-cols-4">
+        <ul className="grid h-full grid-cols-2 items-start gap-[20px] md:grid-cols-4">
           {[...Array(8)].map((_, index) => (
-            <motion.div
+            <motion.li
               key={index}
               className="bg-gray2 flex h-full flex-col gap-[10px] rounded-[10] p-[20px] transition-colors duration-500"
               initial={{ opacity: 0, y: 20 }}
@@ -55,9 +55,9 @@ export const LoadingSkeletonCard = () => {
                   delay: index * 0.3,
                 }}
               />
-            </motion.div>
+            </motion.li>
           ))}
-        </div>
+        </ul>
       </div>
     </div>
   )
