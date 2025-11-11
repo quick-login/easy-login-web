@@ -8,7 +8,7 @@ export const RadioBtn = ({ title, ...props }: RadioBtnProps) => {
   return (
     <label
       htmlFor={props.id}
-      className="text-gray5 font-pretendard flex cursor-pointer gap-[8px] text-[14px] font-bold"
+      className="text-gray5 font-pretendard flex cursor-pointer gap-[5px] text-[13px] font-bold"
     >
       <input
         {...props}
