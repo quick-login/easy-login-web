@@ -1,6 +1,5 @@
 'use client'
 
-import clsx from 'clsx'
 import Image from 'next/image'
 import { useEffect } from 'react'
 import { SellListItem } from '@/entities/sell'
@@ -19,7 +18,9 @@ export const SellPopup = ({ onClose }: Props) => {
   const onTotalPrice = useSellStore(state => state.onTotalPrice)
 
   useEffect(() => {
+    document.body.style.overflow = 'hidden'
     return () => {
+      document.body.style.overflow = 'auto'
       onClose()
     }
   }, [])
@@ -27,14 +28,14 @@ export const SellPopup = ({ onClose }: Props) => {
   return (
     <section
       role="dialog"
-      className={clsx('fixed inset-0 z-[1100] flex h-[100vh] w-full items-center justify-center bg-black/50')}
+      className={'fixed inset-0 z-[1100] flex h-[100vh] w-full items-center justify-center bg-black/50'}
     >
-      <div className="flex h-[600px] w-[800px] min-w-[250px] flex-col items-center justify-center rounded-[20px] bg-white">
+      <div className="1060:h-[600px] 1060:w-[800px] 1060:rounded-[20px] flex h-full w-full flex-col items-center justify-center bg-white">
         <div className="border-b-gray3 flex w-full items-center justify-between border-b p-[20px]">
           <Text className="text-[20px] font-bold">상품 주문 리스트</Text>
           <Image className="cursor-pointer" src="/menu.svg" alt="menu" width={24} height={24} onClick={onClose} />
         </div>
-        <ul className="flex w-full flex-1 flex-col gap-[10px] overflow-y-scroll p-[20px]">
+        <ul className="flex w-full flex-1 flex-col gap-[10px] overflow-y-scroll p-[10px]">
           {list.size > 0 ? (
             Array.from(list.entries()).map(([id, sell]) => (
               <SellListItem
@@ -54,7 +55,7 @@ export const SellPopup = ({ onClose }: Props) => {
 
         {list.size > 0 ? (
           <Button
-            className="w-full rounded-none rounded-b-[20px]"
+            className="1060:rounded-b-[20px] w-full rounded-none"
             onClick={() =>
               onOpenConfirm('주문하시겠습니까?', () => {
                 onClose()
@@ -63,7 +64,7 @@ export const SellPopup = ({ onClose }: Props) => {
             }
           >{`${onTotalPrice().toLocaleString()} 원 주문하기`}</Button>
         ) : (
-          <Button className="w-full rounded-none rounded-b-[20px]" variant="noActive">
+          <Button className="1060:rounded-b-[20px] w-full rounded-none" variant="noActive">
             상품을 먼저 담아주세요.
           </Button>
         )}
