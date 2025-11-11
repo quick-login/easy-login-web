@@ -1,4 +1,5 @@
 'use client'
+import { useRouter } from 'next/navigation'
 import { Pagination } from './pagination.ui'
 import { LoadingSkeleton } from './skeleton-list.ui'
 import { QuestionItem, useQuestList } from '@/entities/question'
@@ -6,6 +7,7 @@ import { Text } from '@/shared/ui'
 
 export const QuestionList = () => {
   const { pagination, questList, isLoading } = useQuestList()
+  const router = useRouter()
 
   if (isLoading) return <LoadingSkeleton />
 
@@ -15,7 +17,7 @@ export const QuestionList = () => {
     </div>
   ) : (
     <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
-      <div className="flex flex-1 flex-col gap-[10px]">
+      <table className="flex flex-1 flex-col gap-[10px]">
         {questList.map(data => (
           <QuestionItem
             key={data.questionId}
@@ -24,9 +26,10 @@ export const QuestionList = () => {
             content={data.content}
             questionDate={data.questionDate}
             status={data.status}
+            onMove={() => router.push(`/question/${data.questionId}`)}
           />
         ))}
-      </div>
+      </table>
       <Pagination
         currentPage={pagination.currentPage}
         totalElements={pagination.totalElements}
