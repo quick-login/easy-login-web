@@ -1,6 +1,5 @@
 'use client'
 
-import clsx from 'clsx'
 import Image from 'next/image'
 import { useEffect } from 'react'
 import { SellListItem } from '@/entities/sell'
@@ -19,7 +18,9 @@ export const SellPopup = ({ onClose }: Props) => {
   const onTotalPrice = useSellStore(state => state.onTotalPrice)
 
   useEffect(() => {
+    document.body.style.overflow = 'hidden'
     return () => {
+      document.body.style.overflow = 'auto'
       onClose()
     }
   }, [])
@@ -34,7 +35,7 @@ export const SellPopup = ({ onClose }: Props) => {
           <Text className="text-[20px] font-bold">상품 주문 리스트</Text>
           <Image className="cursor-pointer" src="/menu.svg" alt="menu" width={24} height={24} onClick={onClose} />
         </div>
-        <ul className="flex w-full flex-1 flex-col gap-[10px] overflow-y-scroll p-[20px]">
+        <ul className="flex w-full flex-1 flex-col gap-[10px] overflow-y-scroll p-[10px]">
           {list.size > 0 ? (
             Array.from(list.entries()).map(([id, sell]) => (
               <SellListItem
