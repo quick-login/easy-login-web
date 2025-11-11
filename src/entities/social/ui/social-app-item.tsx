@@ -1,14 +1,24 @@
-import { LinkText, Text } from '@/shared/ui'
+import { Text } from '@/shared/ui'
 import type { SocialApp } from '../model/type'
 
-export const SocialAppItem = ({ appId, appName }: SocialApp) => {
+type Props = {
+  onMove: () => void
+} & SocialApp
+
+export const SocialAppItem = ({ appId, appName, onMove }: Props) => {
   return (
-    <LinkText
-      href={`/kakao/app/${appId}`}
-      className="border-gray3 flex cursor-pointer flex-col gap-[10px] rounded-[10px] border p-[15px]"
+    <tr
+      className="border-gray3 flex cursor-pointer flex-col gap-[10px] rounded-[10px] border px-[15px] py-[10px]"
+      onClick={onMove}
     >
-      <Text className="text-gray4 text-[16px] leading-[150%] font-normal">app ID : {appId}</Text>
-      <Text className="text-[20px] leading-[150%] font-semibold">{appName}</Text>
-    </LinkText>
+      <td className="flex-1 overflow-x-hidden">
+        <Text className="1060:whitespace-pre-line text-gray4 truncate text-[13px] leading-[150%] font-normal">
+          app ID : {appId}
+        </Text>
+      </td>
+      <td className="flex-1n overflow-x-hidden">
+        <Text className="1060:whitespace-pre-line truncate text-[16px] leading-[150%] font-semibold">{appName}</Text>
+      </td>
+    </tr>
   )
 }

@@ -20,7 +20,7 @@ export const CashList = () => {
     </div>
   ) : (
     <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
-      <div className="flex flex-1 flex-col gap-[10px]">
+      <table className="flex flex-1 flex-col gap-[10px]">
         {cashList.map(data => (
           <CashItem
             key={data.cashChargeLogId}
@@ -31,7 +31,7 @@ export const CashList = () => {
             onCancle={() => onOpenConfirm('신청을 취소하시겠습니까?', () => handleCancleCash(data.cashChargeLogId))}
           />
         ))}
-      </div>
+      </table>
       <Pagination
         currentPage={pagination.currentPage}
         totalElements={pagination.totalElements}
