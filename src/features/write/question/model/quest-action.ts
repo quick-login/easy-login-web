@@ -5,11 +5,11 @@ import { postQuest, postQuestAnswer } from '../api/quest-api'
 import { type ActionResponse, onActionResponse } from '@/shared/api'
 
 const questSchema = z.object({
-  title: z.string().min(1, '제목은 최소 1글자 입니다.').max(50, '제목은 최대 50글자 입니다.'),
-  content: z.string().min(1, '본문은 최소 1글자 입니다.').max(1000, '본문은 최대 1000글자 입니다.'),
+  title: z.string().min(1, '제목은 필수 값입니다.').max(50, '제목은 최대 50자 입니다.'),
+  content: z.string().min(1, '본문은 필수 값입니다.').max(1000, '본문은 최대 1000자 입니다.'),
 })
 const answerSchema = z.object({
-  answer: z.string().min(1, '답변은 최소 1글자 입니다.').max(1000, '답변은 최대 1000글자 입니다.'),
+  answer: z.string().min(1, '답변은 필수 값입니다.').max(1000, '답변은 최대 1000자입니다.'),
 })
 
 export const questWriteAction = async (formData: FormData) => {
