@@ -28,11 +28,11 @@ export const NoticeDetail = ({ noticeId }: { noticeId: number }) => {
           {session?.user?.role === 'ADMIN' && <DeleteNoticeInfoBtn noticeId={noticeId} />}
         </div>
         <div className="flex gap-[10px]">
-          <Button className="p-[15px]" variant="cancle" onClick={() => router.back()}>
+          <Button className="400:w-fit w-full p-[15px]" variant="cancle" onClick={() => router.back()}>
             이전으로
           </Button>
           {session?.user?.role === 'ADMIN' && (
-            <Button className="p-[15px]" onClick={() => router.push(`/notice/modify?id=${noticeId}`)}>
+            <Button className="400:w-fit w-full p-[15px]" onClick={() => router.push(`/notice/modify?id=${noticeId}`)}>
               수정하기
             </Button>
           )}
