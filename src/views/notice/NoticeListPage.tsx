@@ -1,3 +1,4 @@
+import { MainFooter } from '@/entities/main'
 import { getSession } from '@/shared/lib'
 import { Footer, LinkButton } from '@/shared/ui'
 import { NoticeList, PageHeader } from '@/widgets'
@@ -10,15 +11,17 @@ export const NoticeListPage = async () => {
       <hr className="border-gray2" />
       <NoticeList />
       <hr className="border-gray2" />
-      <Footer>
-        {session?.user?.role === 'ADMIN' && (
-          <div className="flex flex-1 justify-end">
-            <LinkButton href="/notice/write" className="p-[15px]">
+      {session?.user?.role === 'ADMIN' ? (
+        <Footer>
+          <div className="400:px-0 flex w-full flex-1 justify-end px-[15px]">
+            <LinkButton href="/notice/write" className="400:w-fit w-full p-[15px]">
               공지 작성
             </LinkButton>
           </div>
-        )}
-      </Footer>
+        </Footer>
+      ) : (
+        <MainFooter />
+      )}
     </section>
   )
 }

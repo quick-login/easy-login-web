@@ -22,12 +22,12 @@ export const AdminQuestionDetail = ({ questionId }: { questionId: number }) => {
       {quest.status === 'WAITING' && <AnswerForm questionId={questionId} />}
       <hr className="border-gray2" />
       <Footer>
-        <div className="flex w-full items-center justify-end gap-[10px]">
-          <Button className="p-[15px]" variant="cancle" onClick={() => router.back()}>
+        <div className="400:px-0 flex w-full items-center justify-end gap-[10px] px-[15px]">
+          <Button className="400:w-fit w-full p-[15px]" variant="cancle" onClick={() => router.back()}>
             이전으로
           </Button>
           {quest.status === 'WAITING' && (
-            <Button type="submit" form="answer-form" className="p-[15px]">
+            <Button type="submit" form="answer-form" className="400:w-fit w-full p-[15px]">
               답변 등록
             </Button>
           )}
