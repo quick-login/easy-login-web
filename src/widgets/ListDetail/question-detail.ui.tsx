@@ -21,10 +21,14 @@ export const QuestionDetail = ({ questionId }: { questionId: number }) => {
 
       <hr className="border-gray2" />
       <Footer>
-        {quest.status === 'WAITING' ? <DeleteQuestInfoBtn questionId={questionId} /> : <div />}
-        <Button className="p-[15px]" variant="cancle" onClick={() => router.back()}>
-          이전으로
-        </Button>
+        <div className="400:flex-row 400:px-0 flex w-full flex-col items-center justify-between gap-[10px] px-[5px]">
+          <div className="400:order-none order-2 flex gap-[20px]">
+            {quest.status === 'WAITING' ? <DeleteQuestInfoBtn className="order-2" questionId={questionId} /> : <div />}
+          </div>
+          <Button className="400:w-fit order-1 w-full p-[15px]" variant="cancle" onClick={() => router.back()}>
+            이전으로
+          </Button>
+        </div>
       </Footer>
     </>
   )

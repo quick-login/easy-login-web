@@ -10,7 +10,7 @@ export const AdminSellPage = () => {
       <AdminSellList />
       <hr className="border-gray2" />
       <Footer>
-        <div className="flex flex-1 justify-end">
+        <div className="400:px-0 flex w-full flex-1 justify-end px-[15px]">
           <AdminSellModalBtn />
         </div>
       </Footer>

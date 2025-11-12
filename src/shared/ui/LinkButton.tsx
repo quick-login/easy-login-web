@@ -11,7 +11,7 @@ export const LinkButton = ({ className, children, ...props }: Props) => {
     <Link
       {...props}
       className={clsx(
-        'font-pretendard h-[50px] cursor-pointer rounded-[10px] bg-black text-[16px] text-white',
+        'font-pretendard h-[50px] cursor-pointer rounded-[10px] bg-black text-center text-[16px] text-white',
         className,
       )}
     >

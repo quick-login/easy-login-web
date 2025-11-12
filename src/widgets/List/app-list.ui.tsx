@@ -15,7 +15,7 @@ export const AppList = () => {
     <>
       <AppHeader title="내 앱 관리" count={appList.length} />
       <hr className="border-gray2" />
-      <table className="flex flex-1 flex-col gap-[10px] p-[20px]">
+      <table className="flex flex-1 flex-col gap-[10px] p-[10px]">
         {appList.length > 0 ? (
           appList.map(app => (
             <SocialAppItem

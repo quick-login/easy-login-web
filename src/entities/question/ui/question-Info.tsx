@@ -3,7 +3,7 @@ import type { Question } from '../model/types'
 
 export const QuestionInfo = ({ questionId, title, status, questionDate, content }: Question) => {
   return (
-    <div className="flex flex-1 flex-col gap-[10px] p-[20px]">
+    <div className="flex flex-1 flex-col gap-[10px] p-[10px]">
       <div className="flex flex-col gap-[10px] px-[15px]">
         <div className="flex flex-col gap-[4px]">
           <Text className="text-[20px] font-bold text-black">{title}</Text>
