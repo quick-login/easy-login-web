@@ -21,9 +21,10 @@ export const useRefreshInfo = () => {
       const response = await userAction()
       if (response.success) {
         console.log('성공')
-        if (update) {
-          await update()
-        }
+        window.location.reload()
+        // if (update) {
+        //   await update()
+        // }
       } else {
         console.log('실패')
         await signOut({ redirect: true, redirectTo: '/login' })
