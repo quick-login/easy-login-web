@@ -10,7 +10,7 @@ type SideCashProps = {
 
 export const SideCash = ({ mobile, sideOn, cash }: SideCashProps) => {
   return (
-    <div className="flex flex-col gap-[10px] px-[20px] py-[10px]">
+    <div className="flex flex-col p-[20px]">
       <div className="flex flex-col gap-[12px]">
         <div className="flex justify-between gap-[10px]">
           <Image src="/cash.svg" alt="cash" width={24} height={24} />

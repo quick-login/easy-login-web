@@ -45,7 +45,7 @@ export const SideMenu = () => {
       />
       <div
         className={clsx(
-          '1060:p-[0px] 1060:transition-none 1060:opacity-100 1060:pointer-events-auto relative z-20 flex h-full flex-col gap-[10px] p-[20px] transition-opacity duration-100',
+          '1060:p-[0px] 1060:transition-none 1060:opacity-100 1060:pointer-events-auto relative z-20 flex h-full flex-col p-[20px] transition-opacity duration-100',
           mobile ? 'pointer-events-auto opacity-100 delay-400' : 'pointer-events-none opacity-0',
         )}
       >

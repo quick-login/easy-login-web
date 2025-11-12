@@ -12,7 +12,7 @@ type SideHeaderProps = {
 
 export const SideHeader = ({ mobile, sideOn, setMobile, onToggleSide }: SideHeaderProps) => {
   return (
-    <div className="flex w-full justify-between p-[20px]">
+    <div className="1060:pt-[20px] flex w-full justify-between p-[20px] pt-0">
       <Link
         className={clsx(
           'flex items-center gap-[4px] overflow-hidden whitespace-nowrap transition-all duration-300',

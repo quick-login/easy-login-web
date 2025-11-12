@@ -40,7 +40,7 @@ export const SideFooter = ({ mobile, sideOn, isLogin, name = '' }: SideFooterPro
             className={clsx(
               'transition-all duration-300',
               !sideOn ? '1060:max-w-[100%]' : '1060:max-w-[0px]',
-              !mobile ? 'max-w-[100%]' : '1060:max-w-[0px]',
+              mobile ? 'max-w-[0%]' : 'max-w-[0px]',
             )}
           />
           <div
