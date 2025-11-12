@@ -1,18 +1,17 @@
 'use client'
-import clsx from 'clsx'
 import Image from 'next/image'
 import { useSideStore } from '@/shared/store'
-import { Text } from '@/shared/ui'
+import { LinkText } from '@/shared/ui'
 
 export const MobildHeader = () => {
   const setMobile = useSideStore(state => state.setMobile)
 
   return (
-    <div className="bg-gray2 1060:hidden fixed top-0 flex w-full justify-between px-[20px] py-[15px]">
-      <div className={clsx('flex items-center gap-[8px]')}>
+    <header className="bg-gray2 1060:hidden fixed top-0 z-[999] flex w-full justify-between px-[20px] py-[15px]">
+      <LinkText href={'/'} className="flex cursor-pointer items-center gap-[8px]">
         <Image src="/easyLogin.svg" alt="easyLogin" width={24} height={24} />
-        <Text className="text-[20px] font-bold">이지로그인</Text>
-      </div>
+        <h1 className="font-pretendard text-[20px] font-bold">이지로그인</h1>
+      </LinkText>
       <Image
         className="cursor-pointer"
         src="/menu.svg"
@@ -21,6 +20,6 @@ export const MobildHeader = () => {
         height={24}
         onClick={() => setMobile(true)}
       />
-    </div>
+    </header>
   )
 }
