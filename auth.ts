@@ -53,23 +53,48 @@ export const {
       return true
     },
     jwt: async ({ token, user, trigger, session }) => {
+      console.log('🔹 jwt trigger:', trigger)
+      console.log('🔹 incoming session.user:', session?.user)
+      console.log('🔹 current token:', token)
+      // if (user) {
+      //   token.name = user.name
+      //   token.email = user.email
+      //   token.accessToken = user.accessToken
+      //   token.refreshToken = user.refreshToken
+      //   token.cash = user.cash
+      //   token.remainCount = user.remainCount
+      //   token.maxKakaoAppCount = user.maxKakaoAppCount
+      //   token.role = user.role
+      //   token.updateAt = user.updateAt
+      // }
       if (user) {
-        token.accessToken = user.accessToken
-        token.refreshToken = user.refreshToken
-        token.cash = user.cash
-        token.remainCount = user.remainCount
-        token.maxKakaoAppCount = user.maxKakaoAppCount
-        token.role = user.role
-        token.updateAt = user.updateAt
+        token = {
+          ...token,
+          name: user.name,
+          email: user.email,
+          accessToken: user.accessToken,
+          refreshToken: user.refreshToken,
+          role: user.role,
+          cash: user.cash,
+          remainCount: user.remainCount,
+          maxKakaoAppCount: user.maxKakaoAppCount,
+        }
       }
-      if (trigger === 'update' && session) {
-        Object.assign(token, session.user)
+      if (trigger === 'update' && session?.user) {
+        // Object.assign(token, session.user)
+        token = {
+          ...token,
+          accessToken: session.user.accessToken,
+          refreshToken: session.user.refreshToken,
+        }
       }
       return token
     },
     session: async ({ session, token }) => {
       session.user = {
         ...session.user,
+        name: token.name as string,
+        email: token.email as string,
         accessToken: token.accessToken as string,
         refreshToken: token.refreshToken as string,
         cash: token.cash as number,

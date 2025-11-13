@@ -1,5 +1,6 @@
 import axios, { type AxiosRequestConfig } from 'axios'
-import { clearSession, getSession, updateSession } from '../lib'
+import { update } from '../../../auth'
+import { clearSession, getSession } from '../lib'
 import type { ResponseType, UserType } from './types'
 
 const axiosInstance = axios.create({
@@ -28,12 +29,12 @@ axiosInstance.interceptors.request.use(
 
 axiosInstance.interceptors.response.use(
   async response => {
-    console.log('정상요청')
+    console.log('정상요청', response.config.url)
     return response
   },
   async error => {
     const origin = error.config
-    console.log('에러', error.response?.data)
+    console.log('에러', error.response?.data, error.config.url)
     if (error.response?.data === '' || error.response?.data === null || error.response?.data.code === 'T6002') {
       console.log('리프레시 만료')
       await clearSession()
@@ -59,7 +60,7 @@ axiosInstance.interceptors.response.use(
         console.log('새 액세스', newAccessToken)
         console.log('새 리프레시', newRefreshToken)
 
-        await updateSession({ user: { accessToken: newAccessToken, refreshToken: newRefreshToken } })
+        await update({ user: { ...session?.user, accessToken: newAccessToken, refreshToken: newRefreshToken } })
 
         origin.headers.Authorization = `Bearer ${newAccessToken}`
 
@@ -95,9 +96,8 @@ export const axiosGetUserInfo = async (
 ): Promise<ResponseType<UserType>> => {
   const response = await axiosInstance.get<ResponseType<UserType>>(url, { ...config })
   const { cash, email, maxKakaoAppCount, name, remainCount, role } = response.data.data
-  console.log('결과체크', response.data)
   const session = await getSession()
-  await updateSession({
+  await update({
     user: {
       cash: cash,
       name: name,
@@ -110,6 +110,9 @@ export const axiosGetUserInfo = async (
       refreshToken: response.data.refreshToken ? response.data.refreshToken : session?.user?.refreshToken,
     },
   })
+
+  const updated = await getSession()
+  console.log('세션체크', updated?.user)
   return response.data
 }
 
