@@ -21,7 +21,7 @@ export const useRefreshInfo = () => {
       const response = await userAction()
       if (response.success) {
         console.log('성공')
-        window.location.reload()
+        // window.location.reload()
         // if (update) {
         //   await update()
         // }
