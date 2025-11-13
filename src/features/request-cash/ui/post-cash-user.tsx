@@ -9,8 +9,8 @@ export const PostCash = () => {
     <>
       <div className="flex flex-1 flex-col gap-[20px] p-[20px]">
         <Text className="text-gray5 text-[14px] font-semibold md:text-[16px]">입금 계좌</Text>
-        <Text className="text-gray5 border-gray3 rounded-[10px] border p-[15px] text-[14px] font-semibold md:text-[16px]">
-          카카오뱅크 1234
+        <Text className="text-gray5 border-gray3 rounded-[10px] border p-[15px] text-[12px] font-semibold md:text-[16px]">
+          카카오뱅크 3333-22-7865484 (예금주 : 송광호)
         </Text>
         <form action="" className="flex flex-col gap-[5px]">
           <Input
