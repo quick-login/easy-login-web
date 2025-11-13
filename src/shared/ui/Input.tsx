@@ -10,6 +10,7 @@ export const Input = ({ ...props }: ComponentProps<'input'>) => {
         props.className,
         props.readOnly && 'bg-gray1',
       )}
+      autoComplete="off"
     />
   )
 }
