@@ -46,9 +46,13 @@ export const RegistForm = () => {
                 인증하기
               </Button>
             </div>
-            <Text className={clsx('text-negative text-[16px] leading-[150%] font-normal')}>{emailRes.message}</Text>
+            <Text className={clsx('text-negative text-[14px] leading-[150%] font-normal md:text-[16px]')}>
+              {emailRes.message}
+            </Text>
             {codeRes.success && (
-              <Text className={clsx('text-[16px] leading-[150%] font-normal', 'text-positive')}>{codeRes.message}</Text>
+              <Text className={clsx('text-[14px] leading-[150%] font-normal md:text-[16px]', 'text-positive')}>
+                {codeRes.message}
+              </Text>
             )}
           </div>
           <Input
@@ -67,7 +71,7 @@ export const RegistForm = () => {
               onChange={handleChangeRegist}
             />
             {pwValidate && (
-              <Text className="text-negative text-[16px] leading-[150%] font-normal">
+              <Text className="text-negative text-[14px] leading-[150%] font-normal md:text-[16px]">
                 숫자,영문자,특수문자 조합으로 6~30자
               </Text>
             )}
@@ -80,7 +84,9 @@ export const RegistForm = () => {
               onChange={handleChangeRegist}
             />
             {!pwSame && (
-              <Text className="text-negative text-[16px] leading-[150%] font-normal">비밀번호가 일치하지 않아요</Text>
+              <Text className="text-negative text-[14px] leading-[150%] font-normal md:text-[16px]">
+                비밀번호가 일치하지 않아요
+              </Text>
             )}
           </div>
         </div>

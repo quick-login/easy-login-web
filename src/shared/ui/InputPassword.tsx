@@ -11,7 +11,7 @@ export const InputPassword = ({ ...props }: ComponentProps<'input'>) => {
         {...props}
         type={hide ? 'password' : 'text'}
         className={clsx(
-          `placeholder:text-gray4 font-pretendard min-w-0 flex-1 text-[16px] text-black outline-0`,
+          `placeholder:text-gray4 font-pretendard min-w-0 flex-1 text-[14px] text-black outline-0 md:text-[16px]`,
           props.className,
         )}
       />
