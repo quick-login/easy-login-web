@@ -5,7 +5,7 @@ import { Text } from './Text'
 type IconButtonProps = {
   title: string
   alt: string
-  className: string
+  className?: string
   onClick: () => void
 }
 
