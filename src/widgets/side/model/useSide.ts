@@ -7,7 +7,7 @@ import { useRefreshInfo } from '@/entities/user'
 import { useSideStore } from '@/shared/store'
 
 export const useSide = () => {
-  const { data: session, status, update } = useSession()
+  const { data: session, status } = useSession()
   const { side, mobile, toggleSide, setMobile } = useSideStore()
   const { handleRefreshUser } = useRefreshInfo()
   const pathname = usePathname()
@@ -29,7 +29,6 @@ export const useSide = () => {
     if (mobile) setMobile(false)
     if (status === 'authenticated') {
       handleRefreshUser(session)
-      // handleRefreshUser(session, update)
     }
   }, [pathname, status])
 
