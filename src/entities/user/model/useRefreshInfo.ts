@@ -15,8 +15,8 @@ export const useRefreshInfo = () => {
     console.log('마지막 세션 업데이트', session.user.updateAt)
     const lastUpdateTime = new Date(session.user.updateAt).getTime()
     const currentTime = new Date().getTime()
-    // const refreshTime = 10 * 60 * 1000
-    const refreshTime = 15 * 1000
+    const refreshTime = 30 * 60 * 1000
+    // const refreshTime = 15 * 1000
 
     if (currentTime - lastUpdateTime >= refreshTime) {
       console.log('세션 요청')
