@@ -18,31 +18,35 @@ export const NoticeList = () => {
     </div>
   ) : (
     <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
-      <table className="flex flex-col gap-[10px]">
-        {fixed.map(d => (
-          <NoticeFixedItem
-            key={d.noticeId}
-            createdAt={d.createdAt}
-            fixed={d.fixed}
-            name={d.name}
-            noticeId={d.noticeId}
-            title={d.title}
-            onMove={() => router.push(`/notice/${d.noticeId}`)}
-          />
-        ))}
+      <table className="flex-1">
+        <tbody className="flex flex-col gap-[10px]">
+          {fixed.map(d => (
+            <NoticeFixedItem
+              key={d.noticeId}
+              createdAt={d.createdAt}
+              fixed={d.fixed}
+              name={d.name}
+              noticeId={d.noticeId}
+              title={d.title}
+              onMove={() => router.push(`/notice/${d.noticeId}`)}
+            />
+          ))}
+        </tbody>
       </table>
-      <table className="flex flex-1 flex-col gap-[10px]">
-        {basic.map(d => (
-          <NoticeItem
-            key={d.noticeId}
-            createdAt={d.createdAt}
-            fixed={d.fixed}
-            name={d.name}
-            noticeId={d.noticeId}
-            title={d.title}
-            onMove={() => router.push(`/notice/${d.noticeId}`)}
-          />
-        ))}
+      <table className="flex-1">
+        <tbody className="flex flex-1 flex-col gap-[10px]">
+          {basic.map(d => (
+            <NoticeItem
+              key={d.noticeId}
+              createdAt={d.createdAt}
+              fixed={d.fixed}
+              name={d.name}
+              noticeId={d.noticeId}
+              title={d.title}
+              onMove={() => router.push(`/notice/${d.noticeId}`)}
+            />
+          ))}
+        </tbody>
       </table>
       <Pagination
         currentPage={pagination.currentPage}

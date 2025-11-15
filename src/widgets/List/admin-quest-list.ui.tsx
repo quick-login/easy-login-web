@@ -39,19 +39,21 @@ export const AdminQuestionList = () => {
           />
         </div>
       </div>
-      <table className="flex flex-1 flex-col gap-[10px]">
-        {questList.map(data => (
-          <AdminQuestionItem
-            key={data.questionId}
-            title={data.title}
-            questionId={data.questionId}
-            content={data.content}
-            name={data.name}
-            questionDate={data.questionDate}
-            status={data.status}
-            onMove={() => router.push(`/admin/question/${data.questionId}`)}
-          />
-        ))}
+      <table className="flex-1">
+        <tbody className="flex flex-1 flex-col gap-[10px]">
+          {questList.map(data => (
+            <AdminQuestionItem
+              key={data.questionId}
+              title={data.title}
+              questionId={data.questionId}
+              content={data.content}
+              name={data.name}
+              questionDate={data.questionDate}
+              status={data.status}
+              onMove={() => router.push(`/admin/question/${data.questionId}`)}
+            />
+          ))}
+        </tbody>
       </table>
       <Pagination
         currentPage={pagination.currentPage}

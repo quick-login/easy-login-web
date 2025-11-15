@@ -17,18 +17,20 @@ export const QuestionList = () => {
     </div>
   ) : (
     <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
-      <table className="flex flex-1 flex-col gap-[10px]">
-        {questList.map(data => (
-          <QuestionItem
-            key={data.questionId}
-            title={data.title}
-            questionId={data.questionId}
-            content={data.content}
-            questionDate={data.questionDate}
-            status={data.status}
-            onMove={() => router.push(`/question/${data.questionId}`)}
-          />
-        ))}
+      <table className="flex-1">
+        <tbody className="flex flex-1 flex-col gap-[10px]">
+          {questList.map(data => (
+            <QuestionItem
+              key={data.questionId}
+              title={data.title}
+              questionId={data.questionId}
+              content={data.content}
+              questionDate={data.questionDate}
+              status={data.status}
+              onMove={() => router.push(`/question/${data.questionId}`)}
+            />
+          ))}
+        </tbody>
       </table>
       <Pagination
         currentPage={pagination.currentPage}
