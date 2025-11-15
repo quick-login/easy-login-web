@@ -1,32 +1,23 @@
+'use client'
+
 import { useRouter } from 'next/navigation'
 import { createAppAction, patchAppAction } from './social-action'
-import { useAlertStore, useConfirmStore } from '@/shared/store'
+import { useFeatureResponse } from '@/shared/lib'
+import { useConfirmStore } from '@/shared/store'
 
 export const useSocialApp = () => {
-  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
   const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
   const router = useRouter()
+  const handleResponse = useFeatureResponse()
 
   const handleCrateApp = async (formData: FormData) => {
     const response = await createAppAction(formData)
-    if (response.success) {
-      onOpenAlert('앱이 등록되었습니다!', () => {
-        router.push('/kakao/app')
-      })
-    } else {
-      onOpenAlert(response.message)
-    }
+    handleResponse(response, '앱이 등록되었습니다.', () => router.push('/kakao/app'))
   }
 
   const handlePatchApp = async (formData: FormData) => {
     const response = await patchAppAction(formData)
-    if (response.success) {
-      onOpenAlert('앱이 수정되었습니다!', () => {
-        router.push('/kakao/app')
-      })
-    } else {
-      onOpenAlert(response.message)
-    }
+    handleResponse(response, '앱이 수정되었습니다.', () => router.push('/kakao/app'))
   }
 
   const handleCreate = (e: React.FormEvent<HTMLFormElement>, formdata: FormData) => {

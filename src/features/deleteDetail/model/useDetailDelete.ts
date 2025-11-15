@@ -1,32 +1,19 @@
 import { useRouter } from 'next/navigation'
 import { noticeDeleteAction, questDeleteAction } from './delete-action'
-import { useAlertStore } from '@/shared/store'
+import { useFeatureResponse } from '@/shared/lib'
 
 export const useDetailDelete = () => {
   const router = useRouter()
-  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
+  const handleResponse = useFeatureResponse()
+
   const handleDeleteQuest = async (questionId: number) => {
     const response = await questDeleteAction(questionId)
-
-    if (response.success) {
-      onOpenAlert('문의가 삭제되었습니다.', () => {
-        router.push('/question?page=1')
-      })
-    } else {
-      onOpenAlert('삭제 도중 문제가 발생했습니다.')
-    }
+    handleResponse(response, '문의가 삭제되었습니다.', () => router.push('/question?page=1'))
   }
 
   const handleDeleteNotice = async (noticeId: number) => {
     const response = await noticeDeleteAction(noticeId)
-
-    if (response.success) {
-      onOpenAlert('공지가 삭제되었습니다.', () => {
-        router.push('/notice?page=1')
-      })
-    } else {
-      onOpenAlert('삭제 도중 문제가 발생했습니다.')
-    }
+    handleResponse(response, '공지가 삭제되었습니다.', () => router.push('/notice?page=1'))
   }
 
   return { handleDeleteQuest, handleDeleteNotice }

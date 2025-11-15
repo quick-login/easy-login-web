@@ -4,7 +4,7 @@ import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { orderListAction } from './order-action'
 import type { Page } from '@/shared/api'
-import { useAlertStore } from '@/shared/store'
+import { useResponse } from '@/shared/lib'
 import type { Order } from './type'
 
 export const useOrderList = () => {
@@ -17,18 +17,16 @@ export const useOrderList = () => {
     totalElements: 0,
     totalPages: 0,
   })
-  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
+  const handleResponse = useResponse()
 
   const handleGetOrderList = async () => {
     setIsLoading(true)
     const response = await orderListAction(questPage)
 
-    if (response.success) {
+    handleResponse(response, () => {
       setOrderList(response.data)
-      setPagination(response.pagination)
-    } else {
-      onOpenAlert(response.message)
-    }
+      setPagination(response.pagination!)
+    })
     setIsLoading(false)
   }
 

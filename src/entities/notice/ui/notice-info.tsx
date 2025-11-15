@@ -3,7 +3,7 @@ import type { NoticeItem } from '../model/types'
 
 export const NoticeInfo = ({ content, createdAt, name, noticeId, fixed, title }: NoticeItem) => {
   return (
-    <div className="flex flex-1 flex-col gap-[10px] p-[20px]">
+    <div className="flex flex-1 flex-col gap-[10px] p-[10px]">
       <div className="flex flex-col gap-[10px] px-[15px]">
         <div className="flex flex-col gap-[4px]">
           <Text className="text-[20px] font-bold text-black">{title}</Text>
@@ -14,7 +14,7 @@ export const NoticeInfo = ({ content, createdAt, name, noticeId, fixed, title }:
         </div>
         <hr className="border-gray2" />
       </div>
-      <div className="font-pretendard flex-1 p-[15px] text-[16px]">{content}</div>
+      <div className="font-pretendard flex-1 p-[15px] text-[16px] whitespace-pre-line">{content}</div>
     </div>
   )
 }

@@ -2,6 +2,7 @@
 
 import z from 'zod'
 import { patchNotice, postNotice } from '../api/notice-api'
+import { type ActionResponse, onActionResponse } from '@/shared/api'
 
 const noticeSchema = z.object({
   title: z.string().min(1, '제목은 최소 1글자 입니다.').max(50, '제목은 최대 50글자 입니다.'),
@@ -15,16 +16,16 @@ export const noticeWriteAction = async (formData: FormData) => {
 
   const result = noticeSchema.safeParse({ title, content })
   if (!result.success) {
-    return { success: false, message: '제목은 1~50, 본문은 1~2000자 입니다.' }
+    return {
+      success: false,
+      message: '제목은 1~50, 본문은 1~2000자 입니다.',
+      code: '',
+      data: null,
+    } satisfies ActionResponse<null>
   }
 
-  const res = await postNotice({ title, content, fixed })
-
-  if (res.code === 'E200') {
-    return { success: true, message: res.message }
-  } else {
-    return { success: false, message: res.message }
-  }
+  const response = await postNotice({ title, content, fixed })
+  return await onActionResponse(response)
 }
 
 export const noticePatchAction = async (noticeId: number, formData: FormData) => {
@@ -34,14 +35,14 @@ export const noticePatchAction = async (noticeId: number, formData: FormData) =>
 
   const result = noticeSchema.safeParse({ title, content })
   if (!result.success) {
-    return { success: false, message: '제목은 1~50, 본문은 1~2000자 입니다.' }
+    return {
+      success: false,
+      message: '제목은 1~50, 본문은 1~2000자 입니다.',
+      code: '',
+      data: null,
+    } satisfies ActionResponse<null>
   }
 
-  const res = await patchNotice(noticeId, { title, content, fixed })
-
-  if (res.code === 'E200') {
-    return { success: true, message: res.message }
-  } else {
-    return { success: false, message: res.message }
-  }
+  const response = await patchNotice(noticeId, { title, content, fixed })
+  return await onActionResponse(response)
 }

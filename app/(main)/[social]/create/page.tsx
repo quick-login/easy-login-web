@@ -14,7 +14,7 @@ const CreateAppView = async ({ params }: Props) => {
     notFound()
   }
 
-  return <CreateAppPage type={social} />
+  return <CreateAppPage />
 }
 
 export default CreateAppView

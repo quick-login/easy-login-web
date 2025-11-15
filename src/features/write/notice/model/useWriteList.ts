@@ -1,13 +1,12 @@
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { noticePatchAction, noticeWriteAction } from './notice-action'
-import { NoticeInfoAction } from '@/entities/notice/model/notice-action'
+import { noticeInfoAction } from '@/entities/notice/model/notice-action'
 import type { NoticeItem } from '@/entities/notice/model/types'
-// 이건 이따가 보자
-import { useAlertStore, useConfirmStore } from '@/shared/store'
+import { useFeatureResponse, useResponse } from '@/shared/lib'
+import { useConfirmStore } from '@/shared/store'
 
 export const useWirteList = () => {
-  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
   const [data, setData] = useState<NoticeItem>({
     createdAt: '',
     fixed: false,
@@ -16,12 +15,13 @@ export const useWirteList = () => {
     title: '',
     content: '',
   })
-  const [fixed, setFixed] = useState<boolean>(false)
   const router = useRouter()
   const noticeId = useSearchParams().get('id')
   const pathname = usePathname()
   const isEditMode = pathname.includes('modify')
   const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
+  const handleResponse = useFeatureResponse()
+  const handleEntitiesResponse = useResponse()
 
   useEffect(() => {
     if (isEditMode && noticeId) {
@@ -30,35 +30,18 @@ export const useWirteList = () => {
   }, [isEditMode, noticeId])
 
   const handleGetNoticeItem = async () => {
-    const res = await NoticeInfoAction(Number(noticeId))
-    if (res.success) {
-      setData(res.data)
-      setFixed(res.data.fixed)
-    } else {
-      onOpenAlert(res.message)
-    }
+    const response = await noticeInfoAction(Number(noticeId))
+    handleEntitiesResponse(response, () => setData(response.data))
   }
 
   const handleWriteNotice = async (formData: FormData) => {
-    const res = await noticeWriteAction(formData)
-    if (res.success) {
-      onOpenAlert('공지가 등록되었습니다!', () => {
-        router.push('/notice?page=1')
-      })
-    } else {
-      onOpenAlert(res.message)
-    }
+    const response = await noticeWriteAction(formData)
+    handleResponse(response, '공지가 등록되었습니다!', () => router.push('/notice?page=1'))
   }
 
   const handlePatchNotice = async (formData: FormData) => {
-    const res = await noticePatchAction(Number(noticeId), formData)
-    if (res.success) {
-      onOpenAlert('공지가 수정되었습니다!', () => {
-        router.push(`/notice/${noticeId}`)
-      })
-    } else {
-      onOpenAlert(res.message)
-    }
+    const response = await noticePatchAction(Number(noticeId), formData)
+    handleResponse(response, '공지가 수정되었습니다!', () => router.push(`/notice/${noticeId}`))
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>, formdata: FormData) => {
@@ -70,5 +53,5 @@ export const useWirteList = () => {
     }
   }
 
-  return { data, fixed, setFixed, isEditMode, handleSubmit }
+  return { data, setData, isEditMode, handleSubmit }
 }

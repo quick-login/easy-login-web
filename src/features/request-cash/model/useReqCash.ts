@@ -3,11 +3,11 @@
 import { useRouter } from 'next/navigation'
 import { type ChangeEvent, useState } from 'react'
 import { approveCashAction, cancleCashAction, rejectCashAction, requestCashAction } from './cash-action'
-import { useAlertStore } from '@/shared/store'
+import { useFeatureResponse } from '@/shared/lib'
 
 export const useReqCash = () => {
+  const handleResponse = useFeatureResponse()
   const router = useRouter()
-  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
   const [cash, setCash] = useState<string>('')
 
   const handleChangeCash = (e: ChangeEvent<HTMLInputElement>) => {
@@ -30,47 +30,22 @@ export const useReqCash = () => {
   const handleReqCash = async () => {
     const num = Number(cash.replaceAll(',', ''))
     const response = await requestCashAction(num)
-
-    if (response.success) {
-      onOpenAlert('신청되었습니다!', () => {
-        router.push('/cash/list?page=1')
-      })
-    } else {
-      onOpenAlert(response.message)
-    }
+    handleResponse(response, '캐시가 신청되었습니다.', () => router.push('/cash/list?page=1'))
   }
 
   const handleCancleCash = async (cashChargeLogId: number) => {
     const response = await cancleCashAction(cashChargeLogId)
-    if (response.success) {
-      onOpenAlert('신청이 취소되었습니다.', () => {
-        window.location.reload()
-      })
-    } else {
-      onOpenAlert(response.message)
-    }
+    handleResponse(response, '캐시 신청이 취소되었습니다.', () => window.location.reload())
   }
 
   const handleAdminRejectCash = async (cashChargeLogId: number) => {
     const response = await rejectCashAction(cashChargeLogId)
-    if (response.success) {
-      onOpenAlert('거절 완료되었습니다.', () => {
-        window.location.reload()
-      })
-    } else {
-      onOpenAlert(response.message)
-    }
+    handleResponse(response, '신청이 반려되었습니다.', () => window.location.reload())
   }
 
   const handleAdminApproveCash = async (cashChargeLogId: number) => {
     const response = await approveCashAction(cashChargeLogId)
-    if (response.success) {
-      onOpenAlert('승인 완료되었습니다.', () => {
-        window.location.reload()
-      })
-    } else {
-      onOpenAlert(response.message)
-    }
+    handleResponse(response, '신청이 승인되었습니다.', () => window.location.reload())
   }
 
   return {

@@ -6,7 +6,7 @@ import { Button } from '@/shared/ui'
 export const SellModalBtn = () => {
   const setModal = useModalStore(state => state.setModal)
   return (
-    <Button className="p-[15px] font-normal" onClick={() => setModal('isUserSell', true)}>
+    <Button className="400:w-fit w-full p-[15px] font-normal" onClick={() => setModal('isUserSell', true)}>
       상품 주문
     </Button>
   )

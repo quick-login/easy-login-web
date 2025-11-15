@@ -9,8 +9,8 @@ export const OrderListPage = () => {
       <OrderList />
       <hr className="border-gray2" />
       <Footer>
-        <div className="flex flex-1 justify-end">
-          <LinkButton href="/sell?page=1" className="p-[15px]">
+        <div className="400:flex-row 400:px-0 flex w-full flex-col items-center justify-end px-[15px]">
+          <LinkButton href="/sell?page=1" className="400:w-fit w-full p-[15px]">
             상품 둘러보기
           </LinkButton>
         </div>

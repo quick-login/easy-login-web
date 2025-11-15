@@ -1,43 +1,28 @@
 import { adminAddSellAction, adminChangeStatusAction, adminDeleteSellAction } from './order-sell-action'
-import { useAlertStore, useConfirmStore, useModalStore } from '@/shared/store'
+import { useFeatureResponse } from '@/shared/lib'
+import { useConfirmStore, useModalStore } from '@/shared/store'
 
 export const useAdminSell = () => {
-  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
+  const handleResponse = useFeatureResponse()
   const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
   const setModal = useModalStore(state => state.setModal)
 
   const handleAddSell = async (formData: FormData) => {
     const response = await adminAddSellAction(formData)
-    if (response.success) {
-      onOpenAlert('상품이 등록되었습니다.', () => {
-        setModal('isAdminSell', false)
-        window.location.reload()
-      })
-    } else {
-      onOpenAlert(response.message)
-    }
+    handleResponse(response, '상품이 등록되었습니다.', () => {
+      setModal('isAdminSell', false)
+      window.location.reload()
+    })
   }
 
   const handleDeleteSell = async (productId: number) => {
     const response = await adminDeleteSellAction(productId)
-    if (response.success) {
-      onOpenAlert('삭제되었습니다.', () => {
-        window.location.reload()
-      })
-    } else {
-      onOpenAlert(response.message)
-    }
+    handleResponse(response, '상품이 삭제되었습니다.', () => window.location.reload())
   }
 
   const handleChangeStatus = async (productId: number) => {
     const response = await adminChangeStatusAction(productId)
-    if (response.success) {
-      onOpenAlert('상품 상태가 변경되었습니다.', () => {
-        window.location.reload()
-      })
-    } else {
-      onOpenAlert(response.message)
-    }
+    handleResponse(response, '상품 상태가 변경되었습니다.', () => window.location.reload())
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>, formdata: FormData) => {

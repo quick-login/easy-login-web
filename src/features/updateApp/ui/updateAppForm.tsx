@@ -1,15 +1,13 @@
 'use client'
 
-import Image from 'next/image'
 import { useParams, useRouter } from 'next/navigation'
-import { useSocialApp } from '../../createApp/model/useSocialApp'
-// 위 로직 분리하자
 import { useAppInfo } from '@/entities/social'
+import { useSocialApp } from '@/features/createApp'
 import { Button, Footer, Input, Text } from '@/shared/ui'
 
 export const UpdateAppForm = () => {
-  const params = useParams().id
-  const { app } = useAppInfo(Number(params))
+  const id = useParams().id
+  const { app } = useAppInfo(Number(id))
   const { handlePatch } = useSocialApp()
 
   const router = useRouter()
@@ -19,25 +17,21 @@ export const UpdateAppForm = () => {
       <form
         id="social-info-form"
         onSubmit={(e: React.FormEvent<HTMLFormElement>) => handlePatch(e, new FormData(e.currentTarget))}
-        className="flex flex-1 flex-col gap-[10px] p-[20px]"
+        className="flex flex-1 flex-col gap-[10px] p-[10px]"
       >
-        <Text className="text-gray4 text-[16px] leading-[100%] font-medium">app ID : {app.appId}</Text>
-        <Input type="text" name="appId" defaultValue={app.appId} hidden />
+        <Text className="text-gray4 text-[13px] leading-[100%] font-medium md:text-[16px]">app ID : {app.appId}</Text>
+        <Input type="text" name="appId" defaultValue={app.appId!} hidden />
         <Input type="text" name="appName" placeholder="app name 입력" defaultValue={app.appName} />
         <Input type="text" name="restKey" placeholder="rest key 입력" defaultValue={app.restKey} />
-        <Input type="text" name="redirectUrl" placeholder="redirect URL 입력 (선택)" defaultValue={app.redirectUrl} />
+        <Input type="text" name="redirectUrl" placeholder="redirect URL 입력" defaultValue={app.redirectUrl ?? ''} />
       </form>
       <hr className="border-gray2" />
       <Footer>
-        <div className="flex cursor-pointer items-center justify-center gap-[4px]">
-          <Image src="/trash.svg" alt="delete" width={24} height={24} />
-          <Text className="text-negative">삭제</Text>
-        </div>
-        <div className="flex gap-[10px]">
-          <Button className="px-[15px] py-[10px]" variant="cancle" onClick={() => router.back()}>
+        <div className="400:px-0 flex w-full justify-end gap-[10px] px-[5px]">
+          <Button className="400:w-fit w-full p-[15px]" variant="cancle" onClick={() => router.back()}>
             이전으로
           </Button>
-          <Button form="social-info-form" type="submit" className="px-[15px] py-[10px]">
+          <Button form="social-info-form" type="submit" className="400:w-fit w-full p-[15px]">
             변경사항 저장
           </Button>
         </div>

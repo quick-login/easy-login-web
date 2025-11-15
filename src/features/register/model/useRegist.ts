@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { registAction } from './regist-action'
-import { useAlertStore } from '@/shared/store'
+import { useFeatureResponse } from '@/shared/lib'
 import type { RegistType } from '../type'
 
 export const useRegist = () => {
@@ -12,7 +12,7 @@ export const useRegist = () => {
     passwordCheck: '',
     kakaoId: null,
   })
-  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
+  const handleResponse = useFeatureResponse()
   const router = useRouter()
 
   const handleChangeRegist = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,14 +25,7 @@ export const useRegist = () => {
 
   const handleSubmitRegist = async (formData: FormData) => {
     const response = await registAction(formData)
-
-    if (response.success) {
-      onOpenAlert('회원가입이 완료되었습니다!', () => {
-        router.push('/login')
-      })
-    } else {
-      onOpenAlert(response.message)
-    }
+    handleResponse(response, '회원가입이 완료되었습니다.', () => router.push('/login'))
   }
 
   return { regist, handleChangeRegist, handleSubmitRegist }

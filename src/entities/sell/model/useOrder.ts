@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { orderInfoAction } from './order-action'
-import { useAlertStore } from '@/shared/store'
+import { useResponse } from '@/shared/lib'
 import type { OrderInfo } from './type'
 
 export const useOrder = (orderCode: string) => {
@@ -13,15 +13,14 @@ export const useOrder = (orderCode: string) => {
     totalFinalPrice: 0,
     orderProducts: [],
   })
-  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
+  const handleResponse = useResponse()
 
   const handleGetOrder = async (orderCode: string) => {
     const response = await orderInfoAction(orderCode)
-    if (response.success) {
+
+    handleResponse(response, () => {
       setOrder(response.data)
-    } else {
-      onOpenAlert(response.message)
-    }
+    })
   }
 
   useEffect(() => {

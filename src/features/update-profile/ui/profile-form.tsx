@@ -10,8 +10,8 @@ export const ProfileForm = () => {
   const { handleSubmit } = usePatchProfile()
   return (
     <>
-      <div className="flex flex-1 flex-col gap-[10px] p-[20px]">
-        <Text className="text-gray4">회원님의 정보를 확인하고 수정할 수 있습니다</Text>
+      <div className="flex flex-1 flex-col gap-[10px] p-[10px]">
+        <Text className="text-gray4 text-[14px] md:text-[16px]">회원님의 정보를 확인하고 수정할 수 있습니다</Text>
         <form
           id="profile-form"
           onSubmit={(e: React.FormEvent<HTMLFormElement>) => handleSubmit(e, new FormData(e.currentTarget))}

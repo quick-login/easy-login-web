@@ -2,7 +2,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { adminQuestListAction } from './question-action'
 import type { Page } from '@/shared/api'
-import { useAlertStore } from '@/shared/store'
+import { useResponse } from '@/shared/lib'
 import type { Question } from './types'
 
 export const useAdminQuestList = () => {
@@ -18,18 +18,16 @@ export const useAdminQuestList = () => {
     totalElements: 0,
     totalPages: 0,
   })
-  const onOpenAlert = useAlertStore(state => state.onOpenAlert)
+  const handleResponse = useResponse()
 
   const handleGetQuestList = async () => {
     setIsLoading(true)
     const response = await adminQuestListAction(questPage, 10, questType)
 
-    if (response.success) {
+    handleResponse(response, () => {
       setQuestList(response.data)
-      setPagination(response.pagination)
-    } else {
-      onOpenAlert(response.message)
-    }
+      setPagination(response.pagination!)
+    })
     setIsLoading(false)
   }
 
