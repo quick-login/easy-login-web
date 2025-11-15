@@ -13,7 +13,6 @@ export const Confirm = () => {
 
   useEffect(() => {
     return () => {
-      console.log('eee')
       onFalse()
     }
   }, [])

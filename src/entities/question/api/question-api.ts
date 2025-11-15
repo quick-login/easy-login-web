@@ -19,7 +19,6 @@ export const getAdminQuestList = async (page: number, pageSize: number, STATUS: 
 }
 
 export const getAdminQuestInfo = async (questionId: number) => {
-  console.log('id', questionId)
   const response = await axiosGet<QuestInfo>(`/admin/api/v1/question/${questionId}`)
   return response
 }
