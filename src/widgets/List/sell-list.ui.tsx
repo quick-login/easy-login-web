@@ -53,7 +53,7 @@ export const SellList = () => {
         <Pagination
           currentPage={pagination.currentPage}
           totalElements={pagination.totalElements}
-          pageSize={pagination.pageSize}
+          pageSize={10}
           totalPages={pagination.totalPages}
         />
       </div>

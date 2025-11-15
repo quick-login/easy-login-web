@@ -47,7 +47,7 @@ export const AdminSellList = () => {
         <Pagination
           currentPage={pagination.currentPage}
           totalElements={pagination.totalElements}
-          pageSize={pagination.pageSize}
+          pageSize={8}
           totalPages={pagination.totalPages}
         />
       </div>
