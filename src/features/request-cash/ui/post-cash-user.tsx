@@ -13,13 +13,7 @@ export const PostCash = () => {
           카카오뱅크 3333-22-7865484 (예금주 : 송광호)
         </Text>
         <form action="" className="flex flex-col gap-[5px]">
-          <Input
-            placeholder="충전할 금액을 입력해주세요."
-            type="text"
-            value={cash}
-            onChange={handleChangeCash}
-            className="!text-[14px] md:!text-[16px]"
-          />
+          <Input placeholder="충전할 금액을 입력해주세요." type="text" value={cash} onChange={handleChangeCash} />
           <div className="border-gray3 flex rounded-[10px] border text-[12px] md:text-[14px]">
             <A className="border-r-gray3 flex-1 border-r" onClick={() => handleCashBtn(1000)}>
               +1천원

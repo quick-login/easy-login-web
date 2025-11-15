@@ -21,7 +21,7 @@ export const ProfileForm = () => {
             name="email"
             placeholder="이메일 입력"
             type="text"
-            className="w-full !text-[14px] md:!text-[16px]"
+            className="w-full"
             readOnly
             defaultValue={session?.user?.email}
           />
@@ -29,15 +29,11 @@ export const ProfileForm = () => {
             name="name"
             placeholder="이름 입력"
             type="text"
-            className="w-full !text-[14px] md:!text-[16px]"
+            className="w-full"
             defaultValue={session?.user?.name}
           />
-          <InputPassword name="password" placeholder="새 비밀번호 입력" className="!text-[14px] md:!text-[16px]" />
-          <InputPassword
-            name="passwordCheck"
-            placeholder="새 비밀번호 다시 입력"
-            className="!text-[14px] md:!text-[16px]"
-          />
+          <InputPassword name="password" placeholder="새 비밀번호 입력" />
+          <InputPassword name="passwordCheck" placeholder="새 비밀번호 다시 입력" />
         </form>
       </div>
       <hr className="border-gray2" />

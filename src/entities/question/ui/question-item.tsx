@@ -11,7 +11,7 @@ export const QuestionItem = ({ questionId, title, status, questionDate, onMove }
       onClick={onMove}
       className="border-gray3 flex cursor-pointer flex-wrap items-center justify-between gap-[10px] rounded-[10px] border px-[15px] py-[10px]"
     >
-      <td className="order-1 max-w-[50px] flex-shrink-0" align="center">
+      <td className="order-1 max-w-[50px] shrink-0" align="center">
         <Text className="bg-gray2 rounded-[5px] p-[5px] text-[10px] font-semibold text-black">
           {status === 'WAITING' ? '답변대기' : '답변완료'}
         </Text>
@@ -21,7 +21,7 @@ export const QuestionItem = ({ questionId, title, status, questionDate, onMove }
         <Text className="1060:whitespace-pre-line truncate font-semibold text-black">{title}</Text>
       </td>
 
-      <td className="order-2 min-w-[130px] flex-shrink-0 text-right md:order-3">
+      <td className="order-2 min-w-[130px] shrink-0 text-right md:order-3">
         <Text className="text-gray5 text-[13px] font-semibold">{questionDate}</Text>
       </td>
     </tr>

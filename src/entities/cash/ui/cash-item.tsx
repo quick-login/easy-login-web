@@ -22,7 +22,7 @@ export const CashItem = ({ cashChargeLogId, chargeCash, requestDate, status, onC
       <td className="order-3 w-full overflow-hidden md:order-2 md:w-auto md:flex-1">
         <Text className="truncate font-semibold text-black">{chargeCash.toLocaleString()} 원</Text>
       </td>
-      <td className="order-2 min-w-[130px] flex-shrink-0 text-right md:order-3">
+      <td className="order-2 min-w-[130px] shrink-0 text-right md:order-3">
         <Text className="text-gray5 text-[13px] font-semibold">{requestDate}</Text>
       </td>
       {status === 'REQUEST' && (

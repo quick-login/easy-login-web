@@ -10,12 +10,7 @@ export const CheckBox = ({ title, ...props }: CheckBoxProps) => {
       htmlFor={props.name}
       className="text-gray5 font-pretendard flex cursor-pointer gap-[8px] text-[14px] font-bold"
     >
-      <input
-        {...props}
-        id={props.name}
-        type="checkbox"
-        className="border-gray3 placeholder:text-gray4 font-pretendard rounded-[10px] border p-[15px] text-[16px] text-black outline-0"
-      />
+      <input {...props} id={props.name} type="checkbox" />
       {title}
     </label>
   )
