@@ -1,36 +1,133 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🔐 이지로그인 [EASY_LOGIN]
 
-## Getting Started
+> #### 손 쉬운 프로젝트 소셜로그인 연동
 
-First, run the development server:
+<div align='center'>
+  <div>
+    <img src="https://github.com/user-attachments/assets/7c580f9b-8d19-4f81-b089-0930ac9319dd" alt="화면"/>
+  </div>
+  <div>
+    <h3>📅 개발 기간</h3>
+    <b>2025. 09. 21 ~ Ing</b>
+    <h3>📅 정식 서비스 배포</h3>
+    <b>미 정</b>
+  </div>
+  <br/>
+</div>
+
+## 개발 배경
+
+> 💦 프로젝트에 소셜 로그인 연동해야하는데.. 이거 어렵지 않나..?
+>
+> 💦 소셜 로그인 또 오류나네 ㅠㅠ 뭐가 문제지..?
+>
+> 💦 프로젝트 기한은 짧은데 소셜 로그인은 언제 해!
+
+### &ensp; 😎 복잡한 소셜 로그인 연동은 그만! 저희가 해드릴게요!
+
+ <br/>
+
+## 프로젝트 소개
+
+> ✔ 이지로그인은 **프로젝트 개발 시 소셜 로그인 연동을 간편하게 제공해주는 서비스**입니다.
+>
+> ✔ **카카오, 네이버, 구글** 로그인을 간편하게 프로젝트에 적용해보세요!
+
+<br/>
+
+### &ensp; 🛠️ 프론트 엔드 기술 스택
+
+&ensp;[![Skills](https://go-skill-icons.vercel.app/api/icons?i=next,typescript,zustand,tailwindcss,jest)](https://github.com/quick-login/easy-login-web)
+
+&ensp; 프로젝트는 FSD 아키텍쳐를 토대로 개발되었습니다.
+
+<br/>
+
+> ## 서비스 소개
+
+> #### 메인 화면
+
+| 과목 탭                                                                                                                                         | 설정 탭                                                                                                                                         |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| <img width="358" height="608" alt="Image" src="https://github.com/user-attachments/assets/bcb07341-1dd1-4868-b4db-4886c95bee94" alt="과목 탭"/> | <img width="358" height="608" alt="Image" src="https://github.com/user-attachments/assets/2308a6c6-74b0-46ef-9e79-393474f7e5bc" alt="설정 탭"/> |
+
+- 과목 탭에서는 주요 과목과 이슈 태그를 한눈에 볼 수 있습니다
+- 설정 탭에서 사용자 정보 및 테마, 알림음 여부를 설정할 수 있습니다
+
+> #### 과목 상세 화면
+
+| 과목 내 학습                                                                                                                                         | 과목 내 공지                                                                                                                                         | 과목 내 과제                                                                                                                                         |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <img width="358" height="608" alt="Image" src="https://github.com/user-attachments/assets/3a761a9d-d2e8-4df2-82f3-9b107a484816" alt="과목 내 학습"/> | <img width="358" height="608" alt="Image" src="https://github.com/user-attachments/assets/00bd2952-d267-4b87-a34f-59450af1d54a" alt="과목 내 공지"/> | <img width="358" height="608" alt="Image" src="https://github.com/user-attachments/assets/d906437b-3bf4-409d-9f51-2f5107231bee" alt="과목 내 과제"/> |
+
+- 과목의 주차학습 (LMS 학습) 정보를 볼 수 있습니다.
+- 공지 리스트를 한눈에 볼 수 있습니다.
+- 과제 내역이 제공되며, 미제출 과제는 임의로 상태 변경이 가능합니다.
+
+> ## 📁 프로젝트 구조
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+app                       # next AppRouter 폴더
+src/
+├── app                   # 프로젝트 전역 설정
+├── entities              # 프로젝트 도메인 설정
+│   ├── FilterState       # 필터 상태 도메인
+│   │   ├── model         # 데이터 필터 추가 제거 동작
+│   │   └── ui            # 데이터 필터 상태 UI
+│   ├── Item              # 마켓 Item 도메인
+│   │   ├── api           # 마켓 Item Get 요청
+│   │   ├── model         # 데이터 날짜 가공 함수 및 타입
+│   │   └── ui            # 마켓 Item UI
+│   ├── side-item         # 사이드 메뉴 도메인
+│   │   ├── model         # 가격 입력창 처리 함수 및 타입
+│   │   └── ui            # 사이드 메뉴 필터별 UI
+│   └── user              # 유저 도메인
+│       ├── api           # 유저 정보 GET 요청
+│       ├── model         # 유저 정보 전역 상태 저장
+│       └── ui            # 유저 정보 UI
+├── features              # 프로젝트 기능 정의
+│   ├── buy-Item          # Item 구매
+│   │   ├── api           # Item 구매 POST 요청
+│   │   └── model         # Item 구매 로직
+│   ├── get-Items         # 마켓 Items 요청
+│   │   ├── model         # 마켓 Items 무한스크롤 로직
+│   │   └── ui            # 마켓 페이지 UI
+│   ├── set-Filters       # 사이드 메뉴 필터링 정의
+│   │   ├── model         # 사이드 메뉴 필터링 로직
+│   │   └── ui            # 사이드 필터링 UI
+│   └── store-Item        # 관심상품 저장 요청
+│   │   ├── api           # 관심상품 저장 삭제 POST, DELETE 요청
+│   │   └── model         # Content script App
+├── shared                # 프로젝트 공용 컴포넌트, 비즈니스 로직, 스토어 정의
+│   ├── api               # 데이터 패치 POST 요청
+│   ├── model             # 전역 상태 관리
+│   ├── types             # 전역 타입 정의
+│   └── ui                # 공통 컴포넌트 작성
+├── views                 # 프로젝트 페이지 정의
+└── widgets               # 프로젝트 페이지 위젯 정의
+    ├── footer            # 페이지 푸터 UI
+    ├── header            # 페이지 및 사이드 헤더
+    ├── main              # 페이지 메인 컨텐츠 부분
+    │   └── model         # 페이지 스크롤 및 브라우저 제어
+    ├── modal             # 서비스 모달
+    │   └── model         # 상품 구매내역, 상세내역 처리 로직
+    └── side              # 사이드 메뉴 부분
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+> ## ✅ 서비스 컨벤션
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+#   feat        : 기능 (새로운 기능)
+#   fix         : 버그 (버그 수정)
+#   release     : 서비스 배포
+#   refactor    : 리팩토링
+#   design      : CSS 등 사용자 UI 디자인 변경
+#   comment     : 필요한 주석 추가 및 변경
+#   style       : 스타일 (코드 형식, 세미콜론 추가: 비즈니스 로직에 변경 없음)
+#   docs        : 문서 수정 (문서 추가, 수정, 삭제, README)
+#   test        : 테스트 (테스트 코드 추가, 수정, 삭제: 비즈니스 로직에 변경 없음)
+#   chore       : 기타 변경사항 (빌드 스크립트 수정, assets, 패키지 매니저 등)
+#   init        : 초기 생성
+#   rename      : 파일 혹은 폴더명을 수정하거나 옮기는 작업만 한 경우
+#   remove      : 파일을 삭제하는 작업만 수행한 경우
+```
