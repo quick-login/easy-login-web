@@ -11,12 +11,12 @@ export const PageButton = ({ className, children, href, ...props }: Props) => {
   return (
     <li
       className={clsx(
-        'font-pretendard hover:bg-gray2 border-gray3 cursor-pointer rounded-[10px] border font-semibold md:py-[5px]',
+        'font-pretendard hover:bg-gray2 border-gray3 cursor-pointer rounded-[10px] border py-[5px] font-semibold',
         className,
       )}
       {...props}
     >
-      <LinkText className="h-full px-[5px] text-[11px] md:px-[10px] md:py-[5px] md:text-[16px]" href={href}>
+      <LinkText className="h-full px-[10px] py-[5px] text-[13px] md:text-[16px]" href={href}>
         {children}
       </LinkText>
     </li>
