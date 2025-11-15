@@ -1,14 +1,7 @@
-import { MyAppPage } from '@/views'
+import { MyAppListPage } from '@/views'
 
-type Props = {
-  params: {
-    socialType: string
-  }
-}
-
-const MyAppView = ({ params }: Props) => {
-  const { socialType } = params
-  return <MyAppPage />
+const MyAppView = () => {
+  return <MyAppListPage />
 }
 
 export default MyAppView

@@ -1,3 +1,5 @@
+'use client'
+
 import { useRouter } from 'next/navigation'
 import { createAppAction, patchAppAction } from './social-action'
 import { useFeatureResponse } from '@/shared/lib'

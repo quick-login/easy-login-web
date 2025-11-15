@@ -1,15 +1,13 @@
 'use client'
 
-import Image from 'next/image'
 import { useParams, useRouter } from 'next/navigation'
 import { useAppInfo } from '@/entities/social'
-import { useSocialApp } from '@/features/createApp/model/useSocialApp'
-// 위 로직 분리하자
+import { useSocialApp } from '@/features/createApp'
 import { Button, Footer, Input, Text } from '@/shared/ui'
 
 export const UpdateAppForm = () => {
-  const params = useParams().id
-  const { app } = useAppInfo(Number(params))
+  const id = useParams().id
+  const { app } = useAppInfo(Number(id))
   const { handlePatch } = useSocialApp()
 
   const router = useRouter()
@@ -25,12 +23,7 @@ export const UpdateAppForm = () => {
         <Input type="text" name="appId" defaultValue={app.appId!} hidden />
         <Input type="text" name="appName" placeholder="app name 입력" defaultValue={app.appName} />
         <Input type="text" name="restKey" placeholder="rest key 입력" defaultValue={app.restKey} />
-        <Input
-          type="text"
-          name="redirectUrl"
-          placeholder="redirect URL 입력 (선택)"
-          defaultValue={app.redirectUrl ?? ''}
-        />
+        <Input type="text" name="redirectUrl" placeholder="redirect URL 입력" defaultValue={app.redirectUrl ?? ''} />
       </form>
       <hr className="border-gray2" />
       <Footer>
