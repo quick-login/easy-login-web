@@ -1,6 +1,7 @@
 'use client'
 
 import { useSession } from 'next-auth/react'
+import { useEffect } from 'react'
 import { SideBasic, SideCash, SideFooter, SideItem } from '@/entities/sideMenu'
 
 type SideContentProps = {
@@ -9,14 +10,11 @@ type SideContentProps = {
 }
 
 export const SideContent = ({ mobile, sideOn }: SideContentProps) => {
-  const { data: session } = useSession()
+  const { data: session, update } = useSession()
 
-  console.log('사이드 콘텐츠 영역')
-
-  // useEffect(() => {
-  //   console.log('업데이트')
-  //   update()
-  // }, [])
+  useEffect(() => {
+    update()
+  }, [])
 
   return (
     <>

@@ -1,7 +1,6 @@
 'use client'
 
 import { SocialBtn } from './social-btn'
-// import { SocialModal } from './social-modal'
 import { useSocialModal } from '../model/useSocialModal'
 
 export const MainSocial = () => {
@@ -13,7 +12,6 @@ export const MainSocial = () => {
         <SocialBtn img="/LogoNaver.svg" title="네이버 로그인 연결" onLink={() => handleClickSocial('/naver')} />
         <SocialBtn img="/LogoGoogle.svg" title="구글 로그인 연결" onLink={() => handleClickSocial('/google')} />
       </div>
-      {/* <SocialModal isOpen={isOpen} onIsOpen={handleModalOpen} text={text} /> */}
     </div>
   )
 }
