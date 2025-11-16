@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { LinkText, Text } from '@/shared/ui'
 
 type SideFooterProps = {
@@ -10,6 +11,7 @@ type SideFooterProps = {
 }
 
 export const SideFooter = ({ mobile, sideOn, isLogin, name = '' }: SideFooterProps) => {
+  const router = useRouter()
   return (
     <div className="z-25 flex h-[66px] items-center justify-between p-[20px]">
       {isLogin ? (
@@ -38,10 +40,11 @@ export const SideFooter = ({ mobile, sideOn, isLogin, name = '' }: SideFooterPro
             width={24}
             height={24}
             className={clsx(
-              'transition-all duration-300',
+              'cursor-pointer transition-all duration-300',
               !sideOn ? '1060:max-w-[100%]' : '1060:max-w-[0px]',
               mobile ? 'max-w-[0%]' : 'max-w-[0px]',
             )}
+            onClick={() => router.push('/login')}
           />
           <div
             className={clsx(
