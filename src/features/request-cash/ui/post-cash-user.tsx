@@ -34,7 +34,7 @@ export const PostCash = () => {
             신청 가능 금액은 최소 1,000원 이상이며, 100원 단위로 입력해주세요.
           </Text>
           <Text className="text-gray5 text-[12px] font-semibold md:text-[14px]">
-            충전 신청 후 영업일 3일 이내 승인됩니다.
+            안내된 입금 계좌에 신청 금액을 송금 및 신청하시면 영업일 기준 3일 이내 처리됩니다.
           </Text>
           <Text className="text-gray5 text-[12px] font-semibold md:text-[14px]">
             서비스 이용에 장애 발생 시 문의사항에 남겨주시면 감사합니다.
