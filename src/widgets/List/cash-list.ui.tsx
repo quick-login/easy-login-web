@@ -16,7 +16,7 @@ export const CashList = () => {
 
   return cashList.length === 0 ? (
     <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
-      <Text className="text-gray5 font-semibold">캐시 충전 내역이 존재하지 않습니다.</Text>
+      <Text className="text-gray5 md:text-[16px]d text-[14px] font-semibold">캐시 충전 내역이 존재하지 않습니다.</Text>
     </div>
   ) : (
     <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
