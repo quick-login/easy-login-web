@@ -42,7 +42,7 @@
 
 ### &ensp; 🛠️ 프론트 엔드 기술 스택
 
-&ensp;[![Skills](https://go-skill-icons.vercel.app/api/icons?i=next,typescript,zustand,tailwindcss,authjs,jest,)](https://github.com/quick-login/easy-login-web)
+&ensp;[![Skills](https://go-skill-icons.vercel.app/api/icons?i=next,typescript,zustand,tailwindcss,authjs,pnpm,jest,)](https://github.com/quick-login/easy-login-web)
 
 &ensp; 프로젝트는 FSD 아키텍쳐를 토대로 개발되었습니다.
 
