@@ -1,0 +1,37 @@
+'use client'
+
+import clsx from 'clsx'
+import { useEffect } from 'react'
+import { Button } from './Button'
+import { Text } from './Text'
+import { useConfirmStore } from '../store/useConfirmStore'
+
+export const Confirm = () => {
+  const msg = useConfirmStore(state => state.msg)
+  const onTrue = useConfirmStore(state => state.onTrue)
+  const onFalse = useConfirmStore(state => state.onFalse)
+
+  useEffect(() => {
+    return () => {
+      onFalse()
+    }
+  }, [])
+
+  return (
+    <section className={clsx('fixed inset-0 z-[2000] flex h-[100dvh] w-full items-center justify-center bg-black/50')}>
+      <div className="flex min-w-[250px] flex-col items-center justify-center rounded-[20px] bg-white">
+        <div className="flex w-full flex-1 items-center justify-center p-[50px]">
+          <Text className="font-semibold text-black">{msg}</Text>
+        </div>
+        <div className="flex w-full">
+          <Button className="w-full rounded-none rounded-bl-[20px]" onClick={onTrue}>
+            확 인
+          </Button>
+          <Button className="w-full rounded-none rounded-br-[20px]" variant="cancle" onClick={onFalse}>
+            닫 기
+          </Button>
+        </div>
+      </div>
+    </section>
+  )
+}

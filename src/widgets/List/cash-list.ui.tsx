@@ -1,0 +1,45 @@
+'use client'
+
+import { Pagination } from './pagination.ui'
+import { LoadingSkeleton } from './skeleton-list.ui'
+import { CashItem, useCashList } from '@/entities/cash'
+import { useReqCash } from '@/features/request-cash'
+import { useConfirmStore } from '@/shared/store'
+import { Text } from '@/shared/ui'
+
+export const CashList = () => {
+  const { cashList, pagination, isLoading } = useCashList()
+  const { handleCancleCash } = useReqCash()
+  const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
+
+  if (isLoading) return <LoadingSkeleton />
+
+  return cashList.length === 0 ? (
+    <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
+      <Text className="text-gray5 md:text-[16px]d text-[14px] font-semibold">캐시 충전 내역이 존재하지 않습니다.</Text>
+    </div>
+  ) : (
+    <div className="scrollbar-hidden flex flex-1 flex-col gap-[10px] overflow-x-auto p-[20px]">
+      <table className="flex-1">
+        <tbody className="flex flex-1 flex-col gap-[10px]">
+          {cashList.map(data => (
+            <CashItem
+              key={data.cashChargeLogId}
+              cashChargeLogId={data.cashChargeLogId}
+              chargeCash={data.chargeCash}
+              requestDate={data.requestDate}
+              status={data.status}
+              onCancle={() => onOpenConfirm('신청을 취소하시겠습니까?', () => handleCancleCash(data.cashChargeLogId))}
+            />
+          ))}
+        </tbody>
+      </table>
+      <Pagination
+        currentPage={pagination.currentPage}
+        totalElements={pagination.totalElements}
+        pageSize={pagination.pageSize}
+        totalPages={pagination.totalPages}
+      />
+    </div>
+  )
+}

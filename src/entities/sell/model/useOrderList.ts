@@ -1,0 +1,39 @@
+'use client'
+
+import { useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { orderListAction } from './order-action'
+import type { Page } from '@/shared/api'
+import { useResponse } from '@/shared/lib'
+import type { Order } from './type'
+
+export const useOrderList = () => {
+  const questPage = Number(useSearchParams().get('page'))
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [orderList, setOrderList] = useState<Order[]>([])
+  const [pagination, setPagination] = useState<Page>({
+    currentPage: questPage,
+    pageSize: 0,
+    totalElements: 0,
+    totalPages: 0,
+  })
+  const handleResponse = useResponse()
+
+  const handleGetOrderList = async () => {
+    setIsLoading(true)
+    const response = await orderListAction(questPage)
+
+    handleResponse(response, () => {
+      setOrderList(response.data)
+      setPagination(response.pagination!)
+    })
+    setIsLoading(false)
+  }
+
+  useEffect(() => {
+    handleGetOrderList()
+    window.scrollTo(0, 0)
+  }, [questPage])
+
+  return { orderList, pagination, isLoading }
+}
