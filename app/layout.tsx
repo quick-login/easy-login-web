@@ -21,16 +21,18 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  metadataBase: new URL('http://10.223.148.197:3000'),
   openGraph: {
     title: 'EASY-LOGIN',
-    description: '소셜 로그인 원클릭 서비스 EASY-LOGIN',
-    url: 'http://10.223.148.250:3000', //https://easy-login.co.kr
+    description: '소셜 로그인 원클릭 서비스',
+    url: 'http://10.223.148.197:3000', //https://easy-login.co.kr
     siteName: 'EASY-LOGIN',
     images: [
       {
-        url: 'easyLogin.svg',
+        url: 'https://github.com/user-attachments/assets/01917d46-4367-40ca-ab51-0f0d1443899e',
         width: 1200,
         height: 630,
+        alt: 'EASY LOGIN Image',
       },
     ],
     locale: 'ko_KR',
