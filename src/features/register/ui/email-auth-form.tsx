@@ -17,7 +17,7 @@ export const EmailAuthForm = ({ codeFormRef, email, stateCode, onValidate, onMod
   }, [])
 
   return (
-    <section className={'fixed inset-0 z-[1100] flex h-[100vh] w-full items-center justify-center bg-black/50'}>
+    <section className={'fixed inset-0 z-[1100] flex h-[100dvh] w-full items-center justify-center bg-black/50'}>
       <div className="m-[10px] flex flex-col gap-[6px] rounded-[20px] bg-white p-[30px]">
         <div className="flex items-center justify-between">
           <Text className={clsx('text-[20px] leading-[150%] font-bold')}>이메일 인증</Text>

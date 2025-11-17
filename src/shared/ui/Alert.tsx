@@ -18,7 +18,7 @@ export const Alert = () => {
 
   return (
     <section
-      className={clsx('fixed inset-0 z-[2000] flex h-[100vh] w-full items-center justify-center bg-black/50')}
+      className={clsx('fixed inset-0 z-[2000] flex h-[100dvh] w-full items-center justify-center bg-black/50')}
       onClick={onCloseAlert}
     >
       <div className="flex min-w-[250px] flex-col items-center justify-center rounded-[20px] bg-white">

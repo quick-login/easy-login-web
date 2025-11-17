@@ -33,6 +33,14 @@ export const useSide = () => {
   }, [pathname, status])
 
   useEffect(() => {
+    if (mobile) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'auto'
+    }
+  }, [mobile])
+
+  useEffect(() => {
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
