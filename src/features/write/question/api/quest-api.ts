@@ -11,7 +11,6 @@ export const postQuest = async (questData: QuestType) => {
 }
 
 export const postQuestAnswer = async (questionId: number, answer: string) => {
-  console.log('id', questionId)
   const res = await axiosPost(`/admin/api/v1/question/answer/${questionId}`, { answer })
   return res
 }

@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { SideListMenu } from './side-list-Item'
 import { Text } from '@/shared/ui'
@@ -12,16 +13,26 @@ type SideBasicProps = {
 
 export const SideBasic = ({ role = 'USER', mobile, sideOn }: SideBasicProps) => {
   const [menuOn, setMenuOn] = useState<boolean>(false)
+  const router = useRouter()
 
   useEffect(() => {
     if (!sideOn) setMenuOn(false)
-  }, [sideOn])
+  }, [sideOn, mobile])
 
   return (
     <>
       <div className="flex flex-col gap-[10px]">
         <div className="flex items-center gap-[4px]">
-          <Image src="/shop.svg" alt="shop" width={24} height={24} />
+          <Image
+            src="/shop.svg"
+            alt="shop"
+            width={24}
+            height={24}
+            className={clsx(!sideOn && !mobile && 'cursor-pointer')}
+            onClick={() => {
+              if (!sideOn && !mobile) router.push('/sell?page=1')
+            }}
+          />
           <Text
             className={clsx(
               'overflow-hidden text-[16px] font-semibold whitespace-nowrap transition-all duration-300',
@@ -52,7 +63,19 @@ export const SideBasic = ({ role = 'USER', mobile, sideOn }: SideBasicProps) => 
       <div className="flex flex-col gap-[10px]">
         <div className="flex w-full cursor-pointer justify-between" onClick={() => setMenuOn(prev => !prev)}>
           <div className="flex items-center gap-[4px]">
-            <Image src="/info.svg" alt="info" width={24} height={24} />
+            <Image
+              src="/info.svg"
+              alt="info"
+              width={24}
+              height={24}
+              className={clsx(!sideOn && !mobile && 'cursor-pointer')}
+              onClick={(e: React.MouseEvent<HTMLImageElement>) => {
+                if (!sideOn && !mobile) {
+                  e.stopPropagation()
+                  router.push('/')
+                }
+              }}
+            />
             <Text
               className={clsx(
                 'overflow-hidden text-[16px] font-semibold whitespace-nowrap transition-all duration-300',

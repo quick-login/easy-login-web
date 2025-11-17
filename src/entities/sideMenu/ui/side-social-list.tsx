@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { SideListMenu } from './side-list-Item'
 import { Text } from '@/shared/ui'
@@ -11,19 +12,29 @@ type SideItemProps = {
 
 export const SideItem = ({ mobile, sideOn }: SideItemProps) => {
   const [menuOn, setMenuOn] = useState<boolean>(false)
+  const router = useRouter()
 
   useEffect(() => {
-    const onToggleMenu = () => {
-      if (!sideOn) setMenuOn(false)
-    }
-    onToggleMenu()
-  }, [sideOn])
+    if (!sideOn) setMenuOn(false)
+  }, [sideOn, mobile])
 
   return (
     <div className="flex flex-col gap-[10px]">
       <div className="flex w-full cursor-pointer justify-between" onClick={() => setMenuOn(prev => !prev)}>
         <div className="flex items-center gap-[4px]">
-          <Image src="/menu_li.svg" alt="menu_li" width={24} height={24} />
+          <Image
+            src="/menu_li.svg"
+            alt="menu_li"
+            width={24}
+            height={24}
+            className={clsx(!sideOn && !mobile && 'cursor-pointer')}
+            onClick={(e: React.MouseEvent<HTMLImageElement>) => {
+              if (!sideOn && !mobile) {
+                e.stopPropagation()
+                router.push('/kakao/app')
+              }
+            }}
+          />
           <Text
             className={clsx(
               'overflow-hidden text-[16px] font-semibold whitespace-nowrap transition-all duration-300',

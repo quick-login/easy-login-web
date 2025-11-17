@@ -1,4 +1,4 @@
-import { LinkText, Text } from '@/shared/ui'
+import { Text } from '@/shared/ui'
 import type { Question } from '../model/types'
 
 type Props = {

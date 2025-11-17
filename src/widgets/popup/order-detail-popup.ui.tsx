@@ -22,7 +22,7 @@ export const OrderPopup = ({ orderCode, onClose }: Props) => {
   }, [])
 
   return (
-    <section className="fixed inset-0 z-[1100] flex h-[100vh] w-full items-center justify-center bg-black/50">
+    <section className="fixed inset-0 z-[1100] flex h-[100dvh] w-full items-center justify-center bg-black/50">
       <div className="1060:h-[600px] 1060:w-[800px] 1060:rounded-[20px] flex h-full w-full flex-col items-center justify-center bg-white">
         <div className="border-b-gray3 flex w-full items-center justify-between border-b p-[20px]">
           <Text className="text-[14px] font-bold md:text-[20px]">{`${order.orderDate} 주문 상세내역`}</Text>

@@ -1,8 +1,6 @@
 import { act, renderHook } from '@testing-library/react'
 import { useBoolean } from './useBoolean'
 
-// result.current = [state, setTrue, setFalse]
-
 test.each([[true], [false]])('초기 상태로 %s를 넣으면 해당 값으로 상태가 초기화된다.', initialValue => {
   const { result } = renderHook(() => useBoolean(initialValue))
   expect(result.current[0]).toBe(initialValue)

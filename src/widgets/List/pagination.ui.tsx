@@ -11,18 +11,6 @@ export const Pagination = ({ currentPage, pageSize = 10, totalElements, totalPag
   const searchParams = useSearchParams()
   const noPrev = start === 1
   const noNext = start + pageSize - 1 >= totalPages
-  console.log(
-    'start',
-    start,
-    'currentPage',
-    currentPage,
-    'pageSize',
-    pageSize,
-    'totalElement',
-    totalElements,
-    'totalPage',
-    totalPages,
-  )
 
   useEffect(() => {
     if (currentPage >= start + pageSize) {
@@ -30,7 +18,6 @@ export const Pagination = ({ currentPage, pageSize = 10, totalElements, totalPag
       setStart(prev => prev + pageSize * n)
     }
     if (currentPage < start) {
-      console.log('2')
       setStart(prev => prev - pageSize)
     }
   }, [currentPage, start])

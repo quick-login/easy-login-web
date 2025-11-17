@@ -1,4 +1,3 @@
-// UserButton.tsx (React 컴포넌트 예시)
 'use client'
 import { useState } from 'react'
 

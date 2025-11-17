@@ -13,13 +13,12 @@ export const Confirm = () => {
 
   useEffect(() => {
     return () => {
-      console.log('eee')
       onFalse()
     }
   }, [])
 
   return (
-    <section className={clsx('fixed inset-0 z-[2000] flex h-[100vh] w-full items-center justify-center bg-black/50')}>
+    <section className={clsx('fixed inset-0 z-[2000] flex h-[100dvh] w-full items-center justify-center bg-black/50')}>
       <div className="flex min-w-[250px] flex-col items-center justify-center rounded-[20px] bg-white">
         <div className="flex w-full flex-1 items-center justify-center p-[50px]">
           <Text className="font-semibold text-black">{msg}</Text>
