@@ -1,15 +1,20 @@
+'use client'
+
+import { useRouter } from 'next/navigation'
 import { Text } from '@/shared/ui'
 import type { Notice } from '../model/types'
 
 type Props = {
-  onMove: () => void
+  onMove?: () => void
 } & Notice
 
 export const NoticeItem = ({ createdAt, fixed, name, noticeId, title, onMove }: Props) => {
+  const router = useRouter()
+
   return (
     <tr
-      onClick={onMove}
       className="border-gray3 flex cursor-pointer flex-wrap items-center justify-between gap-[10px] rounded-[10px] border px-[15px] py-[10px]"
+      onClick={() => router.push(`/notice/${noticeId}`)}
     >
       <td className="order-1 w-[50px] shrink-0" align="center">
         <Text className="text-gray5 truncate text-left text-[14px] font-medium md:text-center">{noticeId}</Text>

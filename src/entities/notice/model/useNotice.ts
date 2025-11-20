@@ -1,3 +1,5 @@
+'use client'
+
 import { useEffect, useState } from 'react'
 import { noticeInfoAction } from './notice-action'
 import { useResponse } from '@/shared/lib'
