@@ -1,12 +1,12 @@
 'use client'
 
 import clsx from 'clsx'
-import type { ComponentProps } from 'react'
+import type { ComponentProps, ReactNode } from 'react'
 
 type ButtonProps = {
   type?: 'button' | 'submit' | 'reset'
   className?: string
-  children: string
+  children: ReactNode
   onClick?: () => void
   variant?: 'primary' | 'cancle' | 'noActive'
   formAction?: (formData: FormData) => Promise<void>
