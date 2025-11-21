@@ -16,6 +16,7 @@ export const SellPopup = ({ onClose }: Props) => {
   const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
   const list = useSellStore(state => state.list)
   const onTotalPrice = useSellStore(state => state.onTotalPrice)
+  const onPrice = useSellStore(state => state.onPrice)
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
@@ -55,14 +56,19 @@ export const SellPopup = ({ onClose }: Props) => {
 
         {list.size > 0 ? (
           <Button
-            className="1060:rounded-b-[20px] w-full rounded-none"
+            className="1060:rounded-b-[20px] flex w-full items-center justify-center gap-[10px] rounded-none"
             onClick={() =>
               onOpenConfirm('주문하시겠습니까?', () => {
                 onClose()
                 handleOrder()
               })
             }
-          >{`${onTotalPrice().toLocaleString()} 원 주문하기`}</Button>
+          >
+            {onPrice() !== onTotalPrice() && (
+              <Text className="text-gray5 text-[14px] font-medium line-through">{`${onPrice().toLocaleString()}원`}</Text>
+            )}
+            {`${onTotalPrice().toLocaleString()} 원 주문하기`}
+          </Button>
         ) : (
           <Button className="1060:rounded-b-[20px] w-full rounded-none" variant="noActive">
             상품을 먼저 담아주세요.

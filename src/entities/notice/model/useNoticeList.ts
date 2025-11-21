@@ -1,3 +1,5 @@
+'use client'
+
 import { useSearchParams } from 'next/navigation'
 import { useCallback, useEffect, useState } from 'react'
 import { noticeFixedListAction, noticeListAction } from './notice-action'

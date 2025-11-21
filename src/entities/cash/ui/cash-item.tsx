@@ -1,3 +1,5 @@
+import clsx from 'clsx'
+import { CashStatus } from './cash-status'
 import { Text } from '@/shared/ui'
 import type { Cash } from '../model/type'
 
@@ -7,20 +9,25 @@ type Props = {
 
 export const CashItem = ({ cashChargeLogId, chargeCash, requestDate, status, onCancle }: Props) => {
   return (
-    <tr className="group border-gray3 relative flex flex-wrap items-center justify-between gap-[10px] rounded-[10px] border px-[15px] py-[10px]">
+    <tr
+      className={clsx(
+        'group border-gray3 relative flex flex-wrap items-center justify-between gap-[10px] rounded-[10px] border px-[15px] py-[10px]',
+        status === 'CANCELED' && 'bg-gray1',
+      )}
+    >
       <td className="order-1 w-[50px] shrink-0" align="center">
-        <Text className="bg-gray2 rounded-[5px] p-[5px] text-[10px] font-semibold text-black">
-          {status === 'REQUEST'
-            ? '승인 대기'
-            : status === 'REJECTED'
-              ? '승인 거절'
-              : status === 'CANCELED'
-                ? '신청 취소'
-                : '승인 완료'}
-        </Text>
+        <CashStatus status={status} />
       </td>
       <td className="order-3 w-full overflow-hidden md:order-2 md:w-auto md:flex-1">
-        <Text className="truncate font-semibold text-black">{chargeCash.toLocaleString()} 원</Text>
+        <Text
+          className={clsx(
+            'truncate font-semibold text-black',
+            status === 'CANCELED' && 'text-gray4 line-through',
+            status === 'REJECTED' && 'text-gray3',
+          )}
+        >
+          {chargeCash.toLocaleString()} 원 {status === 'CHARGE_COMPLETED' && '승인'}
+        </Text>
       </td>
       <td className="order-2 min-w-[130px] shrink-0 text-right md:order-3">
         <Text className="text-gray5 text-[13px] font-semibold">{requestDate}</Text>

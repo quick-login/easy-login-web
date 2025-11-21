@@ -20,6 +20,7 @@ export const {
   auth,
   unstable_update: update, // Beta!
 } = NextAuth({
+  trustHost: true,
   providers: [
     Credentials({
       authorize: async credentials => {
@@ -43,7 +44,7 @@ export const {
   ],
   session: {
     strategy: 'jwt',
-    maxAge: 60 * 60 * 24, // 세션 만료 시간(sec)
+    maxAge: 14 * 24 * 60 * 60,
   },
   pages: {
     signIn: '/login',

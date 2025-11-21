@@ -4,12 +4,11 @@
 
 <div align='center'>
   <div>
-<img width="1600" height="903" alt="Image" src="https://github.com/user-attachments/assets/f020ad90-1d97-4bac-b484-01a69503d8b9" />
-    <!-- <img src='https://github.com/user-attachments/assets/01917d46-4367-40ca-ab51-0f0d1443899e'/> -->
+    <img width="1600" height="903" alt="Image" src="https://github.com/user-attachments/assets/f020ad90-1d97-4bac-b484-01a69503d8b9" />
   </div>
   <div>
     <h3>📅 개발 기간</h3>
-    <b>2025. 09. 21 ~ Ing</b>
+    <b>2025. 09. 21. ~ Ing</b>
     <h3>📅 정식 서비스 배포</h3>
     <b>미 정</b>
   </div>
