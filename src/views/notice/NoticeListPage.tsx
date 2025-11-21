@@ -1,15 +1,13 @@
 import { MainFooter } from '@/entities/main'
 import { getSession } from '@/shared/lib'
 import { Footer, LinkButton } from '@/shared/ui'
-import { NoticeList, PageHeader } from '@/widgets'
+import { NoticeList } from '@/widgets'
 
-export const NoticeListPage = async () => {
+export const NoticeListPage = async ({ page }: { page: string }) => {
   const session = await getSession()
   return (
-    <section className="scrollbar-hidden 1060:rounded-[20px] flex h-full flex-1 flex-col overflow-auto bg-white">
-      <PageHeader title="공지사항" />
-      <hr className="border-gray2" />
-      <NoticeList />
+    <>
+      <NoticeList page={page} />
       <hr className="border-gray2" />
       {session?.user?.role === 'ADMIN' ? (
         <Footer>
@@ -22,6 +20,6 @@ export const NoticeListPage = async () => {
       ) : (
         <MainFooter />
       )}
-    </section>
+    </>
   )
 }

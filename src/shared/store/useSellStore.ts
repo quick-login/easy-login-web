@@ -16,6 +16,7 @@ type SellOrder = {
   changeList: (product_id: number, newOrderQuantity: number) => void
   clearList: () => void
   onTotalPrice: () => number
+  onPrice: () => number
 }
 
 export const useSellStore = create<SellOrder>((set, get) => ({
@@ -53,6 +54,14 @@ export const useSellStore = create<SellOrder>((set, get) => ({
     const sum = Array.from(list.values()).reduce((acc, cur) => {
       if (cur.orderQuantity === 0) return acc + cur.finalPrice * 1
       else return acc + cur.finalPrice * cur.orderQuantity
+    }, 0)
+    return sum
+  },
+  onPrice: () => {
+    const list = get().list
+    const sum = Array.from(list.values()).reduce((acc, cur) => {
+      if (cur.orderQuantity === 0) return acc + cur.price * 1
+      else return acc + cur.price * cur.orderQuantity
     }, 0)
     return sum
   },
