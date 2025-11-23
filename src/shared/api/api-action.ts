@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation'
-import { signOut } from '../../../auth'
+import { clearSession } from '../lib'
 import type { ActionResponse, ResponseType } from './types'
 
 export const onActionResponse = async <Tdata>(
@@ -10,7 +10,7 @@ export const onActionResponse = async <Tdata>(
     redirect('/not-found')
   }
   if (response.code === 'U1003') {
-    signOut({ redirect: true, redirectTo: '/login' })
+    await clearSession()
     redirect('/login')
   } else if (response.code === 'E200') {
     await callback?.()
