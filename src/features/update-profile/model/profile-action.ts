@@ -37,7 +37,7 @@ export const profilePatchAction = async (formData: FormData) => {
   }
 
   const response = await patchProfile({ name, password, passwordCheck })
-  return await onActionResponse(response, async () => await updateSession({ user: { name: name } }))
+  return await onActionResponse(response)
 }
 
 export const userLogoutAction = async () => {
