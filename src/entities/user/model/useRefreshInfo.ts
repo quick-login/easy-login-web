@@ -1,27 +1,20 @@
 'use client'
 
-import { signOut } from 'next-auth/react'
 import { userAction } from './user-action'
-import type { Session } from 'next-auth'
+import { clearSession, useResponse } from '@/shared/lib'
+import { useUserStore } from '@/shared/store'
 
 export const useRefreshInfo = () => {
-  const handleRefreshUser = async (session: Session) => {
-    if (!session?.user) {
-      return
-    }
+  const setSession = useUserStore(state => state.setSession)
+  const handleResponse = useResponse()
+  const handleRefreshUser = async () => {
+    const response = await userAction()
 
-    const lastUpdateTime = new Date(session.user.updateAt).getTime()
-    const currentTime = new Date().getTime()
-    const refreshTime = 30 * 60 * 1000
+    if (!response.success) await clearSession()
 
-    if (currentTime - lastUpdateTime >= refreshTime) {
-      const response = await userAction()
-      if (response.success) {
-        window.location.reload()
-      } else {
-        await signOut({ redirect: true, redirectTo: '/login' })
-      }
-    }
+    handleResponse(response, () => {
+      setSession(response.data)
+    })
   }
 
   return { handleRefreshUser }
