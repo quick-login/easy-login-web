@@ -86,28 +86,28 @@ export const axiosGet = async <Tdata>(url: string, config: AxiosRequestConfig = 
   return response.data
 }
 
-export const axiosGetUserInfo = async (
-  url: string,
-  config: AxiosRequestConfig = {},
-): Promise<ResponseType<UserType>> => {
-  const response = await axiosInstance.get<ResponseType<UserType>>(url, { ...config })
-  const { cash, email, maxKakaoAppCount, name, remainCount, role } = response.data.data
-  const session = await getSession()
-  await updateSession({
-    user: {
-      cash: cash,
-      name: name,
-      email: email,
-      maxKakaoAppCount: maxKakaoAppCount,
-      remainCount: remainCount,
-      role: role,
-      updateAt: new Date().toISOString(),
-      accessToken: response.data.accessToken ? response.data.accessToken : session?.user?.accessToken,
-      refreshToken: response.data.refreshToken ? response.data.refreshToken : session?.user?.refreshToken,
-    },
-  })
-  return response.data
-}
+// export const axiosGetUserInfo = async (
+//   url: string,
+//   config: AxiosRequestConfig = {},
+// ): Promise<ResponseType<UserType>> => {
+//   const response = await axiosInstance.get<ResponseType<UserType>>(url, { ...config })
+//   const { cash, email, maxKakaoAppCount, name, remainCount, role } = response.data.data
+//   const session = await getSession()
+//   await updateSession({
+//     user: {
+//       cash: cash,
+//       name: name,
+//       email: email,
+//       maxKakaoAppCount: maxKakaoAppCount,
+//       remainCount: remainCount,
+//       role: role,
+//       updateAt: new Date().toISOString(),
+//       accessToken: response.data.accessToken ? response.data.accessToken : session?.user?.accessToken,
+//       refreshToken: response.data.refreshToken ? response.data.refreshToken : session?.user?.refreshToken,
+//     },
+//   })
+//   return response.data
+// }
 
 export const axiosPostLogin = async <Tdata>(
   url: string,

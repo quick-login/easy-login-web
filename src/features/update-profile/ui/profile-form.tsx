@@ -1,12 +1,12 @@
 'use client'
 
-import { useSession } from 'next-auth/react'
 import { ProfileFooter } from './profile-Footer'
 import { usePatchProfile } from '../model/usePatchProfile'
+import { useUserStore } from '@/shared/store'
 import { Input, InputPassword, Text } from '@/shared/ui'
 
 export const ProfileForm = () => {
-  const { data: session } = useSession()
+  const user = useUserStore(state => state.user)
   const { handleSubmit } = usePatchProfile()
   return (
     <>
@@ -23,15 +23,9 @@ export const ProfileForm = () => {
             type="text"
             className="w-full"
             readOnly
-            defaultValue={session?.user?.email}
+            defaultValue={user.email}
           />
-          <Input
-            name="name"
-            placeholder="이름 입력"
-            type="text"
-            className="w-full"
-            defaultValue={session?.user?.name}
-          />
+          <Input name="name" placeholder="이름 입력" type="text" className="w-full" defaultValue={user.name} />
           <InputPassword name="password" placeholder="새 비밀번호 입력" />
           <InputPassword name="passwordCheck" placeholder="새 비밀번호 다시 입력" />
         </form>

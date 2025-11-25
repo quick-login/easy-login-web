@@ -3,7 +3,6 @@
 import z from 'zod'
 import { patchProfile, postLogout } from '../api/profile-api'
 import { type ActionResponse, onActionResponse } from '@/shared/api'
-import { updateSession } from '@/shared/lib'
 
 const registSchema = z
   .object({
@@ -37,7 +36,7 @@ export const profilePatchAction = async (formData: FormData) => {
   }
 
   const response = await patchProfile({ name, password, passwordCheck })
-  return await onActionResponse(response, async () => await updateSession({ user: { name: name } }))
+  return await onActionResponse(response)
 }
 
 export const userLogoutAction = async () => {
