@@ -41,15 +41,9 @@ export const handleLoginAction = async (prevState: State, formData: FormData) =>
     const userInfo = await response.json()
 
     await signIn('credentials', {
-      name: userInfo.data.name,
-      email: userInfo.data.email,
-      cash: userInfo.data.cash,
-      remainCount: userInfo.data.remainCount,
-      maxKakaoAppCount: userInfo.data.maxKakaoAppCount,
       role: userInfo.data.role,
       accessToken: res.data.accessToken,
       refreshToken: res.data.refreshToken,
-      updateAt: new Date().toISOString(),
       redirect: false,
     })
 
