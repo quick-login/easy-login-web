@@ -5,12 +5,13 @@ import { LoadingSkeletonCard } from './skeleton-card.ui'
 import { AdminSellPopup } from '../popup/admin-sell-popup'
 import { AdminSellItemCard, useAdminSellList } from '@/entities/sell'
 import { useAdminSell } from '@/features/order-sell'
-import { useConfirmStore, useModalStore } from '@/shared/store'
+import { useConfirmStore, useItemStore, useModalStore } from '@/shared/store'
 import { Text } from '@/shared/ui'
 
 export const AdminSellList = () => {
-  const { sellList, pagination, isLoading } = useAdminSellList()
+  const { pagination, isLoading } = useAdminSellList()
   const { handleChangeStatus, handleDeleteSell } = useAdminSell()
+  const sellList = useItemStore(state => state.adminSellList)
   const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
   const isAdminSell = useModalStore(state => state.isAdminSell)
 

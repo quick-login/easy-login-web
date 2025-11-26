@@ -5,12 +5,12 @@ import { useEffect, useState } from 'react'
 import { adminSellItemsAction } from './sell-action'
 import type { Page } from '@/shared/api'
 import { useResponse } from '@/shared/lib'
-import type { AdminSellItem } from './type'
+import { useItemStore } from '@/shared/store'
 
 export const useAdminSellList = () => {
   const sellPage = Number(useSearchParams().get('page'))
+  const setSellList = useItemStore(state => state.setSellList)
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [sellList, setSellList] = useState<AdminSellItem[]>([])
   const [pagination, setPagination] = useState<Page>({
     currentPage: sellPage,
     pageSize: 0,
@@ -36,5 +36,5 @@ export const useAdminSellList = () => {
     window.scrollTo(0, 0)
   }, [sellPage])
 
-  return { sellList, pagination, isLoading }
+  return { pagination, isLoading }
 }

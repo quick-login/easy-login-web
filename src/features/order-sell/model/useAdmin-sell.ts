@@ -1,10 +1,11 @@
 import { adminAddSellAction, adminChangeStatusAction, adminDeleteSellAction } from './order-sell-action'
 import { useFeatureResponse } from '@/shared/lib'
-import { useConfirmStore, useModalStore } from '@/shared/store'
+import { useConfirmStore, useItemStore, useModalStore } from '@/shared/store'
 
 export const useAdminSell = () => {
   const handleResponse = useFeatureResponse()
   const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
+  const onChangeSellStatus = useItemStore(state => state.onChangeSellStatus)
   const setModal = useModalStore(state => state.setModal)
 
   const handleAddSell = async (formData: FormData) => {
@@ -22,7 +23,7 @@ export const useAdminSell = () => {
 
   const handleChangeStatus = async (productId: number) => {
     const response = await adminChangeStatusAction(productId)
-    handleResponse(response, '상품 상태가 변경되었습니다.', () => window.location.reload())
+    handleResponse(response, '상품 상태가 변경되었습니다.', () => onChangeSellStatus(productId, response.data.status))
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>, formdata: FormData) => {
