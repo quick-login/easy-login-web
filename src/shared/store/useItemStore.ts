@@ -7,8 +7,8 @@ type Items = {
   adminSellList: AdminSellItem[]
   setCashList: (cashList: Cash[]) => void
   setSellList: (sellList: AdminSellItem[]) => void
-  onChangeCashStatus: (cashChargeLogId: number) => void
-  onChangeSellStatus: (productId: number) => void
+  onChangeCashStatus: (cashChargeLogId: number, value: 'REQUEST' | 'CHARGE_COMPLETED' | 'REJECTED' | 'CANCELED') => void
+  onChangeSellStatus: (productId: number, value: 'SALE' | 'STOP') => void
   onDeleteSell: () => void
 }
 
@@ -17,11 +17,16 @@ export const useItemStore = create<Items>((set, get) => ({
   adminSellList: [],
   setCashList: (cashList: Cash[]) => set({ adminCashList: cashList }),
   setSellList: (sellList: AdminSellItem[]) => set({ adminSellList: sellList }),
-  onChangeCashStatus: (cashChargeLogId: number) => {},
-  onChangeSellStatus: (productId: number) =>
+  onChangeCashStatus: (cashChargeLogId: number, value: 'REQUEST' | 'CHARGE_COMPLETED' | 'REJECTED' | 'CANCELED') =>
+    set(state => ({
+      adminCashList: state.adminCashList.map(item =>
+        item.cashChargeLogId === cashChargeLogId ? { ...item, status: value } : item,
+      ),
+    })),
+  onChangeSellStatus: (productId: number, value: 'SALE' | 'STOP') =>
     set(state => ({
       adminSellList: state.adminSellList.map(item =>
-        item.productId === productId ? { ...item, status: item.status === 'SALE' ? 'STOP' : 'SALE' } : item,
+        item.productId === productId ? { ...item, status: value } : item,
       ),
     })),
   onDeleteSell: () => {},
