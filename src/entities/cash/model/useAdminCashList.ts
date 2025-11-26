@@ -3,12 +3,12 @@ import { useEffect, useState } from 'react'
 import { adminCashListAction } from './cash-action'
 import type { Page } from '@/shared/api'
 import { useResponse } from '@/shared/lib'
-import type { Cash } from './type'
+import { useItemStore } from '@/shared/store'
 
 export const useAdminCashList = () => {
   const cashPage = Number(useSearchParams().get('page'))
+  const setCashList = useItemStore(state => state.setCashList)
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [cashList, setCashList] = useState<Cash[]>([])
   const [pagination, setPagination] = useState<Page>({
     currentPage: cashPage,
     pageSize: 0,
@@ -34,5 +34,5 @@ export const useAdminCashList = () => {
     window.scrollTo(0, 0)
   }, [cashPage])
 
-  return { cashList, pagination, isLoading }
+  return { pagination, isLoading }
 }
