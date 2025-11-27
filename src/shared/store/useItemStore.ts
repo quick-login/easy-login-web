@@ -9,7 +9,8 @@ type Items = {
   setSellList: (sellList: AdminSellItem[]) => void
   onChangeCashStatus: (cashChargeLogId: number, value: 'REQUEST' | 'CHARGE_COMPLETED' | 'REJECTED' | 'CANCELED') => void
   onChangeSellStatus: (productId: number, value: 'SALE' | 'STOP') => void
-  onDeleteSell: () => void
+  onAddSell: (sellItem: AdminSellItem) => void
+  onDeleteSell: (productId: number) => void
 }
 
 export const useItemStore = create<Items>((set, get) => ({
@@ -29,5 +30,12 @@ export const useItemStore = create<Items>((set, get) => ({
         item.productId === productId ? { ...item, status: value } : item,
       ),
     })),
-  onDeleteSell: () => {},
+  onAddSell: (sellItem: AdminSellItem) =>
+    set(state => ({
+      adminSellList: [sellItem, ...state.adminSellList],
+    })),
+  onDeleteSell: (productId: number) =>
+    set(state => ({
+      adminSellList: state.adminSellList.filter(item => item.productId !== productId),
+    })),
 }))
