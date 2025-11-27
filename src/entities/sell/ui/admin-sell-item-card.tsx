@@ -30,7 +30,7 @@ export const AdminSellItemCard = ({
       <div
         className={clsx(
           'border-t-gray3 flex flex-col justify-end gap-[10px] border-t p-[10px]',
-          status === 'SALE' ? 'bg-white' : 'bg-gray1',
+          status === 'SALE' ? 'bg-white' : 'bg-gray3',
         )}
       >
         <div className="flex">
