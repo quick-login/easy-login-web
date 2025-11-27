@@ -4,8 +4,8 @@ import { Button, Text } from '@/shared/ui'
 import type { Cash } from '../model/type'
 
 type Props = {
-  onApprove: (cashChargeLogId: number) => void
-  onCancle: (cashChargeLogId: number) => void
+  onApprove: () => void
+  onCancle: () => void
 } & Cash
 
 export const AdminCashItem = ({
@@ -42,16 +42,13 @@ export const AdminCashItem = ({
       </td>
       {status === 'REQUEST' && (
         <td className="order-3 flex w-full gap-[5px] md:w-fit">
-          <Button
-            className="!h-fit flex-1 px-[10px] py-[5px] !text-[13px] md:flex-none"
-            onClick={() => onApprove(cashChargeLogId)}
-          >
+          <Button className="!h-fit flex-1 px-[10px] py-[5px] !text-[13px] md:flex-none" onClick={onApprove}>
             승 인
           </Button>
           <Button
             className="!h-fit flex-1 px-[10px] py-[5px] !text-[13px] md:flex-none"
             variant="cancle"
-            onClick={() => onCancle(cashChargeLogId)}
+            onClick={onCancle}
           >
             거 절
           </Button>
