@@ -1,3 +1,4 @@
+import type { QuestInfo } from '@/entities/question'
 import { axiosPost } from '@/shared/api'
 
 type QuestType = {
@@ -6,11 +7,11 @@ type QuestType = {
 }
 
 export const postQuest = async (questData: QuestType) => {
-  const res = await axiosPost('/api/v1/question', questData)
+  const res = await axiosPost<null>('/api/v1/question', questData)
   return res
 }
 
 export const postQuestAnswer = async (questionId: number, answer: string) => {
-  const res = await axiosPost(`/admin/api/v1/question/answer/${questionId}`, { answer })
+  const res = await axiosPost<QuestInfo>(`/admin/api/v1/question/answer/${questionId}`, { answer })
   return res
 }

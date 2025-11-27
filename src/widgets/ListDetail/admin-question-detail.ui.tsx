@@ -8,7 +8,7 @@ import { Footer } from '@/shared/ui/Footer'
 
 export const AdminQuestionDetail = ({ questionId }: { questionId: number }) => {
   const router = useRouter()
-  const { quest } = useAdminQuest(questionId)
+  const { quest, setQuest } = useAdminQuest(questionId)
   return (
     <>
       <QuestionInfo
@@ -17,9 +17,10 @@ export const AdminQuestionDetail = ({ questionId }: { questionId: number }) => {
         questionId={quest.questionId}
         questionDate={quest.questionDate}
         content={quest.content}
+        name={quest.name}
       />
       {quest.status === 'COMPLETED' && <QuestionAnswer answer={quest.answer} answeredDate={quest.answeredDate} />}
-      {quest.status === 'WAITING' && <AnswerForm questionId={questionId} />}
+      {quest.status === 'WAITING' && <AnswerForm questionId={questionId} setQuest={setQuest} />}
       <hr className="border-gray2" />
       <Footer>
         <div className="400:px-0 flex w-full items-center justify-end gap-[10px] px-[15px]">

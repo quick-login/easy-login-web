@@ -1,10 +1,17 @@
 'use client'
 
 import { useAdminAnswer } from '../model/useAdmin-Answer'
+import type { QuestInfo } from '@/entities/question'
 import { TextArea } from '@/shared/ui'
+import type { Dispatch, SetStateAction } from 'react'
 
-export const AnswerForm = ({ questionId }: { questionId: number }) => {
-  const { handleSubmit } = useAdminAnswer(questionId)
+type Props = {
+  setQuest: Dispatch<SetStateAction<QuestInfo>>
+  questionId: number
+}
+
+export const AnswerForm = ({ questionId, setQuest }: Props) => {
+  const { handleSubmit } = useAdminAnswer(questionId, setQuest)
   return (
     <form
       id="answer-form"

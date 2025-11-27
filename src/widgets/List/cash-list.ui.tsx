@@ -4,11 +4,12 @@ import { Pagination } from './pagination.ui'
 import { LoadingSkeleton } from './skeleton-list.ui'
 import { CashItem, useCashList } from '@/entities/cash'
 import { useReqCash } from '@/features/request-cash'
-import { useConfirmStore } from '@/shared/store'
+import { useConfirmStore, useItemStore } from '@/shared/store'
 import { Text } from '@/shared/ui'
 
 export const CashList = () => {
-  const { cashList, pagination, isLoading } = useCashList()
+  const { pagination, isLoading } = useCashList()
+  const cashList = useItemStore(state => state.adminCashList)
   const { handleCancleCash } = useReqCash()
   const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
 
