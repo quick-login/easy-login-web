@@ -1,9 +1,21 @@
-import { useInfiniteQuery } from '@tanstack/react-query'
+'use client'
+
+import { useInfiniteQuery, useQueryClient } from '@tanstack/react-query'
+import { useEffect } from 'react'
 import { adminSellItemsAction } from './sell-action'
 import { useItemStore } from '@/shared/store'
 
 export const useAdminSellInfinite = () => {
   const setSellListInfinite = useItemStore(state => state.setSellListInfinite)
+  const clearAdminSell = useItemStore(state => state.clearAdminSell)
+  const queryClient = useQueryClient()
+
+  useEffect(() => {
+    return () => {
+      queryClient.removeQueries({ queryKey: ['admin-sell-list'] })
+      clearAdminSell()
+    }
+  }, [])
 
   return useInfiniteQuery({
     queryKey: ['admin-sell-list'],
