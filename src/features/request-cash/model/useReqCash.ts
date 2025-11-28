@@ -4,9 +4,11 @@ import { useRouter } from 'next/navigation'
 import { type ChangeEvent, useState } from 'react'
 import { approveCashAction, cancleCashAction, rejectCashAction, requestCashAction } from './cash-action'
 import { useFeatureResponse } from '@/shared/lib'
+import { useItemStore } from '@/shared/store'
 
 export const useReqCash = () => {
   const handleResponse = useFeatureResponse()
+  const onChangeCashStatus = useItemStore(state => state.onChangeCashStatus)
   const router = useRouter()
   const [cash, setCash] = useState<string>('')
 
@@ -35,17 +37,17 @@ export const useReqCash = () => {
 
   const handleCancleCash = async (cashChargeLogId: number) => {
     const response = await cancleCashAction(cashChargeLogId)
-    handleResponse(response, '캐시 신청이 취소되었습니다.', () => window.location.reload())
+    handleResponse(response, '캐시 신청이 취소되었습니다.', () => onChangeCashStatus(cashChargeLogId, 'CANCELED'))
   }
 
   const handleAdminRejectCash = async (cashChargeLogId: number) => {
     const response = await rejectCashAction(cashChargeLogId)
-    handleResponse(response, '신청이 반려되었습니다.', () => window.location.reload())
+    handleResponse(response, '신청이 반려되었습니다.', () => onChangeCashStatus(cashChargeLogId, 'REJECTED'))
   }
 
   const handleAdminApproveCash = async (cashChargeLogId: number) => {
     const response = await approveCashAction(cashChargeLogId)
-    handleResponse(response, '신청이 승인되었습니다.', () => window.location.reload())
+    handleResponse(response, '신청이 승인되었습니다.', () => onChangeCashStatus(cashChargeLogId, 'CHARGE_COMPLETED'))
   }
 
   return {

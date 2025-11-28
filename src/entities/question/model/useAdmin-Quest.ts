@@ -12,19 +12,18 @@ export const useAdminQuest = (questionId: number) => {
     questionId: questionId,
     status: 'COMPLETED',
     title: '',
+    name: '',
   })
   const handleResponse = useResponse()
 
   const handleGetQuest = async (questionId: number) => {
     const response = await adminQuestInfoAction(questionId)
-    handleResponse(response, () => {
-      setQuest(response.data)
-    })
+    handleResponse(response, () => setQuest(response.data))
   }
 
   useEffect(() => {
     handleGetQuest(questionId)
   }, [])
 
-  return { quest }
+  return { quest, setQuest }
 }

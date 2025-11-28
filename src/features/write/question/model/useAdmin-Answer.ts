@@ -1,14 +1,16 @@
 import { adminAnswerAction } from './quest-action'
+import type { QuestInfo } from '@/entities/question'
 import { useFeatureResponse } from '@/shared/lib'
 import { useConfirmStore } from '@/shared/store'
+import type { Dispatch, SetStateAction } from 'react'
 
-export const useAdminAnswer = (questionId: number) => {
+export const useAdminAnswer = (questionId: number, setQuest: Dispatch<SetStateAction<QuestInfo>>) => {
   const onOpenConfirm = useConfirmStore(state => state.onOpenConfirm)
   const handleResponse = useFeatureResponse()
 
   const handleWriteQuest = async (formData: FormData) => {
     const response = await adminAnswerAction(questionId, formData)
-    handleResponse(response, '답변이 등록되었습니다.', () => window.location.reload())
+    handleResponse(response, '답변이 등록되었습니다.', () => setQuest(response.data!))
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>, formdata: FormData) => {
