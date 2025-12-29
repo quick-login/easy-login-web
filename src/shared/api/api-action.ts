@@ -1,6 +1,15 @@
+'use server'
+
+import { headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { clearSession } from '../lib'
 import type { ActionResponse, ResponseType } from './types'
+
+export const getIpAddress = async () => {
+  const h = await headers()
+  const ip = h.get('x-forwarded-for')?.split(',')[0] ?? h.get('x-real-ip')
+  return ip
+}
 
 export const onActionResponse = async <Tdata>(
   response: ResponseType<Tdata>,
@@ -13,6 +22,8 @@ export const onActionResponse = async <Tdata>(
     await clearSession()
     redirect('/login')
   } else if (response.code === 'E200') {
+    const check = await getIpAddress()
+    console.log('체크체크', check)
     await callback?.()
     return {
       success: true,
