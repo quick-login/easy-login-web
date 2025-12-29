@@ -1,3 +1,5 @@
+'use server'
+
 import { redirect } from 'next/navigation'
 import { clearSession } from '../lib'
 import type { ActionResponse, ResponseType } from './types'

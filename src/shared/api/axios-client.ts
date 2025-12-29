@@ -1,4 +1,7 @@
+'use server'
+
 import axios, { type AxiosRequestConfig } from 'axios'
+import { headers } from 'next/headers'
 import { clearSession, getSession, updateSession } from '../lib'
 import type { ResponseType, UserType } from './types'
 
@@ -13,6 +16,14 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(
   async config => {
+    const h = await headers()
+    let ip = h.get('x-forwarded-for')?.split(',')[0] ?? h.get('x-real-ip') ?? ''
+
+    if (ip.startsWith('::ffff:')) {
+      ip = ip.replace('::ffff:', '')
+    }
+    config.headers['EZP-REQ-IP'] = ip
+
     const session = await getSession()
     // console.log('axios 내 세션', session?.user)
     if (session?.user?.accessToken) {
